@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import './filterMenu.scss';
 
 // Component Filter
-function FilterMenu() {
+function Nav() {
 
     // State for the burger-menu on mobile
     const [showLinks, setShowLinks] = useState(false);
@@ -45,4 +45,4 @@ function FilterMenu() {
     );
 }
 
-export default React.memo(FilterMenu);
+export default React.memo(Nav);
