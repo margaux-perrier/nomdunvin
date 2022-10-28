@@ -24,6 +24,7 @@
     .menu-login {
       margin-right: 1rem;
       display: flex;
+      height: 100%;
     }
     .menu-link {
       width: 20%;
@@ -34,7 +35,7 @@
       height: 100%;
       align-items: center;
       display: flex;
-      margin : 0 1rem;
+      margin: 0 1rem;
     }
     .tab-link {
       color: vars.$secondary-color;
@@ -59,9 +60,12 @@
       padding: vars.$gutter1;
       margin-right: 0;
     }
+
     .tab-connexion:hover {
       font-family: vars.$font-Montserrat;
       font-weight: 600;
+      -webkit-transition: left 0.5s, -webkit-transform 0.7s;
+      -webkit-transform: translateX(-8%);
     }
     .menu-login {
       display: none;
@@ -81,9 +85,65 @@
 @media screen and (min-width: 768px) {
   .header {
     .navbar {
+
+      // Management of login form Desktop
       .menu-login {
         display: flex;
+        .menu-login:hover {
+          transition: all 0.8s ease-out;
+        }
+
+        .form-login {
+          display: flex;
+          //hoover on form-login
+
+          .form-group {
+            margin: 0 0.5rem;
+          }
+
+          .form-input {
+            height: 2rem;
+            font-size: 1.2rem;
+            color: vars.$primary-color;
+            padding-left: 1rem;
+            border: 1px solid vars.$primary-color;
+          }
+          .form-btn {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: vars.$primary-color;
+            padding: 0.2rem;
+
+            border: 1px solid vars.$primary-color;
+          }
+          .form-btn:hover {
+            font-size: 1rem;
+            background-color: vars.$primary-color;
+            color: vars.$secondary-color;
+            border: 1px solid vars.$primary-color;
+            //transition lente
+            transition: all 0.3s ease-out;
+          }
+
+          .close {
+            background-color: vars.$secondary-color;
+            border: 1px solid vars.$secondary-color;
+            color: vars.$primary-color;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 1rem;
+          }
+          //hover sur close
+          .close:hover {
+            background-color: vars.$primary-color;
+            border: 1px solid vars.$primary-color;
+            color: vars.$secondary-color;
+            font-weight: bold;
+            font-size: 1.5rem;
+          }
+        }
       }
+
       .logo-user {
         display: none;
       }

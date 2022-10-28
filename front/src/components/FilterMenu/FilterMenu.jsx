@@ -8,15 +8,15 @@ import './filterMenu.scss';
 function Nav() {
 
     // State for the burger-menu on mobile
-    const [showLinks, setShowLinks] = useState(false);
+    const [showFilters, setShowFilters] = useState(false);
     // "Button Event" to open burger menu on mobile 
-    const handleShowLinks = () => {setShowLinks(!showLinks);}
+    const handleShowFilters = () => {setShowFilters(!showFilters);}
 
 
     return (
 
     // If the State "showLinks" is "true" we add the "show class" to the "menuCheckbox" to display it and if it is "false" we hide it
-        <div className={`menuCheckbox ${showLinks ? "show" : "hide"}`}> 
+        <div className={`menuCheckbox ${showFilters ? "show" : "hide"}`}> 
             <div className="links">
                 <div>
                     <h3 className="checkbox-title"> Vous êtes plutôt ?</h3>
@@ -38,7 +38,7 @@ function Nav() {
                     </div>
                 </div>
             </div>
-            <button className="burger" onClick={handleShowLinks}>
+            <button className="burger" onClick={handleShowFilters}>
                 <span className="burger-bar"></span>
             </button>
         </div>
