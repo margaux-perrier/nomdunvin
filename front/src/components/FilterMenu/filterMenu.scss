@@ -1,0 +1,171 @@
+@use "src/styles/vars";
+
+// Main Div
+.menuCheckbox {
+  flex-direction: column;
+  align-items: center; 
+  justify-content: space-between;
+  position: relative;
+  width: 175px;
+  height: 50vh;
+  padding: 1rem;
+  border: solid 1.5px vars.$primary-color;
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+  margin:1rem;
+  //centrer verticalement au milieu de l'écran
+}
+
+// Main Container
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Filter Tilte
+.checkbox-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: vars.$primary-color;
+  padding-top: 1rem;
+}
+
+// All options of checkbox
+.checkbox {
+  color: inherit;
+  padding: 0.9rem;
+  font-size: 1rem;
+}
+
+// Button to validate the selected filters
+.checkbox-btn {
+  background-color: vars.$primary-color;
+  color: white;
+  padding: 0.5rem vars.$gutter1;
+  border: 1px solid vars.$primary-color;
+  border-radius: 1rem;
+  width: 100px;
+}
+
+.checkbox-btn:hover {
+  background-color: white;
+  color: vars.$primary-color;
+  border: 1px solid vars.$primary-color;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  width: 100px;
+  font-weight: 700;
+}
+// End of filter Button
+
+// Burger menu to open the filters-menu / display none on desktop
+.burger {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  display: none;
+}
+
+//* RESPONSIVE MANAGEMENT *//
+
+@media screen and (max-width: 768px) {
+  // No border on the burger menu for Mobile
+
+  .menuCheckbox {
+    border: none;
+    box-shadow: none;
+  }
+
+  // Filters-menu --Visibility hidden on desktop
+  .links {
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    right: -100vw;
+    bottom: 0;
+    height: 110vh;
+    padding: vars.$gutter2;
+    visibility: hidden;
+    background-color: vars.$secondary-color;
+    color: rgb(0, 0, 0);
+  }
+
+  // Show Class visible when State is true
+  .show .links {
+    width: 100vw;
+    left: 0;
+    visibility: visible;
+  }
+
+  // Change police size for mobile
+  .link {
+    padding: 1.5rem;
+    font-size: 5vw;
+  }
+
+  .checkbox-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: vars.$primary-color;
+    padding-top: 1rem;
+  }
+
+  .checkbox {
+    padding: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  // Manage the burger menu for mobile
+
+  .burger {
+    display: block;
+
+    top: 5rem;
+    left: 1rem;
+  }
+  .burger:hover {
+    cursor: pointer;
+  }
+
+  .burger-bar,
+  .burger-bar::before,
+  .burger-bar::after {
+    display: block;
+    width: 40px;
+    height: 3px;
+    position: relative;
+    border-radius: 3px;
+    background: #a02222;
+  }
+  .burger-bar::before,
+  .burger-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .burger-bar::before {
+    transform: translateY(-12px);
+  }
+  .burger-bar::after {
+    transform: translateY(12px);
+  }
+  .show .burger-bar {
+    width: 0;
+    background: transparent;
+  }
+  .show .burger-bar::before {
+    transform: rotate(45deg);
+    background: vars.$primary-color;
+  }
+  .show .burger-bar::after {
+    transform: rotate(-45deg);
+    background: vars.$primary-color;
+  }
+}

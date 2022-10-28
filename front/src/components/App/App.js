@@ -1,6 +1,8 @@
-// import header
+// import header component
 import Header from '../Header/Header';
-// import footer
+// import FilterMenu component
+import FilterMenu from '../FilterMenu/FilterMenu';
+// import footer component
 import Footer from '../Footer/Footer';
 
 
@@ -12,11 +14,8 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <FilterMenu />
       <Footer />
-
-    
-  
-  
     </div>
   );
 }
