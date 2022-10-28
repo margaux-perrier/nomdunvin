@@ -1,0 +1,92 @@
+@use "src/styles/vars";
+
+.header {
+  border-bottom: 2px solid vars.$border-color;
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: vars.$primary-color;
+    justify-content: space-between;
+    margin-top: 0;
+    .logo {
+      width: 150px;
+      margin-right: 10px;
+      padding: 1rem;
+      float: left;
+    }
+    .menu {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      width: auto;
+    }
+    .menu-login {
+      margin-right: 1rem;
+      display: flex;
+    }
+    .menu-link {
+      width: 20%;
+      align-items: center;
+    }
+    .menu-user {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      margin : 0 1rem;
+    }
+    .tab-link {
+      color: vars.$secondary-color;
+      font-size: vars.$font-size-menu1;
+      font-weight: bold;
+      font-family: vars.$font-Montserrat;
+      transition: 0.1s 0.1s ease-in-out;
+      margin-left: 10px;
+      width: 100%;
+    }
+    .tab-link:hover {
+      font-weight: 100;
+      font-family: vars.$font-Montserrat;
+      transition: 0.1s 0.1s ease-in-out;
+      padding: vars.$gutter1;
+    }
+    .tab-connexion {
+      color: vars.$secondary-color;
+      font-size: vars.$font-size-menu1;
+      font-family: vars.$font-Montserrat;
+      transition: 0.1s 0.1s ease-in-out;
+      padding: vars.$gutter1;
+      margin-right: 0;
+    }
+    .tab-connexion:hover {
+      font-family: vars.$font-Montserrat;
+      font-weight: 600;
+    }
+    .menu-login {
+      display: none;
+      align-items: center;
+      padding: vars.$gutter1;
+    }
+    .logo-user {
+      display: block;
+      align-items: center;
+      width: 40px;
+      margin: auto;
+    }
+  }
+}
+
+// responsive for desktop
+@media screen and (min-width: 768px) {
+  .header {
+    .navbar {
+      .menu-login {
+        display: flex;
+      }
+      .logo-user {
+        display: none;
+      }
+    }
+  }
+}
