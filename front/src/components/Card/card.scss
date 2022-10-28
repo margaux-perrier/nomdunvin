@@ -5,8 +5,11 @@
     flex-direction: column;
     padding-top: 3rem;
     width : 400px;
-    height : 40rem;
+    height : 46rem;
     margin : vars.$gutter1;
+    padding-bottom: 5rem;
+    border-bottom: vars.$primary-color solid 1px;
+
 
     .visual{
         display: flex;
@@ -107,7 +110,7 @@
         .winemaker {
             text-transform: uppercase;
             font-size: 1.2rem;
-            margin-top: 1.5rem;
+            margin-top: 4rem;
             font-weight: 600;   
             color : vars.$primary-color;
         }
@@ -174,3 +177,9 @@
         }
         
     }
+
+     @media screen and (min-width: 768px) {
+         .card { 
+        border-bottom: none
+    }
+}

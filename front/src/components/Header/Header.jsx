@@ -22,28 +22,16 @@ function Header() {
     //* FUNCTIONS *//
 
     // Change the value to "true" or "false" when clicking on the "Se connecter" button
-    const handleIsOpen = (event) => {
-        event.preventDefault();
-        setIsOpen(!isOpen);
-    }
+    const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
+
     // Change the value of the "onChange" state when the user enters an email
-    const handleChangeEmail = (event) => {
-        setOnChangeEmail(event.target.value);
-    }
+    const handleChangeEmail = (event) => {setOnChangeEmail(event.target.value);}
+
     // Change the value of the "onChange" state when the user enters a password
-    const handleChangePassword = (event) => {
-        setOnChangePassword(event.target.value);
-    }
+    const handleChangePassword = (event) => {setOnChangePassword(event.target.value);}
+
    // We are waiting for the database before continuing to code this part
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(onChangeEmail);
-        console.log(onChangePassword);
-    }
-
-
-
-
+    const handleSubmit = (event) => {event.preventDefault();}
 
 
     return (
@@ -72,7 +60,7 @@ function Header() {
                                     <div className="form-group">
                                         <input type="password" onChange={handleChangePassword} className="form-input" placeholder='Mot de passe' />
                                     </div>
-                                    <button className="form-btn">Connexion</button>
+                                    <button onClick={handleSubmit} className="form-btn">Connexion</button>
                                 </form>
                             </div>
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
