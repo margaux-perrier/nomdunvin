@@ -107,7 +107,11 @@
             font-size: 1.2rem;
             color: vars.$primary-color;
             padding-left: 1rem;
-            border: 1px solid vars.$primary-color;
+            border-radius: 0.5rem;
+          }
+          ::placeholder {
+            font-size: 1rem;
+            font-style: italic;
           }
           .form-btn {
             font-size: 0.8rem;
@@ -127,20 +131,20 @@
           }
 
           .close {
-            background-color: vars.$secondary-color;
-            border: 1px solid vars.$secondary-color;
-            color: vars.$primary-color;
+            background-color: vars.$primary-color;
+            color: vars.$secondary-color;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             margin-right: 1rem;
+   
           }
           //hover sur close
           .close:hover {
             background-color: vars.$primary-color;
-            border: 1px solid vars.$primary-color;
             color: vars.$secondary-color;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease-out;
           }
         }
       }
