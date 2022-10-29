@@ -1,5 +1,5 @@
 // import React
-import React, { Fragment } from 'react';
+import React from 'react';
 //import header
 import Header from '../Header/Header';
 //import burger
@@ -23,22 +23,26 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={
-            <Fragment>
-              <Burger />
-              <CardList />
-            </Fragment>
-          } />
-          
-          <Route path="*" element={<Error />} />
 
-        </Routes>
-      </div>
+
+      <Routes>
+
+        <Route path="/" element={
+          <div className='container'>
+            <Burger />
+            <CardList />
+          </div>
+        } />
+
+
+        <Route path="*" element={
+          <Error />
+        } />
+      </Routes>
+
       <Footer />
-    </div>
 
+    </div>
   );
 }
 
