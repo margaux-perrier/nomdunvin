@@ -1,5 +1,5 @@
 // import React
-import React, { Fragment } from 'react';
+import React from 'react';
 // import mini-logo
 import logo from './logo.png';
 // import logo facebook
@@ -9,17 +9,16 @@ import instagram from './logo-instagram.png';
 //import scss
 import './footer.scss';
 
-// Component Header
+// Component Footer
 function Footer() {
     return (
-        //création d'une navbar
         <footer>
-            <div div className="footer">
-                <Fragment>
+            <div className="footer">
+            
                     <div className="footer-logo">
                         <a href="/"><img src={logo} alt="logo nom d'un vin" className="logo" href="/" /></a>
                     </div>
-                </Fragment>
+
                 <div className="menu">
                     <div className="footer-menu">
                         <h2 className="menu-title">Nous contacter :</h2>

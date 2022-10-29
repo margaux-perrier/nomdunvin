@@ -19,7 +19,8 @@ function Card() {
             <div className="card">
                 <div className='visual'>
                     <div className="format">
-                        <p>0.75 cl</p>
+                        <p>75 cl</p>
+                        <p className='degrees'>13%.vol</p>
                     </div>
                     <div className="card-img">
                         <img className="wine-logo" src={rouge} alt="red-wine" />
@@ -49,7 +50,8 @@ function Card() {
             <div className="card">
                 <div className='visual'>
                     <div className="format">
-                        <p>0.75 cl</p>
+                        <p>75 cl</p>
+                        <p className='degrees'>15%.vol</p>
                     </div>
                     <div className="card-img">
                         <img className="wine-logo" src={rosé} alt="red-wine" />
@@ -79,7 +81,8 @@ function Card() {
             <div className="card">
             <div className='visual'>
                 <div className="format">
-                    <p>0.75 cl</p>
+                    <p>75 cl</p>
+                    <p className='degrees'>32%.vol</p>
                 </div>
                 <div className="card-img">
                     <img className="wine-logo" src={blanc} alt="red-wine" />

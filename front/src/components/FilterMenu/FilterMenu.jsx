@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import './filterMenu.scss';
 
 // Component Filter
-function Nav() {
+function FilterMenu() {
 
     // State for the burger-menu on mobile
     const [showFilters, setShowFilters] = useState(false);
@@ -23,15 +23,15 @@ function Nav() {
                     
                     <div className="checkbox">
                         <input type="checkbox" color="red" className="link" />
-                        <label for="option" aria-describedby="label">Rouge</label>
+                        <label aria-describedby="label">Rouge</label>
                     </div>
                     <div className="checkbox">
                         <input type="checkbox" className="link" />
-                        <label for="option" aria-describedby="label">Blanc</label>
+                        <label  aria-describedby="label">Blanc</label>
                     </div>
                     <div className="checkbox">
                         <input type="checkbox" className="link" />
-                        <label for="option" aria-describedby="label">Rosé</label>
+                        <label aria-describedby="label">Rosé</label>
                     </div>
                     <div className="checkbox">
                         <button className="checkbox-btn">Valider</button>
@@ -45,4 +45,4 @@ function Nav() {
     );
 }
 
-export default React.memo(Nav);
+export default React.memo(FilterMenu);

@@ -7,7 +7,7 @@
     width : 400px;
     height : 46rem;
     margin : vars.$gutter1;
-    padding-bottom: 5rem;
+    padding-bottom: 2rem;
     border-bottom: vars.$primary-color solid 1px;
 
 
@@ -36,10 +36,10 @@
        
         margin-top : 2rem;
         margin-right: 2rem;
-        width: 65%;
+        width: 84%;
 
         .tag-Bio {
-            font-size: vars.$font-size-1rem;
+            font-size: 0.9rem;
             font-style: italic;
             margin-bottom: 0.5rem;
             color : #1ebd4e;
@@ -91,13 +91,23 @@
             
     }
     .format{
+        display: flex;
+        flex-direction: column;
         width: 32%;
         margin-left: 3rem;
         margin-top: 1.5rem;
         font-weight: 600;
         font-style: italic;
         color: vars.$primary-color;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+        justify-content: space-between;
+        .degrees{
+            margin-top: 0.3rem;
+            color: rgb(92, 92, 92);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
     }
 
 

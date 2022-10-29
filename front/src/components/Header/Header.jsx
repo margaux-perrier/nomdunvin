@@ -65,7 +65,7 @@ function Header() {
                             </div>
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
                             <Fragment>
-                                <a href="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
+                                <a  onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
                                 <a href="/" className="tab-connexion">S'inscrire</a>
                             </Fragment>
                         }

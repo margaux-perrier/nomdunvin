@@ -95,10 +95,12 @@
     position: fixed;
     right: -100vw;
     bottom: 0;
+    top: 0;
     height: 110vh;
     padding: vars.$gutter2;
     visibility: hidden;
     background-color: vars.$secondary-color;
+    border-bottom: 3px solid #a02222;
     color: rgb(0, 0, 0);
   }
 
