@@ -31,7 +31,10 @@ function Header() {
     const handleChangePassword = (event) => {setOnChangePassword(event.target.value);}
 
    // We are waiting for the database before continuing to code this part
-    const handleSubmit = (event) => {event.preventDefault();}
+    const handleSubmit = (event) => {event.preventDefault();
+        console.log(onChangeEmail);
+        console.log(onChangePassword);
+    }
 
 
     return (
@@ -65,7 +68,7 @@ function Header() {
                             </div>
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
                             <Fragment>
-                                <a  onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
+                                <a  href="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
                                 <a href="/" className="tab-connexion">S'inscrire</a>
                             </Fragment>
                         }

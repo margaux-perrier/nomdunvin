@@ -107,6 +107,7 @@
             font-size: 1.2rem;
             color: vars.$primary-color;
             padding-left: 1rem;
+            border: 1px solid vars.$secondary-color;
             border-radius: 0.5rem;
           }
           ::placeholder {
@@ -118,8 +119,10 @@
             font-weight: bold;
             color: vars.$primary-color;
             padding: 0.2rem;
-
+            background-color: white;
             border: 1px solid vars.$primary-color;
+            border-radius: 1rem;
+            padding: 0.5rem;
           }
           .form-btn:hover {
             font-size: 1rem;
@@ -132,7 +135,8 @@
 
           .close {
             background-color: vars.$primary-color;
-            color: vars.$secondary-color;
+            border: vars.$primary-color;
+            color: white;
             font-weight: bold;
             font-size: 1.4rem;
             margin-right: 1rem;
