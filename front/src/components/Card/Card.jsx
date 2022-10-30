@@ -20,8 +20,8 @@ function Card({size, color, alcohol, price, name, winemaker, culture, region, im
                         <img className="wine-logo" src={img} alt="red-wine" />
                     </div>
                     <ul className="card-tag">
-                        {culture.map((item) => (
-                        <li className={`tag-${item}`}><span className="point">•</span> {item}</li>
+                        {culture.map((item, index) => (
+                        <li key={index} className={`tag-${item}`}><span className="point">•</span> {item}</li>
                         ))}
                     </ul>
                 </div>

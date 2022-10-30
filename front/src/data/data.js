@@ -3,6 +3,7 @@
     const data = {
         wines: [
             {
+                id: 1,
                 name: 'Bois et Tais-toi',
                 winemaker: 'Domaine de la vieille poche',
                 region: 'Bourgogne',
@@ -14,6 +15,7 @@
                 img : "https://zupimages.net/up/22/43/lf5w.png"
             },
             {
+                id: 2,
                 name: 'Le bon petit pif',
                 winemaker: 'Domaine du pochtron',
                 region: 'Alsace',
@@ -25,6 +27,7 @@
                 img: "https://zupimages.net/up/22/43/ole2.png"
             },
             {
+                id: 3,
                 name: 'Le bon petit paf',
                 winemaker: 'Domaine du fond de fût',
                 region: 'Bordeaux',
@@ -36,6 +39,7 @@
                 img: "https://zupimages.net/up/22/43/m876.png"
             },
             {
+                id: 4,
                 name: 'Le bon petit Pouf',
                 winemaker: 'Domaine de Johnny Joe',
                 region: 'Bourgogne',
@@ -47,6 +51,7 @@
                 img: "https://zupimages.net/up/22/43/ole2.png"
             },
             {
+                id: 5,
                 name: 'Le bon petit vin',
                 winemaker: 'Domaine de Johnny Joe',
                 region: 'Bourgogne',

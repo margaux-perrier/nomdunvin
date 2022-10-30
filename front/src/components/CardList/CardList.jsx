@@ -18,10 +18,11 @@ function CardList() {
         <div className="cardList">
 
             {data.wines.map(({
-                size, color, alcohol, culture, price, name, winemaker, region, img
+                id, size, color, alcohol, culture, price, name, winemaker, region, img
             }) => (
 
             <Card 
+                key = {id}
                 size={size}
                 color={color}
                 alcohol={alcohol}
