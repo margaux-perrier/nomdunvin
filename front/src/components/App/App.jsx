@@ -1,5 +1,7 @@
+/* eslint-disable react/react-in-jsx-scope */
 // import Header component
 import Header from '../Header/Header';
+import React from 'react';
 import SignUpForm from '../SignUpForm/SignUpForm';
 // import scss
 import './app.scss';
@@ -13,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);
