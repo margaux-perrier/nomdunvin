@@ -31,8 +31,6 @@ function CardList() {
                 winemaker={winemaker}
                 region={region}
                 img={img}
-
-           
             />
             ))}
 
