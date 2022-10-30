@@ -1,5 +1,7 @@
 // import React
 import React from 'react';
+// import de Routes
+import { Routes, Route } from 'react-router-dom';
 //import Header component
 import Header from '../Header/Header';
 //import burger Component
@@ -10,12 +12,6 @@ import CardList from '../CardList/CardList';
 import Error from '../Error/Error';
 // import Details component
 import Details from '../Details/Details';
-// import de Routes
-import { Routes, Route } from 'react-router-dom';
-
-
-
-
 // import Footer component
 import Footer from '../Footer/Footer';
 // import scss
@@ -35,8 +31,7 @@ function App() {
             <CardList />
           </div>
         } />
-
-
+        
         <Route path="*" element={
           <Error />
         } />
