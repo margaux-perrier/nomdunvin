@@ -1,8 +1,7 @@
 // import React
 import React, { Fragment, useState} from 'react';
-import { Link } from 'react-router-dom'
-
-// import logo-mini
+import { Link, NavLink } from 'react-router-dom'
+// import logo
 import logo from './logo.png';
 // import logo utilisateur
 import user from './user.png';
@@ -50,7 +49,10 @@ function Header() {
                         </Link>
                     </div>
                     <div className="link">
-                        <Link to="/" className="tab-link">LA CAVE</Link>
+                        {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
+                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">LA CAVE</NavLink>
+
+            
                     </div>
                 </div>
                 <div>
