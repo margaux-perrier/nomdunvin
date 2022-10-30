@@ -82,6 +82,14 @@
             color : #ad6f10;
             width : 100%;
         }
+
+        .tag-HVE {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #0a0deb;
+            width : 100%;
+        }
     
         }
         .point {
@@ -148,10 +156,6 @@
             color: #FE96A0;
             font-size: 5rem;
         }
-
-        
-       
-        
     }
   
     .card-price {
@@ -167,7 +171,6 @@
             width: 180px;
             margin-bottom: vars.$gutter1;
         }
-
         .price-btn:hover {
             background-color: white;
             color: vars.$primary-color;

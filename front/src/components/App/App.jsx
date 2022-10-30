@@ -1,13 +1,15 @@
 // import React
 import React from 'react';
-//import header
+//import Header component
 import Header from '../Header/Header';
-//import burger
+//import burger Component
 import Burger from '../FilterMenu/FilterMenu';
-// import de cardList
+// import CardList component
 import CardList from '../CardList/CardList';
-// import Error 404
+// import Error component
 import Error from '../Error/Error';
+// import Details component
+import Details from '../Details/Details';
 // import de Routes
 import { Routes, Route } from 'react-router-dom';
 
@@ -38,8 +40,12 @@ function App() {
         <Route path="*" element={
           <Error />
         } />
-      </Routes>
 
+        <Route path="/wine" element={
+          <Details />
+        } />
+
+      </Routes>
       <Footer />
 
     </div>
