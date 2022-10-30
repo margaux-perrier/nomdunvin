@@ -36,9 +36,10 @@ function App() {
           <Error />
         } />
 
-        <Route path="/wine" element={
+        <Route path="/wine/:id" element={
           <Details />
         } />
+
 
       </Routes>
       <Footer />

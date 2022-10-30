@@ -1,5 +1,7 @@
 // import React
 import React from 'react';
+// import Link from react-router-dom
+import { Link } from 'react-router-dom';
 // import mini-logo
 import logo from './logo.png';
 // import logo facebook
@@ -16,21 +18,21 @@ function Footer() {
             <div className="footer">
             
                     <div className="footer-logo">
-                        <a href="/"><img src={logo} alt="logo nom d'un vin" className="logo" href="/" /></a>
+                        <Link to="/"><img src={logo} alt="logo nom d'un vin" className="logo"/></Link>
                     </div>
 
                 <div className="menu">
                     <div className="footer-menu">
                         <h2 className="menu-title">Nous contacter :</h2>
-                        <a href="/" className="link">Contactez-nous</a>
-                        <a href="/" className="link">FAQ / Aide</a>
+                        <Link to="/" className="link">Contactez-nous</Link>
+                        <Link to="/" className="link">FAQ / Aide</Link>
 
                     </div>
                     <div className="footer-menu">
                         <h2 className="menu-title">Comment ça marche ? </h2>
-                        <a href="/" className="link">A propos</a>
-                        <a href="/" className="link">La Livraison</a>
-                        <a href="/" className="link">FAQ / Aide</a>
+                        <Link to="/" className="link">A propos</Link>
+                        <Link to="/" className="link">La Livraison</Link>
+                        <Link to="/" className="link">FAQ / Aide</Link>
                     </div>
                     <div className="footer-menu">
                         <h2 className="menu-title">Suivez-nous !</h2>
@@ -40,7 +42,7 @@ function Footer() {
                         </div>
                         <a href="https://fr-fr.facebook.com/" target="_blank" rel="noopener noreferrer" className="community">
                             <p className="community-title">Rejoignez la <br />communauté</p>
-                            <img src={logo} alt="logo nom d'un vin" className="community-logo" href="/" />
+                            <img src={logo} alt="logo nom d'un vin" className="community-logo" />
                         </a>
                         
                     </div>

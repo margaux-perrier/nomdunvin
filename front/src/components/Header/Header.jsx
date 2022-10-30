@@ -1,5 +1,7 @@
 // import React
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState} from 'react';
+import { Link } from 'react-router-dom'
+
 // import logo-mini
 import logo from './logo.png';
 // import logo utilisateur
@@ -43,12 +45,12 @@ function Header() {
             <nav className="navbar">
                 <div className="menu">
                     <div>
-                        <a href="/" className="menu-link">
+                        <Link to="/" className="menu-link">
                             <img src={logo} alt="logo nom d'un vin" className="logo" />
-                        </a>
+                        </Link>
                     </div>
                     <div className="link">
-                        <a href="/" className="tab-link">LA CAVE</a>
+                        <Link to="/" className="tab-link">LA CAVE</Link>
                     </div>
                 </div>
                 <div>
@@ -68,15 +70,15 @@ function Header() {
                             </div>
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
                             <Fragment>
-                                <a  href="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
-                                <a href="/" className="tab-connexion">S'inscrire</a>
+                                <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
+                                <Link to="/" className="tab-connexion">S'inscrire</Link>
                             </Fragment>
                         }
                     </div>
                     <div className="menu-user">
-                        <a href="/" className="tab-user">
+                        <Link to="/" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
