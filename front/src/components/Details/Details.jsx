@@ -1,11 +1,6 @@
 // import react
 import React from 'react';
-// import red-wine logo
-import rouge from './wineLogo/rouge.png';
-// import white-wine logo
-import blanc from './wineLogo/blanc.png';
-// import pink-wine logo
-import rosé from './wineLogo/rose.png';
+
 // import Scss
 import './details.scss';
 
@@ -25,7 +20,7 @@ function Details() {
                         <p className="details-price"> 19.00 €</p>
                         <p className="tablet-color-rouge">•</p>
                     </div>
-                    <img className="wine-img" src={rouge} alt="red-wine" />
+                    <img className="wine-img" src="" alt="red-wine" />
 
                     <ul className="details-tag">
                         <li className="details-Vegan"><span className="point">•</span> Vegan</li>

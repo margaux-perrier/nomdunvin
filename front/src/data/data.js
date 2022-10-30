@@ -20,7 +20,7 @@
                 price: 14.5,
                 color: 'rouge',
                 alcohol: 11,
-                culture: ['Vegan','HVE'],
+                culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                 size : "75 cl",
                 img: "https://zupimages.net/up/22/43/ole2.png"
             },

@@ -6,8 +6,7 @@ import Card from '../Card/Card';
 import data from '../../data/data';
 // import Scss
 import './cardList.scss';
-// import red-wine logo
-import rouge from './wineLogo/rouge.png';
+
 
 
 // Component Filter
