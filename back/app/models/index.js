@@ -91,22 +91,22 @@ Wine.belongsToMany(Culture, {
 	otherKey: 'culture_id', 
 });
 
-//Association between wine and cart - many-to-many
-// Cart.belongsTo(Wine, {
-// 	as : 'wines', 
-// 	through: 'concerns', 
-// 	foreignKey: 'cart_id', 
-// 	otherKey: 'wine_id',
-// 	timestamps: false, 
-// });
+// Association between wine and cart - many-to-many
+Cart.belongsToMany(Wine, {
+	as : 'wines', 
+	through: 'concerns', 
+	foreignKey: 'cart_id', 
+	otherKey: 'wine_id',
+	timestamps: false, 
+});
 
-// Wine.belongsTo(Cart, {
-// 	as : 'carts', 
-// 	through: 'concerns', 
-// 	foreignKey: 'wine_id', 
-// 	otherKey: 'cart_id',
-// 	timestamps: false, 
-// });
+Wine.belongsToMany(Cart, {
+	as : 'carts', 
+	through: 'concerns', 
+	foreignKey: 'wine_id', 
+	otherKey: 'cart_id',
+	timestamps: false, 
+});
 
 //Association between user and cart - one to many
 User.hasMany(Cart, {
