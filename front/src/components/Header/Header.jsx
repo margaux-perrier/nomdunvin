@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // import React
 import React, { Fragment, useState} from 'react';
 import { Link, NavLink } from 'react-router-dom'

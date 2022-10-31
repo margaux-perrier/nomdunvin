@@ -15,7 +15,8 @@ import Details from '../Details/Details';
 // import Footer component
 import Footer from '../Footer/Footer';
 // import scss
-import './app.scss';
+import './App.scss';
+import SignUpForm from '../SignUpForm/SignUpForm';
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
         } />
 
 
+
       </Routes>
+
       <Footer />
 
     </div>
