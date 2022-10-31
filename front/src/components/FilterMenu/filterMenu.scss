@@ -3,7 +3,7 @@
 // Main Div
 .menuCheckbox {
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   justify-content: space-between;
   position: fixed;
   width: 250px;
@@ -18,7 +18,6 @@
 .links {
   display: flex;
   flex-direction: column;
-  
 }
 
 // Filter Tilte
@@ -33,8 +32,12 @@
 // All options of checkbox
 .checkbox {
   color: inherit;
-  padding: 1.2rem;
-  font-size: vars.$font-size-1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  label {
+    margin-left: 0.8rem;
+    font-weight: 500;
+  }
 }
 
 // Button to validate the selected filters
@@ -72,7 +75,7 @@
   display: none;
 }
 
-.burger-bar{
+.burger-bar {
   margin-left: 4px;
 }
 
@@ -101,10 +104,6 @@
     border-bottom: 3px solid #a02222;
     color: rgb(0, 0, 0);
   }
-
-
-
-
 
   // Show Class visible when State is true
   .show .links {
@@ -145,7 +144,6 @@
 
   .burger-bar,
   .burger-bar::before,
-  
   .burger-bar::after {
     display: block;
     width: 40px;
@@ -153,10 +151,6 @@
     position: relative;
     border-radius: 3px;
     background: #a02222;
-
-
-    
-    
   }
   .burger-bar::before,
   .burger-bar::after {
@@ -164,16 +158,12 @@
     position: absolute;
     left: 0;
     transition: all 0.5s ease-in-out;
-    
-    
   }
   .burger-bar::before {
     transform: translateY(-12px);
-
   }
   .burger-bar::after {
     transform: translateY(12px);
-
   }
   .show .burger-bar {
     width: 0;
@@ -189,5 +179,6 @@
   }
 }
 
-input[type='checkbox'] {   
-  accent-color: vars.$primary-color; }
+input[type="checkbox"] {
+  accent-color: vars.$primary-color;
+}
