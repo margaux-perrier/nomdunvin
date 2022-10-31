@@ -33,6 +33,15 @@
         font-size: 6rem;
         padding-left: 1.4rem;
       }
+    
+    .tablet-color-blanc {
+        color: #FDF1B8;
+        font-size: 5rem;
+    }
+    .tablet-color-rosé {
+        color: #FE96A0;
+        font-size: 5rem;
+    }
 
       .wine-img {
         width: 25%;
@@ -85,6 +94,16 @@
           color: #ad6f10;
           width: 100%;
         }
+        .details-HVE {
+          font-size: vars.$font-size-1rem;
+          font-style: italic;
+          margin-bottom: 0.5rem;
+          color: #0a0deb;
+          width: 100%;
+        }
+      }
+      .point {
+        font-size: 2rem;
       }
     }
   }
@@ -113,7 +132,6 @@
         font-style: italic;
         font-weight: bold;
       }
-     
     }
   }
   .details-form {
@@ -121,32 +139,29 @@
     justify-content: center;
     margin-top: 2.5rem;
     height: 3rem;
-    .details-input{
-        width: 20%;
-        height: 3rem;
-        border: 1px solid #d4d3d3;
-        padding-left: 1rem;
-        font-size: 1.3rem;
-        font-weight: 600;
-        font-style: italic;
-        color: vars.$primary-color;
-        text-align: center;
-        margin-right: 0.5rem;
-        border-radius: 1rem 1rem 1rem 1rem;
-
+    .details-input {
+      width: 20%;
+      height: 3rem;
+      border: 1px solid #d4d3d3;
+      padding-left: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      font-style: italic;
+      color: vars.$primary-color;
+      text-align: center;
+      margin-right: 0.5rem;
+      border-radius: 1rem 1rem 1rem 1rem;
     }
-    .details-btn{
-        background-color: vars.$primary-color;
-        border: 1px solid vars.$primary-color;
-        border-radius: 1rem 1rem 1rem 1rem;
-        color: white;
-        font-size: 1rem;
-        padding: 0.6rem 1rem;
-        font-weight: 600;
-        width: 50%;
+    .details-btn {
+      background-color: vars.$primary-color;
+      border: 1px solid vars.$primary-color;
+      border-radius: 1rem 1rem 1rem 1rem;
+      color: white;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      font-weight: 600;
+      width: 50%;
     }
-    
-
   }
 }
 

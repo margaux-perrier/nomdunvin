@@ -51,8 +51,6 @@ function Header() {
                     <div className="link">
                         {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
                         <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">LA CAVE</NavLink>
-
-            
                     </div>
                 </div>
                 <div>
@@ -62,10 +60,10 @@ function Header() {
                                 <form action="" className="form-login">
                                     <button className="close" onClick={handleIsOpen}>X</button>
                                     <div className="form-group">
-                                        <input type="email" onChange={handleChangeEmail} className="form-input" placeholder='Adresse Email' />
+                                        <input type="email" onChange={handleChangeEmail} className="form-input" placeholder='Email' />
                                     </div>
                                     <div className="form-group">
-                                        <input type="password" onChange={handleChangePassword} className="form-input" placeholder='Mot de passe' />
+                                        <input type="password" onChange={handleChangePassword} className="form-input" placeholder='Password' />
                                     </div>
                                     <button onClick={handleSubmit} className="form-btn">Connexion</button>
                                 </form>
