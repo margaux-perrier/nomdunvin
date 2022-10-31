@@ -2,6 +2,7 @@
 
 .header {
   border-bottom: 2px solid vars.$border-color;
+  z-index: 3;
   .navbar {
     display: flex;
     flex-wrap: wrap;
@@ -9,6 +10,7 @@
     background-color: vars.$primary-color;
     justify-content: space-between;
     margin-top: 2;
+    position : fixed;
     .logo {
       width: 130px;
       margin-right: 10px;
@@ -80,7 +82,8 @@
   }
 }
 
-// responsive for desktop
+//* Responsive for Desktop *//
+
 @media screen and (min-width: 768px) {
   .header {
     .navbar {

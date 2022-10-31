@@ -16,13 +16,12 @@ function Details() {
 
 
     return (
-        
+
 
         <div className="details">
             <div className="details-container-visual">
                 <div className="details-img">
                     <div className=''>
-                        <p className="details-price"> {wine.price} €</p>
                         <p className={`tablet-color-${wine.color}`}>•</p>
                     </div>
                     <img className="wine-img" src={wine.img} alt="red-wine" />
@@ -34,18 +33,20 @@ function Details() {
                     </ul>
                 </div>
                 <div className="details-cart">
-                    <div className="details-content">
+                  
+                        <div className="details-content">
 
-                        <h2 className="details-winemaker">{wine.winemaker}</h2>
-                        <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region">{wine.region}</p>
-                    </div>
+                            <h2 className="details-winemaker">{wine.winemaker}</h2>
+                            <p className="details-wine-name">" {wine.name} "</p>
+                            <p className="details-wine-region">{wine.region}</p>
+                            <p className="details-price"> {wine.price} €</p>
+                        </div>
 
-                    <form className="details-form">
-                        <input className="details-input" type="number" name="quantity" placeholder="0" min="1" max="50" />
-                        <button className="details-btn">Ajouter</button>
-                    </form>
-
+                        <form className="details-form">
+                            <input className="details-input" type="number" name="quantity" placeholder="0" min="1" max="50" />
+                            <button className="details-btn">Ajouter</button>
+                        </form>
+                   
                 </div>
             </div>
 

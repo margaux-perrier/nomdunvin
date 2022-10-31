@@ -8,24 +8,22 @@
   position: fixed;
   width: 250px;
   padding: vars.$gutter1;
-  border: solid 1.5px vars.$primary-color;
-  border-radius: 0.5rem;
+  border-right: solid 1px vars.$primary-color;
   margin-left: vars.$gutter1;
-  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
-  margin-top:vars.$gutter2;
-  height: 50vh
+  height: 100%;
+  margin-top: 5rem;
 }
 
 // Main Container
 .links {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
 }
 
 // Filter Tilte
 .checkbox-title {
-  font-size: vars.$font-size-1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: vars.$gutter1;
   color: vars.$primary-color;
@@ -35,7 +33,7 @@
 // All options of checkbox
 .checkbox {
   color: inherit;
-  padding: 0.9rem;
+  padding: 1.2rem;
   font-size: vars.$font-size-1rem;
 }
 
@@ -103,6 +101,10 @@
     border-bottom: 3px solid #a02222;
     color: rgb(0, 0, 0);
   }
+
+
+
+
 
   // Show Class visible when State is true
   .show .links {
@@ -186,3 +188,6 @@
     background: vars.$primary-color;
   }
 }
+
+input[type='checkbox'] {   
+  accent-color: vars.$primary-color; }

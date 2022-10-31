@@ -14,9 +14,11 @@ import Error from '../Error/Error';
 import Details from '../Details/Details';
 // import Footer component
 import Footer from '../Footer/Footer';
+// import SignUpForm component
+import SignUpForm from '../SignUpForm/SignUpForm';
 // import scss
 import './App.scss';
-import SignUpForm from '../SignUpForm/SignUpForm';
+
 
 function App() {
   return (
@@ -39,6 +41,10 @@ function App() {
 
         <Route path="/wine/:id" element={
           <Details />
+        } />
+
+        <Route path="/sign-up" element={
+          <SignUpForm />
         } />
 
 

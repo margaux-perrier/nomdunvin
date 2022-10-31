@@ -1,16 +1,43 @@
 @use "src/styles/vars";
 
 
+.connexion{
+  margin-top : 7rem;
+}
 
 .title {
   margin: 2rem;
   text-align: center;
   font-size: 2rem;
+  font-weight: 500;
   color: #C62828;
+ 
 }
 
 .text {
   text-align: center;
   margin: 2rem;
- 
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+
+// Responsive for Desktop
+
+@media screen and (min-width: 768px) {
+  .container-form {
+    margin-top : 5rem;
+
+  }
+
+  .title {
+    margin: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: #C62828;
+  }
+  .connexion {
+    display: none;
+  }
+
 }

@@ -72,12 +72,12 @@ function Header() {
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
                             <Fragment>
                                 <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
-                                <Link to="/" className="tab-connexion">S'inscrire</Link>
+                                <Link to="/sign-up" className="tab-connexion">S'inscrire</Link>
                             </Fragment>
                         }
                     </div>
                     <div className="menu-user">
-                        <Link to="/" className="tab-user">
+                        <Link to="/sign-up" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
                         </Link>
                     </div>

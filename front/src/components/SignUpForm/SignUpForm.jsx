@@ -12,7 +12,7 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   return(
-    <div>
+    <div className= "container-form">
         
       <div className="connexion">
       <h1 className="title">

@@ -38,9 +38,8 @@ function Card({
                     <p className="wine-name">" {name} "</p>
                     <p className="wine-region">{region}</p>
                     <p className={`tablet-color-${color}`}>•</p>
-
                 </div>
-
+                
                 <div className="card-price">
                     <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
                     <p className='price'>{price} €</p>
