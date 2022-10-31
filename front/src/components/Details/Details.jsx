@@ -55,7 +55,7 @@ function Details() {
                     <p>AVIS</p>
                 </div>
                 <div className="details-features">
-                    <p>CARACTERISTIQUES</p>
+                    <p>CARACTERISTIQUES </p>
                 </div>
 
             </div>
