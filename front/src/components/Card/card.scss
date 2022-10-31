@@ -1,0 +1,200 @@
+@use "src/styles/vars";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    width : 400px;
+    height : 46rem;
+    margin : vars.$gutter1;
+    padding-bottom: 2rem;
+    border-bottom: vars.$primary-color solid 1px;
+    border-radius: 2rem;
+    border: 1px solid #d4d3d3;
+
+
+    .visual{
+        display: flex;
+        height: 60%;
+    }
+
+    .card-img {
+        width : 90%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 70%;
+        
+        
+    }
+
+    .wine-logo {
+        width : 55%;
+        object-fit : cover;
+        padding-top: 8rem;
+    }
+
+    .card-tag {
+       
+        margin-top : 2rem;
+        margin-right: 2rem;
+        width: 84%;
+
+        .tag-Bio {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #1ebd4e;
+            width : 60%;
+            
+        }
+        .tag-Biodynamie {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #1896b6;
+            width : 1000%;
+        }
+        .tag-Nature {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #c2250a;
+            width : 100%;
+        }
+        .tag-Vegan {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #e9780f;
+            width : 100%;
+        }
+        .sulfites {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #ac089e;
+            width : 100%;
+        }
+
+        .tag-Raisonnée {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #ad6f10;
+            width : 100%;
+        }
+
+        .tag-HVE {
+            font-size: vars.$font-size-1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color : #0a0deb;
+            width : 100%;
+        }
+    
+        }
+        .point {
+            font-size: 2rem;
+            
+        }
+            
+    }
+    .format{
+        display: flex;
+        flex-direction: column;
+        width: 32%;
+        margin-left: 3rem;
+        margin-top: 1.5rem;
+        font-weight: 600;
+        font-style: italic;
+        color: vars.$primary-color;
+        font-size: 0.9rem;
+        justify-content: space-between;
+        .degrees{
+            margin-top: 0.3rem;
+            color: rgb(92, 92, 92);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+    }
+
+
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .winemaker {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin-top: 4rem;
+            font-weight: 600;   
+            color : vars.$primary-color;
+        }
+        .wine-name {
+            font-size: 1.5rem;
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+        .wine-region {
+            font-size: vars.$font-size-1rem;
+            margin-top: 0.6rem;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .tablet-color-rouge {
+            color: #A5260A;
+            font-size: 5rem;
+        }
+        .tablet-color-blanc {
+            color: #FDF1B8;
+            font-size: 5rem;
+        }
+        .tablet-color-rosé {
+            color: #FE96A0;
+            font-size: 5rem;
+        }
+    }
+  
+    .card-price {
+        display: flex;
+        justify-content: center;
+        .price-btn {
+            background-color: vars.$primary-color;
+            font-size: 1.1rem;
+            color: white;
+            padding: 0.6rem vars.$gutter1;
+            border: 1px solid vars.$primary-color;
+            border-radius: vars.$gutter1;
+            width: 180px;
+            margin-bottom: vars.$gutter1;
+        }
+        .price-btn:hover {
+            background-color: white;
+            color: vars.$primary-color;
+            font-weight: bold;
+            border: 3px solid vars.$primary-color;
+            font-size: 0.9rem;
+            //transition
+            transition: all 0.3s ease-in-out;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-left: vars.$gutter1;
+            margin-right: 0.5rem;
+            color : vars.$primary-color;
+            font-style: italic;
+        }
+        
+    }
+
+     @media screen and (min-width: 768px) {
+         .card { 
+       
+    }
+}
