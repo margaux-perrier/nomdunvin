@@ -29,7 +29,7 @@ function Card({
                     </div>
                     <ul className="card-tag">
                         {culture.map((item, index) => (
-                        <li key={index} className={`tag-${item}`}><span className="point">•</span> {item}</li>
+                        <li key={index} className={`tag-${item}`}>{item}</li>
                         ))}
                     </ul>
                 </div>
