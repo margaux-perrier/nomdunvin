@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 // import React
-import React, { Fragment, useState } from 'react';
-// import logo-mini
+import React, { Fragment, useState} from 'react';
+import { Link, NavLink } from 'react-router-dom'
+// import logo
 import logo from './logo.png';
 // import logo utilisateur
 import user from './user.png';
@@ -32,7 +33,10 @@ function Header() {
     const handleChangePassword = (event) => {setOnChangePassword(event.target.value);}
 
    // We are waiting for the database before continuing to code this part
-    const handleSubmit = (event) => {event.preventDefault();}
+    const handleSubmit = (event) => {event.preventDefault();
+        console.log(onChangeEmail);
+        console.log(onChangePassword);
+    }
 
 
     return (
@@ -41,12 +45,15 @@ function Header() {
             <nav className="navbar">
                 <div className="menu">
                     <div>
-                        <a href="/" className="menu-link">
+                        <Link to="/" className="menu-link">
                             <img src={logo} alt="logo nom d'un vin" className="logo" />
-                        </a>
+                        </Link>
                     </div>
                     <div className="link">
-                        <a href="/" className="tab-link">LA CAVE</a>
+                        {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
+                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">LA CAVE</NavLink>
+
+            
                     </div>
                 </div>
                 <div>
@@ -66,15 +73,15 @@ function Header() {
                             </div>
                             : // Else we display the buttons "Se connecter" and "S'inscrire"
                             <Fragment>
-                                <a  onClick={handleIsOpen} className="tab-connexion">Se connecter</a>
-                                <a href="/" className="tab-connexion">S'inscrire</a>
+                                <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
+                                <Link to="/" className="tab-connexion">S'inscrire</Link>
                             </Fragment>
                         }
                     </div>
                     <div className="menu-user">
-                        <a href="/" className="tab-user">
+                        <Link to="/" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

@@ -13,11 +13,53 @@ import './signUpFormStyles.scss';
 function SignUpForm(){
   return(
     <div>
-        <h1 className="title">Inscription</h1>
+        
+      <div className="connexion">
+      <h1 className="title">
+          Connexion
+        </h1>
+        <p className="text">
+        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part?
+      </p>
+      <Box 
+   sx={{
+     margin: 5
+    }}
+        component="form"
+        noValidate
+        autoComplete="off"
+        // onSubmit={handleSubmit}
+      >
+        <Grid container  spacing={2} >
+          <Grid item xs={12} sm={6}>
+            <TextField color="error"
+              label="Email"
+              name="email"
+              
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField color="error"
+              type="password"
+              label="Password"
+              name="password"
+              
+              fullWidth
+            />
+          </Grid>
+          </Grid>
+          </Box>
+      </div>
+      <h1 className="title">
+          Inscription
+        </h1>
     
-      <p className="text">Vous n'avez pas de compte ? On a pourtant comme un air de
-déjà vu ... Rejoignez nous en quelques clics !</p>
-      
+      <p className="text">
+        Vous n'avez pas de compte ? On a pourtant comme un air de
+déjà vu ... Rejoignez nous en quelques clics !
+      </p>
+
    <Box 
    sx={{
      margin: 5
@@ -30,7 +72,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
         <Grid container  spacing={2} >
           <Grid item xs={12} sm={6}>
             <TextField color="error"
-              label="First Name"
+              label="Prénom"
               name="firstname"
               
               fullWidth
@@ -38,7 +80,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField color="error"
-              label="Last Name"
+              label="Nom"
               name="lastname"
               
               fullWidth
@@ -55,7 +97,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
 
           <Grid item xs={12} sm={3}>
             <TextField color="error"
-              label="Street number"
+              label="Numéro de rue"
               name="streetNumber"
               
               fullWidth
@@ -63,7 +105,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
           </Grid>
           <Grid item xs={12} sm={9}>
             <TextField color="error"
-              label="Street"
+              label="Rue"
               name="street"
               
               fullWidth
@@ -72,7 +114,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
 
           <Grid item xs={12} sm={3}>
             <TextField color="error"
-              label="Postal code"
+              label="Code postal"
               name="postalCode"
               
               fullWidth
@@ -80,7 +122,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
           </Grid>
           <Grid item xs={12} sm={9}>
             <TextField color="error"
-              label="City"
+              label="Ville"
               name="city"
               
               fullWidth
@@ -89,6 +131,7 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
 
           <Grid item xs={12} >
             <TextField color="error"
+              type="password"
               label="Password"
               name="password"
               
@@ -98,7 +141,8 @@ déjà vu ... Rejoignez nous en quelques clics !</p>
 
           <Grid item xs={12} >
             <TextField color="error"
-              label="Confirm password"
+              type="password"
+              label="Confirmer password"
               name="confirmPassword"
               
               fullWidth

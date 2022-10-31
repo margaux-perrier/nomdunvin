@@ -13,7 +13,7 @@ function Error() {
             <div className="notFound">
                 <h3 className="number-error">404</h3>
                 <img className="glass" src={wine} alt="wine" />
-                <p className="text-error">Not Found</p>
+                <p className="text-error">Page Not Found</p>
             </div>
         </div>
     );

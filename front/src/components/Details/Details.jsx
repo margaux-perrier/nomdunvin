@@ -1,18 +1,26 @@
 // import react
-import React from 'react';
-
+import React, {useState} from 'react';
+// import data
+import data from '../../data/data';
 // import Scss
 import './details.scss';
 
 
-
-// Component Filter
 function Details() {
 
+    //aficher le bon vin en fonction de l'id dans l'url
+    const [state] = useState(data);
+    const url = window.location.href;
+    //recupérer l'id dans l'url
+    const id = url.split('/')[4];
+    console.log(id);
 
-
+    
     return (
+        // mapper sur les données
         <div className="details">
+            
+
             <div className="details-container-visual">
                 <div className="details-img">
 
@@ -30,8 +38,9 @@ function Details() {
                 </div>
                 <div className="details-cart">
                     <div className="details-content">
-                        <h2 className="details-winemaker">Domaine de Johnny Joe</h2>
-                        <p className="details-wine-name">" Le bon petit vin "</p>
+                    
+                        <h2 className="details-winemaker">{state.winemaker}</h2>
+                        <p className="details-wine-name">" {state.name} "</p>
                         <p className="details-wine-region">Bourgogne</p>
                     </div>
                  
@@ -54,6 +63,8 @@ function Details() {
             </div>
 
         </div>
+
+
     )
 }
 
