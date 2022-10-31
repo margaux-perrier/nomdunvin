@@ -1,0 +1,90 @@
+@use "src/styles/vars";
+
+.error {
+  .glass {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  h2 {
+    margin: auto;
+    font-size: 1rem;
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .number-error {
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 2rem;
+  }
+  .text-error {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// responsive for desktop
+
+@media (min-width: 768px) {
+  .error {
+    height : auto;
+ 
+    .glass {
+
+      display: flex;
+      margin: auto;
+      width: 45%;
+      top: 0;
+      left: 0;
+    }
+    h2 {
+      margin: auto;
+      font-size: 1.6rem;
+      color: vars.$primary-color;
+      font-weight: 600;
+      font-style: italic;
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+      .number-error {
+        display: flex;
+        justify-content: center;
+        font-size: 5rem;
+        color: vars.$primary-color;
+        font-weight: 600;
+        font-style: italic;
+        margin-right: 0.5rem;
+        padding-top: 4rem;
+        }
+      .text-error {
+        display: flex;
+        justify-content: center;
+        font-size: 4rem;
+        color: vars.$primary-color;
+        font-weight: 600;
+        font-style: italic;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+      }
+    }
+  }
+
