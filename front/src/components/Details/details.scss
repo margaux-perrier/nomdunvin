@@ -33,15 +33,15 @@
         font-size: 6rem;
         padding-left: 1.4rem;
       }
-    
-    .tablet-color-blanc {
-        color: #FDF1B8;
+
+      .tablet-color-blanc {
+        color: #fdf1b8;
         font-size: 5rem;
-    }
-    .tablet-color-rosé {
-        color: #FE96A0;
+      }
+      .tablet-color-rosé {
+        color: #fe96a0;
         font-size: 5rem;
-    }
+      }
 
       .wine-img {
         width: 25%;
@@ -183,4 +183,48 @@
     background-color: rgb(255, 0, 255);
     margin-top: 1rem;
   }
+}
+
+// Responsive for desktop
+@media screen and (min-width: 768px) {
+  .details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .details-container-visual {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: auto;
+      margin-top: 2rem;
+
+
+      .details-img {
+        display: flex;
+        justify-content: space-between;
+        width: 25%;
+        margin-top: 1rem;
+        
+      }
+
+
+
+
+
+
+
+
+     
+      
+      .details-cart {
+        width: 40%;
+        height: 100%;
+      }
+  }
+}
+
+
 }
