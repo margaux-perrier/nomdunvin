@@ -1,203 +1,148 @@
 @use "src/styles/vars";
 
 .card {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  margin-top: 5rem;
+  border-radius: 2rem;
+  border: 1px solid #a58b85;
+
+  //* Concerns the upper part of the map: bottle image, capacity, tag and degrees *//
+  .visual {
     display: flex;
-    flex-direction: column;
-    padding-top: 3rem;
-    width : 400px;
-    height : 46rem;
-    margin : vars.$gutter1;
-    padding-bottom: 2rem;
-    border-bottom: vars.$primary-color solid 1px;
-    border-radius: 2rem;
-    border: 1px solid #d4d3d3;
-
-
-    .visual{
-        display: flex;
-        height: 60%;
-    }
-
+    justify-content: center;
+    width: 100%;
     .card-img {
-        width : 90%;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        height: 70%;
-        
-        
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     }
-
     .wine-logo {
-        width : 55%;
-        object-fit : cover;
-        padding-top: 8rem;
+      width: 5em;
     }
-
+    // Concerns All tags
     .card-tag {
-       
-        margin-top : 2rem;
-        margin-right: 2rem;
-        width: 84%;
-
-        .tag-Bio {
-            font-size: 0.9rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #1ebd4e;
-            width : 60%;
-            padding-top: 0.5rem;
-            
-        }
-        .tag-Biodynamie {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #1896b6;
-            width : 1000%;
-            padding-top: 0.5rem;
-        }
-        .tag-Nature {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #c2250a;
-            width : 100%;
-            padding-top: 0.5rem;
-        }
-        .tag-Vegan {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #e9780f;
-            width : 100%;
-            padding-top: 0.5rem;
-        }
-        .sulfites {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #ac089e;
-            width : 100%;
-            padding-top: 0.5rem;
-        }
-
-        .tag-Raisonnée {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #ad6f10;
-            width : 100%;
-            padding-top: 0.5rem;
-        }
-
-        .tag-HVE {
-            font-size: vars.$font-size-1rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            color : #0a0deb;
-            width : 100%;
-            padding-top: 0.5rem;
-        }
-    
-        }
-            
+      width: 24%;
+      margin-top: 2em;
+      font-size: 1em;
+      font-style: italic;
+      .tag-Bio {
+        color: #1ebd4e;
+        margin-top: 0.5em;
+      }
+      .tag-Biodynamie {
+        color: #1896b6;
+        margin-top: 0.5em;
+      }
+      .tag-Nature {
+        color: #c2250a;
+        margin-top: 0.5em;
+      }
+      .tag-Vegan {
+        color: #e9780f;
+        margin-top: 0.5em;
+      }
+      .sulfites {
+        color: #ac089e;
+        margin-top: 0.5em;
+      }
+      .tag-Raisonnée {
+        color: #ad6f10;
+        margin-top: 0.5em;
+      }
+      .tag-HVE {
+        color: #0a0deb;
+        margin-top: 0.5em;
+      }
     }
-    .format{
-        display: flex;
-        flex-direction: column;
-        width: 32%;
-        margin-left: 3rem;
-        margin-top: 1.5rem;
-        font-weight: 600;
-        font-style: italic;
-        color: vars.$primary-color;
-        font-size: 0.9rem;
-        justify-content: space-between;
-        .degrees{
-            margin-top: 0.3rem;
-            color: rgb(92, 92, 92);
-            font-style: italic;
-            font-weight: 400;
-            font-size: 0.9rem;
-        }
+  }
+  // DIV format : capacity and degrees
+  .format {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 24%;
+    margin: 1em 0 1em 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: vars.$primary-color;
+    .degrees {
+      color: rgb(92, 92, 92);
+      font-style: italic;
+      font-weight: 400;
     }
+  }
+}
+//* Concerns the lower part of the menu: information on the winegrowers, the region, the name of the wine *//
 
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
 
+  .winemaker {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: vars.$primary-color;
+  }
+  .wine-name {
+    margin-top: 0.5em;
+    font-size: 1.4em;
+    font-style: italic;
+  }
+  .wine-region {
+    margin-top: 0.6em;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 0.6em;
+    font-style: italic;
+  }
 
-    .card-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  .tablet-color-rouge {
+    color: #a5260a;
+    font-size: 6em;
+  }
+  .tablet-color-blanc {
+    color: #fdf1b8;
+    font-size: 6em;
+  }
+  .tablet-color-rosé {
+    color: #fe96a0;
+    font-size: 6em;
+  }
+}
 
-        .winemaker {
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            margin-top: 4rem;
-            font-weight: 600;   
-            color : vars.$primary-color;
-        }
-        .wine-name {
-            font-size: 1.5rem;
-            margin-top: 0.6rem;
-            font-style: italic;
-        }
-        .wine-region {
-            font-size: vars.$font-size-1rem;
-            margin-top: 0.6rem;
-            font-style: italic;
-            font-weight: bold;
-        }
-
-        .tablet-color-rouge {
-            color: #A5260A;
-            font-size: 5rem;
-        }
-        .tablet-color-blanc {
-            color: #FDF1B8;
-            font-size: 5rem;
-        }
-        .tablet-color-rosé {
-            color: #FE96A0;
-            font-size: 5rem;
-        }
-    }
-  
-    .card-price {
-        display: flex;
-        justify-content: center;
-        .price-btn {
-            background-color: vars.$primary-color;
-            font-size: 1.1rem;
-            color: white;
-            padding: 0.6rem vars.$gutter1;
-            border: 1px solid vars.$primary-color;
-            border-radius: vars.$gutter1;
-            width: 180px;
-            margin-bottom: vars.$gutter1;
-        }
-        .price-btn:hover {
-            background-color: white;
-            color: vars.$primary-color;
-            font-weight: bold;
-            border: 3px solid vars.$primary-color;
-            font-size: 0.9rem;
-            //transition
-            transition: all 0.3s ease-in-out;
-        }
-        .price {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-left: vars.$gutter1;
-            margin-right: 0.5rem;
-            color : vars.$primary-color;
-            font-style: italic;
-        }
-        
-    }
-
-     @media screen and (min-width: 768px) {
-         .card { 
-       
-    }
+.card-price {
+  display: flex;
+  justify-content: center;
+  .price-btn {
+    background-color: vars.$primary-color;
+    width: 45%;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.5em;
+    color: white;
+    border-color: vars.$primary-color;
+    border-radius: 2em;
+    margin-bottom: 1em;
+  }
+  .price-btn:hover {
+    background-color: white;
+    color: vars.$primary-color;
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: all 0.4s ease-in-out;
+  }
+  .price {
+    margin-left: 0.5em;
+    font-weight: 600;
+    font-size: 2em;
+    color: vars.$primary-color;
+    font-style: italic;
+  }
 }

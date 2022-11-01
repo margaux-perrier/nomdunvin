@@ -18,7 +18,7 @@ function FilterMenu() {
     // If the State "showLinks" is "true" we add the "show class" to the "menuCheckbox" to display it and if it is "false" we hide it
         <div className={`menuCheckbox ${showFilters ? "show" : "hide"}`}> 
             <div className="links">
-                <div>
+                <div className= "color-filter">
                     <h3 className="checkbox-title"> Vous êtes plutôt ?</h3>
                     
                     <div className="checkbox">

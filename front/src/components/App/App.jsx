@@ -30,7 +30,7 @@ function App() {
 
         <Route path="/" element={
           <div className='container'>
-            <Burger />
+        <Burger />
             <CardList />
           </div>
         } />

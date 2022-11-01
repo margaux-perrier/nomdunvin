@@ -1,65 +1,64 @@
 @use "src/styles/vars";
 
-// Main Div
-.menuCheckbox {
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  width: 250px;
-  padding: vars.$gutter1;
-  border-right: solid 1px vars.$primary-color;
-  margin-left: vars.$gutter1;
-  height: 100%;
-  margin-top: 5rem;
-}
 
-// Main Container
-.links {
+.menuCheckbox {
   display: flex;
   flex-direction: column;
+  position: relative;
+  padding-top: 3em;
+  width : 15%;
+  border-right: 1px solid #a02222;
+  align-items: center;
 }
-
-// Filter Tilte
+.color-filter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.links {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+}
 .checkbox-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: vars.$gutter1;
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: vars.$font-Montserrat;
   color: vars.$primary-color;
-  padding-top: vars.$gutter1;
+  margin-bottom: 1em;
 }
 
 // All options of checkbox
 .checkbox {
   color: inherit;
-  padding: 1rem;
-  font-size: 1.2rem;
+  padding: 0.4em;
+  font-size: 0.8em;
   label {
-    margin-left: 0.8rem;
-    font-weight: 500;
+    margin-left: 1em;
   }
 }
-
 // Button to validate the selected filters
 .checkbox-btn {
   background-color: vars.$primary-color;
   color: white;
-  padding: 0.5rem vars.$gutter1;
+  padding: 0.5rem;
+  margin-top: 1em;
   border: 1px solid vars.$primary-color;
   border-radius: vars.$gutter1;
-  width: 100px;
-  font-size: vars.$font-size-1rem;
+  width: 5em;
+  font-size: 1rem;
 }
-
 .checkbox-btn:hover {
   background-color: white;
   color: vars.$primary-color;
-  border: 3px solid vars.$primary-color;
-  padding: 0.5rem vars.$gutter1;
+  border: 1px solid vars.$primary-color;
+  padding: 0.5rem;
   border-radius: vars.$gutter1;
-  width: 100px;
+  width: 5em;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease-in-out;
 }
 // End of filter Button
@@ -73,6 +72,7 @@
   border: none;
   color: inherit;
   display: none;
+
 }
 
 .burger-bar {
@@ -81,7 +81,7 @@
 
 //* RESPONSIVE MANAGEMENT *//
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   // No border on the burger menu for Mobile
 
   .menuCheckbox {
@@ -127,16 +127,18 @@
   }
 
   .checkbox {
-    padding: 0.5rem;
+   
     font-size: vars.$font-size-1rem;
   }
 
   // Manage the burger menu for mobile
 
   .burger {
+    margin-left: 5em;
     display: block;
-    top: 5rem;
-    left: vars.$gutter1;
+    position: fixed;
+   top:9em;
+    
   }
   .burger:hover {
     cursor: pointer;

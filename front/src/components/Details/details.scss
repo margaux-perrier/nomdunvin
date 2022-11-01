@@ -44,9 +44,10 @@
 
       .details-tag {
         margin-top: 1rem;
+        margin-right: 2rem;
 
         .details-Bio {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -54,7 +55,7 @@
           width: 60%;
         }
         .details-Biodynamie {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -62,7 +63,7 @@
           width: 1000%;
         }
         .details-Nature {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -70,7 +71,7 @@
           width: 100%;
         }
         .details-Vegan {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -78,7 +79,7 @@
           width: 100%;
         }
         .sulfites {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -87,7 +88,7 @@
         }
 
         .details-Raisonnée {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -95,7 +96,7 @@
           width: 100%;
         }
         .details-HVE {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-style: italic;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
@@ -153,7 +154,7 @@
     .details-input {
       width: 20%;
       height: 3rem;
-      border: 1px solid #d4d3d3;
+    
       padding-left: 1rem;
       font-size: 1.3rem;
       font-weight: 600;
@@ -165,7 +166,7 @@
     }
     .details-btn {
       background-color: vars.$primary-color;
-      border: 1px solid vars.$primary-color;
+  
       border-radius: 1rem 1rem 1rem 1rem;
       color: white;
       font-size: 1rem;
@@ -251,7 +252,7 @@
       // CONTAINER TOP RIGHT
 
       .details-cart {
-        width: 500px;
+       
         height: 100%;
         display: flex;
         flex-direction: column;
