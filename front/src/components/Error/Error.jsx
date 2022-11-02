@@ -9,12 +9,11 @@ function Error() {
 
     return (
         <div className="error">
-            <h2>hic ! ...Plus une goûte par ici l'Ami... </h2>
-            <div className="notFound">
-                <h3 className="number-error">404</h3>
-                <img className="glass" src={wine} alt="wine" />
-                <p className="text-error">Page Not Found</p>
-            </div>
+            <h2 className= "error-title">hic ! ...Plus une goûte par ici l'Ami... </h2>
+            <h3 className="number-error">404</h3>
+            <img className="glass-img" src={wine} alt="wine" />
+            <p className="text-error">Page Not Found</p>
+
         </div>
     );
 }

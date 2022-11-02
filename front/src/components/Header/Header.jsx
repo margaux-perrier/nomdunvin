@@ -51,7 +51,7 @@ function Header() {
                     </div>
                     <div className="link">
                         {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
-                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">LA CAVE</NavLink>
+                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">La Cave</NavLink>
                     </div>
                 </div>
                 <div>
@@ -73,6 +73,7 @@ function Header() {
                             <Fragment>
                                 <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                                 <Link to="/sign-up" className="tab-connexion">S'inscrire</Link>
+
                             </Fragment>
                         }
                     </div>

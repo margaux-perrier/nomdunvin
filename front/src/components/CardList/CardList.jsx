@@ -8,13 +8,11 @@ import data from '../../data/data';
 import './cardList.scss';
 
 
-
 // Component Filter
+
 function CardList() {
-
+    // Stock Data state
     const [state] = useState(data);
-
-
 
     const handleClick = (e) => {
         e.preventDefault();

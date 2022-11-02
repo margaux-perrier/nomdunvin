@@ -1,17 +1,7 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  // This container allows to apply a "flex-wrap" on the "main" (For components : FilterMenu, CardList)
-  .container{
+  width: 100vw;
+  // container for Flex menu-Filter and Cardlist
+  .container-home {
     display: flex;
-    flex-direction: flex-start;
-    height: auto;
-    width: 100%;
   }
-
-
-
-  
 }
