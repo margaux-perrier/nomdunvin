@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 import cart from './cart.png';
 // import Scss
 import './card.scss';
-// Component Filter
+
+
+// Component Card
+
 function Card({
     id,
     size,

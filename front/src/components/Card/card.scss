@@ -3,10 +3,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 26em;
-  margin-top: 5rem;
+  max-width: 40%;
+  min-width: 23em;
   border-radius: 2rem;
   border: 1px solid #a58b85;
+  margin-top: 3em; 
 
   //* Concerns the upper part of the map: bottle image, capacity, tag and degrees *//
   .visual {
@@ -60,8 +61,6 @@
         color: #ac089e;
         margin-top: 0.5em;
         white-space: nowrap;
-
-        
       }
       .tag-Raisonnée {
         color: #ad6f10;
@@ -91,7 +90,7 @@
     }
   }
 }
-//* Concerns the lower part of the menu: information on the winegrowers, the region, the name of the wine *//
+//* Concerns the lower part of the menu: information on the winemaher, the region, the name of the wine *//
 
 .card-content {
   display: flex;
@@ -131,6 +130,9 @@
     font-size: 6em;
   }
 }
+
+//* Concerns the lower part of card: buton "Voir le produit" + price *//
+
 
 .card-price {
   display: flex;

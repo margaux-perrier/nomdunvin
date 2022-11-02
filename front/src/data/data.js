@@ -12,7 +12,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Bio', 'Biodynamie', 'Sans sulfites'],
                     size : "75 cl",
-                    img : "https://zupimages.net/up/22/43/lf5w.png"
+                    img : "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 2,
@@ -25,6 +27,7 @@ const data = {
                     culture: ['HVE', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
                     img: "https://zupimages.net/up/22/43/ole2.png"
+
                 },
                 {
                     id: 3,
@@ -36,7 +39,9 @@ const data = {
                     alcohol: 10,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 4,
@@ -48,7 +53,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
     
                 },
                 {
@@ -61,7 +68,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/ole2.png"
+                    img: "https://zupimages.net/up/22/43/ole2.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 6,
@@ -73,7 +82,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "3 L",
-                    img: "https://zupimages.net/up/22/43/lf5w.png"
+                    img: "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 7,
@@ -85,7 +96,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Bio', 'Biodynamie', 'Sans sulfites'],
                     size : "75 cl",
-                    img : "https://zupimages.net/up/22/43/lf5w.png"
+                    img : "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },  
                 {
                     id: 8,
@@ -97,7 +110,9 @@ const data = {
                     alcohol: 11,
                     culture: ['HVE', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/ole2.png"
+                    img: "https://zupimages.net/up/22/43/ole2.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 9,
@@ -109,7 +124,9 @@ const data = {
                     alcohol: 10,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 10,
@@ -121,7 +138,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
     
                 },
                 {
@@ -134,7 +153,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/ole2.png"
+                    img: "https://zupimages.net/up/22/43/ole2.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 12,
@@ -146,7 +167,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "3 L",
-                    img: "https://zupimages.net/up/22/43/lf5w.png"
+                    img: "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 13,
@@ -158,7 +181,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Bio', 'Biodynamie', 'Sans sulfites'],
                     size : "75 cl",
-                    img : "https://zupimages.net/up/22/43/lf5w.png"
+                    img : "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 14,
@@ -170,7 +195,9 @@ const data = {
                     alcohol: 11,
                     culture: ['HVE', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/ole2.png"
+                    img: "https://zupimages.net/up/22/43/ole2.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 15,
@@ -182,7 +209,9 @@ const data = {
                     alcohol: 10,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 16,
@@ -194,7 +223,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/m876.png"
+                    img: "https://zupimages.net/up/22/43/m876.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
     
                 },
                 {
@@ -207,7 +238,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "75 cl",
-                    img: "https://zupimages.net/up/22/43/ole2.png"
+                    img: "https://zupimages.net/up/22/43/ole2.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
                 {
                     id: 18,
@@ -219,7 +252,9 @@ const data = {
                     alcohol: 12,
                     culture: ['Vegan', 'Raisonnée', 'Sans sulfites'],
                     size : "3 L",
-                    img: "https://zupimages.net/up/22/43/lf5w.png"
+                    img: "https://zupimages.net/up/22/43/lf5w.png",
+                    description : "Ce vin fruité et minéral présente une belle fraîcheur en bouche et des tanins fondus. Un vin idéal pour accompagner vos planches de charcuterie, de fromages ou encore vos barbecue.",
+                    dish : "Charcuterie, fromage, barbecue"
                 },
             
             ]

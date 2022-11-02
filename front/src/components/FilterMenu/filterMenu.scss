@@ -1,186 +1,78 @@
 @use "src/styles/vars";
 
-
-.menuCheckbox {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-top: 3em;
-  width : 15%;
-  border-right: 1px solid #a02222;
-  align-items: center;
-}
-.color-filter{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.links {
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
+/* Position of burger button */
+.bm-burger-button {
   position: fixed;
-  width: 100%;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 7rem;
+  padding: 1rem;
 }
-.checkbox-title {
-  font-size: 0.8em;
-  font-weight: bold;
-  font-family: vars.$font-Montserrat;
+/* Color burger icon bars */
+.bm-burger-bars {
+  background: vars.$primary-color;
+}
+/* Color close button */
+.bm-cross {
+  background: #a90000; //BOUTON POUR FERMER
+}
+/* Management of menu + Overlay*/
+.bm-menu {
+  background: vars.$secondary-color;
+  padding: 2.5em 1.5em 0;
+  font-size: 1em;
+  border-right: 3px solid vars.$primary-color;
+}
+.bm-overlay {
+  top: 0;
+}
+
+.menu-logo {
+  .logo {
+    width: 90%;
+    padding: 1em;
+  }
+}
+
+.menu-title {
+  padding-top: 5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: vars.$primary-color;
+  margin-bottom: 0.9rem;
+}
+
+.checkbox {
   margin-bottom: 1em;
 }
+.checkbox-button {
+  width : 50%;
+  height: 2em;;
+  border-radius: 2rem;
+  border: 1px solid vars.$primary-color;
+  background-color: vars.$primary-color;
+  color: vars.$secondary-color;
+  font-size: 1rem;
+}
 
-// All options of checkbox
-.checkbox {
-  color: inherit;
-  padding: 0.4em;
-  font-size: 0.8em;
+.checkbox-button:hover {
+  background-color: vars.$secondary-color;
+  color: vars.$primary-color;
+  font-size: 0.8rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-item {
+  display: inline-block;
+  color: #6e6e6e;
+  margin-bottom: 10px;
+  text-align: left;
+  transition: color 0.2s;
   label {
     margin-left: 1em;
   }
-}
-// Button to validate the selected filters
-.checkbox-btn {
-  background-color: vars.$primary-color;
-  color: white;
-  padding: 0.5rem;
-  margin-top: 1em;
-  border: 1px solid vars.$primary-color;
-  border-radius: vars.$gutter1;
-  width: 5em;
-  font-size: 1rem;
-}
-.checkbox-btn:hover {
-  background-color: white;
-  color: vars.$primary-color;
-  border: 1px solid vars.$primary-color;
-  padding: 0.5rem;
-  border-radius: vars.$gutter1;
-  width: 5em;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all 0.3s ease-in-out;
-}
-// End of filter Button
-
-// Burger menu to open the filters-menu / display none on desktop
-.burger {
-  width: 60px;
-  height: 60px;
-  border-radius: 5rem;
-  background: rgb(255, 255, 255);
-  border: none;
-  color: inherit;
-  display: none;
-
-}
-
-.burger-bar {
-  margin-left: 4px;
-}
-
-//* RESPONSIVE MANAGEMENT *//
-
-@media screen and (max-width: 1200px) {
-  // No border on the burger menu for Mobile
-
-  .menuCheckbox {
-    border: none;
-    box-shadow: none;
+  input[type="checkbox"] {
+    accent-color: vars.$primary-color;
   }
-
-  // Filters-menu --Visibility hidden on desktop
-  .links {
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    right: -100vw;
-    bottom: 0;
-    top: 0;
-    height: 110vh;
-    padding: vars.$gutter2;
-    visibility: hidden;
-    background-color: vars.$secondary-color;
-    border-bottom: 3px solid #a02222;
-    color: rgb(0, 0, 0);
-  }
-
-  // Show Class visible when State is true
-  .show .links {
-    width: 100vw;
-    left: 0;
-    visibility: visible;
-  }
-
-  // Change police size for mobile
-  .link {
-    padding: 1.5rem;
-    font-size: 5vw;
-  }
-
-  .checkbox-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: vars.$primary-color;
-    padding-top: 1rem;
-  }
-
-  .checkbox {
-   
-    font-size: vars.$font-size-1rem;
-  }
-
-  // Manage the burger menu for mobile
-
-  .burger {
-    margin-left: 5em;
-    display: block;
-    position: fixed;
-   top:9em;
-    
-  }
-  .burger:hover {
-    cursor: pointer;
-  }
-
-  .burger-bar,
-  .burger-bar::before,
-  .burger-bar::after {
-    display: block;
-    width: 40px;
-    height: 3px;
-    position: relative;
-    border-radius: 3px;
-    background: #a02222;
-  }
-  .burger-bar::before,
-  .burger-bar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    transition: all 0.5s ease-in-out;
-  }
-  .burger-bar::before {
-    transform: translateY(-12px);
-  }
-  .burger-bar::after {
-    transform: translateY(12px);
-  }
-  .show .burger-bar {
-    width: 0;
-    background: transparent;
-  }
-  .show .burger-bar::before {
-    transform: rotate(45deg);
-    background: vars.$primary-color;
-  }
-  .show .burger-bar::after {
-    transform: rotate(-45deg);
-    background: vars.$primary-color;
-  }
-}
-
-input[type="checkbox"] {
-  accent-color: vars.$primary-color;
 }

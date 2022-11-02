@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 //import Header component
 import Header from '../Header/Header';
 //import burger Component
-import Burger from '../FilterMenu/FilterMenu';
+import FilterMenu from '../FilterMenu/FilterMenu';
 // import CardList component
 import CardList from '../CardList/CardList';
 // import Error component
@@ -19,22 +19,25 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 // import scss
 import './App.scss';
 
+// component App
 
 function App() {
+
+
   return (
     <div className="App">
-      <Header />
 
+      <Header />
 
       <Routes>
 
         <Route path="/" element={
-          <div className='container'>
-        <Burger />
+          <div className='container-home'>
+            <FilterMenu />
             <CardList />
           </div>
         } />
-        
+
         <Route path="*" element={
           <Error />
         } />
