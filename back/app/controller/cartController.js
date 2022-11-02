@@ -85,25 +85,29 @@ const cartController = {
 	async validateCart(req,res){
 		try{
 			//Création du nouveau panier
-			let newCart = Cart.build({
+			let cart = Cart.build({
 				user_id : 1 // à changer avec req.session.user.id
 			});
-			await newCart.save();
- 
+			await cart.save();
+			
 			// let wine_id;
 			// let quantity;
-			// const listWine = req.session.cart.map((wine)=> ({
+			// const listWine = req.session.cart.map((wine)=> ([]
 			// 	wine_id : wine.id, 
 			// 	quantity : wine.quantity, 
 			// })); 
 			console.log('PANIER SESSION', req.session.cart); 
 
 			// for(const wine of req.session.cart){
+
 			// 	await newCart.addWines({wine_id : [wine.id]});
 			// }
-
+			console.log('>>>>>>>>>>>>', req.session.cart); 
 			for(const wine of req.session.cart){
-				await newCart.addWines(wine);
+				console.log(cart.addWine);
+				await cart.addWine({
+					joinTableAttributes: [wine.quantity]
+				});
 			}
 			
 			newCart = await Cart.findOne({
@@ -113,8 +117,6 @@ const cartController = {
 			});
 			
 			res.status(200).json(req.session.cart); 
-
-
 
 		}catch(error){
 			console.error(error); 
