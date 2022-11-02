@@ -1,48 +1,48 @@
-
-// import de useState
-import React, { useState } from 'react';
+// import React from "react";
+import React, {useEffect, useState} from "react";
+// import Menu fro: react-burger-menu
+import { slide as Menu } from "react-burger-menu";
+// import Logo
+import Logo from "./logo.png";
 // import Scss
-import './filterMenu.scss';
+import "./filterMenu.scss";
 
-// Component Filter
-function FilterMenu() {
 
-    // State for the burger-menu on mobile
-    const [showFilters, setShowFilters] = useState(false);
-    // "Button Event" to open burger menu on mobile 
-    const handleShowFilters = () => {setShowFilters(!showFilters);}
+
+
+// component FilterMenu
+
+const FilterMenu = () => {
 
 
     return (
-
-    // If the State "showLinks" is "true" we add the "show class" to the "menuCheckbox" to display it and if it is "false" we hide it
-        <div className={`menuCheckbox ${showFilters ? "show" : "hide"}`}> 
-            <div className="links">
-                <div>
-                    <h3 className="checkbox-title"> Vous êtes plutôt ?</h3>
-                    
-                    <div className="checkbox">
-                        <input type="checkbox" color="red" className="link" />
-                        <label aria-describedby="label">Rouge</label>
-                    </div>
-                    <div className="checkbox">
-                        <input type="checkbox" className="link" />
-                        <label  aria-describedby="label">Blanc</label>
-                    </div>
-                    <div className="checkbox">
-                        <input type="checkbox" className="link" />
-                        <label aria-describedby="label">Rosé</label>
-                    </div>
-                    <div className="checkbox">
-                        <button className="checkbox-btn">Valider</button>
-                    </div>
-                </div>
+        <Menu>
+            <div className="menu-logo">
+                <img src={Logo} className="logo" alt="logo" />
             </div>
-            <button className="burger" onClick={handleShowFilters}>
-                <span className="burger-bar"></span>
-            </button>
-        </div>
-    );
-}
+            <div className="menu-title">
+                <h2>Êtes vous plûtot ?</h2>
+            </div>
 
-export default React.memo(FilterMenu);
+            <form className="menu-item">
+                <div className="checkbox">
+                    <input type="checkbox" />
+                    <label className="checkbox-title">Vin rouge</label>
+                </div>
+
+                <div className="checkbox">
+                    <input type="checkbox" />
+                    <label className="checkbox-title">Vin blanc</label>
+                </div>
+
+                <div className="checkbox">
+                    <input type="checkbox" />
+                    <label className="checkbox-title">Vin rosé </label>
+                </div>
+                <button className="checkbox-button">Valider</button>
+            </form>
+        </Menu>
+    );
+};
+
+export default FilterMenu;

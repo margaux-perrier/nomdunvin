@@ -4,317 +4,208 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 5em;
+
+  //* Concerns the image part + the basket part //*
 
   .details-container-visual {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    margin: auto;
-    margin-top: 5rem;
+  }
+  // Concerns the image part
+  .details-img {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
 
-    // CONTAINER TOP LEFT
+    .wine-img {
+      width: 6em;
+    }
+    // Concerns the tablet-color
+    .tablet-color-rouge {
+      color: #a5260a;
+      font-size: 13em;
+    }
+    .tablet-color-blanc {
+      color: #fdf1b8;
+      font-size: 13em;
+    }
+    .tablet-color-rosé {
+      color: #fe96a0;
+      font-size: 13em;
+    }
 
-    .details-img {
+    // Concerns All Tags
+    .details-tag {
       display: flex;
-      justify-content: space-between;
-      width: 90%;
-      margin-top: 1rem;
-      padding: 2rem;
-
-      .tablet-color-rouge {
-        color: #a5260a;
-        font-size: 10rem;
-        padding-left: 1.4rem;
+      flex-direction: column;
+      font-size: 1em;
+      margin-right: 2em;
+      font-style: italic;
+      .details-Bio {
+        color: #1ebd4e;
+        margin-top: 0.5em;
       }
-
-      .tablet-color-blanc {
-        color: #fdf1b8;
-        font-size: 10rem;
+      .details-Biodynamie {
+        color: #1896b6;
+        margin-top: 0.5em;
       }
-      .tablet-color-rosé {
-        color: #fe96a0;
-        font-size: 10rem;
+      .details-Nature {
+        color: #c2250a;
+        margin-top: 0.5em;
       }
-
-      .wine-img {
-        width: 25%;
+      .details-Vegan {
+        color: #e9780f;
+        margin-top: 0.5em;
       }
-
-      .details-tag {
-        margin-top: 1rem;
-
-        .details-Bio {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #1ebd4e;
-          width: 60%;
-        }
-        .details-Biodynamie {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #1896b6;
-          width: 1000%;
-        }
-        .details-Nature {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #c2250a;
-          width: 100%;
-        }
-        .details-Vegan {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #e9780f;
-          width: 100%;
-        }
-        .sulfites {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #ac089e;
-          width: 100%;
-        }
-
-        .details-Raisonnée {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #ad6f10;
-          width: 100%;
-        }
-        .details-HVE {
-          font-size: 1.1rem;
-          font-style: italic;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          color: #0a0deb;
-          width: 100%;
-        }
+      .sulfites {
+        color: #ac089e;
+        margin-top: 0.5em;
+        white-space: nowrap;
       }
-      .point {
-        font-size: 2rem;
+      .details-Raisonnée {
+        color: #ad6f10;
+        margin-top: 0.5em;
+      }
+      .details-HVE {
+        color: #0a0deb;
+        margin-top: 0.5em;
       }
     }
   }
 
-// CONTAINER TOP RIGHT
+  //* Concerns the informations part + Basket part //*
+
+  // PART Informations
+
   .details-cart {
-    margin-top: 2rem;
-    width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .details-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .details-price {
-        font-size: 1.6rem;
-        font-weight: 600;
-        font-style: italic;
-        color: vars.$primary-color;
-        margin-top: 1rem;
-      }
-
-      .details-winemaker {
+      text-align: center;
+      .details-winemaker{
         text-transform: uppercase;
-        font-size: 1.2rem;
+        margin-top: 1em;
+        font-size: 1.2em;
         font-weight: 600;
         color: vars.$primary-color;
-      }
+      } 
       .details-wine-name {
-        font-size: 1.5rem;
-        margin-top: 0.6rem;
+        margin-top: 0.7em;
+        font-size: 1.3em;
         font-style: italic;
       }
       .details-wine-region {
-        font-size: vars.$font-size-1rem;
-        margin-top: 0.6rem;
+        margin-top: 0.7em;
+        font-size: 1.2em;
         font-style: italic;
-        font-weight: bold;
+        font-weight: 600;
+      }
+      .details-price {
+        margin-top: 0.7em;
+        font-size: 2.5em;
+        font-style: italic;
+        font-weight: 600;
+        color: vars.$primary-color;
       }
     }
-  }
-  .details-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 2.5rem;
-    height: 3rem;
-    .details-input {
-      width: 20%;
-      height: 3rem;
-      border: 1px solid #d4d3d3;
-      padding-left: 1rem;
-      font-size: 1.3rem;
-      font-weight: 600;
-      font-style: italic;
-      color: vars.$primary-color;
-      text-align: center;
-      margin-right: 0.5rem;
-      border-radius: 1rem 1rem 1rem 1rem;
-    }
-    .details-btn {
-      background-color: vars.$primary-color;
-      border: 1px solid vars.$primary-color;
-      border-radius: 1rem 1rem 1rem 1rem;
-      color: white;
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-      font-weight: 600;
-      width: 50%;
-    }
-  }
-}
 
-.details-container-information {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: auto;
+    // PART Basket
 
-  .details-reviews {
-    width: 80%;
-    background-color: rgb(0, 255, 0);
-    margin-top: 1rem;
-  }
-  .details-features {
-    width: 80%;
-    background-color: rgb(255, 0, 255);
-    margin-top: 1rem;
-  }
-}
-
-
-
-//* ////////////////// RESPONSIVE FOR DESKTOP //////////////////// *//
-
-
-@media screen and (min-width: 1000px) {
-  .details {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-    .details-container-visual {
+    .details-form {
+      margin-top: 2em ;
+      width: 100%;
+      //centrer les éléments
       display: flex;
-      flex-direction: row;
-      justify-content: center;
+     justify-content: center;
+      .details-input{
+        height: 2.5em;
+        margin-right: 0.5em;
+        border-radius: 0.6em;
+        font-size: 1.1em;
+        color:vars.$primary-color; ;
+        border: 2px solid #e0e0e0;
+        text-align: center;
+        padding : 0.5em;
+      }
+      ::placeholder {
+        color: #afa9a9;
+        font-size: 1em;
+        text-align: center;
+      }
+      .details-btn {
+        width : 50%;
+        height: 2.5em;
+        border-radius: 0.9em;
+        font-size: 1.1em;
+        padding : 0.5em;
+        font-weight: 600;
+        color: #fff;
+        background-color: vars.$primary-color;
+        border: none;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+
+    //* Concerns the notice part + wine details part //*
+
+    .details-container-information {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      width: 80%;
-      margin: auto;
-      margin-top: 7rem;
-      height: 100%;
-      border-bottom: 1px solid #d4d3d3;
+      width: 100%;
+      .details-reviews{
+        margin-top: 3.5em;
+        width : 85%;
+        border-top : 2px solid vars.$primary-color;
+        border-bottom : 2px solid vars.$primary-color;
+        padding-top: 1.8em;
+        padding-bottom: 1.8em;
+      }
+      .details-reviews-title {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: vars.$primary-color;
+        text-align: center;
+        font-style : italic;
+      }
+      .details-reviews-content {
+        margin-top: 0.5em;
+        font-style : italic;
+        text-align: left;
+        font-size: 1.2em;
+        color: rgb(168, 167, 167);
+      }
+      .details-dish-title{
+        margin-top: 0.8em;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: vars.$primary-color;
+        text-align: center;
+        font-style : italic;
+      }
+      .details-dish-content {
+        margin-top: 0.5em;
+        font-style : italic;
+        text-align: left;
+        font-size: 1.2em;
+        color: rgb(168, 167, 167);
+        text-align: center;
+        
+      }
       
 
-      // CONTAINER TOP LEFT
 
-      .details-img {
-        display: flex;
-        justify-content: space-between;
-        width: 500px;
-        margin-top: 1rem;
-        border-right: 1px solid #d4d3d3;
-        .tablet-color-rouge {
-          color: #a5260a;
-          font-size: 8rem;
-        }
-        .tablet-color-blanc {
-          color: #fdf1b8;
-          font-size: 8rem;
-        }
-        .tablet-color-rosé {
-          color: #fe96a0;
-          font-size: 8rem;
-        }
-      }
-      .details-cart-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
-      }
 
-      // CONTAINER TOP RIGHT
-
-      .details-cart {
-        width: 500px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .details-content {
-          height: 100%;
-
-          .details-price {
-            font-size: 2.2rem;
-            font-weight: 600;
-            font-style: italic;
-            color: vars.$primary-color;
-            margin-top: 5rem;
-          }
-          .details-winemaker {
-            font-size: 1.5rem;
-            margin-bottom: 5rem;
-          }
-          .details-wine-name {
-            font-size: 1.7rem;
-            margin-top: 3rem;
-          }
-          .details-wine-region {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            color: vars.$primary-color;
-          
-          }
-        }
-      }
-
-      .details-form {
-        display: flex;
-        justify-content: center;
-        margin-top: 3rem;
-        height: 3rem;
-        margin-bottom: 1rem;
-
-        .details-input {
-          width: 10%;
-          height: 3rem;
-          border: 1px solid #d4d3d3;
-          padding-left: 1rem;
-          font-size: 1.3rem;
-          font-weight: 600;
-          font-style: italic;
-          color: vars.$primary-color;
-          text-align: center;
-          margin-right: 0.5rem;
-          border-radius: 1rem 1rem 1rem 1rem;
-        }
-        .details-btn {
-          background-color: vars.$primary-color;
-          border: 1px solid vars.$primary-color;
-          border-radius: 1rem 1rem 1rem 1rem;
-          color: white;
-          font-size: 1rem;
-          padding: 0.6rem 1rem;
-          font-weight: 600;
-          width: 30%;
-        }
-      }
     }
-  }
+
+
 }
