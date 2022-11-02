@@ -1,10 +1,8 @@
-const { Wine, Cart} = require('../models');
+const { Wine, Order, User} = require('../models');
 
 const cartController = {
 
-	//Cas à gérer : 
-	//1. Ajout au panier à partir de la page d'accueil => quantité ajoutée = 1 max.
-	//2. Ajout au panier à partir de la page produit => quantité ajoutée = x.  
+	
 	async addWineToCart(req,res){
 		try{
 			const wineIdUrl = Number(req.params.wineid); //id du vin que l'on veut ajouter au panier
@@ -18,7 +16,7 @@ const cartController = {
 			if(!foundWine){
 				const wineToAdd = await Wine.findByPk(wineIdUrl);
 			
-				wineToAdd.dataValues['quantity'] = quantity; 
+				wineToAdd.dataValues['quantity'] = quantity; //on ajoute à l'objet wine la propriété quantity
 				req.session.cart.push(wineToAdd);
 				res.status(200).json(req.session.cart); 
 
@@ -84,39 +82,37 @@ const cartController = {
 
 	async validateCart(req,res){
 		try{
-			//Création du nouveau panier
-			let cart = Cart.build({
-				user_id : 1 // à changer avec req.session.user.id
-			});
-			await cart.save();
-			
-			// let wine_id;
-			// let quantity;
-			// const listWine = req.session.cart.map((wine)=> ([]
-			// 	wine_id : wine.id, 
-			// 	quantity : wine.quantity, 
-			// })); 
-			console.log('PANIER SESSION', req.session.cart); 
-
-			// for(const wine of req.session.cart){
-
-			// 	await newCart.addWines({wine_id : [wine.id]});
-			// }
-			console.log('>>>>>>>>>>>>', req.session.cart); 
+		
 			for(const wine of req.session.cart){
-				console.log(cart.addWine);
-				await cart.addWine({
-					joinTableAttributes: [wine.quantity]
+				let cart = Order.build({
+					user_id : req.session.user.id,
+					wine_id : wine.id, 
+					quantity : wine.quantity
 				});
+				await cart.save();
 			}
 			
-			newCart = await Cart.findOne({
-				where : {
-					user_id : 1
+			let user = await User.findByPk(1); 
+			if(!user){
+				const error = new Error(`User with id ${req.session.user.id} does not exist`); 
+				return res.status(404).json({message : error.message}); 
+			}
+
+			for(const wine of req.session.cart){
+				const wineToAdd = await Wine.findByPk(wine.id); 
+				if(!wineToAdd){
+					const error = new Error(`wine with id ${wine.id} does not exist.`); 
+					return res.status(404).json({message : error.message}); 
 				}
-			});
 			
-			res.status(200).json(req.session.cart); 
+				await user.addWines(wineToAdd); 
+			}
+			
+			user = await User.findByPk(req.session.user.id, {
+				include : 'wines'
+			}); 
+
+			res.status(200).json(user); 
 
 		}catch(error){
 			console.error(error); 

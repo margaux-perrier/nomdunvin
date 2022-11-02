@@ -4,16 +4,16 @@
 const { Model, DataTypes} = require('sequelize'); 
 const sequelize = require('../database'); 
 
-class Concerns extends Model {}
+class Order extends Model {}
 
-Concerns.init({
+Order.init({
 	quantity : {
 		type : DataTypes.INTEGER, 
 		allowNull : true
 	}
 },{
 	sequelize, 
-	tableName: 'concerns'
+	tableName: 'order'
 });
 
-module.exports = Concerns; 
+module.exports = Order; 
