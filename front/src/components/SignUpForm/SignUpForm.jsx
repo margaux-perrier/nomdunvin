@@ -1,5 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, {useState} from "react";
+
+// Reducer import
+import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+
+//Material UI imports
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,6 +16,23 @@ import './signUpFormStyles.scss';
 
 
 function SignUpForm(){
+
+  const { formState, formDispatch } = UseFormReducer();
+  const reset = () => formDispatch(getActionReset());
+
+  const handleTextFieldChange = (e) => {
+    formDispatch(getActionSetValue(e.target.name, e.target.value));
+    console.log(e.target.name, e.target.value);
+  }
+
+  const handleTextFieldNumberChange = (e) => {
+    formDispatch(getActionSetValue(e.target.name, Number(e.target.value)));
+  }
+
+  const handleCheckBoxChange = (e) => {
+    console.log('ola')
+    formDispatch(getActionSetValue(e.target.name, e.target.checked))
+  }
   return(
     <div className= "container-form">
         
@@ -35,6 +57,8 @@ function SignUpForm(){
             <TextField color="error"
               label="Email"
               name="email"
+              // value={formState.email}
+              // onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -44,6 +68,8 @@ function SignUpForm(){
               type="password"
               label="Password"
               name="password"
+              // value={formState.password}
+              // onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -74,6 +100,8 @@ déjà vu ... Rejoignez nous en quelques clics !
             <TextField color="error"
               label="Prénom"
               name="firstname"
+              value={formState.firstname}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -156,6 +184,8 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="newsletter"
+                  onChange={handleCheckBoxChange}
+
                 />
               )}
             />
@@ -165,6 +195,8 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="generalConditions"
+                  onChange={handleCheckBoxChange}
+
                 />
               )}
             />
@@ -175,6 +207,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="privacy policy"
+                  onChange={handleCheckBoxChange}
                 />
               )}
             />
@@ -191,7 +224,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 color="error"
                 variant="outlined"
                 type="button"
-                // onClick={reset}
+                onClick={reset}
               >
                 RESET
               </Button>
