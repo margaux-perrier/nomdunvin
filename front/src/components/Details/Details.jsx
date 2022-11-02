@@ -1,5 +1,5 @@
 // import react
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 // import useParams
 import { useParams } from 'react-router-dom';
 //import de fecthWinesAPI
@@ -26,7 +26,7 @@ function Details() {
  
     // Use Effect
     useEffect(() => {
-        fetchWine();
+        fetchWine(id);
     }, []);
 
   
@@ -50,12 +50,12 @@ function Details() {
                 <div className="details-cart">
 
                     <div className="details-content">
+                        {// entrer le nom du winemaker brise la page
 
-                        <h2 className="details-winemaker">
-                            {name}
-                        </h2>
+                        }
+                        <h2 className="details-winemaker">ENTRER ICI POUR TESTER BUG</h2>
                         <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region">dhdgh</p>
+                        <p className="details-wine-region">ENTRER ICI POUR TESTER BUG</p>
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
