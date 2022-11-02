@@ -59,6 +59,7 @@ function Details() {
 
                 <div className="details-features">
 
+
                     <table>
                         <thead>
                             <tr>
@@ -99,6 +100,9 @@ function Details() {
                             </tr>
                         </thead>
                     </table>
+
+                    <p>CARACTERISTIQUES </p>
+
                 </div>
 
             </div>
