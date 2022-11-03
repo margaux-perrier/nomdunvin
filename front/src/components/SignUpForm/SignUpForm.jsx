@@ -4,6 +4,7 @@ import React, {useState} from "react";
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
 import axios from 'axios';
+import {signupRequest} from '../../services/userRequests'
 
 //Material UI imports
 import Box from '@mui/material/Box';
@@ -37,14 +38,10 @@ function SignUpForm(){
     formDispatch(getActionSetValue(e.target.name, e.target.checked))
   }
 
-  const handleSignUpSubmit = async () => {
-    await axios.post('http://localhost:5000/signup', {
-      firstname: formState.firstname,
-      lastname: formState.lastname,
-      email: formState.email,
-      password: formState.password,
-      confirmPassword: formState.confirmPassword,
-    })
+  const handleSignUpSubmit = async (e) => {
+    e.preventDefault();
+    console.log( formState.firstname)
+   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
   }
   
   return(
@@ -213,7 +210,8 @@ déjà vu ... Rejoignez nous en quelques clics !
               control={(
                 <Checkbox
                   color="error"
-                  value={newsletter}
+                  value={formState.newsletter}
+                  checked={formState.newsletter}
                   name="newsletter"
                   onChange={handleCheckBoxChange}
 
@@ -226,7 +224,8 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="generalConditions"
-                  value={generalConditions}
+                  checked={formState.generalConditions}
+                  value={formState.generalConditions}
                   onChange={handleCheckBoxChange}
 
                 />
@@ -240,6 +239,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                   color="error"
                   name="RGPD"
                   value= {RGPD}
+                  checked={formState.RGPD}
                   onChange={(handleCheckBoxChange)}
                 />
               )}

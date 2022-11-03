@@ -1,13 +1,16 @@
 require('dotenv').config(); 
+const cors = require('cors');
 const express = require('express'); 
 
 const app = express(); 
+app.use(cors());
 const session = require('express-session');
 const PORT = process.env.PORT || 3000; 
 
 const router = require('./app/router'); 
 
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 app.use(session({
 	secret: process.env.SESSION_SECRET, 

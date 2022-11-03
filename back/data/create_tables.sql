@@ -56,11 +56,9 @@ CREATE TABLE IF NOT EXISTS "user"(
     "avatar" TEXT NULL, 
     "role" TEXT NULL, 
     "address_number" INT NULL, 
-
     "address_street" TEXT  NULL, 
     "address_postal" INT NULL, 
     "address_city" TEXT NULL, 
-
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     "updated_at" TIMESTAMPTZ
 );
