@@ -21,7 +21,8 @@ const formInitialState = {
   newsletter: false,
   generalConditions: false,
   RGPD:false,
-  
+  connectionEmail: 'admin@admin.com',
+  connexionPassword: '',  
 }
 
 function formReducer(oldState, action) {
