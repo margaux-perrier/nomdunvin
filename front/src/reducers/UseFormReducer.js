@@ -14,15 +14,20 @@ const formInitialState = {
   lastname: '',
   password: '',
   confirmPassword: '',
-  address_number: '',
-  address_street: '',
-  address_postal: '',
-  address_city: ''
+  addressNumber: 10,
+  addressStreet: '',
+  addressPostal: '',
+  addressCity: '',
+  newsletter: false,
+  generalConditions: false,
+  RGPD:false,
+  
 }
 
 function formReducer(oldState, action) {
   switch (action.type) {
     case SET_VALUE_INPUT : {
+      console.log('jjjjjjjjjjjjjjj    +++++=     ', action.payload.name, action.payload.value)
       return {
         ...oldState,
         [action.payload.name]: action.payload.value,
@@ -46,6 +51,8 @@ function formReducer(oldState, action) {
 }
 
 export function getActionSetValue(name, value) {
+  console.log('hello');
+
   return{
     type: SET_VALUE_INPUT,
     payload: {

@@ -3,6 +3,7 @@ import React, {useState} from "react";
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+import axios from 'axios';
 
 //Material UI imports
 import Box from '@mui/material/Box';
@@ -16,6 +17,9 @@ import './signUpFormStyles.scss';
 
 
 function SignUpForm(){
+  const [newsletter, setNewsletter] = useState('true');
+  const [generalConditions, setGeneralConditions] = useState('false');
+  const [RGPD, setRGPD] = useState('true');
 
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
@@ -30,9 +34,19 @@ function SignUpForm(){
   }
 
   const handleCheckBoxChange = (e) => {
-    console.log('ola')
     formDispatch(getActionSetValue(e.target.name, e.target.checked))
   }
+
+  const handleSignUpSubmit = async () => {
+    await axios.post('http://localhost:5000/signup', {
+      firstname: formState.firstname,
+      lastname: formState.lastname,
+      email: formState.email,
+      password: formState.password,
+      confirmPassword: formState.confirmPassword,
+    })
+  }
+  
   return(
     <div className= "container-form">
         
@@ -93,7 +107,7 @@ déjà vu ... Rejoignez nous en quelques clics !
         component="form"
         noValidate
         autoComplete="off"
-        // onSubmit={handleSubmit}
+        onSubmit={handleSignUpSubmit}
       >
         <Grid container  spacing={2} >
           <Grid item xs={12} sm={6}>
@@ -110,6 +124,8 @@ déjà vu ... Rejoignez nous en quelques clics !
             <TextField color="error"
               label="Nom"
               name="lastname"
+              value={formState.lastname}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -118,6 +134,8 @@ déjà vu ... Rejoignez nous en quelques clics !
             <TextField color="error"
               label="Email"
               name="email"
+              value={formState.email}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -126,7 +144,9 @@ déjà vu ... Rejoignez nous en quelques clics !
           <Grid item xs={12} sm={3}>
             <TextField color="error"
               label="Numéro de rue"
-              name="streetNumber"
+              name="addressNumber"
+              value={formState.addressNumber}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -134,7 +154,9 @@ déjà vu ... Rejoignez nous en quelques clics !
           <Grid item xs={12} sm={9}>
             <TextField color="error"
               label="Rue"
-              name="street"
+              name="addressStreet"
+              value={formState.addressStreet}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -143,7 +165,9 @@ déjà vu ... Rejoignez nous en quelques clics !
           <Grid item xs={12} sm={3}>
             <TextField color="error"
               label="Code postal"
-              name="postalCode"
+              name="addressPostal"
+              value={formState.addressPostal}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -151,7 +175,9 @@ déjà vu ... Rejoignez nous en quelques clics !
           <Grid item xs={12} sm={9}>
             <TextField color="error"
               label="Ville"
-              name="city"
+              name="addressCity"
+              value={formState.addressCity}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -162,6 +188,8 @@ déjà vu ... Rejoignez nous en quelques clics !
               type="password"
               label="Password"
               name="password"
+              value={formState.password}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -172,6 +200,8 @@ déjà vu ... Rejoignez nous en quelques clics !
               type="password"
               label="Confirmer password"
               name="confirmPassword"
+              value={formState.confirmPassword}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -183,6 +213,7 @@ déjà vu ... Rejoignez nous en quelques clics !
               control={(
                 <Checkbox
                   color="error"
+                  value={newsletter}
                   name="newsletter"
                   onChange={handleCheckBoxChange}
 
@@ -195,6 +226,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="generalConditions"
+                  value={generalConditions}
                   onChange={handleCheckBoxChange}
 
                 />
@@ -206,8 +238,9 @@ déjà vu ... Rejoignez nous en quelques clics !
               control={(
                 <Checkbox
                   color="error"
-                  name="privacy policy"
-                  onChange={handleCheckBoxChange}
+                  name="RGPD"
+                  value= {RGPD}
+                  onChange={(handleCheckBoxChange)}
                 />
               )}
             />
