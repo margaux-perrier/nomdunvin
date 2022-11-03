@@ -137,10 +137,10 @@ CREATE TABLE IF NOT EXISTS "cultivate"(
 
 CREATE TABLE IF NOT EXISTS "order"(
     "quantity" INT NULL, 
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE, 
     "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
-    PRIMARY KEY ("user_id", "wine_id")
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 ); 
 
 

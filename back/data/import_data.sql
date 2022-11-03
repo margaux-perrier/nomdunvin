@@ -75,9 +75,6 @@ INSERT INTO "dish"("name") VALUES
 ('plaisirs sucrés'),
 ('retour de pêche');
 
-INSERT INTO "user"("firstname", "lastname", "email", "password", "role") VALUES 
-('Jean-Michel', 'Golbez', 'jeanmigolbez@mail.com', '$2b$10$7vwYGrz2TGeyG4X8YnD9BOag9I.YKGUTJELs64qGmcK/syHu2BzTG', null),
-('admin', 'admin', 'admin@admin.com', 'admin', 'admin'); 
 
 INSERT INTO "wine"("avatar","name", "description", "appellation", "size","price", "alcohol", "vintage", "color", "region_id", "winemaker_id")VALUES
 ('https://zupimages.net/up/22/43/ole2.png','Le bon petit vin', 

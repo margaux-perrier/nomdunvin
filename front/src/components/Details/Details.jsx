@@ -1,22 +1,42 @@
 // import react
-import React, { useState } from 'react';
-// import data
-import data from '../../data/data';
+import React, { useEffect, useState, useCallback } from 'react';
+// import useParams
+import { useParams } from 'react-router-dom';
+//import de fecthWinesAPI
+import { fetchOneWine } from '../../services/fecthWinesAPI.js'
 // import Scss
 import './details.scss';
 
 
+
 function Details() {
 
-    const [state] = useState(data);
+    // Stock Data in State
+    const [wine, setWine] = useState({});
 
-    const url = window.location.href;
-    const id = Number(url.split('/')[4]);
-    const wine = state.wines.find(wine => wine.id === id);
+    // Get id from url with useParams
+    const { id } = useParams();
 
+    const fetchWine = useCallback(async () => {
+        const response = await fetchOneWine(id);
+        console.log('RESPONSE', response); 
+        setWine(response);
+
+    }, [id]);
+
+   console.log('>>>ICI', wine); 
+
+    // Use Effect
+    useEffect(() => {
+
+        fetchWine();
+
+    }, [fetchWine]);
+
+
+    console.log('>>>ICI 2', wine); 
 
     return (
-
 
         <div className="details">
             <div className="details-container-visual">
@@ -24,20 +44,24 @@ function Details() {
                     <div className=''>
                         <p className={`tablet-color-${wine.color}`}>•</p>
                     </div>
-                    <img className="wine-img" src={wine.img} alt="red-wine" />
+                    <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
-                        {wine.culture.map((tags, index) => (
+                    <li className="details-Biodynamie">biodynamie</li>
+                    <li className="details-Raisonnée">Raisonnée</li>
+                    <li className="details-Sans sulfites">Sans Sulfites</li>
+                        {/*wine.culture.map((tags, index) => (
                             <li className={`details-${tags}`}>{tags}</li>
-                        ))}
+                        ))*/}
                     </ul>
                 </div>
                 <div className="details-cart">
 
                     <div className="details-content">
-
-                        <h2 className="details-winemaker">{wine.winemaker}</h2>
+                        <div>
+                            <h2 className="details-winemaker">TEST</h2>
+                        </div>
                         <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region">{wine.region}</p>
+                        <p className="details-wine-region"></p>
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
@@ -54,55 +78,52 @@ function Details() {
                     <h2 className="details-reviews-title">Notre avis sur ce vin...</h2>
                     <p className="details-reviews-content">{wine.description}</p>
                     <h2 className="details-dish-title">Quel menu accompagne t'il ?</h2>
-                    <p className="details-dish-content">{wine.dish}</p>
+                    <p className="details-dish-content">fjjfj</p>
                 </div>
 
                 <div className="details-features">
 
 
-                    <table>
+                    <table className= "table">
                         <thead>
-                            <tr>
-                                <th className="feature">Type de vin</th>
-                                <td>Blanc</td>
+                            <tr className="pair">
+                                <th className="type case">Type de vin</th>
+                                <td className="case">Blanc</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Appellation</th>
-                                <td>Bordeaux</td>
+                            <tr className="">
+                                <th className="type case">Appellation</th>
+                                <td className="case"> Bordeaux</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Cépages</th>
-                                <td>Rasin blanc de qefqefef</td>
+                            <tr className="pair">
+                                <th className="type case">Cépages</th>
+                                <td className="case">Rasin blanc de qefqefef</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Domaine</th>
-                                <td>Domaine de Johnny Joe</td>
+                            <tr className="">
+                                <th className="type case">Domaine</th>
+                                <td className="case">Domaine de Johnny Joe</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Région</th>
-                                <td>Région de talala</td>
+                            <tr className="pair">
+                                <th className="type case">Région</th>
+                                <td className="case">Région de talala</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Millésime</th>
-                                <td>2018</td>
+                            <tr className="">
+                                <th className="type case">Millésime</th>
+                                <td className="case">2018</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Agriculture</th>
-                                <td>Biologique</td>
+                            <tr className="pair">
+                                <th className="type case">Agriculture</th>
+                                <td className="case">Biologique</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Contenance</th>
-                                <td>75cl</td>
+                            <tr className="">
+                                <th className="type case">Contenance</th>
+                                <td className="case">75cl</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Alcool</th>
-                                <td>13,5</td>
+                            <tr className="pair">
+                                <th className="type case">Alcool</th>
+                                <td className="case">13,5</td>
                             </tr>
                         </thead>
                     </table>
-
-                    <p>CARACTERISTIQUES </p>
-
                 </div>
 
             </div>

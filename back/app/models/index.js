@@ -5,8 +5,8 @@ const Region = require('./region');
 const GrapeVariety = require('./grapevariety'); 
 const Style = require('./style'); 
 const User = require('./user'); 
-const Winemaker = require('./winemaker');
-const Cart = require('./cart'); 
+const Winemaker = require('./winemaker'); 
+const Order = require('./order'); 
 
 //Association between region and wine - one to many
 Region.hasMany(Wine, {
@@ -91,42 +91,30 @@ Wine.belongsToMany(Culture, {
 	otherKey: 'culture_id', 
 });
 
-// Association between wine and cart - many-to-many
-Cart.belongsToMany(Wine, {
+// Association between wine and user - many-to-many
+User.belongsToMany(Wine, {
 	as : 'wines', 
-	through: 'concerns', 
-	foreignKey: 'cart_id', 
-	otherKey: 'wine_id',
-	timestamps: false, 
-});
-
-Wine.belongsToMany(Cart, {
-	as : 'carts', 
-	through: 'concerns', 
-	foreignKey: 'wine_id', 
-	otherKey: 'cart_id',
-	timestamps: false, 
-});
-
-//Association between user and cart - one to many
-User.hasMany(Cart, {
+	through: Order, 
 	foreignKey: 'user_id', 
-	as : 'carts'
+	otherKey: 'wine_id',
 });
 
-Cart.belongsTo(User, {
-	as: 'user', 
-	foreignKey: 'user_id'
+Wine.belongsToMany(User, {
+	as : 'users', 
+	through: Order, 
+	foreignKey: 'wine_id', 
+	otherKey: 'user_id',
 });
+
 
 module.exports = {
 	Wine,
 	Winemaker, 
 	User,
-	Cart, 
 	Region, 
 	GrapeVariety,
 	Culture, 
 	Dish, 
 	Style, 
+	Order
 };
