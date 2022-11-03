@@ -1,10 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, {useState} from "react";
+import React, { useState} from "react";
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
 import axios from 'axios';
+
+//import user methods
 import {signupRequest} from '../../services/userRequests'
+import { loginRequest } from '../../services/userRequests'
+
 
 //Material UI imports
 import Box from '@mui/material/Box';
@@ -18,10 +23,8 @@ import './signUpFormStyles.scss';
 
 
 function SignUpForm(){
-  const [newsletter, setNewsletter] = useState('true');
-  const [generalConditions, setGeneralConditions] = useState('false');
-  const [RGPD, setRGPD] = useState('true');
-
+  
+  const { userState, userDispatch } = useUserReducer();
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
 
@@ -43,6 +46,13 @@ function SignUpForm(){
     console.log( formState.firstname)
    await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
   }
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    console.log(typeof connectionEmail)
+    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
+    userDispatch(getActionUserLogged(user));
+  }
   
   return(
     <div className= "container-form">
@@ -52,7 +62,7 @@ function SignUpForm(){
           Connexion
         </h1>
         <p className="text">
-        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part?
+        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? {userState.loggedUser.user.firstname}
       </p>
       <Box 
    sx={{
@@ -61,15 +71,15 @@ function SignUpForm(){
         component="form"
         noValidate
         autoComplete="off"
-        // onSubmit={handleSubmit}
+        onSubmit={handleLoginSubmit}
       >
         <Grid container  spacing={2} >
           <Grid item xs={12} sm={6}>
             <TextField color="error"
               label="Email"
-              name="email"
-              // value={formState.email}
-              // onChange={handleTextFieldChange}
+              name="connectionEmail"
+              value={formState.connectionEmail}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
@@ -78,13 +88,22 @@ function SignUpForm(){
             <TextField color="error"
               type="password"
               label="Password"
-              name="password"
-              // value={formState.password}
-              // onChange={handleTextFieldChange}
+              name="connexionPassword"
+              value={formState.connexionPassword}
+              onChange={handleTextFieldChange}
               
               fullWidth
             />
           </Grid>
+          <Grid item>
+              <Button
+                color="error"
+                variant="contained"
+                type="submit"
+              >
+                Valider
+              </Button>
+            </Grid>
           </Grid>
           </Box>
       </div>
@@ -238,7 +257,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 <Checkbox
                   color="error"
                   name="RGPD"
-                  value= {RGPD}
+                  value= {formState.RGPD}
                   checked={formState.RGPD}
                   onChange={(handleCheckBoxChange)}
                 />

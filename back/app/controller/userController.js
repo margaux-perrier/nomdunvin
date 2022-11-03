@@ -83,11 +83,7 @@ const userController = {
 
 			res.status(200).json(req.session.user);  
 
-			if(searchedUser.role === 'admin'){
-				res.redirect('/admin'); 	
-			}else{
-				res.redirect('/'); 
-			}
+			
 
 		} catch (error) {
 			console.log(error); 
