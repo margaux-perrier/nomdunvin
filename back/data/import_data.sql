@@ -113,7 +113,7 @@ INSERT INTO "wine"("avatar","name", "description", "appellation", "size","price"
 ('https://zupimages.net/up/22/43/lf5w.png','Drôle d''oiseau', 
 'Un 100% viognier sur des notes de fleurs blanches, d''iode et d''abricot. Belle rondeur en bouche et jolie finale saline.', 
 'Vin de France', '75 cl',11,13.5,2021,'blanc',7,8),
-('ttps://zupimages.net/up/22/43/m876.png','Initium rosé', 
+('https://zupimages.net/up/22/43/m876.png','Initium rosé', 
 'Un rosé aromatique, frais et structuré aux arômes de fruits rouges mûrs du soleil catalan.', 
 'AOC Côtes du Roussillon', '75 cl',11,12.5,2021,'rosé',7,9),
 ('https://zupimages.net/up/22/43/ole2.png','Froggy Wine', 
