@@ -1,46 +1,68 @@
 // import react
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+// import Navigate
+import { useNavigate } from 'react-router-dom';
 // import Card component
 import Card from '../Card/Card';
-// import data
-import data from '../../data/data';
-// import Scss
+//import de fecthWinesAPI
+import { fetchAllWines } from '../../services/fecthWinesAPI.js'
+// impoort Scss
 import './cardList.scss';
 
 
-// Component Filter
-
+// Component CardList
 function CardList() {
-    // Stock Data state
-    const [state] = useState(data);
+
+    // Stock Data in State
+    const [wines, setWines] = useState([]);
+
+    // Stock useNavigate in constant
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         e.preventDefault();
-        window.location.href = `/wine/${e.target.id}`;
+        const path = `/wine/${e.target.id}`;
+        navigate(path);
     }
+
+
+    // Update State with Data API
+    const fetchWines = async () => {
+        const response = await fetchAllWines();
+        setWines(response);
+    }
+
+
+    // Use Effect
+    useEffect(() => {
+
+        fetchWines();
+
+    }, []);
+
 
     return (
         <div className="cardList">
 
-            {state.wines.map(({
-                id, size, color, alcohol, culture, price, name, winemaker, region, img
+            {wines.map(({
+                id, size, color, alcohol, price, name, avatar, winemaker, region, culture
             }) => (
 
-            <Card 
-                key = {id}
-                size={size}
-                color={color}
-                alcohol={alcohol}
-                culture={culture}
-                price={price}
-                name={name}
-                winemaker={winemaker}
-                region={region}
-                img={img}
-                id={id}
-                handleClick={handleClick}
-            />
-            ))}      
+                <Card
+                    key={id}
+                    size={size}
+                    color={color}
+                    alcohol={alcohol}
+                    culture={culture}
+                    price={price}
+                    name={name}
+                    winemaker={winemaker.name}
+                    region={region.name}
+                    img={avatar}
+                    id={id}
+                    handleClick={handleClick}
+                />
+            ))}
         </div>
     );
 }
