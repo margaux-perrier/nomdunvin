@@ -1,9 +1,11 @@
 // import react
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState} from 'react';
 // import useParams
-import { useParams } from 'react-router-dom';
-//import de fecthWinesAPI
-import { fetchOneWine } from '../../services/fecthWinesAPI.js'
+import { useParams, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+// import Loading component
+import Loading from '../Loading/Loading';
 // import Scss
 import './details.scss';
 
@@ -13,32 +15,45 @@ function Details() {
 
     // Stock Data in State
     const [wine, setWine] = useState({});
+    // Stock isLoading in State
+    const [isLoadingWine, setIsLoadingWine] = useState(true);
+    const navigate = useNavigate();
+
 
 
     // Get id from url with useParams
     const { id } = useParams();
 
-    const fetchWine = useCallback(async () => {
-        const response = await fetchOneWine(id);
-        console.log('RESPONSE', response.winemaker.name); 
-        setWine(response);
-
-    }, [id]);
-
-   console.log("ICI WINEMKAER ===", wine.winemaker) 
-
-    // Use Effect
+    // attendre chargement de la page pour afficher les données
     useEffect(() => {
+        setIsLoadingWine(true);
 
-        fetchWine();
+        axios.get(`http://localhost:5000/wine/${id}`)
+          // On stocke les données si on n'a pas reçu d'erreur de la part de l'API
+          .then((response) => setWine(response.data))
+          // En cas d'erreur, on affiche en console navigateur l'erreur
+          .catch((error) => console.error(error))
+          // Peu importe la réponse obtenue, on redéfini la chargement comme étant terminé
+          .finally(() => setIsLoadingWine(false));
+      }, [ id ]);
+      console.log(wine)
 
-    }, [fetchWine]);
+      // Si on attend la réponse pour pouvoir afficher les données dans le composant...
+if (isLoadingWine) {
+    // ... on affiche un composant annonçant le chargement à la place du composant final
+    return <Loading />
+  }
+  
+  // Si on a bien obtenu une réponse, mais que `wine` vaut toujours `null`...
+  if (!isLoadingWine && null === wine) {
+    // ... on redirige vers une page type 404
+    navigate('/not-found');
+    return null;
+  }
+      
 
-
-    console.log('>>>ICI 2', wine); 
 
     return (
-
         <div className="details">
             <div className="details-container-visual">
                 <div className="details-img">
@@ -47,22 +62,20 @@ function Details() {
                     </div>
                     <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
-                    <li className="details-Biodynamie">biodynamie</li>
-                    <li className="details-Raisonnée">Raisonnée</li>
-                    <li className="details-Sans sulfites">Sans Sulfites</li>
-                        {/*wine.culture.map((tags, index) => (
-                            <li className={`details-${tags}`}>{tags}</li>
-                        ))*/}
+                    
+                        {wine.culture.map((item) => (
+                            <li key= {item.id} className={`details-${item.name}`}>{item.name}</li>
+                        ))}
                     </ul>
                 </div>
                 <div className="details-cart">
 
                     <div className="details-content">
                         <div>
-                            <h2 className="details-winemaker">DOMAINE TEST</h2>
+                            <h2 className="details-winemaker">{wine.winemaker.name}</h2>
                         </div>
                         <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region"></p>
+                        <p className="details-wine-region">{wine.region.name}</p>
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
@@ -79,7 +92,11 @@ function Details() {
                     <h2 className="details-reviews-title">Notre avis sur ce vin...</h2>
                     <p className="details-reviews-content">{wine.description}</p>
                     <h2 className="details-dish-title">Quel menu accompagne t'il ?</h2>
-                    <p className="details-dish-content">fjjfj</p>
+                    <div className="dishcontainer">
+                    {wine.dishes.map((item) => (
+                    <span key={item.id} className="details-dish-content">{ item.name}</span>
+                    ))}
+                    </div>
                 </div>
 
                 <div className="details-features">
@@ -89,39 +106,43 @@ function Details() {
                         <thead>
                             <tr className="pair">
                                 <th className="type case">Type de vin</th>
-                                <td className="case">Blanc</td>
+                                <td className="case">{wine.color}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Appellation</th>
-                                <td className="case"> Bordeaux</td>
+                                <td className="case">{wine.appellation}</td>
                             </tr>
                             <tr className="pair">
                                 <th className="type case">Cépages</th>
-                                <td className="case">Rasin blanc de qefqefef</td>
+                                <td className="case">{wine.grapevarieties.map((item) => (
+                             <span key= {item.id}> {`${item.name}, `}</span>
+                        ))}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Domaine</th>
-                                <td className="case">Domaine de Johnny Joe</td>
+                                <td className="case">{wine.winemaker.name}</td>
                             </tr>
                             <tr className="pair">
                                 <th className="type case">Région</th>
-                                <td className="case">Région de talala</td>
+                                <td className="case">Région de {wine.region.name}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Millésime</th>
-                                <td className="case">2018</td>
+                                <td className="case">{wine.vintage}</td>
                             </tr>
                             <tr className="pair">
                                 <th className="type case">Agriculture</th>
-                                <td className="case">Biologique</td>
+                                <td className="case">{wine.culture.map((item) => (
+                             <span key= {item.id}> {`${item.name}, `}</span>
+                        ))}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Contenance</th>
-                                <td className="case">75cl</td>
+                                <td className="case">{wine.size}</td>
                             </tr>
                             <tr className="pair">
                                 <th className="type case">Alcool</th>
-                                <td className="case">13,5</td>
+                                <td className="case">{wine.alcohol} %.vol</td>
                             </tr>
                         </thead>
                     </table>

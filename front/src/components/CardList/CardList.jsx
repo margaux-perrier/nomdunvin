@@ -8,6 +8,7 @@ import Card from '../Card/Card';
 import { fetchAllWines } from '../../services/fecthWinesAPI.js'
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
+
 // impoort Scss
 import './cardList.scss';
 
@@ -19,6 +20,8 @@ function CardList() {
     const [wines, setWines] = useState([]);
     // Stock useNavigate in constant
     const navigate = useNavigate();
+
+    
     // Stock Search in State
     const [search, setSearch] = useState('');
 

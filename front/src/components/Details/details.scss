@@ -174,7 +174,7 @@
       text-align: center;
       font-style: italic;
       padding-top : 2em;
-      padding-bottom : 1em;
+      padding-bottom : 0.5em;
       border-top: 1px solid #e0e0e0;
     }
     .details-reviews-content {
@@ -185,23 +185,27 @@
       color: rgb(168, 167, 167);
     }
     .details-dish-title {
-      margin-top: 1.3em;
-      font-size: 1.2em;
+     
+      font-size: 1.4em;
       font-weight: 600;
       color: vars.$primary-color;
       text-align: center;
       font-style: italic;
+      margin-top : 2rem
     }
     .details-dish-content {
-      margin-top: 0.5em;
       font-style: italic;
+      text-align: center;
       font-size: 1.2em;
       color: rgb(168, 167, 167);
-      text-align: center;
-    
-      padding-bottom: 2em;
-      width: 50%
-   
+      padding-top: 1rem
+    }
+
+    .dishcontainer{
+      margin-top: 1em; 
+      display : flex; 
+      flex-direction: column; 
+      align-items: center; 
     }
   }
 
@@ -326,7 +330,7 @@
       .details-reviews {
        display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         width: 50%;
         height: 50vh;
         padding-top: 0em;
@@ -349,16 +353,19 @@
         font-style: normal;
         font-size: 1.5em;
         color: rgb(168, 167, 167);
+        margin-bottom: 2rem;
       }
       .details-dish-title {
         margin-top: 1em;
-        font-size: 1.5em;
+        font-size: 2em;
         font-weight: 600;
         color: vars.$primary-color;
         text-align: center;
         font-style: italic;
       }
       .details-dish-content {
+        font-size: 1.5em;
+
 
       }
     }
