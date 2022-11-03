@@ -1,6 +1,11 @@
 const {Wine} = require('../models');
 	
 const wineController = {
+
+	/** @function 
+   * Retrieve all wines with region, winemaker, culture, styles and dishes
+   * @returns {[]} array containing all wines.
+   */
 	async getAllWines(req,res){
 		try{
 			const wineList = await Wine.findAll({
@@ -19,9 +24,14 @@ const wineController = {
 		}
 	}, 
 
+	/** @function 
+   * Retrieves wine corresponding to the id
+   * @param {number} id 
+   * @returns {(Object)} wine
+   */
 	async getOneWineById(req, res){
 		try{
-			const wineId = req.params.id; 
+			const wineId = Number(req.params.id); 
 			const wine = await Wine.findByPk(wineId, {
 				include : [
 					{association : 'region'}, 
