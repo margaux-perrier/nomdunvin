@@ -1,5 +1,5 @@
 // import React from "react";
-import React, {useEffect, useState} from "react";
+import React from "react";
 // import Menu fro: react-burger-menu
 import { slide as Menu } from "react-burger-menu";
 // import Logo
