@@ -1,5 +1,5 @@
 // import react
-import React, { useState, useEffect} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 // import useParams
 import { useParams } from 'react-router-dom';
 //import de fecthWinesAPI
@@ -8,29 +8,33 @@ import { fetchOneWine } from '../../services/fecthWinesAPI.js'
 import './details.scss';
 
 
+
 function Details() {
 
     // Stock Data in State
-    const [wine, setWine] = useState([]);
+    const [wine, setWine] = useState({});
 
-   
     // Get id from url with useParams
     const { id } = useParams();
 
-    // Update State with Data API
-    const fetchWine = async () => {
+    const fetchWine = useCallback(async () => {
         const response = await fetchOneWine(id);
+        console.log('RESPONSE', response); 
         setWine(response);
-        console.log(response);
-    };
- 
+
+    }, [id]);
+
+   console.log('>>>ICI', wine); 
+
     // Use Effect
     useEffect(() => {
-        fetchWine(id);
-    }, []);
 
-  
+        fetchWine();
 
+    }, [fetchWine]);
+
+
+    console.log('>>>ICI 2', wine); 
 
     return (
 
@@ -42,6 +46,9 @@ function Details() {
                     </div>
                     <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
+                    <li className="details-Biodynamie">biodynamie</li>
+                    <li className="details-Raisonnée">Raisonnée</li>
+                    <li className="details-Sans sulfites">Sans Sulfites</li>
                         {/*wine.culture.map((tags, index) => (
                             <li className={`details-${tags}`}>{tags}</li>
                         ))*/}
@@ -50,12 +57,11 @@ function Details() {
                 <div className="details-cart">
 
                     <div className="details-content">
-                        {// entrer le nom du winemaker brise la page
-
-                        }
-                        <h2 className="details-winemaker">ENTRER ICI POUR TESTER BUG</h2>
+                        <div>
+                            <h2 className="details-winemaker">TEST</h2>
+                        </div>
                         <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region">ENTRER ICI POUR TESTER BUG</p>
+                        <p className="details-wine-region"></p>
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
@@ -78,49 +84,46 @@ function Details() {
                 <div className="details-features">
 
 
-                    <table>
+                    <table className= "table">
                         <thead>
-                            <tr>
-                                <th className="feature">Type de vin</th>
-                                <td>Blanc</td>
+                            <tr className="pair">
+                                <th className="type case">Type de vin</th>
+                                <td className="case">Blanc</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Appellation</th>
-                                <td>Bordeaux</td>
+                            <tr className="">
+                                <th className="type case">Appellation</th>
+                                <td className="case"> Bordeaux</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Cépages</th>
-                                <td>Rasin blanc de qefqefef</td>
+                            <tr className="pair">
+                                <th className="type case">Cépages</th>
+                                <td className="case">Rasin blanc de qefqefef</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Domaine</th>
-                                <td>Domaine de Johnny Joe</td>
+                            <tr className="">
+                                <th className="type case">Domaine</th>
+                                <td className="case">Domaine de Johnny Joe</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Région</th>
-                                <td>Région de talala</td>
+                            <tr className="pair">
+                                <th className="type case">Région</th>
+                                <td className="case">Région de talala</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Millésime</th>
-                                <td>2018</td>
+                            <tr className="">
+                                <th className="type case">Millésime</th>
+                                <td className="case">2018</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Agriculture</th>
-                                <td>Biologique</td>
+                            <tr className="pair">
+                                <th className="type case">Agriculture</th>
+                                <td className="case">Biologique</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Contenance</th>
-                                <td>75cl</td>
+                            <tr className="">
+                                <th className="type case">Contenance</th>
+                                <td className="case">75cl</td>
                             </tr>
-                            <tr>
-                                <th className="feature">Alcool</th>
-                                <td>13,5</td>
+                            <tr className="pair">
+                                <th className="type case">Alcool</th>
+                                <td className="case">13,5</td>
                             </tr>
                         </thead>
                     </table>
-
-                    <p>CARACTERISTIQUES </p>
-
                 </div>
 
             </div>
