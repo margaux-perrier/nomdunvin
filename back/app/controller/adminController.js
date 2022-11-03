@@ -2,6 +2,19 @@ const {Wine} = require('../models');
 
 const adminController = {
 
+	/** @function 
+   * Create wine in database
+   * @param {String} name- wine's name
+   * @param {String} description - wine's description
+   * @param {String} appellation - wine's appellation
+   * @param {String} size- wine bottle's size
+   * @param {Number} alcohol - wine's alcohol
+   * @param {Number} vintage - wine's vintage
+   * @param {String} color - wine's color
+   * @param {String} avatar- wine's image
+   * @param {Number} region_id - wine region's id
+   * @param {Number} winemaker_id - wine region's id
+   */
 	async createWine(req, res){
 		try {
     
@@ -75,6 +88,20 @@ const adminController = {
 		}
 	}, 
     
+	/** @function 
+   * Update wine in database
+   * @param {Number} id- wine's id
+   * @param {String} [name] - wine's name
+   * @param {String} [description] - wine's description
+   * @param {String} [appellation] - wine's appellation
+   * @param {String} [size] - wine bottle's size
+   * @param {Number} [alcohol] - wine's alcohol
+   * @param {Number} [vintage] - wine's vintage
+   * @param {String} [color] - wine's color
+   * @param {String} [avatar] - wine's image
+   * @param {Number} [region_id] - wine region's id
+   * @param {Number} [winemaker_id] - wine region's id
+   */
 	async updateWineById(req,res){
 		try{
 			const wineId = req.params.id; 
@@ -129,6 +156,10 @@ const adminController = {
 		}
 	}, 
     
+	/** @function 
+   * delete wine in database
+   * @param {Number} id- wine's id
+   */
 	async deleteWineById(req,res){
 		try{
 			const wineId = req.params.id;

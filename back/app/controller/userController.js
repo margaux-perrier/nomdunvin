@@ -4,6 +4,12 @@ const bcrypt = require('bcrypt');
 
 const userController = {
 
+	/** @function 
+   * Create new user in database if user doesn't exist 
+   * @param {String} email- user's email
+   * @param {String} password - user's password
+   * @param {String} confirmPassword - user's confirmPassword
+   */
 	async signupAction(req, res){
 		try {
 			//1. Check the user doesn't exist in the DB.
@@ -47,6 +53,11 @@ const userController = {
 		}
 	}, 
 
+	/** @function 
+   * Connect user and create session
+   * @param {String} email- user's email
+   * @param {String} password - user's password
+   */
 	async loginAction(req, res){
 		try {
 			//1. Check the user doesn't exist in the DB.
@@ -84,6 +95,9 @@ const userController = {
 		}
 	}, 
 
+	/** @function 
+   * Disconnect user and delete session
+   */
 	disconnect(req,res){
 		req.session.user = false;
 		res.redirect('/');

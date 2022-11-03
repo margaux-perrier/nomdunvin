@@ -25,7 +25,7 @@ router.get('/disconnect', userController.disconnect);
 router.use('/cart', cartCreation); 
 router.post('/cart/add/:wineid', cartController.addWineToCart); 
 router.post('/cart/update/:wineid', cartController.updateCart); 
-router.get('/cart/remove/:wineid', cartController.removeWineToCart); 
+router.get('/cart/remove/:wineid', cartController.removeWineFromCart); 
 router.get('/cart/destroy', cartController.deleteCart); 
 router.post('/cart/validate', cartController.validateCart); 
 

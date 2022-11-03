@@ -2,26 +2,31 @@ const { Wine, Order, User} = require('../models');
 
 const cartController = {
 
-	
+	/**  @function 
+   * Add wine to cart session  - when user add wine to cart from the home page or product page
+   * @param {Number}  wineIdUrl- Id of the wine
+   * @param {Number}  quantity - quantity of wine add to cart
+   */
 	async addWineToCart(req,res){
 		try{
-			const wineIdUrl = Number(req.params.wineid); //id du vin que l'on veut ajouter au panier
-			const quantity = Number(req.body.quantity); //quantity récupérée dans le formulaire vaut 1 minimum.
-			//on regarde si le vin que l'on veut ajouter au panier n'est pas déjà dans le panier
+			const wineIdUrl = Number(req.params.wineid); 
+			const quantity = Number(req.body.quantity); 
+			
+			//check if the wine you want to add to the basket is not already in the basket
 			const foundWine = req.session.cart.find((wine) => {
 				return wine.id === wineIdUrl; 
 			});
 
-			//Si il n'y est pas, on ajoute le vin dans la session. 
+			// If not, we add the wine in the session. 
 			if(!foundWine){
 				const wineToAdd = await Wine.findByPk(wineIdUrl);
 			
-				wineToAdd.dataValues['quantity'] = quantity; //on ajoute à l'objet wine la propriété quantity
+				wineToAdd.dataValues['quantity'] = quantity; //add the quantity property to the wine object
 				req.session.cart.push(wineToAdd);
 				res.status(200).json(req.session.cart); 
 
 			}else{
-			//Si il y est, on adapte la quantité 
+			// If it is there, we adapt the quantity 
 				foundWine['quantity'] += quantity;
 				res.status(200).json(req.session.cart); 
 			}
@@ -31,13 +36,18 @@ const cartController = {
 		}
 	}, 
 
-	//3. Modifier quantité d'un vin à partir de la page panier => quantité peut augmenter ou diminuer; quantité minimale = 1
+	
+	/** @function 
+   * Modify quantity of wine with id in cart session - when user modify wine's quantity from the cart page
+   * @param {Number}  wineIdUrl- Id of the wine
+   * @param {Number}  quantity - quantity of wine add to cart
+   */
 	updateCart(req,res){
 		try{
 			const wineIdUrl = Number(req.params.wineid);
 			const quantity = req.body.quantity; 
 
-			//on cherche le vin dans la session. 
+			//We are looking for the wine in the session. 
 			const foundWine = req.session.cart.find((wine) => {
 				return wine.id === wineIdUrl; 
 			});
@@ -55,8 +65,11 @@ const cartController = {
 		}
 	}, 
 
-	//4. Supprimer un vin du panier => bouton
-	removeWineToCart(req,res){
+	/** @function 
+   * Remove wine with id from the session cart - when user remove wine from cart
+   * @param {Number}  wineIdUrl- Id of the wine
+   */
+	removeWineFromCart(req,res){
 		try{
 			const wineIdUrl = Number(req.params.wineid); 
 			req.session.cart = req.session.cart.filter((wine)=>{
@@ -69,7 +82,9 @@ const cartController = {
 		}
 	}, 
 
-	//5. Vider le panier => bouton
+	/** @function 
+   * Empty cart - empty cart session
+   */
 	deleteCart(req,res){
 		try{
 			req.session.cart =[]; 
@@ -80,6 +95,9 @@ const cartController = {
 		}
 	}, 
 
+	/** @function 
+   * Validate cart - registered cart session in database
+   */
 	async validateCart(req,res){
 		try{
 		
