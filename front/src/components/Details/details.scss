@@ -1,0 +1,423 @@
+@use "src/styles/vars";
+
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 5em;
+
+  //* Concerns the image part + the basket part //*
+
+  .details-container-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  // Concerns the image part
+  .details-img {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+
+    .wine-img {
+      width: 6em;
+    }
+    // Concerns the tablet-color
+    .tablet-color-rouge {
+      color: #a5260a;
+      font-size: 13em;
+    }
+    .tablet-color-blanc {
+      color: #fdf1b8;
+      font-size: 13em;
+    }
+    .tablet-color-rosé {
+      color: #fe96a0;
+      font-size: 13em;
+    }
+
+    // Concerns All Tags
+    .details-tag {
+      display: flex;
+      flex-direction: column;
+      font-size: 1em;
+      margin-right: 2em;
+      font-style: italic;
+      .details-Bio {
+        color: #1ebd4e;
+        margin-top: 0.5em;
+      }
+      .details-Biodynamie {
+        color: #1896b6;
+        margin-top: 0.5em;
+      }
+      .details-Nature {
+        color: #c2250a;
+        margin-top: 0.5em;
+      }
+      .details-Vegan {
+        color: #e9780f;
+        margin-top: 0.5em;
+      }
+      .sulfites {
+        color: #ac089e;
+        margin-top: 0.5em;
+        white-space: nowrap;
+      }
+      .details-Raisonnée {
+        color: #ad6f10;
+        margin-top: 0.5em;
+      }
+      .details-HVE {
+        color: #0a0deb;
+        margin-top: 0.5em;
+      }
+    }
+  }
+
+  //* Concerns the informations part + Basket part //*
+
+  // PART Informations
+
+  .details-cart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .details-content {
+      text-align: center;
+      .details-winemaker {
+        text-transform: uppercase;
+        margin-top: 1em;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: vars.$primary-color;
+      }
+      .details-wine-name {
+        margin-top: 0.7em;
+        font-size: 1.3em;
+        font-style: italic;
+      }
+      .details-wine-region {
+        margin-top: 0.7em;
+        font-size: 1.2em;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .details-price {
+        margin-top: 0.7em;
+        font-size: 2.5em;
+        font-style: italic;
+        font-weight: 600;
+        color: vars.$primary-color;
+      }
+    }
+
+    // PART Basket
+
+    .details-form {
+      margin-top: 2em;
+      width: 100%;
+      //centrer les éléments
+      display: flex;
+      justify-content: center;
+      .details-input {
+        height: 2.5em;
+        margin-right: 0.5em;
+        border-radius: 0.6em;
+        font-size: 1.1em;
+        color: vars.$primary-color;
+        border: 2px solid #e0e0e0;
+        text-align: center;
+        padding: 0.5em;
+      }
+      ::placeholder {
+        color: #afa9a9;
+        font-size: 1em;
+        text-align: center;
+      }
+      .details-btn {
+        min-width: 1em;
+        height: 2.5em;
+        border-radius: 0.9em;
+        font-size: 1.1em;
+        padding: 0.5em;
+        font-weight: 600;
+        color: #fff;
+        background-color: vars.$primary-color;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  //* Concerns the notice part + wine details part //*
+
+  .details-container-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .details-reviews {
+      margin-top: 3.5em;
+      width: 85%;
+      padding-top: 1.8em;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .details-reviews-title {
+      font-size: 1.4em;
+      font-weight: 600;
+      color: vars.$primary-color;
+      text-align: center;
+      font-style: italic;
+      padding-top : 2em;
+      padding-bottom : 1em;
+      border-top: 1px solid #e0e0e0;
+    }
+    .details-reviews-content {
+      margin-top: 0.5em;
+      font-style: italic;
+      text-align: center;
+      font-size: 1.2em;
+      color: rgb(168, 167, 167);
+    }
+    .details-dish-title {
+      margin-top: 1.3em;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: vars.$primary-color;
+      text-align: center;
+      font-style: italic;
+    }
+    .details-dish-content {
+      margin-top: 0.5em;
+      font-style: italic;
+      font-size: 1.2em;
+      color: rgb(168, 167, 167);
+      text-align: center;
+    
+      padding-bottom: 2em;
+      width: 50%
+   
+    }
+  }
+
+  //* Concerns the features //*
+
+  .details-features {
+    width: 90%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+
+  .table {
+    width: 100%;
+    font-size: 1em;
+    .type {
+      width: 30%;
+    }
+  }
+  .case {
+    width: 30%;
+    height: 2em;
+    border: 1px solid grey;
+    padding: 1em;
+    font-style: italic;
+  }
+  .type {
+    font-size: 1em;
+    font-weight: 600;
+    color: rgb(85, 82, 82);
+    font-style: italic;
+  }
+
+  .pair {
+    background-color: #eceff1;
+  }
+}
+
+//* RESPONSIVE FOR DESKTOP *//
+
+@media (min-width: 900px) {
+  .details {
+    align-items: center;
+
+    //* Concerns the image part + the basket part //*
+
+    .details-container-visual {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 80%;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    // Concerns the image part
+    .details-img {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      margin-bottom: 1em;
+      .wine-img {
+        width: 6em;
+      }
+      // Concerns the tablet-color
+      .tablet-color-rouge {
+        font-size: 10em;
+        margin-left: 3rem;
+      }
+      .tablet-color-blanc {
+        font-size: 10em;
+        margin-left: 3rem;
+      }
+      .tablet-color-rosé {
+        font-size: 10em;
+        margin-left: 3rem;
+      }
+
+      // Concerns All Tags
+      .details-tag {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2em;
+        margin-right: 5em;
+      }
+    }
+
+    //* Concerns the informations part + Basket part //*
+
+    // PART Informations
+    .details-cart {
+      width: 50%;
+      border-left: 1px solid #e0e0e0;
+
+      .details-content {
+        .details-winemaker {
+          margin-top: 0.5em;
+          font-size: 1.8em;
+        }
+        .details-wine-name {
+          margin-top: 1.2em;
+          font-size: 1.8em;
+        }
+        .details-wine-region {
+          margin-top: 1.5em;
+          font-size: 1.2em;
+        }
+        .details-price {
+          margin-top: 2em;
+          font-size: 2.4em;
+        }
+      }
+    }
+
+
+    .details-container-information {
+      display: flex;
+      flex-direction: row;
+      width: 80%;
+      
+      .details-reviews {
+       display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50%;
+        height: 50vh;
+        padding-top: 0em;
+        padding-bottom: 0em;
+        padding-right: 2em;
+        padding-bottom : 2em;
+        border-right: 1px solid #e0e0e0;
+      }
+      .details-reviews-title {
+        font-size: 2em;
+        font-weight: 600;
+        color: vars.$primary-color;
+        text-align: center;
+        font-style: italic;
+        border-top: none;
+        
+      }
+      .details-reviews-content {
+
+        font-style: normal;
+        font-size: 1.5em;
+        color: rgb(168, 167, 167);
+      }
+      .details-dish-title {
+        margin-top: 1em;
+        font-size: 1.5em;
+        font-weight: 600;
+        color: vars.$primary-color;
+        text-align: center;
+        font-style: italic;
+      }
+      .details-dish-content {
+
+      }
+    }
+  
+    //* Concerns the features //*
+  
+    .details-features {
+      width: 40%;
+      margin-top: 4em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+
+    }
+  
+    .table {
+      width: 100%;
+      font-size: 1em;
+      .type {
+        width: 30%;
+      }
+    }
+    .case {
+      width: 30%;
+      height: 2em;
+      border: 1px solid grey;
+      padding: 1em;
+      font-style: italic;
+    }
+    .type {
+      font-size: 1em;
+      font-weight: 600;
+      color: rgb(85, 82, 82);
+      font-style: italic;
+    }
+  
+    .pair {
+      background-color: #eceff1;
+    }
+  }
+
+  }
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

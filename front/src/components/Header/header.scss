@@ -2,28 +2,30 @@
 
 .header {
   border-bottom: 2px solid vars.$border-color;
+  z-index: 3;
   .navbar {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     background-color: vars.$primary-color;
     justify-content: space-between;
-    margin-top: 0;
+    margin-top: 2;
+    position: fixed;
+    z-index: 3;
     .logo {
-      width: 150px;
-      margin-right: 10px;
-      padding: 1rem;
+      width: 70%;
+      padding: 1em;
       float: left;
     }
     .menu {
       height: 100%;
+      width: 60%;
       display: flex;
       align-items: center;
       width: auto;
     }
     .menu-login {
-      margin-right: 1rem;
       display: flex;
+      height: 100%;
     }
     .menu-link {
       width: 20%;
@@ -34,30 +36,30 @@
       height: 100%;
       align-items: center;
       display: flex;
-      margin : 0 1rem;
+
+    }
+    .link {
+      width: 110%;
     }
     .tab-link {
       color: vars.$secondary-color;
-      font-size: vars.$font-size-menu1;
+      margin-right: 1rem;
+      font-size: 1.3rem;
       font-weight: bold;
       font-family: vars.$font-Montserrat;
       transition: 0.1s 0.1s ease-in-out;
-      margin-left: 10px;
       width: 100%;
     }
     .tab-link:hover {
-      font-weight: 100;
       font-family: vars.$font-Montserrat;
-      transition: 0.1s 0.1s ease-in-out;
-      padding: vars.$gutter1;
+      font-weight: 100;
     }
     .tab-connexion {
       color: vars.$secondary-color;
-      font-size: vars.$font-size-menu1;
       font-family: vars.$font-Montserrat;
       transition: 0.1s 0.1s ease-in-out;
       padding: vars.$gutter1;
-      margin-right: 0;
+      cursor: pointer;
     }
     .tab-connexion:hover {
       font-family: vars.$font-Montserrat;
@@ -71,22 +73,79 @@
     .logo-user {
       display: block;
       align-items: center;
-      width: 40px;
+      width: 25%;
       margin: auto;
     }
   }
 }
 
-// responsive for desktop
+//* Responsive for Desktop *//
+
 @media screen and (min-width: 768px) {
   .header {
     .navbar {
+      // Management of login form Desktop
       .menu-login {
         display: flex;
+        .menu-login:hover {
+          transition: all 0.8s ease-out;
+        }
+ 
+
+        .form-login {
+          display: flex;
+          .form-input {
+            color: vars.$primary-color;
+            padding-left: 1em;
+            margin-left: 1em;
+            height: 2em;
+            border: 1px solid vars.$secondary-color;
+            width: 20em;
+            border-radius: 2em;
+          }
+          ::placeholder {
+            font-size: 1.2em;
+            font-style: italic;
+          }
+          .form-btn {
+            font-weight: bold;
+            color: vars.$primary-color;
+            border-radius: 2em;
+            padding: 0.5em;
+            background-color: white;
+            border: 1px solid vars.$primary-color;
+            margin-left: 1em;
+          }
+          .form-btn:hover {
+            background-color: vars.$primary-color;
+            color: vars.$secondary-color;
+            border: 1px solid vars.$primary-color;
+            transition: all 0.3s ease-out;
+          }
+
+          .close {
+            background-color: vars.$primary-color;
+            border: vars.$primary-color;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+          }
+          //hover sur close
+          .close:hover {
+            background-color: vars.$primary-color;
+            color: vars.$secondary-color;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease-out;
+          }
+        }
       }
       .logo-user {
         display: none;
       }
     }
   }
+}
+.menu-user {
+  display: none;
 }

@@ -1,0 +1,42 @@
+@use "src/styles/vars";
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  .glass-img {
+    width : 40%;
+    min-width: 25em;
+    margin-top: 1.5em;
+  }
+  .error-title {
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 1em;
+    font-size: 1.2em;
+  }
+  .number-error {
+    font-size: 5rem;
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 1em;
+  }
+  .text-error {
+    font-size: 2.5rem;
+    color: vars.$primary-color;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+
+
+
+
