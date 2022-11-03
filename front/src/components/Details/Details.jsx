@@ -14,17 +14,18 @@ function Details() {
     // Stock Data in State
     const [wine, setWine] = useState({});
 
+
     // Get id from url with useParams
     const { id } = useParams();
 
     const fetchWine = useCallback(async () => {
         const response = await fetchOneWine(id);
-        console.log('RESPONSE', response); 
+        console.log('RESPONSE', response.winemaker.name); 
         setWine(response);
 
     }, [id]);
 
-   console.log('>>>ICI', wine); 
+   console.log("ICI WINEMKAER ===", wine.winemaker) 
 
     // Use Effect
     useEffect(() => {
@@ -58,7 +59,7 @@ function Details() {
 
                     <div className="details-content">
                         <div>
-                            <h2 className="details-winemaker">TEST</h2>
+                            <h2 className="details-winemaker">DOMAINE TEST</h2>
                         </div>
                         <p className="details-wine-name">" {wine.name} "</p>
                         <p className="details-wine-region"></p>

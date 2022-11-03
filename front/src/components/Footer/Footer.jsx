@@ -40,10 +40,7 @@ function Footer() {
                             <a href="https://fr-fr.facebook.com/" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="logo nom d'un vin" className="logo-social" /></a>
                             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="logo nom d'un vin" className="logo-social" /></a>
                         </div>
-                        <a href="https://fr-fr.facebook.com/" target="_blank" rel="noopener noreferrer" className="community">
-                            <p className="community-title">Rejoignez la <br />communauté</p>
-                            <img src={logo} alt="logo nom d'un vin" className="community-logo" />
-                        </a>
+                       
                         
                     </div>
                 </div>

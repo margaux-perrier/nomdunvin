@@ -3,5 +3,7 @@
   // container for Flex menu-Filter and Cardlist
   .container-home {
     display: flex;
+    flex-direction: column;
+ 
   }
 }
