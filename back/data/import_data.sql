@@ -75,9 +75,6 @@ INSERT INTO "dish"("name") VALUES
 ('plaisirs sucrés'),
 ('retour de pêche');
 
-INSERT INTO "user"("firstname", "lastname", "email", "password", "role") VALUES 
-('Jean-Michel', 'Golbez', 'jeanmigolbez@mail.com', '$2b$10$7vwYGrz2TGeyG4X8YnD9BOag9I.YKGUTJELs64qGmcK/syHu2BzTG', null),
-('admin', 'admin', 'admin@admin.com', 'admin', 'admin'); 
 
 INSERT INTO "wine"("avatar","name", "description", "appellation", "size","price", "alcohol", "vintage", "color", "region_id", "winemaker_id")VALUES
 ('https://zupimages.net/up/22/43/ole2.png','Le bon petit vin', 
@@ -113,7 +110,7 @@ INSERT INTO "wine"("avatar","name", "description", "appellation", "size","price"
 ('https://zupimages.net/up/22/43/lf5w.png','Drôle d''oiseau', 
 'Un 100% viognier sur des notes de fleurs blanches, d''iode et d''abricot. Belle rondeur en bouche et jolie finale saline.', 
 'Vin de France', '75 cl',11,13.5,2021,'blanc',7,8),
-('ttps://zupimages.net/up/22/43/m876.png','Initium rosé', 
+('https://zupimages.net/up/22/43/m876.png','Initium rosé', 
 'Un rosé aromatique, frais et structuré aux arômes de fruits rouges mûrs du soleil catalan.', 
 'AOC Côtes du Roussillon', '75 cl',11,12.5,2021,'rosé',7,9),
 ('https://zupimages.net/up/22/43/ole2.png','Froggy Wine', 

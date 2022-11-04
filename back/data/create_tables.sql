@@ -1,7 +1,7 @@
 BEGIN;
 
 /* droping tables to avoid conflicts*/
-DROP TABLE IF EXISTS "wine", "user", "style", "dish", "region", "grapevariety", "culture", "winemaker", "cart", "compose", "taste", "eat_with", "cultivate", "concerns";
+DROP TABLE IF EXISTS "wine", "user", "style", "dish", "region", "grapevariety", "culture", "winemaker", "compose", "taste", "eat_with", "cultivate", "order";
 
 /*CREATE TABLES */
 
@@ -56,11 +56,9 @@ CREATE TABLE IF NOT EXISTS "user"(
     "avatar" TEXT NULL, 
     "role" TEXT NULL, 
     "address_number" INT NULL, 
-
     "address_street" TEXT  NULL, 
     "address_postal" INT NULL, 
     "address_city" TEXT NULL, 
-
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     "updated_at" TIMESTAMPTZ
 );
@@ -96,16 +94,6 @@ CREATE TABLE IF NOT EXISTS "grapevariety"(
 );
 
 /*
-TABLE cart
-*/
-CREATE TABLE IF NOT EXISTS "cart"(
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-    "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE, -- When delete a user, we delete all associated carts
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
-    "updated_at" TIMESTAMPTZ
-);
-
-/*
 TABLE dish
 */
 CREATE TABLE IF NOT EXISTS "dish"(
@@ -118,7 +106,6 @@ CREATE TABLE IF NOT EXISTS "dish"(
 /*
 ASSOCIATION TABLES
 */
-
 
 CREATE TABLE IF NOT EXISTS "compose"(
     "grapevariety_id" INT NOT NULL REFERENCES "grapevariety"("id"), 
@@ -148,12 +135,12 @@ CREATE TABLE IF NOT EXISTS "cultivate"(
     PRIMARY KEY ("culture_id", "wine_id")
 ); 
 
-CREATE TABLE IF NOT EXISTS "concerns"(
+CREATE TABLE IF NOT EXISTS "order"(
     "quantity" INT NULL, 
-    "cart_id" INT NOT NULL REFERENCES "cart"("id") ON DELETE CASCADE, 
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE, 
     "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
-    PRIMARY KEY ("cart_id", "wine_id")
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 ); 
 
 

@@ -22,7 +22,7 @@ User.init({
 	}, 
 	avatar : {
 		type : DataTypes.TEXT, 
-		allowNull: false
+		allowNull: true
 	}, 
 	role : {
 		type : DataTypes.TEXT, 
