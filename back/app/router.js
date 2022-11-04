@@ -12,9 +12,9 @@ router.get('/', wineController.getAllWines);
 router.get('/wine/:id', wineController.getOneWineById);
 
 //admin controller
-router.post('admin/wine', adminController.createWine);
-router.patch('admin/wine/:id', adminController.updateWineById);
-router.delete('admin/wine/:id', adminController.deleteWineById);
+router.post('/admin/wine', adminController.createWine);
+router.patch('/admin/wine/:id', adminController.updateWineById);
+router.delete('/admin/wine/:id', adminController.deleteWineById);
 
 //user controller
 router.post('/signup', userController.signupAction); 

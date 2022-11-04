@@ -16,8 +16,10 @@ import Details from '../Details/Details';
 import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+
 // import Provider
 import { WineColorProvider } from '../../Context/WineColorContext';
+
 
 // import scss
 import './App.scss';
@@ -55,9 +57,11 @@ function App() {
           <Details />
         } />
 
+
         <Route path="/signup" element={
           <SignUpForm />
         } />
+
 
 
       </Routes>

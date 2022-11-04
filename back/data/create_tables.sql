@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS "wine"(
     "color" TEXT NOT NULL, 
     "avatar" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
+    "updated_at" TIMESTAMPTZ,
     "region_id" INT NOT NULL REFERENCES "region"("id") ON DELETE CASCADE, --when we delete region, we delete all associated wines
     "winemaker_id" INT NOT NULL REFERENCES "winemaker"("id") ON DELETE CASCADE --when we delete winemaker, we delete all associated wines
 );
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS "user"(
     "role" TEXT NULL, 
     "address_number" INT NULL, 
     "address_street" TEXT  NULL, 
-    "address_postal" INT NULL, 
+    "address_postal" TEXT NULL, 
     "address_city" TEXT NULL, 
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     "updated_at" TIMESTAMPTZ
@@ -100,7 +101,7 @@ CREATE TABLE IF NOT EXISTS "dish"(
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
-    "upadated_at" TIMESTAMPTZ
+    "updated_at" TIMESTAMPTZ
 );
 
 /*

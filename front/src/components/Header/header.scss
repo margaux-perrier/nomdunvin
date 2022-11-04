@@ -2,15 +2,15 @@
 
 .header {
   border-bottom: 2px solid vars.$border-color;
+
   z-index: 5;
+
 
   .navbar {
     display: flex;
-    width: 100%;
     background-color: vars.$primary-color;
     justify-content: space-between;
     margin-top: 2;
-    position: fixed;
     z-index: 3;
     .logo {
       width: 70%;
