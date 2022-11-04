@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState} from "react";
+import React from "react";
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
@@ -23,18 +23,14 @@ import './signUpFormStyles.scss';
 
 
 function SignUpForm(){
-  
+  //useReducer configs
   const { userState, userDispatch } = useUserReducer();
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
 
+  //Form methods
   const handleTextFieldChange = (e) => {
     formDispatch(getActionSetValue(e.target.name, e.target.value));
-    console.log(e.target.name, e.target.value);
-  }
-
-  const handleTextFieldNumberChange = (e) => {
-    formDispatch(getActionSetValue(e.target.name, Number(e.target.value)));
   }
 
   const handleCheckBoxChange = (e) => {
@@ -43,13 +39,11 @@ function SignUpForm(){
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    console.log( formState.firstname)
    await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
   }
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log(typeof connectionEmail)
     const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
     userDispatch(getActionUserLogged(user));
   }
@@ -62,7 +56,8 @@ function SignUpForm(){
           Connexion
         </h1>
         <p className="text">
-        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? {userState.loggedUser.user.firstname}
+        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? 
+        {/* {userState.loggedUser.user.firstname} */}
       </p>
       <Box 
    sx={{

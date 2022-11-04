@@ -17,7 +17,10 @@ import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
 
-import CartPage from '../CartPage/CartPage';
+// import Provider
+import { WineColorProvider } from '../../Context/WineColorContext';
+
+
 // import scss
 import './App.scss';
 
@@ -35,10 +38,15 @@ function App() {
       <Routes>
 
         <Route path="/" element={
-          <div className='container-home'>
-            <FilterMenu />
-            <CardList />
-          </div>
+          
+          // provider for share data between FilterMenu and Cardlist
+          <WineColorProvider>
+           
+              <FilterMenu />
+              <CardList />
+       
+          </WineColorProvider>
+
         } />
 
         <Route path="*" element={
@@ -49,15 +57,15 @@ function App() {
           <Details />
         } />
 
-        <Route path="/cart" element={
-          <CartPage/>
-        } />
 
-        <Route path="/sign-up" element={
+        <Route path="/signup" element={
           <SignUpForm />
         } />
 
+
+
       </Routes>
+
 
       <Footer />
 
