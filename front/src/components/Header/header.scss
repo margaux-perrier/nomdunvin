@@ -2,7 +2,8 @@
 
 .header {
   border-bottom: 2px solid vars.$border-color;
-  z-index: 3;
+  z-index: 5;
+
   .navbar {
     display: flex;
     width: 100%;
@@ -94,6 +95,7 @@
 
         .form-login {
           display: flex;
+          margin-right: 1.5em;
           .form-input {
             color: vars.$primary-color;
             padding-left: 1em;
@@ -104,7 +106,7 @@
             border-radius: 2em;
           }
           ::placeholder {
-            font-size: 1.2em;
+            font-size: 0.9em;
             font-style: italic;
           }
           .form-btn {

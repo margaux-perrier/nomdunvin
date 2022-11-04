@@ -1,57 +1,55 @@
 // import react
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import useParams
 import { useParams, useNavigate } from 'react-router-dom';
-
-import axios from 'axios';
 // import Loading component
 import Loading from '../Loading/Loading';
+// import fetchOneWine from services
+import { fetchOneWine } from '../../services/fecthWinesAPI.js';
 // import Scss
 import './details.scss';
 
 
 
 function Details() {
-
     // Stock Data in State
     const [wine, setWine] = useState({});
     // Stock isLoading in State
     const [isLoadingWine, setIsLoadingWine] = useState(true);
+    // Stock useNavigate in constant
     const navigate = useNavigate();
-
-
-
     // Get id from url with useParams
     const { id } = useParams();
 
-    // attendre chargement de la page pour afficher les données
+
     useEffect(() => {
+        // if loading set isLoading to true
         setIsLoadingWine(true);
+        // requete with fetchOneWine
+        fetchOneWine(id)
+            // if response ok set wine to response and isLoading to false
+            .then((response) => {
+                setWine(response);
+                setIsLoadingWine(false);
+            })
+            // if error navigate to error page 404
+            .catch((error) => {
+                console.log(error);
+                navigate('/error');
+            });
+    }, [id, navigate]);
 
-        axios.get(`http://localhost:5000/wine/${id}`)
-          // On stocke les données si on n'a pas reçu d'erreur de la part de l'API
-          .then((response) => setWine(response.data))
-          // En cas d'erreur, on affiche en console navigateur l'erreur
-          .catch((error) => console.error(error))
-          // Peu importe la réponse obtenue, on redéfini la chargement comme étant terminé
-          .finally(() => setIsLoadingWine(false));
-      }, [ id ]);
-      console.log(wine)
 
-      // Si on attend la réponse pour pouvoir afficher les données dans le composant...
-if (isLoadingWine) {
-    // ... on affiche un composant annonçant le chargement à la place du composant final
-    return <Loading />
-  }
-  
-  // Si on a bien obtenu une réponse, mais que `wine` vaut toujours `null`...
-  if (!isLoadingWine && null === wine) {
-    // ... on redirige vers une page type 404
-    navigate('/not-found');
-    return null;
-  }
-      
-
+    // if isLoadingWine is true we display Loading component    
+    if (isLoadingWine) {
+        return <Loading />
+    }
+    // if isLoadingWine is false we display details of wine
+    if (!isLoadingWine && null === wine) {
+        // else we display error page 404
+        navigate('/not-found');
+        return null;
+    }
 
     return (
         <div className="details">
@@ -62,9 +60,9 @@ if (isLoadingWine) {
                     </div>
                     <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
-                    
+
                         {wine.culture.map((item) => (
-                            <li key= {item.id} className={`details-${item.name}`}>{item.name}</li>
+                            <li key={item.id} className={`details-${item.name}`}>{item.name}</li>
                         ))}
                     </ul>
                 </div>
@@ -93,16 +91,16 @@ if (isLoadingWine) {
                     <p className="details-reviews-content">{wine.description}</p>
                     <h2 className="details-dish-title">Quel menu accompagne t'il ?</h2>
                     <div className="dishcontainer">
-                    {wine.dishes.map((item) => (
-                    <span key={item.id} className="details-dish-content">{ item.name}</span>
-                    ))}
+                        {wine.dishes.map((item) => (
+                            <span key={item.id} className="details-dish-content">{item.name}</span>
+                        ))}
                     </div>
                 </div>
 
                 <div className="details-features">
 
 
-                    <table className= "table">
+                    <table className="table">
                         <thead>
                             <tr className="pair">
                                 <th className="type case">Type de vin</th>
@@ -115,8 +113,8 @@ if (isLoadingWine) {
                             <tr className="pair">
                                 <th className="type case">Cépages</th>
                                 <td className="case">{wine.grapevarieties.map((item) => (
-                             <span key= {item.id}> {`${item.name}, `}</span>
-                        ))}</td>
+                                    <span key={item.id}> {`${item.name}, `}</span>
+                                ))}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Domaine</th>
@@ -133,8 +131,8 @@ if (isLoadingWine) {
                             <tr className="pair">
                                 <th className="type case">Agriculture</th>
                                 <td className="case">{wine.culture.map((item) => (
-                             <span key= {item.id}> {`${item.name}, `}</span>
-                        ))}</td>
+                                    <span key={item.id}> {`${item.name}, `}</span>
+                                ))}</td>
                             </tr>
                             <tr className="">
                                 <th className="type case">Contenance</th>

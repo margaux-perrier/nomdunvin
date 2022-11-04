@@ -2,12 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem auto;
   justify-content: center;
+  align-items: center;
+
 }
 .searchBar {
+  margin-top: 10rem;
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
   width: 100%;
 }

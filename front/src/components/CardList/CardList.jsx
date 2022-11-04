@@ -1,5 +1,5 @@
 // import react
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import Card component
@@ -8,20 +8,23 @@ import Card from '../Card/Card';
 import { fetchAllWines } from '../../services/fecthWinesAPI.js'
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
-
-// impoort Scss
+// import Context
+import { WineColorContext } from '../../Context/WineColorContext';
+// import Scss
 import './cardList.scss';
+
 
 
 
 // Component CardList
 function CardList() {
+
     // Stock Data in State
     const [wines, setWines] = useState([]);
+
     // Stock useNavigate in constant
     const navigate = useNavigate();
 
-    
     // Stock Search in State
     const [search, setSearch] = useState('');
 
@@ -29,10 +32,12 @@ function CardList() {
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
+
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
+
     // filtered wines == wines
-    const filteredWines = getFilteredWine();
+    let filteredWines = getFilteredWine();
 
 
     // Route to details page
@@ -49,11 +54,29 @@ function CardList() {
     }
 
     // Use Effect
-    useEffect(() => {
 
-        fetchWines();
+    useEffect(() => { fetchWines();}, []);
 
-    }, []);
+
+    // import Checkbox from Context
+    const { checkbox } = useContext(WineColorContext);
+
+    // Filter State by checkbox checked in Context 
+     const filteredMenu = filteredWines.filter(wine => {
+
+        if (checkbox.rouge === true && wine.color === 'rouge') { return wine; }
+
+        else if (checkbox.blanc === true && wine.color === 'blanc') { return wine; }
+
+        else if (checkbox.rose === true && wine.color === 'rosé') { return wine; }
+        
+    }
+    );
+
+    // if checkbox is checked, filteredWines ELSE filteredMenu
+    filteredWines = checkbox.rouge || checkbox.blanc || checkbox.rose ? filteredMenu : getFilteredWine();
+
+
 
 
 
