@@ -1,5 +1,7 @@
 const { User } = require('../models');
 const emailValidator = require('email-validator'); 
+const jsonwebtoken = require('jsonwebtoken'); 
+const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt'); 
 
 const userController = {
@@ -18,8 +20,8 @@ const userController = {
    */
 	async signupAction(req, res){
 		try {
-
 			const {email, password, confirmPassword, firstname, lastname, address_number, address_street, address_postal, address_city} = req.body; 
+
 			//1. Check the user doesn't exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
@@ -93,6 +95,7 @@ const userController = {
    */
 	async loginAction(req, res){
 		try {
+
 			//1. Check the user exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
@@ -108,14 +111,20 @@ const userController = {
 				throw new Error('Login does not work, invalid email or password');
 			}
 
-			//3. If everything is ok, we add the user in a session. 
-			req.session.user = searchedUser.dataValues;
-
-			//4. For security reasons, the session password is deleted
-			delete req.session.user.password;
-
-			res.status(200).json(req.session.user);  
-
+			//3. Token JWT
+			if(searchedUser){
+				const jwtContent = { userId: searchedUser.id};
+				const jwtOptions = { 
+					algorithm: 'HS256', 
+					expiresIn: '3h' 
+				};
+				let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
+				console.log('<< 200', searchedUser.email);
+				res.status(200).json({ 
+					logged: true, 
+					token: token,
+				}); 
+			}
 		} catch (error) {
 			console.log(error); 
 			res.status(401).json({ message: error.message });   
