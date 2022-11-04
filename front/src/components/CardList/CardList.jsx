@@ -62,6 +62,7 @@ function CardList() {
     const { checkbox } = useContext(WineColorContext);
 
     // Filter State by checkbox checked in Context 
+     // eslint-disable-next-line array-callback-return
      const filteredMenu = filteredWines.filter(wine => {
 
         if (checkbox.rouge === true && wine.color === 'rouge') { return wine; }
