@@ -1,9 +1,13 @@
 .App {
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between ;
   // container for Flex menu-Filter and Cardlist
   .container-home {
     display: flex;
     flex-direction: column;
- 
+    justify-content: space-between ;
+    height: 100%;
   }
 }

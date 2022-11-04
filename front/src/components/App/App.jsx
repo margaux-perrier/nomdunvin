@@ -16,8 +16,11 @@ import Details from '../Details/Details';
 import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+
+import CartPage from '../CartPage/CartPage';
 // import scss
 import './App.scss';
+
 
 // component App
 
@@ -46,11 +49,13 @@ function App() {
           <Details />
         } />
 
+        <Route path="/cart" element={
+          <CartPage/>
+        } />
+
         <Route path="/sign-up" element={
           <SignUpForm />
         } />
-
-
 
       </Routes>
 

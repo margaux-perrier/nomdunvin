@@ -37,7 +37,7 @@ User.init({
 		allowNull: true
 	}, 
 	address_postal : {
-		type : DataTypes.INTEGER, 
+		type : DataTypes.TEXT, 
 		allowNull: true
 	}, 
 	address_city : {

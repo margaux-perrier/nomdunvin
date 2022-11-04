@@ -37,6 +37,7 @@ Wine.belongsToMany(Style, {
 	through: 'taste', 
 	foreignKey: 'wine_id',
 	otherKey: 'style_id', 
+	timestamps: false,
 });
 
 Style.belongsToMany(Wine, {
@@ -44,6 +45,7 @@ Style.belongsToMany(Wine, {
 	through: 'taste', 
 	foreignKey: 'style_id',
 	otherKey: 'wine_id',
+	timestamps: false,
 });
 
 //Association between dish and wine - many-to-many
@@ -52,6 +54,7 @@ Dish.belongsToMany(Wine, {
 	through: 'eat_with', 
 	foreignKey: 'dish_id',
 	otherKey: 'wine_id', 
+	timestamps: false,
 });
 
 Wine.belongsToMany(Dish, {
@@ -59,6 +62,7 @@ Wine.belongsToMany(Dish, {
 	through: 'eat_with', 
 	foreignKey: 'wine_id',
 	otherKey: 'dish_id', 
+	timestamps: false,
 });
 
 //Association between grapevariety and wine - many-to-many
@@ -67,6 +71,7 @@ GrapeVariety.belongsToMany(Wine, {
 	through: 'compose', 
 	foreignKey: 'grapevariety_id',
 	otherKey: 'wine_id', 
+	timestamps: false,
 });
 
 Wine.belongsToMany(GrapeVariety, {
@@ -74,6 +79,7 @@ Wine.belongsToMany(GrapeVariety, {
 	through: 'compose', 
 	foreignKey: 'wine_id',
 	otherKey: 'grapevariety_id', 
+	timestamps: false,
 });
 
 //Association between culture and wine - many-to-many
@@ -82,6 +88,7 @@ Culture.belongsToMany(Wine, {
 	through: 'cultivate', 
 	foreignKey: 'culture_id',
 	otherKey: 'wine_id', 
+	timestamps: false,
 });
 
 Wine.belongsToMany(Culture, {
@@ -89,6 +96,7 @@ Wine.belongsToMany(Culture, {
 	through: 'cultivate', 
 	foreignKey: 'wine_id',
 	otherKey: 'culture_id', 
+	timestamps: false,
 });
 
 // Association between wine and user - many-to-many
@@ -97,6 +105,7 @@ User.belongsToMany(Wine, {
 	through: Order, 
 	foreignKey: 'user_id', 
 	otherKey: 'wine_id',
+	timestamps: false,
 });
 
 Wine.belongsToMany(User, {
@@ -104,6 +113,7 @@ Wine.belongsToMany(User, {
 	through: Order, 
 	foreignKey: 'wine_id', 
 	otherKey: 'user_id',
+	timestamps: false,
 });
 
 
