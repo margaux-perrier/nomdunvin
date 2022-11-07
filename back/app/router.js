@@ -19,7 +19,7 @@ router.delete('/admin/wine/:id', adminController.deleteWineById);
 //user controller
 router.post('/signup', userController.signupAction); 
 router.post('/login', userController.loginAction); 
-router.get('/disconnect', userController.disconnect);
+// router.get('/disconnect', userController.disconnect);
 
 //shopping cart
 router.use('/cart', cartCreation); 
