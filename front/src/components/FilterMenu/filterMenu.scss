@@ -21,10 +21,12 @@
 /* Management of menu + Overlay*/
 .bm-menu {
   background: vars.$secondary-color;
-  padding: 2.5em 1.5em 0;
-  font-size: 1em;
+  padding: 2em 1.5em 3em 1em;
+  font-size: 0.8em;
   border-right: 3px solid vars.$primary-color;
   z-index : 2;
+  width : 100%;
+
 
 }
 .bm-overlay {
@@ -33,31 +35,23 @@
 
 .menu-logo {
   .logo {
-    width: 90%;
-    padding: 1em;
+    width: 50%;   
   }
 }
 
 .menu-title {
-  padding-top: 5rem;
-  font-size: 1.2rem;
+  padding-top: 1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: vars.$primary-color;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 .checkbox {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
-.checkbox-button {
-  width : 50%;
-  height: 2em;;
-  border-radius: 2rem;
-  border: 1px solid vars.$primary-color;
-  background-color: vars.$primary-color;
-  color: vars.$secondary-color;
-  font-size: 1rem;
-}
+
 
 .checkbox-button:hover {
   background-color: vars.$secondary-color;
@@ -65,6 +59,7 @@
   font-size: 0.8rem;
   transition: all 0.5s ease-in-out;
 }
+
 
 .menu-item {
   display: inline-block;
@@ -79,4 +74,26 @@
   input[type="checkbox"] {
     accent-color: vars.$primary-color;
   }
+
+ 
 }
+.menu-button-reset{
+  background-color: vars.$primary-color;
+  color: vars.$secondary-color;
+  border-radius: 1rem;
+  padding: 0.8em;
+  margin : auto auto;
+  margin-top: 2.5em;
+  margin-bottom: 2em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border : 1px solid vars.$primary-color;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background-color: vars.$secondary-color;
+    color: vars.$primary-color;
+  }
+}
+
+// responsive for desktop

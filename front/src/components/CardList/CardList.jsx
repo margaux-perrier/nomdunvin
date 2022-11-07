@@ -1,29 +1,39 @@
+/* eslint-disable array-callback-return */
+
 // import react
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import Card component
 import Card from '../Card/Card';
-//import de fecthWinesAPI
-import { fetchAllWines } from '../../services/fecthWinesAPI.js'
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
-// import Context
-import { WineColorContext } from '../../Context/WineColorContext';
+// import AllWinesContext
+import { AllWinesContext } from '../../Context/AllWinesContext';
 // import Scss
 import './cardList.scss';
-
-
 
 
 // Component CardList
 function CardList() {
 
-    // Stock Data in State
-    const [wines, setWines] = useState([]);
+    //* STATE FOR CARDLIST *//
+
+    // use Context for catch all wines
+    const { wines } = useContext(AllWinesContext);
+
+    // * NAVIGATE TO DETAILS PAGE * //
 
     // Stock useNavigate in constant
     const navigate = useNavigate();
+    // Route to details page
+    const handleClick = (e) => {
+        e.preventDefault();
+        const path = `/wine/${e.target.id}`;
+        navigate(path);
+    }
+
+    //* SEARCHBAR *//
 
     // Stock Search in State
     const [search, setSearch] = useState('');
@@ -32,7 +42,6 @@ function CardList() {
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
-
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
 
@@ -40,47 +49,74 @@ function CardList() {
     let filteredWines = getFilteredWine();
 
 
-    // Route to details page
-    const handleClick = (e) => {
-        e.preventDefault();
-        const path = `/wine/${e.target.id}`;
-        navigate(path);
+    //* USE CONTEXT FOR FILTERS BY COLOR *//
+
+    // Catch state for color Checkbox from AllWinesContext
+    const { checkboxColor } = useContext(AllWinesContext);
+
+    // filter for wines, loop on checkboxColor and return wines with checked value
+    const filteredMenu = filteredWines.filter((wine) => {
+        // use loop for check if checkbox is checked
+        for (let i = 0; i < checkboxColor.length; i++) {
+            // if checkbox is checked return wines with color checked
+            if (checkboxColor[i].value === true && wine.color === checkboxColor[i].color) {
+                // return filtered wines
+                return wine;
+            }
+        }
+    });
+    // if checkbox is checked return filteredWines = filteredMenu
+    for (let i = 0; i < checkboxColor.length; i++) {
+        if (checkboxColor[i].value === true) {
+            filteredWines = filteredMenu;
+        }
     }
 
-    // Update State with Data API
-    const fetchWines = async () => {
-        const response = await fetchAllWines();
-        setWines(response);
+    // *  USE CONTEXT FOR FILTERS BY WINEMAKERS *//
+
+    // Catch state for winemaker Checkbox from AllWinesContext
+    const { checkboxWinemaker } = useContext(AllWinesContext);
+    // filter for wines, loop on checkboxWinemaker and return wines with checked value  
+    const filteredMenuWinemaker = filteredWines.filter((wine) => {
+        // use loop for check if checkbox is checked
+        for (let i = 0; i < checkboxWinemaker.length; i++) {
+            // if checkbox is checked return wines with winemaker checked
+            if (checkboxWinemaker[i].value === true && wine.winemaker.name === checkboxWinemaker[i].winemaker) {
+                // return filtered wines
+                return wine;
+            }
+        }
+    });
+    // if checkbox is checked return filteredWines = filteredMenuWinemaker
+    for (let i = 0; i < checkboxWinemaker.length; i++) {
+        if (checkboxWinemaker[i].value === true) {
+            filteredWines = filteredMenuWinemaker;
+        }
     }
 
-    // Use Effect
+    // * USE CONTEXT FOR FILTERS BY REGION *//
 
-    useEffect(() => { fetchWines();}, []);
-
-
-    // import Checkbox from Context
-    const { checkbox } = useContext(WineColorContext);
-
-    // Filter State by checkbox checked in Context 
-     // eslint-disable-next-line array-callback-return
-     const filteredMenu = filteredWines.filter(wine => {
-
-        if (checkbox.rouge === true && wine.color === 'rouge') { return wine; }
-
-        else if (checkbox.blanc === true && wine.color === 'blanc') { return wine; }
-
-        else if (checkbox.rose === true && wine.color === 'rosé') { return wine; }
-        
+    // Catch state for region Checkbox from AllWinesContext 
+    const { checkboxRegion } = useContext(AllWinesContext);
+    // filter for wines, loop on checkboxRegion and return wines with checked value
+    const filteredMenuRegion = filteredWines.filter((wine) => {
+        // use loop for check if checkbox is checked
+        for (let i = 0; i < checkboxRegion.length; i++) {
+            // if checkbox is checked return wines with region checked
+            if (checkboxRegion[i].value === true && wine.region.name === checkboxRegion[i].region) {
+                // return filtered wines
+                return wine;
+            }
+        }
+    });
+    // if checkbox is checked return filteredWines = filteredMenuRegion
+    for (let i = 0; i < checkboxRegion.length; i++) {
+        if (checkboxRegion[i].value === true) {
+            filteredWines = filteredMenuRegion;
+        }
     }
-    );
 
-    // if checkbox is checked, filteredWines ELSE filteredMenu
-    filteredWines = checkbox.rouge || checkbox.blanc || checkbox.rose ? filteredMenu : getFilteredWine();
-
-
-
-
-
+    // * RETURN *//
     return (
         <Fragment>
 

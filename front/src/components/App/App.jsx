@@ -16,9 +16,9 @@ import Details from '../Details/Details';
 import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
-// import Provider
-import { WineColorProvider } from '../../Context/WineColorContext';
-// zgrg
+// import AllWinesProvider
+import { AllWinesProvider } from '../../Context/AllWinesContext';
+
 
 // import scss
 import './App.scss';
@@ -30,21 +30,23 @@ function App() {
 
 
   return (
+
     <div className="App">
+    
 
       <Header />
 
       <Routes>
-
+       
         <Route path="/" element={
           
           // provider for share data between FilterMenu and Cardlist
-          <WineColorProvider>
-           
+
+          <AllWinesProvider>
               <FilterMenu />
               <CardList />
        
-          </WineColorProvider>
+              </AllWinesProvider>
 
         } />
 
@@ -60,12 +62,12 @@ function App() {
           <SignUpForm />
         } />
 
-
+       
       </Routes>
 
 
       <Footer />
-
+    
     </div>
   );
 }

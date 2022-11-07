@@ -16,6 +16,7 @@
   }
   // Concerns the image part
   .details-img {
+    margin-top: 2em;
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -24,18 +25,35 @@
     .wine-img {
       width: 6em;
     }
-    // Concerns the tablet-color
+
     .tablet-color-rouge {
-      color: #a5260a;
-      font-size: 13em;
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      background: #a5260a;
+      margin-left : 1em;
     }
     .tablet-color-blanc {
-      color: #fdf1b8;
-      font-size: 13em;
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      background: #fdf1b8;
+      margin-left : 1em;
     }
     .tablet-color-rosé {
-      color: #fe96a0;
-      font-size: 13em;
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      background: #fe96a0;
+      margin-left : 1em;
+    }
+
+    .tablet-color-effervescent {
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      background: #ffffff;
+      margin-left : 1em;
     }
 
     // Concerns All Tags
@@ -43,7 +61,6 @@
       display: flex;
       flex-direction: column;
       font-size: 1em;
-      margin-right: 2em;
       font-style: italic;
       .details-Bio {
         color: #1ebd4e;
@@ -82,15 +99,10 @@
   // PART Informations
 
   .details-cart {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     .details-content {
       text-align: center;
       .details-winemaker {
         text-transform: uppercase;
-        margin-top: 1em;
         font-size: 1.2em;
         font-weight: 600;
         color: vars.$primary-color;
@@ -165,7 +177,6 @@
       width: 85%;
       padding-top: 1.8em;
       padding-bottom: 0.5em;
-      
     }
     .details-reviews-title {
       font-size: 1.4em;
@@ -173,8 +184,8 @@
       color: vars.$primary-color;
       text-align: center;
       font-style: italic;
-      padding-top : 2em;
-      padding-bottom : 0.5em;
+      padding-top: 2em;
+      padding-bottom: 0.5em;
       border-top: 1px solid #e0e0e0;
     }
     .details-reviews-content {
@@ -185,27 +196,26 @@
       color: rgb(168, 167, 167);
     }
     .details-dish-title {
-     
       font-size: 1.4em;
       font-weight: 600;
       color: vars.$primary-color;
       text-align: center;
       font-style: italic;
-      margin-top : 2rem
+      margin-top: 2rem;
     }
     .details-dish-content {
       font-style: italic;
       text-align: center;
       font-size: 1.2em;
       color: rgb(168, 167, 167);
-      padding-top: 1rem
+      padding-top: 1rem;
     }
 
-    .dishcontainer{
-      margin-top: 1em; 
-      display : flex; 
-      flex-direction: column; 
-      align-items: center; 
+    .dishcontainer {
+      margin-top: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -223,6 +233,7 @@
   .table {
     width: 100%;
     font-size: 1em;
+    margin-top: 2rem;
     .type {
       width: 30%;
     }
@@ -321,14 +332,13 @@
       }
     }
 
-
     .details-container-information {
       display: flex;
       flex-direction: row;
       width: 80%;
-      
+
       .details-reviews {
-       display: flex;
+        display: flex;
         flex-direction: column;
         justify-content: space-around;
         width: 50%;
@@ -336,7 +346,7 @@
         padding-top: 0em;
         padding-bottom: 0em;
         padding-right: 2em;
-        padding-bottom : 2em;
+        padding-bottom: 2em;
         border-right: 1px solid #e0e0e0;
       }
       .details-reviews-title {
@@ -346,10 +356,8 @@
         text-align: center;
         font-style: italic;
         border-top: none;
-        
       }
       .details-reviews-content {
-
         font-style: normal;
         font-size: 1.5em;
         color: rgb(168, 167, 167);
@@ -365,13 +373,11 @@
       }
       .details-dish-content {
         font-size: 1.5em;
-
-
       }
     }
-  
+
     //* Concerns the features //*
-  
+
     .details-features {
       width: 40%;
       margin-top: 4em;
@@ -380,9 +386,8 @@
       align-items: center;
       justify-content: center;
       margin: auto;
-
     }
-  
+
     .table {
       width: 100%;
       font-size: 1em;
@@ -403,28 +408,9 @@
       color: rgb(85, 82, 82);
       font-style: italic;
     }
-  
+
     .pair {
       background-color: #eceff1;
     }
   }
-
-  }
- 
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
