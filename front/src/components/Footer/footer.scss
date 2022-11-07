@@ -1,28 +1,23 @@
 @use "src/styles/vars";
-
 .footer {
   background-color: vars.$primary-color;
   text-align: center;
   border-top: 3px solid vars.$border-color;
   width: 100%;
   margin-top: 2em;
-
   .footer-logo {
-
     .logo {
       width: 8em;
       padding: 1em;
     }
   }
   // End of Main Logo Management
-
   // Menu Management
   .menu {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: vars.$gutter1;
-
     .footer-menu {
       display: flex;
       flex-direction: column;
@@ -58,12 +53,8 @@
         width: 1.8em;
       }
       // End of Menu Management
-
-
-
       // Community Banner Management
     }
-
     .community{
       width:59%
     }
@@ -84,16 +75,12 @@
     .community-logo{
       width: 20%;
     }
-
     // Hide logo on mobile 
     @media (max-width: 768px) {
       .community-logo {
         display: none;
       }
     }
-
-
-
     // End of Community Banner Management
   }
   // Mention Management
@@ -104,11 +91,9 @@
     font-size: 0.8rem;
     font-family: vars.$font-Montserrat;
     padding-bottom: 0.5rem;
-
     .mentions {
       margin: 0 0.7rem;
     }
-
     .mentions:hover {
       font-family: vars.$font-Montserrat;
       font-weight: 600;
@@ -116,10 +101,7 @@
   }
   // End of Mention Management
 }
-
 //* RESPONSIVE FOR DESKTOP *//
-
-
 @media screen and (min-width: 768px) {
   .community {
   
@@ -133,13 +115,11 @@
     padding: 0.5rem;
     margin-top: vars.$gutter1;
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
-
     .community-title {
       margin: auto 0;
       font-weight: bold;
       margin-right: 0.3rem;
     }
-
     .community-logo {
       width: 20%;
       margin-left: 0.5rem;

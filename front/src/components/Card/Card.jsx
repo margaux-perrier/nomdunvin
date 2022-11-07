@@ -1,7 +1,7 @@
 // import react
-import React, { Fragment } from 'react';
-// import de Link 
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState} from 'react';
+// import Modal
+import Modal from '../Modal/Modal';
 // import logo cart
 import cart from './cart.png';
 // import Scss
@@ -19,12 +19,33 @@ function Card({
     name,
     winemaker,
     culture,
-    region,
+    appellation,
     img,
-    handleClick
+    handleClick,
 }) {
+
+    const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
+
     return (
         <Fragment>
+
+            <Modal
+                key={id}
+                size={size}
+                color={color}
+                alcohol={alcohol}
+                price={price}
+                name={name}
+                winemaker={winemaker}
+                appellation={appellation}
+                img={img}
+                id={id}
+                isOpen={ isAddWineToCartModalOpen }
+                setIsOpen={ setisAddWineToCartModalOpen }
+            />
+
+
+
             <div className="card">
                 <div className='visual'>
                     <div className="left-card">
@@ -41,14 +62,14 @@ function Card({
                             ))}
                         </ul>
                         <div>
-                            <Link to="/"> <img className="logo-cart" src={cart} alt="cart" /> </Link>
+                            <img className="logo-cart" src={cart} alt="cart" onClick={() => setisAddWineToCartModalOpen(true)}/>
                         </div>
                     </div>
                 </div>
                 <div className="card-content">
                     <h2 className="winemaker">{winemaker}</h2>
                     <p className="wine-name">" {name} "</p>
-                    <p className="wine-region">{region}</p>
+                    <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
                 </div>
 

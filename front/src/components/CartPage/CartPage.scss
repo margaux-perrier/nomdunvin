@@ -1,0 +1,121 @@
+@use "src/styles/vars";
+
+.cart-container {
+    // min-height : 100vh; 
+    // max-width: 90%;
+    // margin : 5rem auto 1rem auto; 
+    // padding-bottom : 40vh;
+    font-family: vars.$font-Montserrat;
+
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 2rem auto;
+    justify-content: center;
+    align-items: center;
+
+    &_itemList{
+        margin-top: 1rem;
+    }
+    
+    &_title{
+        font-size: 1.2rem;
+        font-weight: 700;
+        color : vars.$primary-color;
+        margin-bottom : 0.5em;
+        text-align: center;
+    }
+
+    &_subtitle{
+        font-size: 1rem;
+        text-align: center;
+    }
+  }
+
+  .buttons-container{
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+  }
+
+  .button{
+        height: 2rem;
+        width: 12rem;
+        border-radius: 0.9em;
+        font-size: 1rem;
+        padding: 0.5em 1em;
+        font-weight: 600;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+  }
+
+  .cart_amount{
+    font-size: 1.2rem;
+    margin: 3rem 0; 
+    text-align: center; 
+    display :flex; 
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .cart_amount p{
+      margin-right: 0.8em;
+      color: vars.$tertiary-color;
+  }
+
+  .validate_button{
+    background-color: vars.$primary-color;
+    margin-bottom: 1rem;
+  }
+
+  .delete_button{
+    background-color: vars.$border-color;
+  }
+
+  @media screen and (min-width: 472px) {
+    .cart-container {
+        max-width: 70%;
+        margin : 20vh auto 1rem auto; 
+    }
+  }
+
+  @media screen and (min-width: 1200px){
+    .cart-container {
+        max-width: 50%;
+        margin : 20vh auto 1rem auto; 
+    }
+  }
+
+
+  @media screen and (min-width: 580px){
+    .buttons-container {
+        flex-direction: row; 
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .validate_button{
+        margin-bottom: 0rem;
+      }
+
+  }
+
+  @media screen and (min-width: 700px) {
+    .button{
+        height: 2.3rem;
+        width: 15rem;
+        font-size: 1.1rem;
+        margin-top: 1.7rem;
+      }
+
+      .cart_amount{
+        font-size: 1.5rem;
+        margin: 3rem 0; 
+        text-align: center; 
+        display :flex; 
+        justify-content: center;
+        font-weight: 700;
+      }
+  }

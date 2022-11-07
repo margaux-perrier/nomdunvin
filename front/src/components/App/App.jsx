@@ -20,7 +20,7 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 
-
+import CartPage from '../CartPage/CartPage';
 
 // import scss
 import './App.scss';
@@ -29,7 +29,6 @@ import './App.scss';
 // component App
 
 function App() {
-
 
   return (
 
@@ -65,6 +64,10 @@ function App() {
 
         <Route path="/signup" element={
           <SignUpForm />
+        } />
+
+        <Route path="/cart" element={
+                  <CartPage />
         } />
 
        

@@ -1,0 +1,59 @@
+@use "src/styles/vars";
+
+.cart-item{
+    display : flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin: 2rem 0;
+    font-size: 0.9rem;
+
+    &_image{
+        max-width: 20%;
+        height: auto; 
+    }
+
+    &_infos{
+        display:flex; 
+        flex-direction : column; 
+        align-items : center; 
+        margin: 0 1rem; 
+    }
+
+    &_name{
+        margin-bottom : 1em;
+        font-weight: 800;
+    }
+
+    &_price{
+        margin-bottom : 1em;
+        color: vars.$tertiary-color;
+    }
+    &_subtotal{
+        font-size: 0.8rem;
+    }
+    &_quantity{
+        display : flex; 
+        align-items: center;
+        justify-content: space-between;
+
+        &-input{
+            margin-right : 2rem;
+            max-width:30px;
+            border : solid 0.8px vars.$border-color; 
+            border-radius : 0.2rem; 
+            text-align: center;
+        }
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    .cart-item{
+        font-size: 1.2rem;
+
+        &_subtotal{
+            font-size: 1rem;
+        }
+    }
+}

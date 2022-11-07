@@ -1,5 +1,4 @@
 @use "src/styles/vars";
-
 /* Position of burger button */
 .bm-burger-button {
   position: fixed;
@@ -8,7 +7,6 @@
   left: 36px;
   top: 7rem;
   padding: 1rem;
-
 }
 /* Color burger icon bars */
 .bm-burger-bars {
@@ -25,22 +23,16 @@
   font-size: 0.8em;
   border-right: 3px solid vars.$primary-color;
   z-index : 2;
-
   width : 100%;
-
-
-
 }
 .bm-overlay {
   top: 0;
 }
-
 .menu-logo {
   .logo {
     width: 50%;   
   }
 }
-
 .menu-title {
   padding-top: 1rem;
   font-size: 1rem;
@@ -49,20 +41,15 @@
   margin-bottom: 0.5rem;
   margin-top: 1rem;
 }
-
 .checkbox {
   margin-bottom: 0.5em;
 }
-
-
 .checkbox-button:hover {
   background-color: vars.$secondary-color;
   color: vars.$primary-color;
   font-size: 0.8rem;
   transition: all 0.5s ease-in-out;
 }
-
-
 .menu-item {
   display: inline-block;
   color: #6e6e6e;
@@ -76,7 +63,6 @@
   input[type="checkbox"] {
     accent-color: vars.$primary-color;
   }
-
  
 }
 .menu-button-reset{
@@ -91,11 +77,9 @@
   font-weight: 600;
   border : 1px solid vars.$primary-color;
   transition: all 0.5s ease-in-out;
-
   &:hover {
     background-color: vars.$secondary-color;
     color: vars.$primary-color;
   }
 }
-
 // responsive for desktop

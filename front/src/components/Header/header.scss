@@ -1,18 +1,15 @@
 @use "src/styles/vars";
-
 .header {
-
   z-index: 2;
+  width: 100%;
  
-
   .navbar {
     display: flex;
     background-color: vars.$primary-color;
     justify-content: space-between;
-
+    width: 100%;
     position: fixed;
    
-
     .logo {
       width: 80%;
       padding: 1em;
@@ -75,9 +72,7 @@
     }
   }
 }
-
 //* Responsive for Desktop *//
-
 @media screen and (min-width: 768px) {
   .header {
     .navbar {
@@ -88,7 +83,6 @@
           transition: all 0.8s ease-out;
         }
  
-
         .form-login {
           display: flex;
           margin-right: 1.5em;
@@ -120,7 +114,6 @@
             border: 1px solid vars.$primary-color;
             transition: all 0.3s ease-out;
           }
-
           .close {
             background-color: vars.$primary-color;
             border: vars.$primary-color;

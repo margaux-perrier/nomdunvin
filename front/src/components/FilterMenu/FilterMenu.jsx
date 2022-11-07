@@ -60,15 +60,6 @@ const FilterMenu = () => {
     // * RESET FILTER *//
     const { resetFilter } = useContext(AllWinesContext);
     
-
-
-
-
-
-    // import handleChange from Context
-    const { handleChange } = useContext(WineColorContext);
-
-
     //* RETURN *//
 
     return (

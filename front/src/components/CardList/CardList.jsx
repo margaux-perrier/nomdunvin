@@ -141,7 +141,7 @@ function CardList() {
 
             <div className="cardList">
                 {filteredWines.map(({
-                    id, size, color, alcohol, price, name, avatar, winemaker, region, culture
+                    id, size, color, alcohol, price, name, avatar, winemaker, appellation, culture
                 }) => (
 
                     <Card
@@ -153,7 +153,7 @@ function CardList() {
                         price={price}
                         name={name}
                         winemaker={winemaker.name}
-                        region={region.name}
+                        appellation={appellation}
                         img={avatar}
                         id={id}
                         handleClick={handleClick}
