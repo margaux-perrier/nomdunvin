@@ -1,14 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, {useState, useContext} from "react";
+// import Navigate
+import { useNavigate } from 'react-router-dom';
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
-import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
-import axios from 'axios';
+import { loginContext } from '../../Context/loginContext'; 
 
 //import user methods
 import {signupRequest} from '../../services/userRequests'
 import { loginRequest } from '../../services/userRequests'
+import {setToken} from '../../services/instance'
+
 
 
 //Material UI imports
@@ -24,9 +27,20 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   //useReducer configs
-  const { userState, userDispatch } = useUserReducer();
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
+  const navigate = useNavigate(); 
+
+
+  //States
+  const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
+  const[connectionPassword, setConnectionPassword] = useState('');
+  const { isLogged, setIsLogged } = useContext(loginContext); 
+  const { pseudo, setPseudo } = useContext(loginContext); 
+  const [error, setError] = useState('')
+  const {role, setRole} = useContext(loginContext);
+
+
 
   //Form methods
   const handleTextFieldChange = (e) => {
@@ -42,12 +56,25 @@ function SignUpForm(){
    await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
   }
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
-    userDispatch(getActionUserLogged(user));
-  }
-  
+  const handleSubmitLoginForm = async (e) => {
+    e.preventDefault(); 
+    try {
+      const response = await loginRequest(connectionEmail, connectionPassword); 
+      setToken(response.token);
+      if (response.logged){
+        setIsLogged(true);
+        setPseudo(response.pseudo);
+        //Todo gérer la redirection admin
+        setRole(response.role)
+        navigate("/")
+      }
+      
+    } catch (error) {
+      console.log(error.message)
+     setError('mauvais password ou email');
+    }
+    
+}
   return(
     <div className= "container-form">
         
@@ -57,7 +84,6 @@ function SignUpForm(){
         </h1>
         <p className="text">
         Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? 
-        {/* {userState.loggedUser.user.firstname} */}
       </p>
       <Box 
    sx={{
@@ -66,15 +92,15 @@ function SignUpForm(){
         component="form"
         noValidate
         autoComplete="off"
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmitLoginForm}
       >
         <Grid container  spacing={2} >
           <Grid item xs={12} sm={6}>
             <TextField color="error"
               label="Email"
               name="connectionEmail"
-              value={formState.connectionEmail}
-              onChange={handleTextFieldChange}
+              value={connectionEmail}
+              onChange={(e) => setConnectionEmail( e.target.value)}
               
               fullWidth
             />
@@ -84,8 +110,8 @@ function SignUpForm(){
               type="password"
               label="Password"
               name="connexionPassword"
-              value={formState.connexionPassword}
-              onChange={handleTextFieldChange}
+              value={connectionPassword}
+              onChange={(e) => setConnectionPassword(e.target.value)}
               
               fullWidth
             />
@@ -94,14 +120,19 @@ function SignUpForm(){
               <Button
                 color="error"
                 variant="contained"
-                type="submit"
-              >
+                type="submit">
+                {/* {isLogged && <Navigate to='/'/>} */}
                 Valider
               </Button>
             </Grid>
           </Grid>
           </Box>
       </div>
+      {error && (
+                  <div className="ui negative message">
+                    {error}
+                  </div>)}
+
       <h1 className="title">
           Inscription
         </h1>

@@ -14,13 +14,17 @@ import Error from '../Error/Error';
 import Details from '../Details/Details';
 // import Footer component
 import Footer from '../Footer/Footer';
+
+import CartPage from '../CartPage/CartPage';
+
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
 
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 
-import CartPage from '../CartPage/CartPage';
+import { LoginContextProvider } from '../../Context/loginContext';
+
 
 // import scss
 import './App.scss';
@@ -34,48 +38,48 @@ function App() {
 
     <div className="App">
     
+    <LoginContextProvider>
+        <Header />
 
-      <Header />
-
-      <Routes>
-       
-        <Route path="/" element={
-          
-          // provider for share data between FilterMenu and Cardlist
-
-
-          <AllWinesProvider>
-              <FilterMenu />
-              <CardList />
-       
-              </AllWinesProvider>
+        <Routes>
+        
+          <Route path="/" element={
+            
+            // provider for share data between FilterMenu and Cardlist
 
 
-        } />
-
-        <Route path="*" element={
-          <Error />
-        } />
-
-        <Route path="/wine/:id" element={
-          <Details />
-        } />
+            <AllWinesProvider>
+                <FilterMenu />
+                <CardList />
+            </AllWinesProvider>
 
 
-        <Route path="/signup" element={
-          <SignUpForm />
-        } />
+          } />
 
-        <Route path="/cart" element={
-                  <CartPage />
-        } />
+          <Route path="*" element={
+            <Error />
+          } />
 
-       
-      </Routes>
+          <Route path="/wine/:id" element={
+            <Details />
+          } />
 
 
-      <Footer />
-    
+          <Route path="/signup" element={
+            <SignUpForm />
+          } />
+
+          <Route path="/cart" element={
+                    <CartPage />
+          } />
+
+        
+        </Routes>
+
+
+        <Footer />
+    </LoginContextProvider>
+
     </div>
   );
 }
