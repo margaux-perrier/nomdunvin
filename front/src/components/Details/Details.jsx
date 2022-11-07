@@ -56,7 +56,7 @@ function Details() {
             <div className="details-container-visual">
                 <div className="details-img">
                     <div className=''>
-                        <p className={`tablet-color-${wine.color}`}>•</p>
+                        <p className={`tablet-color-${wine.color}`}></p>
                     </div>
                     <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
