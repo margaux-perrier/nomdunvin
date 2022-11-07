@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 // import React from "react";
+
 import React, { useContext, useEffect } from "react";
+
 // import Menu fro: react-burger-menu
 import { slide as Menu } from "react-burger-menu";
 // import Logo
 import Logo from "./logo.png";
+
 // import AllWinesContext
 import { AllWinesContext } from "../../Context/AllWinesContext";
+
 // import Scss
 import "./filterMenu.scss";
 
@@ -61,8 +65,12 @@ const FilterMenu = () => {
 
 
 
+    // import handleChange from Context
+    const { handleChange } = useContext(WineColorContext);
+
 
     //* RETURN *//
+
     return (
         <Menu>
             <div className="menu-logo">
@@ -73,6 +81,7 @@ const FilterMenu = () => {
             </div>
 
             <form className="menu-item">
+
                 {checkboxColor.map((item) => (
                     <div key={item.color} className="checkbox">
                         <input
@@ -123,6 +132,7 @@ const FilterMenu = () => {
                         <label className="checkbox-title">{item.region}</label>
                     </div>
                 ))}
+
             </form>
             <button onClick={resetFilter} className="menu-button-reset">Réinitialiser mes choix</button>
         </Menu>

@@ -100,6 +100,11 @@ const cartController = {
    */
 	async validateCart(req,res){
 		try{
+
+			if(!req.session.user.id){
+				const error = new Error('login necessary to validate cart'); 
+				return res.status(500).json({ message: error.message });
+			}
 		
 			for(const wine of req.session.cart){
 				let cart = Order.build({

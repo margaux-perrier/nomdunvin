@@ -1,17 +1,22 @@
 /* eslint-disable array-callback-return */
 
 // import react
+
 import React, { useState, Fragment, useContext } from 'react';
+
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import Card component
 import Card from '../Card/Card';
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
+
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
+
 // import Scss
 import './cardList.scss';
+
 
 
 // Component CardList
@@ -23,6 +28,7 @@ function CardList() {
     const { wines } = useContext(AllWinesContext);
 
     // * NAVIGATE TO DETAILS PAGE * //
+
 
     // Stock useNavigate in constant
     const navigate = useNavigate();
@@ -42,8 +48,10 @@ function CardList() {
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
+
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
+
 
     // filtered wines == wines
     let filteredWines = getFilteredWine();
@@ -94,6 +102,7 @@ function CardList() {
         }
     }
 
+
     // * USE CONTEXT FOR FILTERS BY REGION *//
 
     // Catch state for region Checkbox from AllWinesContext 
@@ -115,6 +124,7 @@ function CardList() {
             filteredWines = filteredMenuRegion;
         }
     }
+
 
     // * RETURN *//
     return (

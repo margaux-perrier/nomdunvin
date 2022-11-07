@@ -1,15 +1,18 @@
 @use "src/styles/vars";
 
 .header {
+
   z-index: 2;
  
+
   .navbar {
     display: flex;
-    width: 100%;
     background-color: vars.$primary-color;
     justify-content: space-between;
+
     position: fixed;
    
+
     .logo {
       width: 80%;
       padding: 1em;
