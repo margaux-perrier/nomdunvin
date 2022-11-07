@@ -49,7 +49,7 @@ function Card({
                     <h2 className="winemaker">{winemaker}</h2>
                     <p className="wine-name">" {name} "</p>
                     <p className="wine-region">{region}</p>
-                    <p className={`tablet-color-${color}`}>•</p>
+                    <p className={`tablet-color-${color}`}></p>
                 </div>
 
                 <div className="card-price">

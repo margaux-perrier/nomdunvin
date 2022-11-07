@@ -28,9 +28,6 @@
       }
     }
     .card-img {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 1rem;
     }
     .wine-logo {
@@ -38,34 +35,40 @@
     }
     // Concerns All tags
     .card-tag {
-      width: 24%;
+      
       margin-top: 2em;
-      font-size: 1em;
       font-style: italic;
+
       .tag-Bio {
         color: #1ebd4e;
         margin-top: 0.5em;
+       
       }
       .tag-Biodynamie {
         color: #1896b6;
         margin-top: 0.5em;
+      
       }
       .tag-Nature {
         color: #c2250a;
         margin-top: 0.5em;
+      
       }
       .tag-Vegan {
         color: #e9780f;
         margin-top: 0.5em;
+        
       }
       .sulfites {
         color: #ac089e;
         margin-top: 0.5em;
-        white-space: nowrap;
+      
+       
       }
       .tag-Raisonnée {
         color: #ad6f10;
         margin-top: 0.5em;
+      
       }
       .tag-HVE {
         color: #0a0deb;
@@ -78,7 +81,6 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 20%;
     margin: 1em 0 1em 0;
     font-size: 1.2em;
     font-weight: 600;
@@ -117,19 +119,36 @@
     margin-top: 0.6em;
     font-style: italic;
   }
-
   .tablet-color-rouge {
-    color: #a5260a;
-    font-size: 6em;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #a5260a;
+    margin : 1em;
   }
   .tablet-color-blanc {
-    color: #fdf1b8;
-    font-size: 6em;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fdf1b8;
+    margin : 1em;
   }
   .tablet-color-rosé {
-    color: #fe96a0;
-    font-size: 6em;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fe96a0;
+    margin : 1em;
   }
+  .tablet-color-effervescent {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #ffffff;
+    margin : 1em;
+  }
+  
+
 }
 
 //* Concerns the lower part of card: buton "Voir le produit" + price *//

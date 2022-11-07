@@ -16,8 +16,13 @@ import Details from '../Details/Details';
 import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+// import AllWinesProvider
+import { AllWinesProvider } from '../../Context/AllWinesContext';
+
+
 // import scss
 import './App.scss';
+
 
 // component App
 
@@ -25,17 +30,24 @@ function App() {
 
 
   return (
+
     <div className="App">
+    
 
       <Header />
 
       <Routes>
-
+       
         <Route path="/" element={
-          <div className='container-home'>
-            <FilterMenu />
-            <CardList />
-          </div>
+          
+          // provider for share data between FilterMenu and Cardlist
+
+          <AllWinesProvider>
+              <FilterMenu />
+              <CardList />
+       
+              </AllWinesProvider>
+
         } />
 
         <Route path="*" element={
@@ -50,12 +62,12 @@ function App() {
           <SignUpForm />
         } />
 
-
-
+       
       </Routes>
 
-      <Footer />
 
+      <Footer />
+    
     </div>
   );
 }
