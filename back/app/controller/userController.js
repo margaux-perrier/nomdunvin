@@ -122,6 +122,8 @@ const userController = {
 				console.log('<< 200', searchedUser.email);
 				res.status(200).json({ 
 					logged: true, 
+					pseudo : searchedUser.firstname, 
+					role : searchedUser.role,
 					token: token,
 				}); 
 			}
