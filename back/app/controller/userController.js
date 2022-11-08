@@ -133,13 +133,9 @@ const userController = {
 		}
 	}, 
 
-// 	/** @function 
-//    * Disconnect user and delete session
-//    */
-// 	disconnect(req,res){
-// 		req.session.user = false;
-// 		res.redirect('/');
-// 	}
+	test(req,res){
+		res.status(200).json({ message : 'vous êtes bien authentifié'});
+	}
 };
 
 module.exports = userController; 
