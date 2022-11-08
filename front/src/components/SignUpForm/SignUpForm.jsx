@@ -38,7 +38,7 @@ function SignUpForm(){
   const { isLogged, setIsLogged } = useContext(loginContext); 
   const { pseudo, setPseudo } = useContext(loginContext); 
   const [error, setError] = useState('')
-  const {role, setRole} = useContext(loginContext);
+  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
 
 
 
@@ -65,8 +65,11 @@ function SignUpForm(){
         setIsLogged(true);
         setPseudo(response.pseudo);
         //Todo gérer la redirection admin
-        setRole(response.role)
-        navigate("/")
+        if(response.role === 'admin'){
+          setIsRoleAdmin(true);
+          navigate('/cart'); 
+        } else {        navigate("/")
+      }
       }
       
     } catch (error) {
