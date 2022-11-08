@@ -12,6 +12,13 @@ import CardList from '../CardList/CardList';
 import Error from '../Error/Error';
 // import Details component
 import Details from '../Details/Details';
+
+// import Footer component
+import Footer from '../Footer/Footer';
+
+import CartPage from '../CartPage/CartPage';
+
+
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
 // import FormAddWine component
@@ -24,7 +31,8 @@ import Footer from '../Footer/Footer';
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 
-import CartPage from '../CartPage/CartPage';
+import { LoginContextProvider } from '../../Context/loginContext';
+
 
 // import scss
 import './App.scss';
@@ -38,14 +46,20 @@ function App() {
 
     <div className="App">
     
+    <LoginContextProvider>
+        <Header />
 
-      <Header />
+        <Routes>
+        
+          <Route path="/" element={
+            
+            // provider for share data between FilterMenu and Cardlist
 
-      <Routes>
-       
-        <Route path="/" element={
-          
-          // provider for share data between FilterMenu and Cardlist
+
+            <AllWinesProvider>
+                <FilterMenu />
+                <CardList />
+            </AllWinesProvider>
 
 
           <AllWinesProvider>
@@ -54,20 +68,25 @@ function App() {
           </AllWinesProvider>
 
 
-        } />
+          } />
 
-        <Route path="*" element={
-          <Error />
-        } />
+          <Route path="*" element={
+            <Error />
+          } />
 
-        <Route path="/wine/:id" element={
-          <Details />
-        } />
+          <Route path="/wine/:id" element={
+            <Details />
+          } />
 
 
-        <Route path="/signup" element={
-          <SignUpForm />
-        } />
+          <Route path="/signup" element={
+            <SignUpForm />
+          } />
+
+          <Route path="/cart" element={
+                    <CartPage />
+          } />
+
 
         <Route path="/cart" element={
                   <CartPage />
@@ -79,12 +98,14 @@ function App() {
           </AllWinesProvider>
         } />
 
-       
-      </Routes>
+        
+        </Routes>
 
 
-      <Footer />
-    
+
+        <Footer />
+    </LoginContextProvider>
+
     </div>
   );
 }

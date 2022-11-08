@@ -2,7 +2,7 @@
 // import React
 import React, { Fragment, useState} from 'react';
 import { Link, NavLink } from 'react-router-dom'
-
+import LoginForm from '../LoginForm/LoginForm';
 //import reducer
 import { loginRequest } from '../../services/userRequests'
 import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
@@ -65,9 +65,7 @@ function Header() {
                 <div>
                     <div className="menu-login">
                         
-
-                        
-                        {isOpen ? // if the "isOpen" is true we display the login form below
+                        {/* {isOpen ? // if the "isOpen" is true we display the login form below
                             <div className="login-form">
                                 <form action="" className="form-login">
                                     <button className="close" onClick={handleIsOpen}>X</button>
@@ -90,8 +88,10 @@ function Header() {
                                 <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                                 <Link to="/signup" className="tab-connexion">S'inscrire</Link>
 
-                            </Fragment>
-                        }
+                            </Fragment> */}
+                        {/* } */}
+
+                        <LoginForm />
                     </div>
                     <div className="menu-user">
                         <Link to="/signup" className="tab-user">

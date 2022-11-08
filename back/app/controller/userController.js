@@ -30,17 +30,17 @@ const userController = {
 			});
 
 			if(searchedUser){
-				throw new Error('Signup does not work, invalid email or password'); 
+				throw new Error('1. Signup does not work, invalid email or password'); 
 			}
             
 			//2. Check that the email format is valid with email-validator
 			if(!emailValidator.validate(email)){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('2. Signup does not work, invalid email or password');
 			}
 
 			//3. Check that the password and confirmation are identical
 			if(password !== confirmPassword){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('3. Signup does not work, invalid email or password');
 			}
 
 			//4. Encrypting the password with bcrypt
@@ -48,11 +48,11 @@ const userController = {
 
 			//5. Check that firstname and lastname exist
 			if(!firstname){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('4. Signup does not work, invalid email or password');
 			}
 
 			if(!lastname){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('5. Signup does not work, invalid email or password');
 			}
 
 			//6. Create an instance, save it in the database
@@ -113,18 +113,18 @@ const userController = {
 
 			//3. Token JWT
 			if(searchedUser){
-				const jwtContent = { userId: searchedUser.id};
+				const jwtContent = { userId: searchedUser.id };
 				const jwtOptions = { 
 					algorithm: 'HS256', 
 					expiresIn: '3h' 
 				};
 				let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
 				console.log('<< 200', searchedUser.email);
-				res.status(200).json({ 
-					logged: true, 
+				return res.status(200).json({ 
+					token: token,
+					logged: true,
 					pseudo : searchedUser.firstname, 
 					role : searchedUser.role,
-					token: token,
 				}); 
 			}
 		} catch (error) {
@@ -133,12 +133,8 @@ const userController = {
 		}
 	}, 
 
-	/** @function 
-   * Disconnect user and delete session
-   */
-	disconnect(req,res){
-		req.session.user = false;
-		res.redirect('/');
+	test(req,res){
+		res.status(200).json({ message : 'vous êtes bien authentifié'});
 	}
 };
 

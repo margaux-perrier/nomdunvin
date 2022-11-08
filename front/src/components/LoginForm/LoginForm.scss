@@ -1,0 +1,125 @@
+// @use "src/styles/vars";
+
+// .menu-login {
+//     display: flex;
+//     height: 100%;
+//   }
+//   .menu-link {
+//     width: 20%;
+//     align-items: center;
+//   }
+//   .menu-user {
+//     width: 100%;
+//     height: 100%;
+//     align-items: center;
+//     display: flex;
+
+//   }
+//   .link {
+//     width: 110%;
+//   }
+//   .tab-link {
+//     color: vars.$secondary-color;
+//     margin-right: 1rem;
+//     font-size: 1.3rem;
+//     font-weight: bold;
+//     font-family: vars.$font-Montserrat;
+//     transition: 0.1s 0.1s ease-in-out;
+//     width: 100%;
+//   }
+//   .tab-link:hover {
+//     font-family: vars.$font-Montserrat;
+//     font-weight: 100;
+//   }
+//   .tab-connexion {
+//     color: vars.$secondary-color;
+//     font-family: vars.$font-Montserrat;
+//     transition: 0.1s 0.1s ease-in-out;
+//     padding: vars.$gutter1;
+//     cursor: pointer;
+//   }
+//   .tab-connexion:hover {
+//     font-family: vars.$font-Montserrat;
+//     font-weight: 600;
+//   }
+//   .menu-login {
+//     display: none;
+//     align-items: center;
+//     padding: vars.$gutter1;
+//   }
+//   .logo-user {
+//     display: block;
+//     align-items: center;
+//     width: 25%;
+//     margin: auto;
+//   }
+
+//   @media screen and (min-width: 768px) {
+//     .header {
+//       .navbar {
+//         // Management of login form Desktop
+//         .menu-login {
+//           display: flex;
+//           .menu-login:hover {
+//             transition: all 0.8s ease-out;
+//           }
+   
+  
+//           .form-login {
+//             display: flex;
+//             .form-input {
+//               color: vars.$primary-color;
+//               padding-left: 1em;
+//               margin-left: 1em;
+//               height: 2em;
+//               border: 1px solid vars.$secondary-color;
+//               width: 20em;
+//               border-radius: 2em;
+//             }
+//             ::placeholder {
+//               font-size: 1.2em;
+//               font-style: italic;
+//             }
+//             .form-btn {
+//               font-weight: bold;
+//               color: vars.$primary-color;
+//               border-radius: 2em;
+//               padding: 0.5em;
+//               background-color: white;
+//               border: 1px solid vars.$primary-color;
+//               margin-left: 1em;
+//             }
+//             .form-btn:hover {
+//               background-color: vars.$primary-color;
+//               color: vars.$secondary-color;
+//               border: 1px solid vars.$primary-color;
+//               transition: all 0.3s ease-out;
+//             }
+  
+//             .close {
+//               background-color: vars.$primary-color;
+//               border: vars.$primary-color;
+//               color: white;
+//               font-weight: bold;
+//               font-size: 1.5em;
+//             }
+//             //hover sur close
+//             .close:hover {
+//               background-color: vars.$primary-color;
+//               color: vars.$secondary-color;
+//               font-weight: bold;
+//               font-size: 1.2em;
+//               transition: all 0.3s ease-out;
+//             }
+//           }
+//         }
+//         .logo-user {
+//           display: none;
+//         }
+//       }
+//     }
+//   }
+//   .menu-user {
+//     display: none;
+//   }
+
