@@ -4,7 +4,7 @@ import React from "react";
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
-import axios from 'axios';
+
 
 //import user methods
 import {signupRequest} from '../../services/userRequests'
@@ -24,7 +24,7 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   //useReducer configs
-  const { userState, userDispatch } = useUserReducer();
+  const { userDispatch } = useUserReducer();
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
 

@@ -12,10 +12,14 @@ import CardList from '../CardList/CardList';
 import Error from '../Error/Error';
 // import Details component
 import Details from '../Details/Details';
-// import Footer component
-import Footer from '../Footer/Footer';
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+// import FormAddWine component
+import FormAddWine from '../FormAddWine/FormAddWine';
+
+// import Footer component
+import Footer from '../Footer/Footer';
+
 
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
@@ -47,8 +51,7 @@ function App() {
           <AllWinesProvider>
               <FilterMenu />
               <CardList />
-       
-              </AllWinesProvider>
+          </AllWinesProvider>
 
 
         } />
@@ -68,6 +71,12 @@ function App() {
 
         <Route path="/cart" element={
                   <CartPage />
+        } />
+      
+        <Route path="/addwine" element={
+          <AllWinesProvider>
+          <FormAddWine />
+          </AllWinesProvider>
         } />
 
        

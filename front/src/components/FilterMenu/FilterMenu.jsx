@@ -81,6 +81,7 @@ const FilterMenu = () => {
                             onChange={handleChangeColor}
                             index={checkboxColor.indexOf(item)}
                             checked={item.value}
+                            
                         />
                         <label className="checkbox-title">Vin {item.color}</label>
                     </div>

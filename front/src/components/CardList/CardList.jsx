@@ -3,16 +3,16 @@
 // import react
 
 import React, { useState, Fragment, useContext } from 'react';
-
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import Card component
 import Card from '../Card/Card';
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
-
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
+// import PropTypes
+import PropTypes from 'prop-types';
 
 // import Scss
 import './cardList.scss';
@@ -165,3 +165,27 @@ function CardList() {
 }
 
 export default React.memo(CardList);
+
+
+
+// * PROP-TYPES *//
+
+CardList.propTypes = {
+    wines: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            size: PropTypes.string.isRequired,
+            color: PropTypes.string.isRequired,
+            alcohol: PropTypes.number.isRequired,
+            price: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            avatar: PropTypes.string.isRequired,
+            winemaker: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+            }).isRequired,
+            appellation: PropTypes.string.isRequired,
+            culture: PropTypes.string.isRequired,
+        }).isRequired,
+    )
+};
+

@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 //import reducer
 import { loginRequest } from '../../services/userRequests'
-import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
 
 
@@ -22,7 +22,7 @@ function Header() {
     //* STATES *//
     // This State concerns the opening of the login form when you click on the "Se connecter" button
     const [isOpen, setIsOpen] = useState(false);
-    const { userState, userDispatch } = useUserReducer();
+    const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
 
 
