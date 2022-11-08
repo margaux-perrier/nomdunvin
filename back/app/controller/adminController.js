@@ -1,4 +1,5 @@
 const {Wine} = require('../models');
+const { escape } = require('sanitizer');
 
 const adminController = {
 
@@ -66,13 +67,13 @@ const adminController = {
 			}
     
 			const newWine = Wine.build({
-				name, 
-				description, 
-				appellation, 
+				name : escape(name), 
+				description : escape(description), 
+				appellation,
 				size, 
-				price,
-				alcohol, 
-				vintage, 
+				price : escape(price),
+				alcohol: escape(alcohol), 
+				vintage : escape(vintage), 
 				color, 
 				avatar, 
 				region_id, 
@@ -115,10 +116,10 @@ const adminController = {
 			}
     
 			if (name) {
-				wine.name = name;
+				wine.name = escape(name);
 			}
 			if (description) {
-				wine.description = description; 
+				wine.description = escape(description); 
 			}
 			if (appellation) {
 				wine.appellation = appellation;
@@ -130,13 +131,13 @@ const adminController = {
 				wine.color = color;  
 			}
 			if (price) {
-				wine.price = price;  
+				wine.price = escape(price);  
 			}
 			if (alcohol) {
-				wine.alcohol = alcohol;  
+				wine.alcohol = escape(alcohol);  
 			}
 			if (vintage) {
-				wine.vintage = vintage;  
+				wine.vintage = escape(vintage);  
 			}
 			if (avatar) {
 				wine.avatar = avatar;  

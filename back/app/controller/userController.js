@@ -3,6 +3,7 @@ const emailValidator = require('email-validator');
 const jsonwebtoken = require('jsonwebtoken'); 
 const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt'); 
+const { escape } = require('sanitizer');
 
 const userController = {
 
@@ -25,58 +26,58 @@ const userController = {
 			//1. Check the user doesn't exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
-					email
+					email : escape(email)
 				}
 			});
 
 			if(searchedUser){
-				throw new Error('1. Signup does not work, invalid email or password'); 
+				throw new Error('Signup does not work, invalid email or password'); 
 			}
             
 			//2. Check that the email format is valid with email-validator
-			if(!emailValidator.validate(email)){
-				throw new Error('2. Signup does not work, invalid email or password');
+			if(!emailValidator.validate(escape(email))){
+				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			//3. Check that the password and confirmation are identical
-			if(password !== confirmPassword){
-				throw new Error('3. Signup does not work, invalid email or password');
+			if(escape(password) !== escape(confirmPassword)){
+				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			//4. Encrypting the password with bcrypt
-			const hashedPassword = bcrypt.hashSync(password, 10); 
+			const hashedPassword = bcrypt.hashSync(escape(password), 10); 
 
 			//5. Check that firstname and lastname exist
 			if(!firstname){
-				throw new Error('4. Signup does not work, invalid email or password');
+				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			if(!lastname){
-				throw new Error('5. Signup does not work, invalid email or password');
+				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			//6. Create an instance, save it in the database
 			const newUser = User.build({
-				email : req.body.email,
+				email : escape(email),
 				password : hashedPassword,
-				firstname : req.body.firstname, 
-				lastname : req.body.lastname
+				firstname : escape(firstname), 
+				lastname : escape(lastname)
 			}); 
 
 			if(address_number){
-				newUser.address_number = Number(address_number);
+				newUser.address_number = Number(escape(address_number));
 			}
 
 			if(address_street){
-				newUser.address_street = address_street;
+				newUser.address_street = escape(address_street);
 			}
 
 			if(address_postal){
-				newUser.address_postal = address_postal;
+				newUser.address_postal = escape(address_postal);
 			}
 
 			if(address_city){
-				newUser.address_city = address_city;
+				newUser.address_city = escape(address_city);
 			}
 
 			await newUser.save(); 
@@ -99,7 +100,7 @@ const userController = {
 			//1. Check the user exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
-					email : req.body.email
+					email : escape(req.body.email)
 				}
 			});
 			if(!searchedUser){

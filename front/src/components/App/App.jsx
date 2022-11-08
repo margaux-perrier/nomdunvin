@@ -25,7 +25,6 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import FormAddWine from '../FormAddWine/FormAddWine';
 
 
-
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 
@@ -54,10 +53,11 @@ function App() {
             // provider for share data between FilterMenu and Cardlist
 
 
-            <AllWinesProvider>
-                <FilterMenu />
-                <CardList />
-            </AllWinesProvider>
+
+          <AllWinesProvider>
+              <FilterMenu />
+              <CardList />
+          </AllWinesProvider>
 
 
 

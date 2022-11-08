@@ -10,6 +10,7 @@ const userController = require('./controller/userController');
 //import middleware
 const cartCreation = require('./middleware/cartCreation'); 
 const authorizationMiddleware = require('./middleware/authorizationMiddleware');
+const filterController = require('./controller/filterController');
 //winecontroller
 router.get('/', wineController.getAllWines); 
 router.get('/wine/:id', wineController.getOneWineById);
@@ -31,4 +32,14 @@ router.post('/cart/update/:wineid', cartController.updateCart);
 router.get('/cart/remove/:wineid', cartController.removeWineFromCart); 
 router.get('/cart/destroy', cartController.deleteCart); 
 router.post('/cart/validate', authorizationMiddleware, cartController.validateCart); 
+
+//filter controller
+router.get('/culture', filterController.getAllCulture); 
+router.get('/region', filterController.getAllRegion); 
+router.get('/winemaker', filterController.getAllWinemaker); 
+router.get('/style', filterController.getAllStyle); 
+router.get('/grapevariety', filterController.getAllGrapevariety); 
+router.get('/dish', filterController.getAllDish); 
+
+
 module.exports = router;
