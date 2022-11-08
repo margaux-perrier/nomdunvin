@@ -24,8 +24,6 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 // import FormAddWine component
 import FormAddWine from '../FormAddWine/FormAddWine';
 
-// import Footer component
-import Footer from '../Footer/Footer';
 
 
 // import AllWinesProvider
@@ -61,11 +59,6 @@ function App() {
                 <CardList />
             </AllWinesProvider>
 
-
-          <AllWinesProvider>
-              <FilterMenu />
-              <CardList />
-          </AllWinesProvider>
 
 
           } />
