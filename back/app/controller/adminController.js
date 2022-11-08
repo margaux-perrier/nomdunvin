@@ -1,4 +1,4 @@
-const {Wine} = require('../models');
+const {Wine, GrapeVariety, Style, Culture, Dish} = require('../models');
 const { escape } = require('sanitizer');
 
 const adminController = {
@@ -180,7 +180,428 @@ const adminController = {
 		}
 	}, 
 
+	/** @function 
+   * associate grapevariety to wine
+   * @param {Array} id- grapevariety's id in array
+   */
+	async associateGrapeVarietyToWine(req,res){
+		try{
+			const wineId = req.params.id; 
+			const { grapeVarietyIdList } = req.body;
+
+			let wine = await Wine.findByPk(wineId, {
+				include : 'grapevarieties', 
+			}); 
+
+			if(!wine) {
+				const error = new Error(`Wine with id ${wineId} does not exist.`); 
+				return res.status(404).json({message : error.message}); 
+			}
+
+			let grapevarietyList = []; 
+			for ( const id of grapeVarietyIdList ){
+				const grapevariety = await GrapeVariety.findByPk(id);
+				if(!grapevariety){
+					const error = new Error(`GrapeVariety with id ${id} does not exist.`); 
+					return res.status(404).json({message : error.message}); 
+				}
+				grapevarietyList.push(grapevariety);
+			}
+			
+			await wine.addGrapevariety(grapevarietyList); 
+
+			wine = await Wine.findByPk(wineId, {
+				include : 'grapevarieties'
+			}); 
+
+			res.status(201).json(wine); 
+
+		}catch(error){
+			console.error(error); 
+			res.status(500).json({message : error.message}); 
+		}
+	}, 
+
+	/** @function 
+   * associate style to wine
+   * @param {Array} id- style's id in array
+   */
+	async associateStyleToWine(req,res){
+		try{
+			const wineId = req.params.id; 
+			const { styleIdList } = req.body;
 	
+			let wine = await Wine.findByPk(wineId, {
+				include : 'styles', 
+			}); 
+	
+			if(!wine) {
+				const error = new Error(`Wine with id ${wineId} does not exist.`); 
+				return res.status(404).json({message : error.message}); 
+			}
+	
+			let styleList = []; 
+			for ( const id of styleIdList ){
+				const style = await Style.findByPk(id);
+				if(!style){
+					const error = new Error(`Style with id ${id} does not exist.`); 
+					return res.status(404).json({message : error.message}); 
+				}
+				styleList.push(style);
+			}
+				
+			await wine.addStyle(styleList); 
+	
+			wine = await Wine.findByPk(wineId, {
+				include : 'styles'
+			}); 
+	
+			res.status(201).json(wine); 
+	
+		}catch(error){
+			console.error(error); 
+			res.status(500).json({message : error.message}); 
+		}
+	}, 
+
+	/** @function 
+   * associate culture to wine
+   * @param {Array} id- culture's id in array
+   */
+	async associateCultureToWine(req,res){
+		try{
+			const wineId = req.params.id; 
+			const { cultureIdList } = req.body;
+	
+			let wine = await Wine.findByPk(wineId, {
+				include : 'culture', 
+			}); 
+	
+			if(!wine) {
+				const error = new Error(`Wine with id ${wineId} does not exist.`); 
+				return res.status(404).json({message : error.message}); 
+			}
+	
+			let cultureList = []; 
+			for ( const id of cultureIdList ){
+				const culture = await Culture.findByPk(id);
+				if(!culture){
+					const error = new Error(`Culture with id ${id} does not exist.`); 
+					return res.status(404).json({message : error.message}); 
+				}
+				cultureList.push(culture);
+			}
+				
+			await wine.addCulture(cultureList); 
+	
+			wine = await Wine.findByPk(wineId, {
+				include : 'culture'
+			}); 
+	
+			res.status(201).json(wine); 
+	
+		}catch(error){
+			console.error(error); 
+			res.status(500).json({message : error.message}); 
+		}
+	}, 
+
+	/** @function 
+   * associate dish to wine
+   * @param {Array} id- dish's id in array
+   */
+	async associateDishToWine(req,res){
+		try{
+			const wineId = req.params.id; 
+			const { dishIdList } = req.body;
+		
+			let wine = await Wine.findByPk(wineId, {
+				include : 'dishes', 
+			}); 
+		
+			if(!wine) {
+				const error = new Error(`Wine with id ${wineId} does not exist.`); 
+				return res.status(404).json({message : error.message}); 
+			}
+		
+			let dishList = []; 
+			for ( const id of dishIdList ){
+				const dish = await Dish.findByPk(id);
+				if(!dish){
+					const error = new Error(`Dish with id ${id} does not exist.`); 
+					return res.status(404).json({message : error.message}); 
+				}
+				dishList.push(dish);
+			}
+					
+			await wine.addDish(dishList); 
+		
+			wine = await Wine.findByPk(wineId, {
+				include : 'dishes'
+			}); 
+		
+			res.status(201).json(wine); 
+		
+		}catch(error){
+			console.error(error); 
+			res.status(500).json({message : error.message}); 
+		}
+	}, 
+
+	/** @function 
+   	* remove or add grapevariety to wine
+   	* @param {Array} id- grapevariety's id in array
+   	*/
+	async removeGrapeVarietyToWine(req, res){
+		try {
+			
+			const wineId = req.params.id; 
+			const { grapeVarietyIdList } = req.body;
+
+			let wine = await Wine.findByPk(wineId, {
+				include : 'grapevarieties'
+			});
+
+			//1. On récupère les id des cépages déjà présents sur wine et on le stocke dans un tableau
+			let initialGrapeVarietyIdList = wine.grapevarieties.map(item => item.id);
+			console.log('Initial', initialGrapeVarietyIdList); 
+			//2. On récupère les id des cépages communs au vin et à la liste d'id récupéré dans le req.body
+			let commonGrapeVarietyIdList = grapeVarietyIdList.filter(item => initialGrapeVarietyIdList.includes(item)); // id en commun
+			console.log('Commun', commonGrapeVarietyIdList);
+			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList),
+			// on cherche le cépage correspondant en base de données et on les ajoute dans un tableau 
+			let grapevarietiesToAdd = []; 
+			for(let item of grapeVarietyIdList){
+				if(!commonGrapeVarietyIdList.includes(item)){
+					const grapevariety = await GrapeVariety.findByPk(item);
+					if(!grapevariety){
+						const error = new Error(`GrapeVariety with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					grapevarietiesToAdd.push(grapevariety); 
+				}
+			}
+
+			//4. Pour les id de initialGrapeVarietyIdList qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList)
+			// on cherche les cépages correspondant en base de données et on les ajoute dans un tableau
+			let grapevarietiesToRemove = []; 
+			for(let item of initialGrapeVarietyIdList){
+				if(!commonGrapeVarietyIdList.includes(item)){
+					const grapevariety = await GrapeVariety.findByPk(item);
+					if(!grapevariety){
+						const error = new Error(`GrapeVariety with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					grapevarietiesToRemove.push(grapevariety); 
+				}
+			}
+
+			await wine.addGrapevariety(grapevarietiesToAdd); 
+			await wine.removeGrapevariety(grapevarietiesToRemove);
+
+			wine = await Wine.findByPk(wineId, {
+				include: 'grapevarieties',
+			});
+
+			res.status(200).json(wine);
+
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: error.message });
+		}
+	}, 
+
+	/** @function 
+   	* remove or add style to wine
+   	* @param {Array} id- style's id in array
+   	*/
+	async removeStyleToWine(req, res){
+		try {
+			
+			const wineId = req.params.id; 
+			const { styleIdList } = req.body;
+
+			let wine = await Wine.findByPk(wineId, {
+				include : 'styles'
+			});
+
+			//1. On récupère les id des styles déjà présents sur wine et on le stocke dans un tableau
+			let initialStyleIdList = wine.styles.map(item => item.id);
+			
+			//2. On récupère les id des styles communs au vin et à la liste d'id récupéré dans le req.body
+			let commonStyleIdList = styleIdList.filter(item => initialStyleIdList.includes(item)); // id en commun
+			
+			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
+			// on cherche le style correspondant en base de données et on les ajoute dans un tableau 
+			let styleToAdd = []; 
+			for(let item of styleIdList){
+				if(!commonStyleIdList.includes(item)){
+					const style = await Style.findByPk(item);
+					if(!style){
+						const error = new Error(`Style with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					styleToAdd.push(style); 
+				}
+			}
+
+			//4. Pour les id de initialStyleIdList qui ne sont pas dans le tableau des id communs (communStyleIdList)
+			// on cherche les styles correspondant en base de données et on les ajoute dans un tableau
+			let styleToRemove = []; 
+			for(let item of initialStyleIdList){
+				if(!commonStyleIdList.includes(item)){
+					const style = await Style.findByPk(item);
+					if(!style){
+						const error = new Error(`Style with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					styleToRemove.push(style); 
+				}
+			}
+
+			await wine.addStyle(styleToAdd); 
+			await wine.removeStyle(styleToRemove);
+
+			wine = await Wine.findByPk(wineId, {
+				include: 'styles',
+			});
+
+			res.status(200).json(wine);
+
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: error.message });
+		}
+	}, 
+
+	/** @function 
+   	* remove or add culture to wine
+   	* @param {Array} id- culture's id in array
+   	*/
+	async removeCultureToWine(req, res){
+		try {
+			
+			const wineId = req.params.id; 
+			const { cultureIdList } = req.body;
+
+			let wine = await Wine.findByPk(wineId, {
+				include : 'culture'
+			});
+
+			//1. On récupère les id des cultures déjà présentes sur wine et on le stocke dans un tableau
+			let initialCultureIdList = wine.culture.map(item => item.id);
+			
+			//2. On récupère les id des cultures communnes au vin et à la liste d'id récupéré dans le req.body
+			let commonCultureIdList = cultureIdList.filter(item => initialCultureIdList.includes(item)); // id en commun
+		
+			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
+			// on cherche les cultures correspondantes en base de données et on les ajoute dans un tableau 
+			let cultureToAdd = []; 
+			for(let item of cultureIdList){
+				if(!commonCultureIdList.includes(item)){
+					const culture = await Culture.findByPk(item);
+					if(!culture){
+						const error = new Error(`Culture with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					cultureToAdd.push(culture); 
+				}
+			}
+
+			//4. Pour les id de initialCultureIdList qui ne sont pas dans le tableau des id communs (communCultureIdList)
+			// on cherche les cultures correspondantes en base de données et on les ajoute dans un tableau
+			let cultureToRemove = []; 
+			for(let item of initialCultureIdList){
+				if(!commonCultureIdList.includes(item)){
+					const culture = await Culture.findByPk(item);
+					if(!culture){
+						const error = new Error(`Culture with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					cultureToRemove.push(culture); 
+				}
+			}
+
+			await wine.addCulture(cultureToAdd); 
+			await wine.removeCulture(cultureToRemove);
+
+			wine = await Wine.findByPk(wineId, {
+				include: 'culture',
+			});
+
+			res.status(200).json(wine);
+
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: error.message });
+		}
+	}, 
+
+	/** @function 
+   	* remove or add dish to wine
+   	* @param {Array} id- dish's id in array
+   	*/
+	async removeDishToWine(req, res){
+		try {
+			
+			const wineId = req.params.id; 
+			const { dishIdList } = req.body;
+
+			let wine = await Wine.findByPk(wineId, {
+				include : 'dishes'
+			});
+
+			//1. On récupère les id des dish déjà présentes sur wine et on le stocke dans un tableau
+			let initialDishIdList = wine.dishes.map(item => item.id);
+			
+			//2. On récupère les id des dish communnes au vin et à la liste d'id récupéré dans le req.body
+			let commonDishIdList = dishIdList.filter(item => initialDishIdList.includes(item)); // id en commun
+		
+			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
+			// on cherche les dish correspondantes en base de données et on les ajoute dans un tableau 
+			let dishToAdd = []; 
+			for(let item of dishIdList){
+				if(!commonDishIdList.includes(item)){
+					const dish = await Dish.findByPk(item);
+					if(!dish){
+						const error = new Error(`Dish with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					dishToAdd.push(dish); 
+				}
+			}
+
+			//4. Pour les id de initialDishIdList qui ne sont pas dans le tableau des id communs (communCultureIdList)
+			// on cherche les dish correspondantes en base de données et on les ajoute dans un tableau
+			let dishToRemove = []; 
+			for(let item of initialDishIdList){
+				if(!commonDishIdList.includes(item)){
+					const dish = await Dish.findByPk(item);
+					if(!dish){
+						const error = new Error(`Dish with id ${item} does not exist.`); 
+						return res.status(404).json({message : error.message}); 
+					}
+					dishToRemove.push(dish); 
+				}
+			}
+
+			await wine.addDish(dishToAdd); 
+			await wine.removeDish(dishToRemove);
+
+			wine = await Wine.findByPk(wineId, {
+				include: 'dishes',
+			});
+
+			res.status(200).json(wine);
+
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: error.message });
+		}
+	}, 
+
+
+
 };
 
 module.exports = adminController;
