@@ -24,10 +24,6 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 // import FormAddWine component
 import FormAddWine from '../FormAddWine/FormAddWine';
 
-// import Footer component
-import Footer from '../Footer/Footer';
-
-
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 
@@ -54,12 +50,6 @@ function App() {
           <Route path="/" element={
             
             // provider for share data between FilterMenu and Cardlist
-
-
-            <AllWinesProvider>
-                <FilterMenu />
-                <CardList />
-            </AllWinesProvider>
 
 
           <AllWinesProvider>
