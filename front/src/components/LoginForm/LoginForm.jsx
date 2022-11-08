@@ -53,6 +53,9 @@ function LoginForm (){
                     {error}
                   </div>
               )}
+
+
+
               
               {isLogged && ( 
                 <div className="login-form_logged">
@@ -69,10 +72,14 @@ function LoginForm (){
                 </div>
               )}
 
+
+
+
               {(!isLogged && isOpen && (
         
                 <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
                   <button className="close" onClick={handleIsOpen}>X</button>
+
                   <div className="form-group">
                     <input
                       name="email"
@@ -81,6 +88,7 @@ function LoginForm (){
                       value={email}
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       name="password"
@@ -90,6 +98,7 @@ function LoginForm (){
                       value={password}
                     />
                   </div>
+
                   <button
                     type="submit"
                     className="form-btn"
@@ -98,12 +107,14 @@ function LoginForm (){
                   </button>
                 
                 </form>
-              )) || (
+              ))}
+              
+               {(!isLogged && !isOpen &&(
                 <>
                   <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                   <Link to="/signup" className="tab-connexion">S'inscrire</Link>
                 </>
-              )}
+              ))}
 
             </div>
           );
