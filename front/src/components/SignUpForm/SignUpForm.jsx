@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
-
 import { loginContext } from '../../Context/loginContext'; 
-
 
 //import user methods
 import {signupRequest} from '../../services/userRequests'
@@ -29,7 +27,6 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   //useReducer configs
-
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
   const navigate = useNavigate(); 
@@ -40,8 +37,10 @@ function SignUpForm(){
   const[connectionPassword, setConnectionPassword] = useState('');
   const { isLogged, setIsLogged } = useContext(loginContext); 
   const { pseudo, setPseudo } = useContext(loginContext); 
-  const [error, setError] = useState('')
+  const [loggingError, setLoggingError] = useState('');
+  const [signupError, setSignupError] = useState('');
   const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+  const[successSignup, setSuccessSignup] = useState('');
 
 
 
@@ -56,7 +55,51 @@ function SignUpForm(){
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
+    setSignupError('');
+
+    if(formState.firstname === '') {
+      setSignupError('veuillez rentrer votre prénom');
+      return;
+    }
+    
+    if(formState.lastname === '') {
+      setSignupError('veuillez rentrer votre nom');
+      return;
+    }
+
+    if(formState.email === '' ) {
+      setSignupError('veuillez rentrer une adresse email');
+      console.log('error ===>', signupError )
+      return;
+    }
+
+    if (!isValidEmail(formState.email)) {
+      setSignupError('Email non valide');
+      return;
+    }
+
+    if(formState.password !== formState.confirmPassword){
+      setSignupError('Passwords non identiques');
+      return;
+    }
+
+    if(formState.generalConditions === false) {
+      setSignupError('Veuillez accepter les conditions générales');
+      return;
+    }
+
+    if(formState.RGPD === false) {
+      setSignupError('Veuillez accepter la politique de confidentialité');
+      return;
+    }
+
+   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword);
+   setSuccessSignup('Votre compte a bien été crée, vous pouvez vous connecter');
+   reset();
+  }
+
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
   }
 
   const handleSubmitLoginForm = async (e) => {
@@ -67,7 +110,6 @@ function SignUpForm(){
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo);
-        //Todo gérer la redirection admin
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
           navigate('/cart'); 
@@ -78,7 +120,7 @@ function SignUpForm(){
       
     } catch (error) {
       console.log(error.message)
-     setError('mauvais password ou email');
+      setLoggingError('mauvais password ou email');
     }
     
 }
@@ -135,10 +177,12 @@ function SignUpForm(){
           </Grid>
           </Box>
       </div>
-      {error && (
-                  <div className="ui negative message">
-                    {error}
-                  </div>)}
+      {loggingError && (
+        <div className="ui negative message">
+          {loggingError}
+        </div>)}
+
+      
 
       <h1 className="title">
           Inscription
@@ -149,6 +193,15 @@ function SignUpForm(){
 déjà vu ... Rejoignez nous en quelques clics !
       </p>
 
+      {signupError && (
+                  <div className="ui negative big message">
+                    {signupError}
+                  </div>)}
+
+      {successSignup && (
+        <div className="ui green big message ">
+          {successSignup}
+        </div>)}
    <Box 
    sx={{
      margin: 5
@@ -296,12 +349,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 />
               )}
             />
-          </Grid>
-
-
-
-
-          
+          </Grid>          
 
           <Grid item xs={12} spacing={2} container justifyContent="flex-end">
             <Grid item>
