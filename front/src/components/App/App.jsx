@@ -12,13 +12,21 @@ import CardList from '../CardList/CardList';
 import Error from '../Error/Error';
 // import Details component
 import Details from '../Details/Details';
+
 // import Footer component
 import Footer from '../Footer/Footer';
 
 import CartPage from '../CartPage/CartPage';
 
+
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+// import FormAddWine component
+import FormAddWine from '../FormAddWine/FormAddWine';
+
+// import Footer component
+import Footer from '../Footer/Footer';
+
 
 // import AllWinesProvider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
@@ -54,6 +62,12 @@ function App() {
             </AllWinesProvider>
 
 
+          <AllWinesProvider>
+              <FilterMenu />
+              <CardList />
+          </AllWinesProvider>
+
+
           } />
 
           <Route path="*" element={
@@ -73,8 +87,20 @@ function App() {
                     <CartPage />
           } />
 
+
+        <Route path="/cart" element={
+                  <CartPage />
+        } />
+      
+        <Route path="/addwine" element={
+          <AllWinesProvider>
+          <FormAddWine />
+          </AllWinesProvider>
+        } />
+
         
         </Routes>
+
 
 
         <Footer />

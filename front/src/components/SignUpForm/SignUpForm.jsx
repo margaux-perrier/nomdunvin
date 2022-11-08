@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+
 import { loginContext } from '../../Context/loginContext'; 
+
 
 //import user methods
 import {signupRequest} from '../../services/userRequests'
@@ -27,6 +29,7 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   //useReducer configs
+
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
   const navigate = useNavigate(); 

@@ -4,6 +4,8 @@ import React, { Fragment, useState} from 'react';
 import Modal from '../Modal/Modal';
 // import logo cart
 import cart from './cart.png';
+// import PropTypes
+import PropTypes from 'prop-types';
 // import Scss
 import './card.scss';
 
@@ -84,3 +86,24 @@ function Card({
 }
 
 export default React.memo(Card);
+
+
+// * PROP-TYPES *//
+
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    size: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    alcohol: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    winemaker: PropTypes.string.isRequired,
+    appellation: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
+    culture: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+        }).isRequired,
+    ).isRequired,
+};
