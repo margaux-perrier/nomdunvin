@@ -1,5 +1,5 @@
 // import React
-import React, { useContext, Fragment, useEffect } from 'react'
+import React, { useContext, Fragment } from 'react'
 // import AllWinesContext
 import { AllWinesContext } from "../../Context/AllWinesContext";
 
@@ -17,10 +17,9 @@ function FormAddWine() {
 
     const { adminState, adminDispatch } = UseAdminReducer();
 
-   
+    const { wines, culture, region  } = useContext(AllWinesContext);
 
-
-    const { wines,  } = useContext(AllWinesContext);
+    
       
 
 
@@ -30,8 +29,10 @@ function FormAddWine() {
     
       const handleCheckBoxChange = (e) => {
         console.log('checkbox change =======', e.target.name, e.target.checked)
+        
      
         adminDispatch(getActionSetValue(e.target.name, e.target.checked));
+        console.log(e.target.checked)
     
       }
   
@@ -57,7 +58,7 @@ function FormAddWine() {
         console.log('hello');
     }
 
-/*
+
     return (
         <Fragment>
 
@@ -164,40 +165,21 @@ function FormAddWine() {
 
                     <div class="field">
                         <label>Type de culture</label>
-                    {Object.keys(adminState.cultures).map((item) => (
-                        <div key={item} class="ui checkbox">
-                            <input type="checkbox" name={item} value={adminState.cultures[item]} checked={adminState.cultures[item]} onChange={handleCheckBoxChange} />
+                    {/*Object.keys(adminState.cultures).map((key) => (*/
+                    culture.map((item) => (
+                        <div key={item.id} class="ui checkbox">
+                            <input 
+                            type="checkbox" 
+                            name={item.name} 
+                            value={item.id}
+                            checked={adminState.cultures.item}
+                            onChange={handleCheckBoxChange} />
 
-                            
-                        
-                      
-                        
-                      
-                            
-                        <label>{item}</label>
-                        </div>
-
-
-                       
-
-
-                       
-
-                    
-                
-
-
-                            
-                        
+                        <label>{item.name}</label>
+                        </div>                        
                     ))}
 
 
-                   
-                        
-                        
-                    
-
-                   
                     </div>
 
 
@@ -251,7 +233,7 @@ function FormAddWine() {
             </div>
         </Fragment>
     )
-    */
+    
 }
 
 export default FormAddWine;

@@ -15,8 +15,8 @@ const addWineInitialState = {
   vintage: '',
   alcool: '',
   cultures:{
-    bio: true,
-    biodynamie: false,
+    Bio: true,
+    Biodynamie: false,
     HVE: false,
     Nature: false,
     Raisonnée: true,
@@ -76,6 +76,7 @@ function adminReducer(oldState, action) {
 }
 
 export function getActionSetValue(name, value) {
+ 
 
   return{
     type: SET_VALUE_INPUT,

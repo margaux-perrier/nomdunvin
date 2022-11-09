@@ -13,7 +13,7 @@ export const AllWinesProvider = ({ children }) => {
     // Create state for allWines
     const [wines, setWines] = useState([]);
 
-    
+
 
     // Stock data from API in state (with Axios request)
  
@@ -24,7 +24,6 @@ export const AllWinesProvider = ({ children }) => {
     }
     // useEffect for fetch data from API
     useEffect(() => { fetchWines() }, []);
-
 
 
     //STATE CULTURE
@@ -46,6 +45,8 @@ export const AllWinesProvider = ({ children }) => {
         setRegion(response[1].data);
         setWinemaker(response[2].data);
         setStyle(response[3].data);
+      
+
     }
     useEffect(() => { fecthFiltersWines() }, []);
 
@@ -69,7 +70,6 @@ export const AllWinesProvider = ({ children }) => {
     // Create state for checkboxWinemaker - For FilterMenu component
     const [checkboxWinemaker, setCheckboxWinemaker] = useState([]);
 
-
     // Create function handleChange for change value of checkboxWinemaker with index
     const handleChangeWinemaker = (e) => {
         const index = e.target.getAttribute('index');
@@ -82,8 +82,6 @@ export const AllWinesProvider = ({ children }) => {
     // Create state for checkboxRegion - For FilterMenu component
     const [checkboxRegion, setCheckboxRegion] = useState([]);
    
-
-
     // Create function handleChange for change value of checkboxRegion with index
     const handleChangeRegion = (e) => {
         const index = e.target.getAttribute('index');
@@ -104,7 +102,7 @@ export const AllWinesProvider = ({ children }) => {
 
     // Create function for choose and share informations between components
     return (
-        <AllWinesContext.Provider value={{ fetchWines, wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
+        <AllWinesContext.Provider value={{ region,culture,fetchWines, wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
             {children}
         </AllWinesContext.Provider>
     );
