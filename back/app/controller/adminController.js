@@ -105,7 +105,7 @@ const adminController = {
    */
 	async updateWineById(req,res){
 		try{
-			const wineId = req.params.id; 
+			const wineId = Number(req.params.id); 
 			const {name, description, appellation, size, price, alcohol, vintage, color, avatar, region_id, winemaker_id} = req.body; 
     
 			const wine = await Wine.findByPk(wineId); 
@@ -163,7 +163,7 @@ const adminController = {
    */
 	async deleteWineById(req,res){
 		try{
-			const wineId = req.params.id;
+			const wineId = Number(req.params.id);
 			const wine = await Wine.findByPk(wineId);
     
 			if (!wine) {
@@ -186,7 +186,9 @@ const adminController = {
    */
 	async associateGrapeVarietyToWine(req,res){
 		try{
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { grapeVarietyIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {
@@ -228,7 +230,9 @@ const adminController = {
    */
 	async associateStyleToWine(req,res){
 		try{
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { styleIdList } = req.body;
 	
 			let wine = await Wine.findByPk(wineId, {
@@ -270,12 +274,15 @@ const adminController = {
    */
 	async associateCultureToWine(req,res){
 		try{
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { cultureIdList } = req.body;
 	
 			let wine = await Wine.findByPk(wineId, {
 				include : 'culture', 
 			}); 
+
 	
 			if(!wine) {
 				const error = new Error(`Wine with id ${wineId} does not exist.`); 
@@ -300,6 +307,7 @@ const adminController = {
 	
 			res.status(201).json(wine); 
 	
+
 		}catch(error){
 			console.error(error); 
 			res.status(500).json({message : error.message}); 
@@ -312,7 +320,9 @@ const adminController = {
    */
 	async associateDishToWine(req,res){
 		try{
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { dishIdList } = req.body;
 		
 			let wine = await Wine.findByPk(wineId, {
@@ -355,7 +365,9 @@ const adminController = {
 	async removeGrapeVarietyToWine(req, res){
 		try {
 			
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { grapeVarietyIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {
@@ -419,7 +431,9 @@ const adminController = {
 	async removeStyleToWine(req, res){
 		try {
 			
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { styleIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {
@@ -476,7 +490,9 @@ const adminController = {
 	async removeCultureToWine(req, res){
 		try {
 			
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { cultureIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {
@@ -533,7 +549,9 @@ const adminController = {
 	async removeDishToWine(req, res){
 		try {
 			
-			const wineId = req.params.id; 
+
+			const wineId = Number(req.params.id); 
+
 			const { dishIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {

@@ -115,6 +115,7 @@ const cartController = {
 			let user = await User.findByPk(req.token.userId); 
 			if(!user){
 				const error = new Error(`User with id ${req.token.userId} does not exist`); 
+				console.log('ici.'); 
 				return res.status(404).json({message : error.message}); 
 			}
 
