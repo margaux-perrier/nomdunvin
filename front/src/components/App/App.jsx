@@ -97,7 +97,7 @@ function App() {
             </AllWinesProvider>
           } />
 
-          <Route path="/updatewine" element={
+          <Route path="/admin" element={
             <AllWinesProvider>
               <UpdateCardList />
             </AllWinesProvider>

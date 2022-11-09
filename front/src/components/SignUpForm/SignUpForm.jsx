@@ -112,7 +112,7 @@ function SignUpForm(){
         setPseudo(response.pseudo);
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-          navigate('/cart'); 
+          navigate('/admin'); 
         } else { 
             navigate("/")
       }
