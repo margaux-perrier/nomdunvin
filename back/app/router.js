@@ -11,6 +11,7 @@ const userController = require('./controller/userController');
 const cartCreation = require('./middleware/cartCreation'); 
 const authorizationMiddleware = require('./middleware/authorizationMiddleware');
 const filterController = require('./controller/filterController');
+
 //winecontroller
 router.get('/', wineController.getAllWines); 
 router.get('/wine/:id', wineController.getOneWineById);
@@ -23,7 +24,7 @@ router.delete('/admin/wine/:id', adminController.deleteWineById);
 //user controller
 router.post('/signup', userController.signupAction); 
 router.post('/login', userController.loginAction); 
-// router.get('/disconnect', userController.disconnect);
+
 
 //shopping cart
 router.use('/cart', cartCreation); 
@@ -41,5 +42,14 @@ router.get('/style', filterController.getAllStyle);
 router.get('/grapevariety', filterController.getAllGrapevariety); 
 router.get('/dish', filterController.getAllDish); 
 
+//Asssociations to wine
+router.post('/wine/:id/grapevariety', adminController.associateGrapeVarietyToWine);
+router.post('/wine/:id/style', adminController.associateStyleToWine);  
+router.post('/wine/:id/culture', adminController.associateCultureToWine);  
+router.post('/wine/:id/dish', adminController.associateDishToWine);
+router.patch('/wine/:id/grapevariety', adminController.removeGrapeVarietyToWine);
+router.patch('/wine/:id/style', adminController.removeStyleToWine);
+router.patch('/wine/:id/culture', adminController.removeCultureToWine);
+router.patch('/wine/:id/dish', adminController.removeDishToWine);
 
 module.exports = router;
