@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, Fragment } from "react";
 import {Link, useNavigate} from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 import { loginRequest } from "../../services/userRequests";
@@ -99,17 +99,14 @@ function LoginForm (){
                 
                 </form>
               )) || (
-                <>
+                <Fragment>
                   <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                   <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-                </>
+                </Fragment>
               )}
 
             </div>
           );
 };
 
-LoginForm.propTypes = {
-    handleLogin: PropTypes.func.isRequired,
-  }
 export default React.memo(LoginForm);

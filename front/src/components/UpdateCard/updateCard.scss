@@ -1,0 +1,191 @@
+@use "src/styles/vars";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 23em;
+  border-radius: 2rem;
+  border: 1px solid #a58b85;
+  margin-top: 3em; 
+  margin-left : 1em;
+  margin-right: 1em;
+
+  //* Concerns the upper part of the map: bottle image, capacity, tag and degrees *//
+  .visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .right-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .logo-cart {
+        width: 40%;
+        margin-left: 3rem;
+        margin-bottom: 1rem;
+      }
+    }
+    .card-img {
+      padding: 1rem;
+    }
+    .wine-logo {
+      width: 5em;
+    }
+    // Concerns All tags
+    .card-tag {
+      
+      margin-top: 2em;
+      font-style: italic;
+
+      .tag-Bio {
+        color: #1ebd4e;
+        margin-top: 0.5em;
+       
+      }
+      .tag-Biodynamie {
+        color: #1896b6;
+        margin-top: 0.5em;
+      
+      }
+      .tag-Nature {
+        color: #c2250a;
+        margin-top: 0.5em;
+      
+      }
+      .tag-Vegan {
+        color: #e9780f;
+        margin-top: 0.5em;
+        
+      }
+      .sulfites {
+        color: #ac089e;
+        margin-top: 0.5em;
+      
+       
+      }
+      .tag-Raisonnée {
+        color: #ad6f10;
+        margin-top: 0.5em;
+      
+      }
+      .tag-HVE {
+        color: #0a0deb;
+        margin-top: 0.5em;
+      }
+    }
+  }
+  // DIV format : capacity and degrees
+  .left-card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 1em 0 1em 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: vars.$primary-color;
+    .degrees {
+      color: rgb(92, 92, 92);
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+}
+//* Concerns the lower part of the menu: information on the winemaher, the region, the name of the wine *//
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+
+  .winemaker {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: vars.$primary-color;
+  }
+  .wine-name {
+    margin-top: 0.5em;
+    font-size: 1.4em;
+    font-style: italic;
+  }
+  .wine-region {
+    margin-top: 0.6em;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 0.6em;
+    font-style: italic;
+  }
+  .tablet-color-rouge {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #a5260a;
+    margin : 1em;
+  }
+  .tablet-color-blanc {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fdf1b8;
+    margin : 1em;
+  }
+  .tablet-color-rosé {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fe96a0;
+    margin : 1em;
+  }
+  .tablet-color-effervescent {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #ffffff;
+    margin : 1em;
+  }
+  
+
+}
+
+//* Concerns the lower part of card: buton "Voir le produit" + price *//
+
+
+.card-price {
+  display: flex;
+  justify-content: center;
+  .update-btn {
+    background-color: vars.$primary-color;
+    width: 35%;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.5em;
+    color: white;
+    border-color: vars.$primary-color;
+    border-radius: 2em;
+    margin: 1em;
+  }
+  .update{
+    background-color: #1ebd4e;
+    border-color: #1ebd4e;
+  }
+
+  .price-btn:hover {
+    background-color: white;
+    color: vars.$primary-color;
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: all 0.4s ease-in-out;
+  }
+
+}
+.price {
+  margin-left: 0.5em;
+  font-weight: 600;
+  font-size: 2em;
+  color: vars.$primary-color;
+  font-style: italic;
+}
