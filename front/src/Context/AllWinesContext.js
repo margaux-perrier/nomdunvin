@@ -42,7 +42,6 @@ export const AllWinesProvider = ({ children }) => {
 
     // Create state for checkboxWinemaker - For FilterMenu component
     const [checkboxWinemaker, setCheckboxWinemaker] = useState([]);
-    console.log(checkboxWinemaker);
 
     // Create function handleChange for change value of checkboxWinemaker with index
     const handleChangeWinemaker = (e) => {

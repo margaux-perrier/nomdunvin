@@ -8,8 +8,8 @@ import './LoginForm.scss';
 
 function LoginForm (){
   const {  isLogged, setIsLogged } = useContext(loginContext); 
-  const [email, setEmail] = useState('');
-  const[password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@admin.com');
+  const[password, setPassword] = useState('admin');
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false); 
@@ -21,6 +21,7 @@ function LoginForm (){
     try {
       const response = await loginRequest(email, password); 
       setToken(response.token);
+      localStorage.setItem('token', response.token);
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo); 
@@ -40,6 +41,7 @@ function LoginForm (){
   const handleLogout = () => {
     setIsLogged(false);
     removeToken();
+    localStorage.removeItem('token');
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button
@@ -120,7 +122,7 @@ function LoginForm (){
           );
 };
 
-LoginForm.propTypes = {
-    handleLogin: PropTypes.func.isRequired,
-  }
+// LoginForm.propTypes = {
+//     handleLogin: PropTypes.func.isRequired,
+//   }
 export default React.memo(LoginForm);
