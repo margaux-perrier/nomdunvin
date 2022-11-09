@@ -135,6 +135,24 @@ const userController = {
 
 	test(req,res){
 		res.status(200).json({ message : 'vous êtes bien authentifié'});
+	}, 
+
+	async verifyToken(req,res){
+		try {
+			const token = req.headers.authorization.split(' ')[1];
+			req.token = jsonwebtoken.verify(token, jwtSecret);
+
+			let user = await User.findByPk(req.token.userId);  
+
+			return res.status(200).json({ 
+				logged: true,
+				pseudo : user.firstname, 
+				role : user.role,
+			}); 
+			
+		} catch (error) {
+			res.status(401).json({ message : 'Invalid authentification token'});
+		}
 	}
 };
 

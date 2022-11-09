@@ -12,6 +12,9 @@ const cartCreation = require('./middleware/cartCreation');
 const authorizationMiddleware = require('./middleware/authorizationMiddleware');
 const filterController = require('./controller/filterController');
 
+//verify le token 
+router.get('/verify', userController.verifyToken); 
+
 //winecontroller
 router.get('/', wineController.getAllWines); 
 router.get('/wine/:id', wineController.getOneWineById);
