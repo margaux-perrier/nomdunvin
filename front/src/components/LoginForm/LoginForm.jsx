@@ -25,10 +25,13 @@ function LoginForm (){
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo); 
+        setError('');
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
+
           navigate('/admin');
         }else{
+
           navigate('/');
         }
       }
