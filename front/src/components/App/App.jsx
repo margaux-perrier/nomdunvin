@@ -12,24 +12,25 @@ import CardList from '../CardList/CardList';
 import Error from '../Error/Error';
 // import Details component
 import Details from '../Details/Details';
-
 // import Footer component
 import Footer from '../Footer/Footer';
-
+// import CartPage component
 import CartPage from '../CartPage/CartPage';
-
-
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
 // import FormAddWine component
 import FormAddWine from '../FormAddWine/FormAddWine';
+// import UpdateCardList component
+import UpdateCardList from '../UpdateCardList/UpdateCardList';
+
+
+// import Provider
 
 
 // import AllWinesProvider
+
 import { AllWinesProvider } from '../../Context/AllWinesContext';
-
 import { LoginContextProvider } from '../../Context/loginContext';
-
 
 // import scss
 import './App.scss';
@@ -46,23 +47,24 @@ function App() {
   return (
 
     <div className="App">
-    
-    <LoginContextProvider>
+
+      <LoginContextProvider>
         <Header />
 
         <Routes>
-        
+
           <Route path="/" element={
-            
+
             // provider for share data between FilterMenu and Cardlist
 
 
 
+
           <AllWinesProvider>
+
               <FilterMenu />
               <CardList />
-          </AllWinesProvider>
-
+            </AllWinesProvider>
 
 
           } />
@@ -81,27 +83,33 @@ function App() {
           } />
 
           <Route path="/cart" element={
-                    <CartPage />
+            <CartPage />
           } />
 
 
-        <Route path="/cart" element={
-                  <CartPage />
-        } />
-      
-        <Route path="/addwine" element={
-          <AllWinesProvider>
-          <FormAddWine />
-          </AllWinesProvider>
-        } />
+          <Route path="/cart" element={
+            <CartPage />
+          } />
 
-        
+          <Route path="/addwine" element={
+            <AllWinesProvider>
+              <FormAddWine />
+            </AllWinesProvider>
+          } />
+
+          <Route path="/updatewine" element={
+            <AllWinesProvider>
+              <UpdateCardList />
+            </AllWinesProvider>
+          } />
+
+
         </Routes>
 
 
 
         <Footer />
-    </LoginContextProvider>
+      </LoginContextProvider>
 
     </div>
   );
