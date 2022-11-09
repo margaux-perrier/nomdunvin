@@ -114,7 +114,7 @@ const userController = {
 
 			//3. Token JWT
 			if(searchedUser){
-				const jwtContent = { userId: searchedUser.id };
+				const jwtContent = { userId: searchedUser.id, role: searchedUser.role };
 				const jwtOptions = { 
 					algorithm: 'HS256', 
 					expiresIn: '3h' 

@@ -5,12 +5,12 @@ const wineController = require('./controller/wineController');
 const adminController = require('./controller/adminController'); 
 const cartController = require('./controller/cartController'); 
 const userController = require('./controller/userController'); 
-
+const filterController = require('./controller/filterController');
 
 //import middleware
 const cartCreation = require('./middleware/cartCreation'); 
 const authorizationMiddleware = require('./middleware/authorizationMiddleware');
-const filterController = require('./controller/filterController');
+const isAdminMiddleware = require('./middleware/isAdminMiddleware'); 
 
 //verify le token 
 router.get('/verify', userController.verifyToken); 
@@ -20,9 +20,9 @@ router.get('/', wineController.getAllWines);
 router.get('/wine/:id', wineController.getOneWineById);
 
 //admin controller
-router.post('/admin/wine', adminController.createWine);
-router.patch('/admin/wine/:id', adminController.updateWineById);
-router.delete('/admin/wine/:id', adminController.deleteWineById);
+router.post('/admin/wine', isAdminMiddleware, adminController.createWine);
+router.patch('/admin/wine/:id', isAdminMiddleware, adminController.updateWineById);
+router.delete('/admin/wine/:id', isAdminMiddleware, adminController.deleteWineById);
 
 //user controller
 router.post('/signup', userController.signupAction); 
