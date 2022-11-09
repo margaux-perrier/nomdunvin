@@ -28,8 +28,10 @@ function LoginForm (){
         setError('');
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-          navigate('/admin'); //Todo : Changer la route vers la page admin ! 
-        }else {
+
+          navigate('/admin');
+        }else{
+
           navigate('/');
         }
       }
