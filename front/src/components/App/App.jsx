@@ -1,5 +1,5 @@
 // import React
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 // import de Routes
 import { Routes, Route } from 'react-router-dom';
 //import Header component
@@ -24,6 +24,7 @@ import FormAddWine from '../FormAddWine/FormAddWine';
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
 
 
+
 // import AllWinesProvider
 
 import { AllWinesProvider } from '../../Context/AllWinesContext';
@@ -39,8 +40,7 @@ import './App.scss';
 
 function App() {
 
-
-
+  
   return (
 
     <div className="App">
