@@ -30,7 +30,7 @@ router.post('/login', userController.loginAction);
 
 
 //shopping cart
-router.use('/cart', cartCreation); 
+router.use('/cart', authorizationMiddleware, cartCreation); 
 router.post('/cart/add/:wineid', cartController.addWineToCart); 
 router.post('/cart/update/:wineid', cartController.updateCart); 
 router.get('/cart/remove/:wineid', cartController.removeWineFromCart); 
@@ -55,4 +55,6 @@ router.patch('/wine/:id/style', adminController.removeStyleToWine);
 router.patch('/wine/:id/culture', adminController.removeCultureToWine);
 router.patch('/wine/:id/dish', adminController.removeDishToWine);
 
+
 module.exports = router;
+
