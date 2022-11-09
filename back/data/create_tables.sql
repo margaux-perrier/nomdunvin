@@ -109,29 +109,29 @@ ASSOCIATION TABLES
 */
 
 CREATE TABLE IF NOT EXISTS "compose"(
-    "grapevariety_id" INT NOT NULL REFERENCES "grapevariety"("id"), 
-    "wine_id" INT NOT NULL REFERENCES "wine"("id"), 
+    "grapevariety_id" INT NOT NULL REFERENCES "grapevariety"("id") ON DELETE CASCADE, 
+    "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     PRIMARY KEY ("grapevariety_id", "wine_id")
 ); 
 
 CREATE TABLE IF NOT EXISTS "taste"(
-    "style_id" INT NOT NULL REFERENCES "style"("id"), 
-    "wine_id" INT NOT NULL REFERENCES "wine"("id"), 
+    "style_id" INT NOT NULL REFERENCES "style"("id") ON DELETE CASCADE, 
+    "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     PRIMARY KEY ("style_id", "wine_id")
 ); 
 
 CREATE TABLE IF NOT EXISTS "eat_with"(
-    "dish_id" INT NOT NULL REFERENCES "dish"("id"), 
-    "wine_id" INT NOT NULL REFERENCES "wine"("id"), 
+    "dish_id" INT NOT NULL REFERENCES "dish"("id") ON DELETE CASCADE, 
+    "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     PRIMARY KEY ("dish_id", "wine_id")
 ); 
 
 CREATE TABLE IF NOT EXISTS "cultivate"(
-    "culture_id" INT NOT NULL REFERENCES "culture"("id"), 
-    "wine_id" INT NOT NULL REFERENCES "wine"("id"), 
+    "culture_id" INT NOT NULL REFERENCES "culture"("id") ON DELETE CASCADE, 
+    "wine_id" INT NOT NULL REFERENCES "wine"("id") ON DELETE CASCADE, 
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     PRIMARY KEY ("culture_id", "wine_id")
 ); 

@@ -8,8 +8,8 @@ import './LoginForm.scss';
 
 function LoginForm (){
   const {  isLogged, setIsLogged } = useContext(loginContext); 
-  const [email, setEmail] = useState('');
-  const[password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@admin.com');
+  const[password, setPassword] = useState('admin');
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false); 
@@ -21,6 +21,7 @@ function LoginForm (){
     try {
       const response = await loginRequest(email, password); 
       setToken(response.token);
+      localStorage.setItem('token', response.token);
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo); 
@@ -40,6 +41,7 @@ function LoginForm (){
   const handleLogout = () => {
     setIsLogged(false);
     removeToken();
+    localStorage.removeItem('token');
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button
@@ -53,6 +55,9 @@ function LoginForm (){
                     {error}
                   </div>
               )}
+
+
+
               
               {isLogged && ( 
                 <div className="login-form_logged">
@@ -69,10 +74,14 @@ function LoginForm (){
                 </div>
               )}
 
+
+
+
               {(!isLogged && isOpen && (
         
                 <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
                   <button className="close" onClick={handleIsOpen}>X</button>
+
                   <div className="form-group">
                     <input
                       name="email"
@@ -81,6 +90,7 @@ function LoginForm (){
                       value={email}
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       name="password"
@@ -90,6 +100,7 @@ function LoginForm (){
                       value={password}
                     />
                   </div>
+
                   <button
                     type="submit"
                     className="form-btn"
@@ -98,15 +109,24 @@ function LoginForm (){
                   </button>
                 
                 </form>
-              )) || (
-                <Fragment>
+
+              ))}
+              
+               {(!isLogged && !isOpen &&(
+                <>
                   <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                   <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-                </Fragment>
-              )}
+                </>
+              ))}
+
 
             </div>
           );
 };
+
+
+// LoginForm.propTypes = {
+//     handleLogin: PropTypes.func.isRequired,
+//   }
 
 export default React.memo(LoginForm);

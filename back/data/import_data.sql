@@ -28,6 +28,7 @@ INSERT INTO "winemaker"("name") VALUES
 ('Claire Voyant'),
 ('Luc Ratif');
 
+
 INSERT INTO "style"("name") VALUES 
 ('Complexe'),
 ('Corsé'),

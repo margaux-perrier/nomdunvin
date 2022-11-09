@@ -14,3 +14,10 @@ export async function loginRequest(email, password) {
   console.log(response.data);
   return response.data
 }
+
+export async function tokenVerifyToStayConnected() {
+  
+  const response = await apiInstance.get('/verify');
+  console.log(response.data);
+  return response.data;
+}

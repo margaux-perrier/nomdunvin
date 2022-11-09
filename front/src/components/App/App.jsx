@@ -1,5 +1,5 @@
 // import React
-import React from 'react';
+import React, { useEffect, useContext }from 'react';
 // import de Routes
 import { Routes, Route } from 'react-router-dom';
 //import Header component
@@ -23,7 +23,12 @@ import FormAddWine from '../FormAddWine/FormAddWine';
 // import UpdateCardList component
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
 
+
 // import Provider
+
+
+// import AllWinesProvider
+
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 import { LoginContextProvider } from '../../Context/loginContext';
 
@@ -31,9 +36,13 @@ import { LoginContextProvider } from '../../Context/loginContext';
 import './App.scss';
 
 
+
+
 // component App
 
 function App() {
+
+
 
   return (
 
@@ -49,10 +58,14 @@ function App() {
             // provider for share data between FilterMenu and Cardlist
 
 
-            <AllWinesProvider>
+
+
+          <AllWinesProvider>
+
               <FilterMenu />
               <CardList />
             </AllWinesProvider>
+
 
           } />
 
