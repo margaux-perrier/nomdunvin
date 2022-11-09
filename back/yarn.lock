@@ -902,7 +902,6 @@
   "version" "5.2.1"
 
 "safer-buffer@>= 2.1.2 < 3":
-
   "integrity" "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
@@ -957,7 +956,6 @@
   "integrity" "sha512-sbbvDGft6UfSRdIC0dcZvMxxJYi6g0+IgWvIpTuk6ccEoIyLcr7Sk6nXWwGfkdlDabGeunhhhI4yH8PleVMvtw=="
   "resolved" "https://registry.npmjs.org/sequelize/-/sequelize-6.25.3.tgz"
   "version" "6.25.3"
-
   dependencies:
     "@types/debug" "^4.1.7"
     "@types/validator" "^13.7.1"

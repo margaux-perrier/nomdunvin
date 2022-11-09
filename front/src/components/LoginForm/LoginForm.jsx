@@ -25,9 +25,12 @@ function LoginForm (){
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo); 
+        setError('');
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-          navigate('/cart'); //Todo : Changer la route vers la page admin ! 
+          navigate('/admin'); //Todo : Changer la route vers la page admin ! 
+        }else {
+          navigate('/');
         }
       }
 

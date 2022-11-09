@@ -95,6 +95,7 @@ function SignUpForm(){
 
    await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword);
    setSuccessSignup('Votre compte a bien été crée, vous pouvez vous connecter');
+   setSignupError('');
    reset();
   }
 
@@ -107,12 +108,14 @@ function SignUpForm(){
     try {
       const response = await loginRequest(connectionEmail, connectionPassword); 
       setToken(response.token);
+      console.log(response.token);
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo);
+        setLoggingError('')
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-          navigate('/cart'); 
+          navigate('/admin'); 
         } else { 
             navigate("/")
       }
