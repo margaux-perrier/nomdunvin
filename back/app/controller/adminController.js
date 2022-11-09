@@ -362,14 +362,14 @@ const adminController = {
 				include : 'grapevarieties'
 			});
 
-			//1. On récupère les id des cépages déjà présents sur wine et on le stocke dans un tableau
+			//1. Retrieve grapevariety's ids already present on wine and store it in array
 			let initialGrapeVarietyIdList = wine.grapevarieties.map(item => item.id);
 			console.log('Initial', initialGrapeVarietyIdList); 
-			//2. On récupère les id des cépages communs au vin et à la liste d'id récupéré dans le req.body
+			//2. Retrieve grapevariety's ids common to wine and grapeVarietyIdList
 			let commonGrapeVarietyIdList = grapeVarietyIdList.filter(item => initialGrapeVarietyIdList.includes(item)); // id en commun
 
-			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList),
-			// on cherche le cépage correspondant en base de données et on les ajoute dans un tableau 
+			//3. For the ids of grapeVarietyIdList that are not incommunGrapeVarietyIdList, 
+			// we look for the corresponding grape variety in the database and we add them in an array 
 			let grapevarietiesToAdd = []; 
 			for(let item of grapeVarietyIdList){
 				if(!commonGrapeVarietyIdList.includes(item)){
@@ -383,8 +383,8 @@ const adminController = {
 			}
 
 
-			//4. Pour les id de initialGrapeVarietyIdList qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList)
-			// on cherche les cépages correspondant en base de données et on les ajoute dans un tableau
+			//4. For the ids of initialGrapeVarietyIdList that are not in communGrapeVarietyIdList
+			// we look for the corresponding grape varieties in the database and add them to an array
 			let grapevarietiesToRemove = []; 
 			for(let item of initialGrapeVarietyIdList){
 				if(!commonGrapeVarietyIdList.includes(item)){
@@ -426,14 +426,10 @@ const adminController = {
 				include : 'styles'
 			});
 
-			//1. On récupère les id des styles déjà présents sur wine et on le stocke dans un tableau
+		
 			let initialStyleIdList = wine.styles.map(item => item.id);
+			let commonStyleIdList = styleIdList.filter(item => initialStyleIdList.includes(item));
 			
-			//2. On récupère les id des styles communs au vin et à la liste d'id récupéré dans le req.body
-			let commonStyleIdList = styleIdList.filter(item => initialStyleIdList.includes(item)); // id en commun
-			
-			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
-			// on cherche le style correspondant en base de données et on les ajoute dans un tableau 
 			let styleToAdd = []; 
 			for(let item of styleIdList){
 				if(!commonStyleIdList.includes(item)){
@@ -446,8 +442,6 @@ const adminController = {
 				}
 			}
 
-			//4. Pour les id de initialStyleIdList qui ne sont pas dans le tableau des id communs (communStyleIdList)
-			// on cherche les styles correspondant en base de données et on les ajoute dans un tableau
 			let styleToRemove = []; 
 			for(let item of initialStyleIdList){
 				if(!commonStyleIdList.includes(item)){
@@ -489,14 +483,10 @@ const adminController = {
 				include : 'culture'
 			});
 
-			//1. On récupère les id des cultures déjà présentes sur wine et on le stocke dans un tableau
+
 			let initialCultureIdList = wine.culture.map(item => item.id);
-			
-			//2. On récupère les id des cultures communnes au vin et à la liste d'id récupéré dans le req.body
-			let commonCultureIdList = cultureIdList.filter(item => initialCultureIdList.includes(item)); // id en commun
-		
-			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
-			// on cherche les cultures correspondantes en base de données et on les ajoute dans un tableau 
+			let commonCultureIdList = cultureIdList.filter(item => initialCultureIdList.includes(item));
+	
 			let cultureToAdd = []; 
 			for(let item of cultureIdList){
 				if(!commonCultureIdList.includes(item)){
@@ -509,8 +499,6 @@ const adminController = {
 				}
 			}
 
-			//4. Pour les id de initialCultureIdList qui ne sont pas dans le tableau des id communs (communCultureIdList)
-			// on cherche les cultures correspondantes en base de données et on les ajoute dans un tableau
 			let cultureToRemove = []; 
 			for(let item of initialCultureIdList){
 				if(!commonCultureIdList.includes(item)){
@@ -552,14 +540,10 @@ const adminController = {
 				include : 'dishes'
 			});
 
-			//1. On récupère les id des dish déjà présentes sur wine et on le stocke dans un tableau
+	
 			let initialDishIdList = wine.dishes.map(item => item.id);
-			
-			//2. On récupère les id des dish communnes au vin et à la liste d'id récupéré dans le req.body
-			let commonDishIdList = dishIdList.filter(item => initialDishIdList.includes(item)); // id en commun
-		
-			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communStyleIdList),
-			// on cherche les dish correspondantes en base de données et on les ajoute dans un tableau 
+			let commonDishIdList = dishIdList.filter(item => initialDishIdList.includes(item));
+
 			let dishToAdd = []; 
 			for(let item of dishIdList){
 				if(!commonDishIdList.includes(item)){
@@ -572,8 +556,6 @@ const adminController = {
 				}
 			}
 
-			//4. Pour les id de initialDishIdList qui ne sont pas dans le tableau des id communs (communCultureIdList)
-			// on cherche les dish correspondantes en base de données et on les ajoute dans un tableau
 			let dishToRemove = []; 
 			for(let item of initialDishIdList){
 				if(!commonDishIdList.includes(item)){
@@ -600,8 +582,6 @@ const adminController = {
 			res.status(500).json({ message: error.message });
 		}
 	}, 
-
-
 
 };
 
