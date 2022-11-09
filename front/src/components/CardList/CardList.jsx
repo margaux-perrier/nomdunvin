@@ -2,7 +2,7 @@
 
 // import react
 
-import React, { useState, Fragment, useContext, useEffect } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import Card component
@@ -12,7 +12,6 @@ import { Segment, Input, Form } from 'semantic-ui-react';
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
 //import loginContext
-import { loginContext } from '../../Context/loginContext';
 
 // import PropTypes
 import PropTypes from 'prop-types';
@@ -31,10 +30,10 @@ function CardList() {
     const { wines } = useContext(AllWinesContext);
 
     // Check for login
-    const { TokenVerify } = useContext(loginContext);
-    useEffect(() => {
-        TokenVerify()
-    }, [])
+    // const { TokenVerify } = useContext(loginContext);
+    // useEffect(() => {
+    //     TokenVerify()
+    // }, [])
 
 
     // * NAVIGATE TO DETAILS PAGE * //
