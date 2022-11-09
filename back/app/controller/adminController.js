@@ -367,7 +367,7 @@ const adminController = {
 			console.log('Initial', initialGrapeVarietyIdList); 
 			//2. On récupère les id des cépages communs au vin et à la liste d'id récupéré dans le req.body
 			let commonGrapeVarietyIdList = grapeVarietyIdList.filter(item => initialGrapeVarietyIdList.includes(item)); // id en commun
-			console.log('Commun', commonGrapeVarietyIdList);
+
 			//3. Pour les id de la list d'id récupérés dans le req.body qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList),
 			// on cherche le cépage correspondant en base de données et on les ajoute dans un tableau 
 			let grapevarietiesToAdd = []; 
@@ -381,6 +381,7 @@ const adminController = {
 					grapevarietiesToAdd.push(grapevariety); 
 				}
 			}
+
 
 			//4. Pour les id de initialGrapeVarietyIdList qui ne sont pas dans le tableau des id communs (communGrapeVarietyIdList)
 			// on cherche les cépages correspondant en base de données et on les ajoute dans un tableau
