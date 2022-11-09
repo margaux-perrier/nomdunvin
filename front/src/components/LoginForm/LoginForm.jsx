@@ -29,11 +29,13 @@ function LoginForm (){
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
 
+
           navigate('/admin');
         }else{
 
           navigate('/');
         }
+
       }
 
     } catch (error) {

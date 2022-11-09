@@ -1,5 +1,5 @@
 // import React
-import React, { useEffect, useContext }from 'react';
+import React from 'react';
 // import de Routes
 import { Routes, Route } from 'react-router-dom';
 //import Header component
@@ -22,9 +22,6 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import FormAddWine from '../FormAddWine/FormAddWine';
 // import UpdateCardList component
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
-
-
-// import Provider
 
 
 // import AllWinesProvider

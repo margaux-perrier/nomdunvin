@@ -35,11 +35,11 @@ function SignUpForm(){
   //States
   const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
   const[connectionPassword, setConnectionPassword] = useState('');
-  const { isLogged, setIsLogged } = useContext(loginContext); 
-  const { pseudo, setPseudo } = useContext(loginContext); 
+  const { setIsLogged } = useContext(loginContext); 
+  const { setPseudo } = useContext(loginContext); 
   const [loggingError, setLoggingError] = useState('');
   const [signupError, setSignupError] = useState('');
-  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+  const {setIsRoleAdmin} = useContext(loginContext);
   const[successSignup, setSuccessSignup] = useState('');
 
 
