@@ -1,0 +1,27 @@
+@use "src/styles/vars";
+
+.cardList {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 2rem auto;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .searchBar {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .update-title{
+    margin : auto;
+    margin-top: 2em;
+    font-size: 2em;
+    font-weight : 700;
+    color : vars.$primary-color;
+    font-style : italic
+  }
+  

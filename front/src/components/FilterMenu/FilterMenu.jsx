@@ -45,6 +45,7 @@ const FilterMenu = () => {
     useEffect(() => { setCheckboxWinemaker(winemakerObject); }, [wines]);
 
 
+
     // * CREATE FILTER BY REGION FOR FILTERMENU  * //
     // Catch data from AllWinesContext
     const { checkboxRegion, setCheckboxRegion, handleChangeRegion } = useContext(AllWinesContext);
@@ -81,6 +82,7 @@ const FilterMenu = () => {
                             onChange={handleChangeColor}
                             index={checkboxColor.indexOf(item)}
                             checked={item.value}
+                            
                         />
                         <label className="checkbox-title">Vin {item.color}</label>
                     </div>
@@ -92,19 +94,19 @@ const FilterMenu = () => {
             </div>
 
             <form className="menu-item">
-                {checkboxWinemaker.map((item, key) => (
-                    <div key={item.winemaker} className="checkbox">
-                        <input
-                            type="checkbox"
-                            value={item.winemaker}
-                            onChange={handleChangeWinemaker}
-                            index={checkboxWinemaker.indexOf(item)}
-                            checked={item.value}
-                        />
-                        <label className="checkbox-title">{item.winemaker}</label>
-                    </div>
-                ))}
-            </form>
+            {checkboxWinemaker.map((item, key) => (
+                <div key={item.winemaker} className="checkbox">
+                    <input
+                        type="checkbox"
+                        value={item.winemaker}
+                        onChange={handleChangeWinemaker}
+                        index={checkboxWinemaker.indexOf(item)}
+                        checked={item.value}
+                    />
+                    <label className="checkbox-title">{item.winemaker}</label>
+                </div>
+            ))}
+        </form>
 
             <div className="menu-title">
                 <h2>Une région particulière ?</h2>

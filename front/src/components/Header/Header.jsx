@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 // import React
-import React, { Fragment, useState} from 'react';
+import React, { Fragment, useState,useContext, useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import LoginForm from '../LoginForm/LoginForm';
 //import reducer
 import { loginRequest } from '../../services/userRequests'
-import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
+import { loginContext } from '../../Context/loginContext';
+
 
 
 // import logo
@@ -22,7 +24,7 @@ function Header() {
     //* STATES *//
     // This State concerns the opening of the login form when you click on the "Se connecter" button
     const [isOpen, setIsOpen] = useState(false);
-    const { userState, userDispatch } = useUserReducer();
+    const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
 
 
@@ -43,6 +45,12 @@ function Header() {
     userDispatch(getActionUserLogged(user));
     setIsOpen(false);
   }
+
+
+  const { TokenVerify } = useContext(loginContext);
+  useEffect(() => {
+      TokenVerify()
+  }, [TokenVerify])
 
 
     return (

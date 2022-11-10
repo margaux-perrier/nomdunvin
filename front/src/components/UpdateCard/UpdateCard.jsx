@@ -2,17 +2,16 @@
 import React, { Fragment, useState} from 'react';
 // import Modal
 import Modal from '../Modal/Modal';
-// import logo cart
-import cart from './cart.png';
+
 // import PropTypes
 import PropTypes from 'prop-types';
 // import Scss
-import './card.scss';
+import './updateCard.scss';
 
 
 // Component Card
 
-function Card({
+function UpdateCard({
     id,
     size,
     color,
@@ -24,6 +23,7 @@ function Card({
     appellation,
     img,
     handleClick,
+    handleDeleteClick
 }) {
 
     const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
@@ -63,9 +63,9 @@ function Card({
                                 <li key={id} className={`tag-${name}`}>{name}</li>
                             ))}
                         </ul>
-                        <div>
-                            <img className="logo-cart" src={cart} alt="cart" onClick={() => setisAddWineToCartModalOpen(true)}/>
-                        </div>
+
+                        <p className="price">{price} €</p>
+                        
                     </div>
                 </div>
                 <div className="card-content">
@@ -76,8 +76,9 @@ function Card({
                 </div>
 
                 <div className="card-price">
-                    <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
-                    <p className='price'>{price} €</p>
+                    <button className="update-btn update" id={id} onClick={handleClick}>Modifier</button>
+                    
+                    <button className="update-btn delete" id={id} onClick={handleDeleteClick}>Supprimer</button>
                 </div>
             </div>
         </Fragment>
@@ -85,12 +86,12 @@ function Card({
     );
 }
 
-export default React.memo(Card);
+export default React.memo(UpdateCard);
 
 
 // * PROP-TYPES *//
 
-Card.propTypes = {
+UpdateCard.propTypes = {
     id: PropTypes.number.isRequired,
     size: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,

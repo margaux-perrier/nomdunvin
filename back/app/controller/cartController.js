@@ -8,7 +8,9 @@ const cartController = {
    * @param {Number}  quantity - quantity of wine add to cart
    */
 	async addWineToCart(req,res){
+	
 		try{
+		
 			const wineIdUrl = Number(req.params.wineid); 
 			const quantity = Number(req.body.quantity); 
 			
@@ -100,24 +102,20 @@ const cartController = {
    */
 	async validateCart(req,res){
 		try{
-
-			if(!req.session.user.id){
-				const error = new Error('login necessary to validate cart'); 
-				return res.status(500).json({ message: error.message });
-			}
 		
 			for(const wine of req.session.cart){
 				let cart = Order.build({
-					user_id : req.session.user.id,
+					user_id : req.token.userId,
 					wine_id : wine.id, 
 					quantity : wine.quantity
 				});
 				await cart.save();
 			}
 			
-			let user = await User.findByPk(1); 
+			let user = await User.findByPk(req.token.userId); 
 			if(!user){
-				const error = new Error(`User with id ${req.session.user.id} does not exist`); 
+				const error = new Error(`User with id ${req.token.userId} does not exist`); 
+				console.log('ici.'); 
 				return res.status(404).json({message : error.message}); 
 			}
 
@@ -131,7 +129,7 @@ const cartController = {
 				await user.addWines(wineToAdd); 
 			}
 			
-			user = await User.findByPk(req.session.user.id, {
+			user = await User.findByPk(req.token.userId, {
 				include : 'wines'
 			}); 
 

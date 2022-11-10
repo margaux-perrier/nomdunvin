@@ -13,7 +13,8 @@ Order.init({
 	}
 },{
 	sequelize, 
-	tableName: 'order'
+	tableName: 'order', 
+	timestamps: false,
 });
 
 module.exports = Order; 

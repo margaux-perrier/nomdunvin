@@ -6,6 +6,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 // import fetchOneWine from services
 import { fetchOneWine } from '../../services/fecthWinesAPI.js';
+// import PropTypes
+import PropTypes from 'prop-types';
 // import Scss
 import './details.scss';
 
@@ -153,3 +155,14 @@ function Details() {
 }
 
 export default React.memo(Details);
+
+
+// * LES PROPTYPES * //
+
+Details.propTypes = {
+    id: PropTypes.number,
+    wine: PropTypes.object,
+    isLoadingWine: PropTypes.bool,
+    navigate: PropTypes.func,
+    fetchOneWine: PropTypes.func,
+};

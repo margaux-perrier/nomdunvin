@@ -1,5 +1,5 @@
 // import React
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 // import de Routes
 import { Routes, Route } from 'react-router-dom';
 //import Header component
@@ -14,43 +14,53 @@ import Error from '../Error/Error';
 import Details from '../Details/Details';
 // import Footer component
 import Footer from '../Footer/Footer';
-
+// import CartPage component
 import CartPage from '../CartPage/CartPage';
-
 // import SignUpForm component
 import SignUpForm from '../SignUpForm/SignUpForm';
+// import FormAddWine component
+import FormAddWine from '../FormAddWine/FormAddWine';
+// import UpdateCardList component
+import UpdateCardList from '../UpdateCardList/UpdateCardList';
+
+
 
 // import AllWinesProvider
+
 import { AllWinesProvider } from '../../Context/AllWinesContext';
-
 import { LoginContextProvider } from '../../Context/loginContext';
-
 
 // import scss
 import './App.scss';
+
+
 
 
 // component App
 
 function App() {
 
+  
   return (
 
     <div className="App">
-    
-    <LoginContextProvider>
+
+      <LoginContextProvider>
         <Header />
 
         <Routes>
-        
+
           <Route path="/" element={
-            
+
             // provider for share data between FilterMenu and Cardlist
 
 
-            <AllWinesProvider>
-                <FilterMenu />
-                <CardList />
+
+
+          <AllWinesProvider>
+
+              <FilterMenu />
+              <CardList />
             </AllWinesProvider>
 
 
@@ -70,15 +80,33 @@ function App() {
           } />
 
           <Route path="/cart" element={
-                    <CartPage />
+            <CartPage />
           } />
 
-        
+
+          <Route path="/cart" element={
+            <CartPage />
+          } />
+
+          <Route path="/addwine" element={
+            <AllWinesProvider>
+              <FormAddWine />
+            </AllWinesProvider>
+          } />
+
+          <Route path="/admin" element={
+            <AllWinesProvider>
+              <UpdateCardList />
+            </AllWinesProvider>
+          } />
+
+
         </Routes>
 
 
+
         <Footer />
-    </LoginContextProvider>
+      </LoginContextProvider>
 
     </div>
   );

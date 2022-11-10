@@ -1,16 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, Fragment } from "react";
 import {Link, useNavigate} from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 import { loginRequest } from "../../services/userRequests";
 import {setToken, removeToken} from '../../services/instance'
 import { loginContext } from '../../Context/loginContext'; 
+import './LoginForm.scss'; 
 
 function LoginForm (){
   const {  isLogged, setIsLogged } = useContext(loginContext); 
   const [email, setEmail] = useState('admin@admin.com');
-  const[password, setPassword] = useState('');
+  const[password, setPassword] = useState('admin');
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
+  const [isOpen, setIsOpen] = useState(false); 
   const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
   const navigate=useNavigate();
 
@@ -19,13 +21,21 @@ function LoginForm (){
     try {
       const response = await loginRequest(email, password); 
       setToken(response.token);
+      localStorage.setItem('token', response.token);
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo); 
+        setError('');
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-          navigate('/cart'); //Todo : Changer la route vers la page admin ! 
+
+
+          navigate('/admin');
+        }else{
+
+          navigate('/');
         }
+
       }
 
     } catch (error) {
@@ -38,24 +48,32 @@ function LoginForm (){
   const handleLogout = () => {
     setIsLogged(false);
     removeToken();
+    localStorage.removeItem('token');
   }
+
+   // Change the value to "true" or "false" when clicking on the "Se connecter" button
+   const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
    
   return (
-            <div className="login-form">
+            <div className="menu-login">
+
               {error && (
                   <div className="ui negative message">
                     {error}
                   </div>
               )}
+
+
+
               
               {isLogged && ( 
-                <div className="login-form-logged">
-                  <p className="login-form-message">
+                <div className="login-form_logged">
+                  <p className="login-form_message">
                     Bonjour {pseudo} !
                   </p>
                   <button
                     type="button"
-                    className="login-form-button"
+                    className="login-form_button"
                     onClick={handleLogout}
                   >
                     Déconnexion
@@ -63,38 +81,59 @@ function LoginForm (){
                 </div>
               )}
 
-              {!isLogged && (
+
+
+
+              {(!isLogged && isOpen && (
         
-                <form autoComplete="off" className="login-form-element" onSubmit = {handleSubmitLoginForm}>
-                  <input
-                    name="email"
-                    placeholder="Adresse Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                  <input
-                    name="password"
-                    type="password"
-                    placeholder="Mot de passe"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
-                  
+                <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
+                  <button className="close" onClick={handleIsOpen}>X</button>
+
+                  <div className="form-group">
+                    <input
+                      name="email"
+                      placeholder="Adresse Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Mot de passe"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                  </div>
+
                   <button
                     type="submit"
-                    className="login-form-button"
+                    className="form-btn"
                   >
-                    se connecter
+                    Connexion
                   </button>
-
-                  <Link to="/signup" className="tab-connexion">S'inscrire</Link>
+                
                 </form>
-              )}
+
+              ))}
+              
+               {(!isLogged && !isOpen &&(
+                <>
+                  <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
+                  <Link to="/signup" className="tab-connexion">S'inscrire</Link>
+                </>
+              ))}
+
+
             </div>
           );
 };
 
-LoginForm.propTypes = {
-    handleLogin: PropTypes.func.isRequired,
-  }
+
+// LoginForm.propTypes = {
+//     handleLogin: PropTypes.func.isRequired,
+//   }
+
 export default React.memo(LoginForm);
