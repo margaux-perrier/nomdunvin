@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 // import Scss
 import './details.scss';
 
-
+import { addWineToCart } from '../../utils'; 
 
 function Details() {
     // Stock Data in State
@@ -23,6 +23,12 @@ function Details() {
     // Get id from url with useParams
     const { id } = useParams();
 
+    const [quantity, setQuantity] = useState(1); 
+
+    const handleSubmitQuantityForm = (e) => {
+        e.preventDefault(); 
+        addWineToCart(wine, quantity); 
+    }
 
     useEffect(() => {
         // if loading set isLoading to true
@@ -79,9 +85,9 @@ function Details() {
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
-                    <form className="details-form">
-                        <input className="details-input" type="number" name="quantity" placeholder="0" min="1" max="50" />
-                        <button className="details-btn">Ajouter au panier</button>
+                    <form className="details-form" onSubmit = { handleSubmitQuantityForm }>
+                        <input className="details-input" type="number" value={quantity} onChange={(e)=>(setQuantity(e.target.value))} name="quantity" placeholder="0" min="1" max="50" />
+                        <button type='submit' className="details-btn">Ajouter au panier</button>
                     </form>
 
                 </div>

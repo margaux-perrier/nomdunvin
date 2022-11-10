@@ -25,10 +25,10 @@ import UpdateCardList from '../UpdateCardList/UpdateCardList';
 
 
 
-// import AllWinesProvider
-
+// import Context Provider
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 import { LoginContextProvider } from '../../Context/loginContext';
+import { CartContextProvider } from '../../Context/cartContext';
 
 // import scss
 import './App.scss';
@@ -46,6 +46,7 @@ function App() {
     <div className="App">
 
       <LoginContextProvider>
+        <CartContextProvider>
         <Header />
 
         <Routes>
@@ -53,16 +54,10 @@ function App() {
           <Route path="/" element={
 
             // provider for share data between FilterMenu and Cardlist
-
-
-
-
           <AllWinesProvider>
-
               <FilterMenu />
               <CardList />
             </AllWinesProvider>
-
 
           } />
 
@@ -102,10 +97,11 @@ function App() {
 
 
         </Routes>
-
+        </CartContextProvider>
 
 
         <Footer />
+
       </LoginContextProvider>
 
     </div>

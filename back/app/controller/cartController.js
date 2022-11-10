@@ -102,8 +102,8 @@ const cartController = {
    */
 	async validateCart(req,res){
 		try{
-		
-			for(const wine of req.session.cart){
+			const { cart } = req.body; 
+			for(const wine of cart){
 				let cart = Order.build({
 					user_id : req.token.userId,
 					wine_id : wine.id, 

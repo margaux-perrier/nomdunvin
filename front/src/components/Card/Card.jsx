@@ -1,5 +1,7 @@
 // import react
 import React, { Fragment, useState} from 'react';
+//import react-router-dom
+import {Link} from 'react-router-dom'; 
 // import Modal
 import Modal from '../Modal/Modal';
 // import logo cart
@@ -55,7 +57,7 @@ function Card({
                         <p className='degrees'>{`${alcohol}`}%.vol</p>
                     </div>
                     <div className="card-img">
-                        <img className="wine-logo" src={img} alt="red-wine" />
+                        <Link to={`/wine/${id}`}><img className="wine-logo" src={img} alt="red-wine" /></Link>
                     </div>
                     <div className="right-card">
                         <ul className="card-tag">
