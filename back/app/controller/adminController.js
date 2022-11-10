@@ -188,7 +188,6 @@ const adminController = {
 		try{
 
 			const wineId = Number(req.params.id); 
-
 			const { grapeVarietyIdList } = req.body;
 
 			let wine = await Wine.findByPk(wineId, {
@@ -276,9 +275,13 @@ const adminController = {
 		try{
 
 			const wineId = Number(req.params.id); 
+			console.log('req.body', req.body); 
+			const cultureIdList  = req.body.cultureIdList;
+			// const body = cultureIdList[]; 
 
-			const { cultureIdList } = req.body;
-	
+			console.log('cultureIdList', cultureIdList); 
+			console.log('>>>>>', typeof(cultureIdList)); 
+			// console.log(req); 
 			let wine = await Wine.findByPk(wineId, {
 				include : 'culture', 
 			}); 
@@ -290,7 +293,7 @@ const adminController = {
 			}
 	
 			let cultureList = []; 
-			for ( const id of cultureIdList ){
+			for ( const id of cultureIdList){
 				const culture = await Culture.findByPk(id);
 				if(!culture){
 					const error = new Error(`Culture with id ${id} does not exist.`); 

@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import Loading component
 import Loading from '../Loading/Loading';
 // import fetchOneWine from services
-import { fetchOneWine } from '../../services/fecthWinesAPI.js';
+import { fetchOneWine } from '../../services/WineApi.js';
 // import PropTypes
 import PropTypes from 'prop-types';
 // import Scss

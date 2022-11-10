@@ -46,14 +46,14 @@ router.get('/grapevariety', filterController.getAllGrapevariety);
 router.get('/dish', filterController.getAllDish); 
 
 //Asssociations to wine
-router.post('/wine/:id/grapevariety', adminController.associateGrapeVarietyToWine);
-router.post('/wine/:id/style', adminController.associateStyleToWine);  
-router.post('/wine/:id/culture', adminController.associateCultureToWine);  
-router.post('/wine/:id/dish', adminController.associateDishToWine);
-router.patch('/wine/:id/grapevariety', adminController.removeGrapeVarietyToWine);
-router.patch('/wine/:id/style', adminController.removeStyleToWine);
-router.patch('/wine/:id/culture', adminController.removeCultureToWine);
-router.patch('/wine/:id/dish', adminController.removeDishToWine);
+router.post('/admin/wine/:id/grapevariety', adminController.associateGrapeVarietyToWine);
+router.post('/admin/wine/:id/style', adminController.associateStyleToWine);  
+router.post('/admin/wine/:id/culture', adminController.associateCultureToWine);  
+router.post('/admin/wine/:id/dish', adminController.associateDishToWine);
+router.patch('/admin/wine/:id/grapevariety', adminController.removeGrapeVarietyToWine);
+router.patch('/admin/wine/:id/style', adminController.removeStyleToWine);
+router.patch('/admin/wine/:id/culture', adminController.removeCultureToWine);
+router.patch('/admin/wine/:id/dish', adminController.removeDishToWine);
 
 
 module.exports = router;
