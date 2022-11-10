@@ -1,7 +1,7 @@
 // import React with useState and createContext
 import { createContext, useState, useEffect } from 'react';
 // import fetchAllWines from services
-import { fetchAllWines, filterWines } from '../services/fecthWinesAPI.js';
+import { fetchAllWines, filterWines } from '../services/WineApi.js';
 // Create WineColorContext
 export const AllWinesContext = createContext();
 // Create Provider for Share informations between components
@@ -35,9 +35,13 @@ export const AllWinesProvider = ({ children }) => {
     const [winemaker, setWinemaker] = useState([]);
     //STATE STYLE
     const [style, setStyle] = useState([]);
+    // STATE GRAPEVARIETY
+    const [grapevariety, setGrapeVariety] = useState([]);
+    // STATE DISH
+    const [dish, setDish] = useState([]);
     
    
-
+    
 
     const fecthFiltersWines = async () => {
         const response = await filterWines();
@@ -45,6 +49,11 @@ export const AllWinesProvider = ({ children }) => {
         setRegion(response[1].data);
         setWinemaker(response[2].data);
         setStyle(response[3].data);
+        setGrapeVariety(response[4].data);
+        setDish(response[5].data);
+
+
+        
       
 
     }
@@ -102,7 +111,7 @@ export const AllWinesProvider = ({ children }) => {
 
     // Create function for choose and share informations between components
     return (
-        <AllWinesContext.Provider value={{ region,culture,fetchWines, wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
+        <AllWinesContext.Provider value={{ winemaker, grapevariety, dish, region, culture,fetchWines, wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
             {children}
         </AllWinesContext.Provider>
     );
