@@ -189,7 +189,7 @@ const adminController = {
 
 			const wineId = Number(req.params.id); 
 			const { grapeVarietyIdList } = req.body;
-
+		
 			let wine = await Wine.findByPk(wineId, {
 				include : 'grapevarieties', 
 			}); 
@@ -231,9 +231,9 @@ const adminController = {
 		try{
 
 			const wineId = Number(req.params.id); 
-
 			const { styleIdList } = req.body;
-	
+			
+			
 			let wine = await Wine.findByPk(wineId, {
 				include : 'styles', 
 			}); 

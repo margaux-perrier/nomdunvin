@@ -22,10 +22,13 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import FormAddWine from '../FormAddWine/FormAddWine';
 // import UpdateCardList component
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
+
 // import AllWinesProvider
+
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 // import LoginContextProvider
 import { LoginContextProvider } from '../../Context/loginContext';
+
 // import scss
 import './App.scss';
 
@@ -42,18 +45,18 @@ function App() {
     <div className="App">
 
       <LoginContextProvider>
+        
         <Header />
 
         <Routes>
 
           <Route path="/" element={
 
-          <AllWinesProvider>
 
+          <AllWinesProvider>
               <FilterMenu />
               <CardList />
             </AllWinesProvider>
-
 
           } />
 
@@ -93,10 +96,11 @@ function App() {
 
 
         </Routes>
-
+        
 
 
         <Footer />
+
       </LoginContextProvider>
 
     </div>
