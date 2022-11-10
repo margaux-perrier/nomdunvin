@@ -11,7 +11,7 @@ import { Segment, Input, Form } from 'semantic-ui-react';
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
 // import deleteOneWine from services
-import { deleteOneWine } from '../../services/fecthWinesAPI.js';
+import { deleteOneWine } from '../../services/WineApi.js';
 
 // import PropTypes
 import PropTypes from 'prop-types';

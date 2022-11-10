@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 // import React
-import React, { Fragment, useState,useContext, useEffect} from 'react';
+import React, { useState,useContext, useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import LoginForm from '../LoginForm/LoginForm';
 //import reducer

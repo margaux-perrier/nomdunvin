@@ -35,12 +35,14 @@ function SignUpForm(){
   //States
   const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
   const[connectionPassword, setConnectionPassword] = useState('');
+
   const { setIsLogged } = useContext(loginContext); 
   const { setPseudo } = useContext(loginContext); 
   const [loggingError, setLoggingError] = useState('');
   const [signupError, setSignupError] = useState('');
   const {setIsRoleAdmin} = useContext(loginContext);
   const[successSignup, setSuccessSignup] = useState('');
+
 
 
 
@@ -112,12 +114,14 @@ function SignUpForm(){
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo);
+
         setLoggingError('')
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
           navigate('/admin'); 
         } else { 
             navigate("/")
+
       }
       }
       

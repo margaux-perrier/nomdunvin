@@ -17,19 +17,16 @@ export const LoginContextProvider = ({ children }) => {
     const TokenVerify = async () => {
         if (!token) {
             setIsLogged(false);
-            console.log('echec local storage token')
         }
         
         if (token) {
             setToken(token);
             const response = await tokenVerifyToStayConnected();
-            console.log(response)
             if(response.pseudo) {
                 setIsLogged(true);
                 setPseudo(response.pseudo);
             } else {
                 setIsLogged(false);
-                console.log(response.message)
             }
         }    
         return;    

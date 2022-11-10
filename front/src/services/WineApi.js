@@ -27,7 +27,7 @@ export async function filterWines() {
         axios.get('http://localhost:5000/style'),
         axios.get('http://localhost:5000/grapevariety'),
         axios.get('http://localhost:5000/dish')
-    
+       
         ]);
 
         const dataArray = [culture, region, winemaker, style, grapevariety, dish];
@@ -50,6 +50,34 @@ export async function fetchOneWine(id) {
 // /admin/wine/:id
 export async function deleteOneWine(id) {
     const response = await apiInstance.delete(`/admin/wine/${id}`);
+    return response.data;
+}
+
+//* Request for add wine : *//
+// /admin/wine
+export async function addWine(wine) {
+    const response = await apiInstance.post(`/admin/wine`, wine);
+    return response.data;
+}
+
+// * Request for add Tag culture on wine : *//
+
+export async function addTagCultureWine(id, cultureIdList ) {
+    const response = await apiInstance.post(`/admin/wine/${id}/culture`, {cultureIdList : cultureIdList} );
+    return response.data;
+}
+
+// * Request for add Tag dish on wine : *//
+
+export async function addTagDishWine(id, dishIdList ) {
+    const response = await apiInstance.post(`/admin/wine/${id}/dish`, {dishIdList : dishIdList} );
+    return response.data;
+}
+
+// * Request for add Tag grapevariety on wine : *//
+
+export async function addTagGrapevarietyWine(id, grapevarietyIdList ) {
+    const response = await apiInstance.post(`/admin/wine/${id}/grapevariety`, {grapeVarietyIdList : grapevarietyIdList} );
     return response.data;
 }
 
