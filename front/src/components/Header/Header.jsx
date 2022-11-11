@@ -9,7 +9,8 @@ import { loginRequest } from '../../services/userRequests'
 import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
 import { loginContext } from '../../Context/loginContext';
-
+// import logo cart
+import cart from './cart.png';
 
 
 // import logo
@@ -73,35 +74,9 @@ function Header() {
                 </div>
                 <div>
                     <div className="menu-login">
-                        
-                        {/* {isOpen ? // if the "isOpen" is true we display the login form below
-                            <div className="login-form">
-                                <form action="" className="form-login">
-                                    <button className="close" onClick={handleIsOpen}>X</button>
-                                    <div className="form-group">
-                                        <input type="email" 
-                                        name='connectionEmail'
-                                        value={formState.connectionEmail} onChange={handleTextFieldChange} className="form-input" placeholder='Email' />
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="password" 
-                                        name='connexionPassword'
-                                        value={formState.connexionPassword}
-                                        onChange={handleTextFieldChange} className="form-input" placeholder='Password' />
-                                    </div>
-                                    <button onClick={handleLoginSubmit} className="form-btn">Connexion</button>
-                                </form>
-                            </div>
-                            : // Else we display the buttons "Se connecter" and "S'inscrire"
-                            <Fragment>
-                                <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
-                                <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-
-                            </Fragment> */}
-                        {/* } */}
-
                         <LoginForm />
                     </div>
+                   
                     <div className="menu-user">
                         <Link to="/signup" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />

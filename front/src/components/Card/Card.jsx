@@ -1,15 +1,18 @@
+// import PropTypes
+import PropTypes from 'prop-types';
 // import react
-import React, { Fragment, useState} from 'react';
+import React, { Fragment, useState, useContext} from 'react';
 //import react-router-dom
 import {Link} from 'react-router-dom'; 
+//import loginContext 
+import { loginContext } from '../../Context/loginContext';
 // import Modal
 import Modal from '../Modal/Modal';
 // import logo cart
 import cart from './cart.png';
-// import PropTypes
-import PropTypes from 'prop-types';
 // import Scss
 import './card.scss';
+
 
 
 // Component Card
@@ -28,7 +31,17 @@ function Card({
     handleClick,
 }) {
 
-    const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
+    const [ isAddWineToCartModalOpen, setIsAddWineToCartModalOpen ] = useState(false);
+    const [ isConnexionMessageOpen, setIsConnexionMessageOpen ] = useState(false); 
+    const { isLogged } = useContext(loginContext); 
+    
+    const handleCartIconClick = () => {
+        if(isLogged){
+            setIsAddWineToCartModalOpen(true)
+        }else(
+            setIsConnexionMessageOpen(true)
+        );
+    }
 
     return (
         <Fragment>
@@ -45,7 +58,7 @@ function Card({
                 avatar={img}
                 id={id}
                 isOpen={ isAddWineToCartModalOpen }
-                setIsOpen={ setisAddWineToCartModalOpen }
+                setIsOpen={ setIsAddWineToCartModalOpen }
             />
 
 
@@ -57,7 +70,7 @@ function Card({
                         <p className='degrees'>{`${alcohol}`}%.vol</p>
                     </div>
                     <div className="card-img">
-                        <Link to={`/wine/${id}`}><img className="wine-logo" src={img} alt="red-wine" /></Link>
+                        <Link to={`/wine/${id}`}><img className="wine-logo" src={img} alt={`${winemaker.name} ${name}`} /></Link>
                     </div>
                     <div className="right-card">
                         <ul className="card-tag">
@@ -66,7 +79,7 @@ function Card({
                             ))}
                         </ul>
                         <div>
-                            <img className="logo-cart" src={cart} alt="cart" onClick={() => setisAddWineToCartModalOpen(true)}/>
+                            <img className="logo-cart" src={cart} alt="cart" onClick={() => handleCartIconClick(true)}/>
                         </div>
                     </div>
                 </div>
@@ -76,7 +89,14 @@ function Card({
                     <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
                 </div>
-
+                { isConnexionMessageOpen &&
+                    <div class="ui negative message">
+                         <i class="close icon" onClick={() =>  setIsConnexionMessageOpen(false) }></i>
+                        <div class="header">
+                        Connectez-vous pour ajouter un vin au panier
+                        </div>
+                    </div>
+                }
                 <div className="card-price">
                     <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
                     <p className='price'>{price} €</p>

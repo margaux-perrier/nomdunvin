@@ -77,11 +77,6 @@ function App() {
             <CartPage />
           } />
 
-
-          <Route path="/cart" element={
-            <CartPage />
-          } />
-
           <Route path="/addwine" element={
             <AllWinesProvider>
               <FormAddWine />
