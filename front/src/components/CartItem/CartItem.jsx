@@ -10,8 +10,6 @@ import { updateQuantity, removeWineFromCart, getCart, getTotalPrice} from '../..
 //css
 import './CartItem.scss';
 
-
-
 function CartItem({
     avatar, 
     name, 
@@ -19,8 +17,8 @@ function CartItem({
     oldQuantity, 
     winemaker, 
     id, 
-    setCart, 
-    setTotal
+    setTotal, 
+    handleRemoveWine,
 }){
    
     const [ quantity, setQuantity] = useState(oldQuantity);
@@ -29,12 +27,6 @@ function CartItem({
         setQuantity(e.target.value); 
         updateQuantity(id, e.target.value);
         setTotal(getTotalPrice());
-    }
-
-    const handleRemoveWine = () => {
-        removeWineFromCart(id);
-        const cart = getCart();
-        setCart(cart)
     }
 
     return(
@@ -50,7 +42,7 @@ function CartItem({
                     </div>
                     <div className='cart-item_quantity'>
                         <input className='cart-item_quantity-input' type="number" min='1' name='quantity' value={ quantity } onChange={handleQuantity} />
-                        <i class="trash red icon" onClick={handleRemoveWine}></i>
+                        <i class="trash red icon" onClick={() => handleRemoveWine(id)}></i>
                     </div>
                 </div>
 
@@ -80,3 +72,4 @@ export default React.memo(CartItem);
 //             id: PropTypes.number.isRequired,
 //         })
 //     ).isRequired,
+// };
