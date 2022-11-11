@@ -42,7 +42,7 @@ function Card({
                 name={name}
                 winemaker={winemaker}
                 appellation={appellation}
-                img={img}
+                avatar={img}
                 id={id}
                 isOpen={ isAddWineToCartModalOpen }
                 setIsOpen={ setisAddWineToCartModalOpen }
@@ -71,7 +71,7 @@ function Card({
                     </div>
                 </div>
                 <div className="card-content">
-                    <h2 className="winemaker">{winemaker}</h2>
+                    <h2 className="winemaker">{winemaker.name}</h2>
                     <p className="wine-name">" {name} "</p>
                     <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
@@ -90,22 +90,24 @@ function Card({
 export default React.memo(Card);
 
 
-// * PROP-TYPES *//
+// // * PROP-TYPES *//
 
-Card.propTypes = {
-    id: PropTypes.number.isRequired,
-    size: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    alcohol: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    winemaker: PropTypes.string.isRequired,
-    appellation: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    handleClick: PropTypes.func.isRequired,
-    culture: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }).isRequired,
-    ).isRequired,
-};
+// Card.propTypes = {
+//     id: PropTypes.number.isRequired,
+//     size: PropTypes.string.isRequired,
+//     color: PropTypes.string.isRequired,
+//     alcohol: PropTypes.string.isRequired,
+//     price: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     winemaker: PropTypes.shape({
+//         name : PropTypes.string
+//     }).isRequired,
+//     appellation: PropTypes.string.isRequired,
+//     img: PropTypes.string.isRequired,
+//     handleClick: PropTypes.func.isRequired,
+//     culture: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             name: PropTypes.string.isRequired,
+//         }).isRequired,
+//     ).isRequired,
+// };

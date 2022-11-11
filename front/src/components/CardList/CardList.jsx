@@ -163,7 +163,7 @@ function CardList() {
                         culture={culture}
                         price={price}
                         name={name}
-                        winemaker={winemaker.name}
+                        winemaker={winemaker}
                         appellation={appellation}
                         img={avatar}
                         id={id}
@@ -199,4 +199,3 @@ CardList.propTypes = {
         }).isRequired,
     )
 };
-
