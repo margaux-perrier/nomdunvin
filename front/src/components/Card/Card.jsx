@@ -90,24 +90,24 @@ function Card({
 export default React.memo(Card);
 
 
-// // * PROP-TYPES *//
+// * PROP-TYPES *//
 
-// Card.propTypes = {
-//     id: PropTypes.number.isRequired,
-//     size: PropTypes.string.isRequired,
-//     color: PropTypes.string.isRequired,
-//     alcohol: PropTypes.string.isRequired,
-//     price: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     winemaker: PropTypes.shape({
-//         name : PropTypes.string
-//     }).isRequired,
-//     appellation: PropTypes.string.isRequired,
-//     img: PropTypes.string.isRequired,
-//     handleClick: PropTypes.func.isRequired,
-//     culture: PropTypes.arrayOf(
-//         PropTypes.shape({
-//             name: PropTypes.string.isRequired,
-//         }).isRequired,
-//     ).isRequired,
-// };
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    size: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    alcohol: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    winemaker: PropTypes.shape({
+        name : PropTypes.string
+    }).isRequired,
+    appellation: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
+    culture: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+        }).isRequired,
+    ).isRequired,
+};
