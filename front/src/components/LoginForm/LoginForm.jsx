@@ -13,7 +13,7 @@ function LoginForm (){
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false); 
-  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+  const {setIsRoleAdmin} = useContext(loginContext);
   const navigate=useNavigate();
 
 

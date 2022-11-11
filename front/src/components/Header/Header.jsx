@@ -59,7 +59,7 @@ function Header() {
         //création d'une navbar
         <header className="header">
             <nav className="navbar">
-                <div className="menu">
+                <div className="header_menu">
                     <div>
                         <Link to="/" className="menu-link">
                             <img src={logo} alt="logo nom d'un vin" className="logo" />

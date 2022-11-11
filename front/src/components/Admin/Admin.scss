@@ -1,0 +1,9 @@
+@use "src/styles/vars";
+
+.admin_container{
+    display: flex; 
+    flex-direction : column; 
+    margin: 9rem auto 0 auto; 
+    width: 90%
+}
+

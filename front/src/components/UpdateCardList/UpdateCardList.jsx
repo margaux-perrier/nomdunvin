@@ -83,8 +83,9 @@ function UpdateCardList() {
     return (
         <Fragment>
             
-
-            <div className="searchBar">
+            <h1 className="update-title">Modifier ou supprimer un vin</h1>
+            
+            <div className="searchBar-admin">
                 <Segment style={{ width: '70%' }}>
                     <Form >
                         <Input focus fluid icon="search" iconPosition="left" placeholder="Rechercher un vin" onChange={handleSearch} value={search} />
@@ -92,7 +93,6 @@ function UpdateCardList() {
                 </Segment>
             </div>
 
-            <h1 className="update-title">Modifier ou supprimer un vin</h1>
 
             <div className="cardList">
                 {filteredWines.map(({

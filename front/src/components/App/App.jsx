@@ -1,7 +1,7 @@
 // import React
-import React from 'react';
+import React, { useContext } from 'react';
 // import de Routes
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 //import Header component
 import Header from '../Header/Header';
 //import burger Component
@@ -22,38 +22,37 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import FormAddWine from '../FormAddWine/FormAddWine';
 // import UpdateCardList component
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
-
+// import UpdateCardList component
+import Admin from '../Admin/Admin';
+ 
 // import AllWinesProvider
-
 import { AllWinesProvider } from '../../Context/AllWinesContext';
-// import LoginContextProvider
-import { LoginContextProvider } from '../../Context/loginContext';
 
+// import LoginContextProvider
+import { LoginContextProvider, loginContext} from '../../Context/loginContext';
 // import scss
 import './App.scss';
-
-
 
 
 // component App
 
 function App() {
-
   
+  const { isRoleAdmin } = useContext(loginContext);
+
   return (
 
     <div className="App">
 
       <LoginContextProvider>
-        
+
         <Header />
 
         <Routes>
 
           <Route path="/" element={
 
-
-          <AllWinesProvider>
+            <AllWinesProvider>
               <FilterMenu />
               <CardList />
             </AllWinesProvider>
@@ -77,21 +76,33 @@ function App() {
             <CartPage />
           } />
 
-          <Route path="/addwine" element={
-            <AllWinesProvider>
-              <FormAddWine />
-            </AllWinesProvider>
-          } />
-
-          <Route path="/admin" element={
-            <AllWinesProvider>
-              <UpdateCardList />
-            </AllWinesProvider>
-          } />
-
+          <Route path='/admin' element={
+              <>
+                <Admin/>
+              </>
+            }>
+                  <Route
+                    path="/admin"
+                    index
+                    element={
+                    <AllWinesProvider>
+                        <FormAddWine />
+                    </AllWinesProvider>
+                    }
+                    />
+                  <Route
+                    path="/admin/updatewine"
+                    index
+                    element={
+                        <AllWinesProvider>
+                            <UpdateCardList />
+                        </AllWinesProvider>
+                    }
+                    />
+            </Route>
 
         </Routes>
-        
+
 
 
         <Footer />

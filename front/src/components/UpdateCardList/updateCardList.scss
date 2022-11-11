@@ -9,16 +9,15 @@
     align-items: center;
   
   }
-  .searchBar {
-    margin-top: 10rem;
+  .searchBar-admin {
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     width: 100%;
   }
 
   .update-title{
-    margin : auto;
-    margin-top: 2em;
+    margin : 2em auto;
     font-size: 2em;
     font-weight : 700;
     color : vars.$primary-color;
