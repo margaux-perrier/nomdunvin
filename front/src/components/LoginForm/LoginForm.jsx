@@ -13,8 +13,9 @@ function LoginForm (){
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false); 
-  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+  const {setIsRoleAdmin} = useContext(loginContext);
   const navigate=useNavigate();
+
 
   const handleSubmitLoginForm = async (e) => {
     e.preventDefault(); 
@@ -49,10 +50,13 @@ function LoginForm (){
     setIsLogged(false);
     removeToken();
     localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    navigate('/'); 
+    setIsOpen(false)
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button
-   const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
+  const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
    
   return (
             <div className="menu-login">
@@ -63,29 +67,27 @@ function LoginForm (){
                   </div>
               )}
 
-
-
-              
               {isLogged && ( 
                 <div className="login-form_logged">
-                  <p className="login-form_message">
+                  <div className="login-form_message">
                     Bonjour {pseudo} !
-                  </p>
-                  <button
-                    type="button"
-                    className="login-form_button"
-                    onClick={handleLogout}
-                  >
-                    Déconnexion
-                  </button>
+                  </div>
+          
+                    <Link to='/cart' className="cart-icon " >Mon panier<i class="shopping bag inverted icon"></i></Link>
+                    <button
+                      type="button"
+                      className="login-form_button"
+                      onClick={handleLogout}
+                    >
+                      Déconnexion
+                    </button>
+              
                 </div>
               )}
 
-
-
-
               {(!isLogged && isOpen && (
         
+                < div className="login-form_container">
                 <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
                   <button className="close" onClick={handleIsOpen}>X</button>
 
@@ -116,7 +118,9 @@ function LoginForm (){
                   </button>
                 
                 </form>
-
+        
+                <Link to="/signup" className="signup-link">Ou s'inscrire</Link>
+                </div>
               ))}
               
                {(!isLogged && !isOpen &&(
@@ -125,8 +129,6 @@ function LoginForm (){
                   <Link to="/signup" className="tab-connexion">S'inscrire</Link>
                 </>
               ))}
-
-
             </div>
           );
 };

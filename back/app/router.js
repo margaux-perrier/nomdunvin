@@ -8,7 +8,7 @@ const userController = require('./controller/userController');
 const filterController = require('./controller/filterController');
 
 //import middleware
-const cartCreation = require('./middleware/cartCreation'); 
+// const cartCreation = require('./middleware/cartCreation'); 
 const authorizationMiddleware = require('./middleware/authorizationMiddleware');
 const isAdminMiddleware = require('./middleware/isAdminMiddleware'); 
 
@@ -30,11 +30,12 @@ router.post('/login', userController.loginAction);
 
 
 //shopping cart
-router.use('/cart', authorizationMiddleware, cartCreation); 
-router.post('/cart/add/:wineid', cartController.addWineToCart); 
-router.post('/cart/update/:wineid', cartController.updateCart); 
-router.get('/cart/remove/:wineid', cartController.removeWineFromCart); 
-router.get('/cart/destroy', cartController.deleteCart); 
+
+// router.use('/cart', authorizationMiddleware, cartCreation); 
+// router.post('/cart/add/:wineid', cartController.addWineToCart); 
+// router.post('/cart/update/:wineid', cartController.updateCart); 
+// router.get('/cart/remove/:wineid', cartController.removeWineFromCart); 
+// router.get('/cart/destroy', cartController.deleteCart); 
 router.post('/cart/validate', authorizationMiddleware, cartController.validateCart); 
 
 //filter controller
