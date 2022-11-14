@@ -1,14 +1,15 @@
 /* eslint-disable array-callback-return */
 
 // import react
-
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState, Fragment, useContext, useEffect } from 'react';
 // import Navigate
 import { useNavigate } from 'react-router-dom';
-// import Card component
-import Card from '../Card/Card';
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
+// import Card component
+import Card from '../Card/Card';
+// import LandpageModal
+import LandpageModal from '../LandpageModal/LandpageModal';
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
 //import loginContext
@@ -35,6 +36,24 @@ function CardList() {
     //     TokenVerify()
     // }, [])
 
+
+    // * LANDPAGEMODAL* //
+    const [ isLandpageModalOpen, setIsLangpageModalOpen ] = useState(true);
+    const [ isWarningMessageOpen, setIsWarningMessageOpen ] = useState(false);  
+    
+    const rememberMe = localStorage.getItem('remember-me'); 
+    
+    const handleYesClick = (isRememberMeChecked) => {
+        console.log(isRememberMeChecked); 
+        if( isRememberMeChecked ){
+            localStorage.setItem('remember-me', true);
+        }
+        setIsLangpageModalOpen(false)
+    }
+    
+    const handleNoClick = () => {
+        setIsWarningMessageOpen(true); 
+    }
 
     // * NAVIGATE TO DETAILS PAGE * //
 
@@ -111,7 +130,6 @@ function CardList() {
         }
     }
 
-
     // * USE CONTEXT FOR FILTERS BY REGION *//
 
     // Catch state for region Checkbox from AllWinesContext 
@@ -134,13 +152,19 @@ function CardList() {
         }
     }
 
-
-
-
     // * RETURN *//
     return (
+      
         <Fragment>
-
+       { isLandpageModalOpen &&  (
+            <LandpageModal
+                handleYesClick={ handleYesClick }
+                handleNoClick={ handleNoClick }
+                isWarningMessageOpen= { isWarningMessageOpen }
+                setIsWarningMessageOpen = { setIsWarningMessageOpen }
+                /> 
+        ) }
+         
             <div className="searchBar">
                 <Segment style={{ width: '70%' }}>
                     <Form >
@@ -170,8 +194,8 @@ function CardList() {
                         handleClick={handleClick}
                     />
                 ))}
-            </div>
-        </Fragment>
+            </div> 
+        </Fragment> 
     );
 }
 

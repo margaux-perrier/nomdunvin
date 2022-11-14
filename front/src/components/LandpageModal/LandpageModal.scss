@@ -1,0 +1,136 @@
+@use "src/styles/vars";
+
+.landpage-modal_overlay{
+    position : fixed;
+    z-index: 10; 
+    inset:0; 
+    background-color: rgba(0,0,0,0.95);
+    display : flex; //pour centrer la modal
+    justify-content: center; 
+    align-items: center;
+}
+
+.landpage-modal{
+    position: fixed;  
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 1rem;
+    max-width: 80%;
+    min-height: auto; 
+    margin: auto;
+    border-radius: 0.5em;
+    box-shadow : 0 0.125rem 0.25rem rgba(0,0,0,0.25); 
+
+    font-family: vars.$font-Montserrat;
+    font-size: 0.8rem; 
+    background-color: vars.$primary-color;
+    color: vars.$secondary-color; 
+
+    &_logo{
+        max-width: 50%; 
+        height: auto; 
+        padding : 0.5rem 0.5rem 0 0.5rem;  
+    }
+
+    &_warning{
+        font-weight: 400;
+        max-width: 86%; 
+        text-align : center; 
+        padding : 1rem 1rem;  
+    }
+
+    &_buttons{
+        display: flex; 
+       }
+
+    &_buttons button{
+     margin: 0 0.8rem 0.8rem 0.8rem;  
+     width: 100px; 
+    }
+
+    &_buttons--yes{
+        background-color: vars.$secondary-color;   
+        border: solid 1px vars.$primary-color;  
+        color: vars.$primary-color;
+    }
+
+    &_buttons--no{
+        background-color: vars.$primary-color;   
+        border: solid 0.5px vars.$secondary-color;  
+        color: vars.$secondary-color;
+    }
+
+    &_to-remember input{
+        margin-right: 1rem;
+    }
+
+    &_remember-me-checkbox{
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        color: white; 
+    }
+}
+
+.ui.warning.message{
+    font-size: 0.9rem;
+}
+
+.remember-me-checkbox_label{
+    padding-left: 1rem; 
+}
+
+
+@media (min-width: 500px) {
+    .landpage-modal{
+        max-width: 70%; 
+        min-height: 40%; 
+        padding: 2rem;
+      
+
+        &_logo{
+            max-width: 40%;
+        }
+    }
+}
+
+@media (min-width: 700px) {
+    .landpage-modal{
+        max-width: 50%; 
+    }
+}
+
+@media (min-width: 850px) {
+    .landpage-modal{
+        max-width: 40%; 
+        font-size: 0.9em;
+        height: 30%; 
+    }
+}
+
+@media (min-width: 1250px) {
+    .landpage-modal{
+        max-width: 40%; 
+        height: 50%; 
+        font-size: 1.2rem; 
+        
+        &_warning{
+            font-weight: 400;
+            max-width: 70%; 
+            text-align : center; 
+            padding : 1rem 1rem;  
+        }
+    }
+}
+
+@media (min-width: 1590px) {
+    .landpage-modal{
+        max-width: 30%;
+    
+    }
+}
+
+
+
