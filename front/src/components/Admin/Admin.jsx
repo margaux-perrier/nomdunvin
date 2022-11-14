@@ -7,15 +7,14 @@ import Nav from './Nav';
 
 //import from React router dom
 import { Outlet, useNavigate} from 'react-router-dom';
+import Error from '../Error/Error'
 
 //css
 import './Admin.scss';
 
 function Admin(){
 
-    const {  isRoleAdmin } = useContext(loginContext);
-
-
+    const {  isRoleAdmin, isLogged } = useContext(loginContext);
     const navigate=useNavigate();
 
     return(
@@ -24,13 +23,17 @@ function Admin(){
         <div className='admin_container'>
             {isRoleAdmin && (
                  <div>
-                <Nav />
-                <Outlet/>
+                    <Nav />
+                    <Outlet/>
                 </div>
              )}
 
-            {!isRoleAdmin && (
-                 navigate('/')
+            {!isRoleAdmin  && (
+                 <Error/>
+             )}
+
+            {!isLogged  && (
+                 <Error/>
              )}
            
         </div>
