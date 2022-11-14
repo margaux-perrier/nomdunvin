@@ -51,6 +51,8 @@ function LoginForm (){
     removeToken();
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
+    navigate('/'); 
+    setIsOpen(false)
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button
