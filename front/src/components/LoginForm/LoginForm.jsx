@@ -51,6 +51,7 @@ function LoginForm (){
     localStorage.removeItem('token');
     setIsRoleAdmin(false);
     localStorage.removeItem('cart');
+    setIsRoleAdmin(false);
     navigate('/'); 
     setIsOpen(false)
   }
