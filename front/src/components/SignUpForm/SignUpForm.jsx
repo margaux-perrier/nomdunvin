@@ -1,14 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, {useState, useContext} from "react";
+// import Navigate
+import { useNavigate } from 'react-router-dom';
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
-import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
-import axios from 'axios';
+import { loginContext } from '../../Context/loginContext'; 
 
 //import user methods
 import {signupRequest} from '../../services/userRequests'
 import { loginRequest } from '../../services/userRequests'
+import {setToken} from '../../services/instance'
+
 
 
 //Material UI imports
@@ -24,9 +27,24 @@ import './signUpFormStyles.scss';
 
 function SignUpForm(){
   //useReducer configs
-  const { userState, userDispatch } = useUserReducer();
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
+  const navigate = useNavigate(); 
+
+
+  //States
+  const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
+  const[connectionPassword, setConnectionPassword] = useState('');
+
+  const { setIsLogged } = useContext(loginContext); 
+  const { setPseudo } = useContext(loginContext); 
+  const [loggingError, setLoggingError] = useState('');
+  const [signupError, setSignupError] = useState('');
+  const {setIsRoleAdmin} = useContext(loginContext);
+  const[successSignup, setSuccessSignup] = useState('');
+
+
+
 
   //Form methods
   const handleTextFieldChange = (e) => {
@@ -39,15 +57,80 @@ function SignUpForm(){
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
+    setSignupError('');
+
+    if(formState.firstname === '') {
+      setSignupError('veuillez rentrer votre prénom');
+      return;
+    }
+    
+    if(formState.lastname === '') {
+      setSignupError('veuillez rentrer votre nom');
+      return;
+    }
+
+    if(formState.email === '' ) {
+      setSignupError('veuillez rentrer une adresse email');
+      console.log('error ===>', signupError )
+      return;
+    }
+
+    if (!isValidEmail(formState.email)) {
+      setSignupError('Email non valide');
+      return;
+    }
+
+    if(formState.password !== formState.confirmPassword){
+      setSignupError('Passwords non identiques');
+      return;
+    }
+
+    if(formState.generalConditions === false) {
+      setSignupError('Veuillez accepter les conditions générales');
+      return;
+    }
+
+    if(formState.RGPD === false) {
+      setSignupError('Veuillez accepter la politique de confidentialité');
+      return;
+    }
+
+   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword);
+   setSuccessSignup('Votre compte a bien été crée, vous pouvez vous connecter');
+   setSignupError('');
+   reset();
   }
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
-    userDispatch(getActionUserLogged(user));
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
   }
-  
+
+  const handleSubmitLoginForm = async (e) => {
+    e.preventDefault(); 
+    try {
+      const response = await loginRequest(connectionEmail, connectionPassword); 
+      setToken(response.token);
+      console.log(response.token);
+      if (response.logged){
+        setIsLogged(true);
+        setPseudo(response.pseudo);
+
+        setLoggingError('')
+        if(response.role === 'admin'){
+          setIsRoleAdmin(true);
+          navigate('/admin'); 
+        } else { 
+            navigate("/")
+
+      }
+      }
+      
+    } catch (error) {
+      console.log(error.message)
+      setLoggingError('mauvais password ou email');
+    }
+    
+}
   return(
     <div className= "container-form">
         
@@ -57,7 +140,6 @@ function SignUpForm(){
         </h1>
         <p className="text">
         Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? 
-        {/* {userState.loggedUser.user.firstname} */}
       </p>
       <Box 
    sx={{
@@ -66,15 +148,15 @@ function SignUpForm(){
         component="form"
         noValidate
         autoComplete="off"
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmitLoginForm}
       >
         <Grid container  spacing={2} >
           <Grid item xs={12} sm={6}>
             <TextField color="error"
               label="Email"
               name="connectionEmail"
-              value={formState.connectionEmail}
-              onChange={handleTextFieldChange}
+              value={connectionEmail}
+              onChange={(e) => setConnectionEmail( e.target.value)}
               
               fullWidth
             />
@@ -84,8 +166,8 @@ function SignUpForm(){
               type="password"
               label="Password"
               name="connexionPassword"
-              value={formState.connexionPassword}
-              onChange={handleTextFieldChange}
+              value={connectionPassword}
+              onChange={(e) => setConnectionPassword(e.target.value)}
               
               fullWidth
             />
@@ -94,14 +176,21 @@ function SignUpForm(){
               <Button
                 color="error"
                 variant="contained"
-                type="submit"
-              >
+                type="submit">
+                {/* {isLogged && <Navigate to='/'/>} */}
                 Valider
               </Button>
             </Grid>
           </Grid>
           </Box>
       </div>
+      {loggingError && (
+        <div className="ui negative message">
+          {loggingError}
+        </div>)}
+
+      
+
       <h1 className="title">
           Inscription
         </h1>
@@ -111,6 +200,15 @@ function SignUpForm(){
 déjà vu ... Rejoignez nous en quelques clics !
       </p>
 
+      {signupError && (
+                  <div className="ui negative big message">
+                    {signupError}
+                  </div>)}
+
+      {successSignup && (
+        <div className="ui green big message ">
+          {successSignup}
+        </div>)}
    <Box 
    sx={{
      margin: 5
@@ -258,12 +356,7 @@ déjà vu ... Rejoignez nous en quelques clics !
                 />
               )}
             />
-          </Grid>
-
-
-
-
-          
+          </Grid>          
 
           <Grid item xs={12} spacing={2} container justifyContent="flex-end">
             <Grid item>

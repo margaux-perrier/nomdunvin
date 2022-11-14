@@ -1,18 +1,21 @@
-import axios from "axios";
+import apiInstance from './instance'; 
 
 export async function signupRequest(email, firstname, lastname, password, confirmPassword) {
-  const response = await axios.post('http://localhost:5000/signup',{
+  const response = await apiInstance.post('/signup',{
     email, firstname, lastname, password, confirmPassword
   });
   return response.data
 }
 
 export async function loginRequest(email, password) {
-  const response = await axios.post('http://localhost:5000/login', {
+  const response = await apiInstance.post('/login', {
     email, password
   })
-  console.log(response.data);
   return response.data
+}
 
-
+export async function tokenVerifyToStayConnected() {
+  
+  const response = await apiInstance.get('/verify');
+  return response.data;
 }

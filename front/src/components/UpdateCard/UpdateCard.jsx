@@ -1,23 +1,17 @@
-// import PropTypes
-import PropTypes from 'prop-types';
 // import react
-import React, { Fragment, useState, useContext} from 'react';
-//import react-router-dom
-import {Link} from 'react-router-dom'; 
-//import loginContext 
-import { loginContext } from '../../Context/loginContext';
+import React, { Fragment, useState} from 'react';
 // import Modal
 import Modal from '../Modal/Modal';
-// import logo cart
-import cart from './cart.png';
-// import Scss
-import './card.scss';
 
+// import PropTypes
+import PropTypes from 'prop-types';
+// import Scss
+import './updateCard.scss';
 
 
 // Component Card
 
-function Card({
+function UpdateCard({
     id,
     size,
     color,
@@ -29,19 +23,10 @@ function Card({
     appellation,
     img,
     handleClick,
+    handleDeleteClick
 }) {
 
-    const [ isAddWineToCartModalOpen, setIsAddWineToCartModalOpen ] = useState(false);
-    const [ isConnexionMessageOpen, setIsConnexionMessageOpen ] = useState(false); 
-    const { isLogged } = useContext(loginContext); 
-    
-    const handleCartIconClick = () => {
-        if(isLogged){
-            setIsAddWineToCartModalOpen(true)
-        }else(
-            setIsConnexionMessageOpen(true)
-        );
-    }
+    const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
 
     return (
         <Fragment>
@@ -55,10 +40,10 @@ function Card({
                 name={name}
                 winemaker={winemaker}
                 appellation={appellation}
-                avatar={img}
+                img={img}
                 id={id}
                 isOpen={ isAddWineToCartModalOpen }
-                setIsOpen={ setIsAddWineToCartModalOpen }
+                setIsOpen={ setisAddWineToCartModalOpen }
             />
 
 
@@ -70,7 +55,7 @@ function Card({
                         <p className='degrees'>{`${alcohol}`}%.vol</p>
                     </div>
                     <div className="card-img">
-                        <Link to={`/wine/${id}`}><img className="wine-logo" src={img} alt={`${winemaker.name} ${name}`} /></Link>
+                        <img className="wine-logo" src={img} alt="red-wine" />
                     </div>
                     <div className="right-card">
                         <ul className="card-tag">
@@ -78,28 +63,22 @@ function Card({
                                 <li key={id} className={`tag-${name}`}>{name}</li>
                             ))}
                         </ul>
-                        <div>
-                            <img className="logo-cart" src={cart} alt="cart" onClick={() => handleCartIconClick(true)}/>
-                        </div>
+
+                        <p className="price">{price} €</p>
+                        
                     </div>
                 </div>
                 <div className="card-content">
-                    <h2 className="winemaker">{winemaker.name}</h2>
+                    <h2 className="winemaker">{winemaker}</h2>
                     <p className="wine-name">" {name} "</p>
                     <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
                 </div>
-                { isConnexionMessageOpen &&
-                    <div class="ui negative message">
-                         <i class="close icon" onClick={() =>  setIsConnexionMessageOpen(false) }></i>
-                        <div class="header">
-                        Connectez-vous pour ajouter un vin au panier
-                        </div>
-                    </div>
-                }
+
                 <div className="card-price">
-                    <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
-                    <p className='price'>{price} €</p>
+                    <button className="update-btn update" id={id} onClick={handleClick}>Modifier</button>
+                    
+                    <button className="update-btn delete" id={id} onClick={handleDeleteClick}>Supprimer</button>
                 </div>
             </div>
         </Fragment>
@@ -107,21 +86,19 @@ function Card({
     );
 }
 
-export default React.memo(Card);
+export default React.memo(UpdateCard);
 
 
 // * PROP-TYPES *//
 
-Card.propTypes = {
+UpdateCard.propTypes = {
     id: PropTypes.number.isRequired,
     size: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     alcohol: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    winemaker: PropTypes.shape({
-        name : PropTypes.string
-    }).isRequired,
+    winemaker: PropTypes.string.isRequired,
     appellation: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
     handleClick: PropTypes.func.isRequired,

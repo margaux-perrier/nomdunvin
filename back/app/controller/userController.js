@@ -3,6 +3,7 @@ const emailValidator = require('email-validator');
 const jsonwebtoken = require('jsonwebtoken'); 
 const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt'); 
+const { escape } = require('sanitizer');
 
 const userController = {
 
@@ -25,7 +26,7 @@ const userController = {
 			//1. Check the user doesn't exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
-					email
+					email : escape(email)
 				}
 			});
 
@@ -34,17 +35,17 @@ const userController = {
 			}
             
 			//2. Check that the email format is valid with email-validator
-			if(!emailValidator.validate(email)){
+			if(!emailValidator.validate(escape(email))){
 				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			//3. Check that the password and confirmation are identical
-			if(password !== confirmPassword){
+			if(escape(password) !== escape(confirmPassword)){
 				throw new Error('Signup does not work, invalid email or password');
 			}
 
 			//4. Encrypting the password with bcrypt
-			const hashedPassword = bcrypt.hashSync(password, 10); 
+			const hashedPassword = bcrypt.hashSync(escape(password), 10); 
 
 			//5. Check that firstname and lastname exist
 			if(!firstname){
@@ -57,26 +58,26 @@ const userController = {
 
 			//6. Create an instance, save it in the database
 			const newUser = User.build({
-				email : req.body.email,
+				email : escape(email),
 				password : hashedPassword,
-				firstname : req.body.firstname, 
-				lastname : req.body.lastname
+				firstname : escape(firstname), 
+				lastname : escape(lastname)
 			}); 
 
 			if(address_number){
-				newUser.address_number = Number(address_number);
+				newUser.address_number = Number(escape(address_number));
 			}
 
 			if(address_street){
-				newUser.address_street = address_street;
+				newUser.address_street = escape(address_street);
 			}
 
 			if(address_postal){
-				newUser.address_postal = address_postal;
+				newUser.address_postal = escape(address_postal);
 			}
 
 			if(address_city){
-				newUser.address_city = address_city;
+				newUser.address_city = escape(address_city);
 			}
 
 			await newUser.save(); 
@@ -99,7 +100,7 @@ const userController = {
 			//1. Check the user exist in the DB.
 			const searchedUser = await User.findOne({
 				where : {
-					email : req.body.email
+					email : escape(req.body.email)
 				}
 			});
 			if(!searchedUser){
@@ -113,18 +114,18 @@ const userController = {
 
 			//3. Token JWT
 			if(searchedUser){
-				const jwtContent = { userId: searchedUser.id};
+				const jwtContent = { userId: searchedUser.id, role: searchedUser.role };
 				const jwtOptions = { 
 					algorithm: 'HS256', 
 					expiresIn: '3h' 
 				};
 				let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
 				console.log('<< 200', searchedUser.email);
-				res.status(200).json({ 
-					logged: true, 
+				return res.status(200).json({ 
+					token: token,
+					logged: true,
 					pseudo : searchedUser.firstname, 
 					role : searchedUser.role,
-					token: token,
 				}); 
 			}
 		} catch (error) {
@@ -133,12 +134,37 @@ const userController = {
 		}
 	}, 
 
-	/** @function 
-   * Disconnect user and delete session
-   */
-	disconnect(req,res){
-		req.session.user = false;
-		res.redirect('/');
+	test(req,res){
+		res.status(200).json({ message : 'vous êtes bien authentifié'});
+	}, 
+
+	async verifyToken(req,res){
+		try {
+			const token = req.headers.authorization.split(' ')[1];
+			req.token = jsonwebtoken.verify(token, jwtSecret);
+
+
+			if(!token){
+				throw new Error('Problème de token');
+			}
+
+			let user = await User.findByPk(req.token.userId);
+			if(!user){
+				throw new Error(`user with id ${req.token.userId} doesn't exist`);
+			}
+ 
+
+			return res.status(200).json({ 
+				logged: true,
+				pseudo : user.firstname, 
+				role : user.role,
+			}); 
+			
+		} catch (error) {
+
+
+			res.status(401).json({ message : 'Invalid authentification token'});
+		}
 	}
 };
 

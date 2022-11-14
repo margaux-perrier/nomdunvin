@@ -1,5 +1,6 @@
-
+// import react
 import React from 'react';
+
 import wine from './break.jpg';
 // import scss
 import './error.scss';

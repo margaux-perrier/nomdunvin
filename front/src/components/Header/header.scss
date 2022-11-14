@@ -2,28 +2,26 @@
 .header {
   z-index: 2;
   width: 100%;
- 
+
   .navbar {
     display: flex;
     background-color: vars.$primary-color;
     justify-content: space-between;
     width: 100%;
     position: fixed;
-   
+
     .logo {
       width: 80%;
       padding: 1em;
-      
+      min-width: 8rem;
     }
-    .menu {
+    .header_menu {
       width: 60%;
       display: flex;
       align-items: center;
       width: auto;
     }
-    .menu-login {
-      height: 100%;
-    }
+
     .menu-link {
       width: 20%;
       align-items: center;
@@ -37,12 +35,10 @@
       width: 100%;
     }
     .tab-link {
-    
       font-size: 1.3rem;
       font-weight: bold;
       font-family: vars.$font-Montserrat;
-     
-   
+      min-width: 2rem;
     }
     .tab-link:hover {
       font-family: vars.$font-Montserrat;
@@ -59,11 +55,7 @@
       font-family: vars.$font-Montserrat;
       font-weight: 600;
     }
-    .menu-login {
-      display: none;
-      align-items: center;
-      padding: vars.$gutter1;
-    }
+ 
     .logo-user {
       display: block;
       align-items: center;
@@ -73,63 +65,12 @@
   }
 }
 //* Responsive for Desktop *//
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
   .header {
     .navbar {
       // Management of login form Desktop
       .menu-login {
         display: flex;
-        .menu-login:hover {
-          transition: all 0.8s ease-out;
-        }
- 
-        .form-login {
-          display: flex;
-          margin-right: 1.5em;
-          .form-input {
-            color: vars.$primary-color;
-            padding-left: 1em;
-            margin-left: 1em;
-            height: 2em;
-            border: 1px solid vars.$secondary-color;
-            width: 20em;
-            border-radius: 2em;
-          }
-          ::placeholder {
-            font-size: 0.9em;
-            font-style: italic;
-          }
-          .form-btn {
-            font-weight: bold;
-            color: vars.$primary-color;
-            border-radius: 2em;
-            padding: 0.5em;
-            background-color: white;
-            border: 1px solid vars.$primary-color;
-            margin-left: 1em;
-          }
-          .form-btn:hover {
-            background-color: vars.$primary-color;
-            color: vars.$secondary-color;
-            border: 1px solid vars.$primary-color;
-            transition: all 0.3s ease-out;
-          }
-          .close {
-            background-color: vars.$primary-color;
-            border: vars.$primary-color;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5em;
-          }
-          //hover sur close
-          .close:hover {
-            background-color: vars.$primary-color;
-            color: vars.$secondary-color;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: all 0.3s ease-out;
-          }
-        }
       }
       .logo-user {
         display: none;
@@ -137,6 +78,4 @@
     }
   }
 }
-.menu-user {
-  display: none;
-}
+

@@ -1,15 +1,19 @@
 // import react
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 // import useParams
 import { useParams, useNavigate } from 'react-router-dom';
 // import Loading component
 import Loading from '../Loading/Loading';
 // import fetchOneWine from services
-import { fetchOneWine } from '../../services/fecthWinesAPI.js';
+import { fetchOneWine } from '../../services/WineApi.js';
+//import loginContext 
+import { loginContext } from '../../Context/loginContext';
+// import PropTypes
+import PropTypes from 'prop-types';
 // import Scss
 import './details.scss';
 
-
+import { addWineToCart } from '../../utils'; 
 
 function Details() {
     // Stock Data in State
@@ -21,6 +25,19 @@ function Details() {
     // Get id from url with useParams
     const { id } = useParams();
 
+    const [quantity, setQuantity] = useState(1); 
+    const [isMessageAddToCartOpen, setIsMessageAddToCartOpen] = useState(false); 
+    const { isLogged } = useContext(loginContext); 
+    const [ isConnexionMessageOpen, setIsConnexionMessageOpen ] = useState(false);
+    const handleSubmitAddToCart = (e) => {
+        e.preventDefault(); 
+        if(isLogged){
+            addWineToCart(wine, quantity); 
+            setIsMessageAddToCartOpen(true);
+        }else{
+            setIsConnexionMessageOpen(true);
+        }
+    }
 
     useEffect(() => {
         // if loading set isLoading to true
@@ -73,13 +90,26 @@ function Details() {
                             <h2 className="details-winemaker">{wine.winemaker.name}</h2>
                         </div>
                         <p className="details-wine-name">" {wine.name} "</p>
-                        <p className="details-wine-region">{wine.region.name}</p>
+                        <p className="details-wine-region">{wine.appellation}</p>
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
-                    <form className="details-form">
-                        <input className="details-input" type="number" name="quantity" placeholder="0" min="1" max="50" />
-                        <button className="details-btn">Ajouter au panier</button>
+                    {isMessageAddToCartOpen && 
+                        <div class="ui green message">Bien ajouté au panier</div>
+                    }
+
+                    { isConnexionMessageOpen &&
+                    <div class="ui negative message">
+                         <i class="close icon" onClick={() =>  setIsConnexionMessageOpen(false) }></i>
+                        <div class="header">
+                        Connectez-vous pour ajouter un vin au panier
+                        </div>
+                    </div>
+                    }   
+
+                      <form className="details-form" onSubmit = { handleSubmitAddToCart }>
+                        <input className="details-input" type="number" value={quantity} onChange={(e)=>(setQuantity(e.target.value))} name="quantity" placeholder="0" min="1" max="50" />
+                        <button type='submit' className="details-btn">Ajouter au panier</button>
                     </form>
 
                 </div>
@@ -153,3 +183,14 @@ function Details() {
 }
 
 export default React.memo(Details);
+
+
+// * LES PROPTYPES * //
+
+Details.propTypes = {
+    id: PropTypes.number,
+    wine: PropTypes.object,
+    isLoadingWine: PropTypes.bool,
+    navigate: PropTypes.func,
+    fetchOneWine: PropTypes.func,
+};

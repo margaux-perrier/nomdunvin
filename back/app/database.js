@@ -5,7 +5,6 @@ const sequelize = new Sequelize(process.env.PG_URL, {
 		underscored: true,
 		createdAt: 'created_at',
 		updatedAt: 'updated_at',
-		// timestamps: false,
 	},
 });
 

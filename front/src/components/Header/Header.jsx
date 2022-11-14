@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 // import React
-import React, { Fragment, useState} from 'react';
+import React, { useState,useContext, useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom'
-
+import LoginForm from '../LoginForm/LoginForm';
 //import reducer
 import { loginRequest } from '../../services/userRequests'
-import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
+import { loginContext } from '../../Context/loginContext';
+// import logo cart
+import cart from './cart.png';
 
 
 // import logo
@@ -22,7 +26,7 @@ function Header() {
     //* STATES *//
     // This State concerns the opening of the login form when you click on the "Se connecter" button
     const [isOpen, setIsOpen] = useState(false);
-    const { userState, userDispatch } = useUserReducer();
+    const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
 
 
@@ -45,11 +49,17 @@ function Header() {
   }
 
 
+  const { TokenVerify } = useContext(loginContext);
+  useEffect(() => {
+      TokenVerify()
+  }, [TokenVerify])
+
+
     return (
         //création d'une navbar
         <header className="header">
             <nav className="navbar">
-                <div className="menu">
+                <div className="header_menu">
                     <div>
                         <Link to="/" className="menu-link">
                             <img src={logo} alt="logo nom d'un vin" className="logo" />
@@ -64,35 +74,9 @@ function Header() {
                 </div>
                 <div>
                     <div className="menu-login">
-                        
-
-                        
-                        {isOpen ? // if the "isOpen" is true we display the login form below
-                            <div className="login-form">
-                                <form action="" className="form-login">
-                                    <button className="close" onClick={handleIsOpen}>X</button>
-                                    <div className="form-group">
-                                        <input type="email" 
-                                        name='connectionEmail'
-                                        value={formState.connectionEmail} onChange={handleTextFieldChange} className="form-input" placeholder='Email' />
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="password" 
-                                        name='connexionPassword'
-                                        value={formState.connexionPassword}
-                                        onChange={handleTextFieldChange} className="form-input" placeholder='Password' />
-                                    </div>
-                                    <button onClick={handleLoginSubmit} className="form-btn">Connexion</button>
-                                </form>
-                            </div>
-                            : // Else we display the buttons "Se connecter" and "S'inscrire"
-                            <Fragment>
-                                <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
-                                <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-
-                            </Fragment>
-                        }
+                        <LoginForm />
                     </div>
+                   
                     <div className="menu-user">
                         <Link to="/signup" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
