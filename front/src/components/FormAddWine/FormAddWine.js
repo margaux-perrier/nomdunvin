@@ -1,5 +1,7 @@
 // import React
 import React, { useContext, Fragment, useState } from 'react'
+// import useNavigate
+import { useNavigate } from 'react-router-dom'
 // import AllWinesContext
 import { AllWinesContext } from "../../Context/AllWinesContext";
 // import CardList component
@@ -25,6 +27,15 @@ function FormAddWine() {
     const [NewWine, setNewWine] = useState();
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+
+
+    const navigate = useNavigate();
+    // Route to details page
+    const handleClick = (e) => {
+        e.preventDefault();
+        const path = `/admin/updatewine/${e.target.id}`;
+        navigate(path);
+    }
 
 
     const handleTextFieldChange = (e) => {

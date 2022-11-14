@@ -101,9 +101,11 @@
   }
 
   .login-form_message{
+    margin-right: 1em;
     color: vars.$secondary-color;
     display: flex; 
     justify-content: center;
+    font-weight: 600;
   }
 
   .cart-icon{
@@ -121,4 +123,21 @@
       font-style: italic;
       cursor: pointer;
   }
+
+  .edit.icon{
+    margin: 0 0.3em;
+  }
+
+  .dashbord-link{
+
+    color: vars.$secondary-color;
+    font-family: vars.$font-Montserrat;
+    color: white;
   
+  }
+// hover sur le dashbord-link
+
+.dashbord-link:hover{
+  color: vars.$secondary-color;
+  font-weight: 600;
+}

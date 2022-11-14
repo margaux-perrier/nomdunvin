@@ -1,5 +1,5 @@
 // import React
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 // import de Routes
 import { Routes, Route, Outlet } from 'react-router-dom';
 //import Header component
@@ -77,9 +77,9 @@ function App() {
           } />
 
           <Route path='/admin' element={
-              <>
+              <Fragment>
                 <Admin/>
-              </>
+              </Fragment>
             }>
                   <Route
                     path="/admin"
@@ -99,6 +99,7 @@ function App() {
                         </AllWinesProvider>
                     }
                     />
+
             </Route>
 
         </Routes>

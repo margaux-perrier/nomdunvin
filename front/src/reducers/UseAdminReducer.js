@@ -63,6 +63,13 @@ function adminReducer(oldState, action) {
     case RESET : {
       return addWineInitialState;
     }
+
+    // case UPDATE : {
+    //   return {
+    //     ...oldState,
+
+    //   }
+    // }
     
     default:
       return oldState;
