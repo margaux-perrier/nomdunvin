@@ -200,9 +200,6 @@ function FormAddWine() {
                         {errorMessage}
                         </div>
                     )}
-               
-
-               
 
                 <Form onSubmit={handleFormSubmit}>
 

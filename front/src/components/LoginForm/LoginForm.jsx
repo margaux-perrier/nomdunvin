@@ -59,7 +59,7 @@ function LoginForm (){
   const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
    
   return (
-            <div className="menu-login">
+            <div >
 
               {error && (
                   <div className="ui negative message">
