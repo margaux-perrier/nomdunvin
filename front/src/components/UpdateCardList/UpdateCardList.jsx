@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-
 // import react
 import React, { useContext, useState, Fragment } from 'react';
 // import Navigate
@@ -12,7 +11,6 @@ import { Segment, Input, Form } from 'semantic-ui-react';
 import { AllWinesContext } from '../../Context/AllWinesContext';
 // import deleteOneWine from services
 import { deleteOneWine } from '../../services/WineApi.js';
-
 // import PropTypes
 import PropTypes from 'prop-types';
 // import Scss
@@ -32,12 +30,14 @@ function UpdateCardList() {
 
     // Stock useNavigate in constant
     const navigate = useNavigate();
-    // Route to details page
+  
+    // Route to updatewine page
     const handleClick = (e) => {
         e.preventDefault();
-        const path = `/admin/wine/${e.target.id}`;
+        const path = `/admin/updatewine/${e.target.id}`;
         navigate(path);
     }
+
 
     // * FUNCTION TO DELETE WINE * //
 
@@ -52,11 +52,6 @@ function UpdateCardList() {
                 console.log('error', error);
             })
     }
-
-
-
-
-
 
     //* SEARCHBAR *//
 

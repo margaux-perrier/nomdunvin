@@ -1,6 +1,5 @@
 import React, { useContext, useState, Fragment } from "react";
 import {Link, useNavigate} from 'react-router-dom'; 
-import PropTypes from 'prop-types';
 import { loginRequest } from "../../services/userRequests";
 import {setToken, removeToken} from '../../services/instance'
 import { loginContext } from '../../Context/loginContext'; 
@@ -13,7 +12,7 @@ function LoginForm (){
   const {pseudo, setPseudo} = useContext(loginContext);  
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false); 
-  const {setIsRoleAdmin} = useContext(loginContext);
+  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
   const navigate=useNavigate();
 
 
@@ -72,8 +71,18 @@ function LoginForm (){
                   <div className="login-form_message">
                     Bonjour {pseudo} !
                   </div>
+
+               
+                {isRoleAdmin && (
+                  <Link to="/admin" className = "dashbord-link">Dashbord  <i class="edit icon"></i>
+
+                  
+                  </Link>
+                )}
+                 
+
           
-                    <Link to='/cart' className="cart-icon " >Mon panier<i class="shopping bag inverted icon"></i></Link>
+                    <Link to='/cart' className="cart-icon" >Mon panier<i class="shopping bag inverted icon"></i></Link>
                     <button
                       type="button"
                       className="login-form_button"
@@ -87,7 +96,7 @@ function LoginForm (){
 
               {(!isLogged && isOpen && (
         
-                < div className="login-form_container">
+                <div className="login-form_container">
                 <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
                   <button className="close" onClick={handleIsOpen}>X</button>
 
@@ -124,18 +133,14 @@ function LoginForm (){
               ))}
               
                {(!isLogged && !isOpen &&(
-                <>
+                <Fragment>
                   <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
                   <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-                </>
+                </Fragment>
               ))}
             </div>
           );
 };
 
-
-// LoginForm.propTypes = {
-//     handleLogin: PropTypes.func.isRequired,
-//   }
 
 export default React.memo(LoginForm);
