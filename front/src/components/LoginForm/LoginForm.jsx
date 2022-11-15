@@ -15,7 +15,7 @@ function LoginForm (){
   const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
   const navigate=useNavigate();
 
-
+  //Handle login with error message and success set pseudo, connected state + jwt token
   const handleSubmitLoginForm = async (e) => {
     e.preventDefault(); 
     try {
@@ -28,14 +28,10 @@ function LoginForm (){
         setError('');
         if(response.role === 'admin'){
           setIsRoleAdmin(true);
-
-
           navigate('/admin');
         }else{
-
           navigate('/');
         }
-
       }
 
     } catch (error) {
@@ -45,6 +41,7 @@ function LoginForm (){
     
 }
 
+  //handle logout
   const handleLogout = () => {
     setIsLogged(false);
     removeToken();
@@ -64,88 +61,80 @@ function LoginForm (){
   const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
    
   return (
-            <div >
+    <div >
+      {error && (
+          <div className="ui negative message">
+            {error}
+          </div>
+      )}
 
-              {error && (
-                  <div className="ui negative message">
-                    {error}
-                  </div>
-              )}
-
-              {isLogged && ( 
-                <div className="login-form_logged">
-                  <div className="login-form_message">
-                    Bonjour {pseudo} !
-                  </div>
-
-               
-                {isRoleAdmin && (
-                  <Link to="/admin" className = "dashbord-link">Dashbord  <i class="edit icon"></i>
-
-                  
-                  </Link>
-                )}
-                 
-
-          
-                    <Link to='/cart' className="cart-icon" >Mon panier<i class="shopping bag inverted icon"></i></Link>
-                    <button
-                      type="button"
-                      className="login-form_button"
-                      onClick={handleLogout}
-                    >
-                      Déconnexion
-                    </button>
-              
-                </div>
-              )}
-
-              {(!isLogged && isOpen && (
+      {isLogged && ( 
+        <div className="login-form_logged">
+          <div className="login-form_message">
+            Bonjour {pseudo} !
+          </div>
         
-                <div className="login-form_container">
-                <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
-                  <button className="close" onClick={handleIsOpen}>X</button>
+        {isRoleAdmin && (
+          <Link to="/admin" className = "dashbord-link">Dashbord  <i class="edit icon"></i>
+          </Link>
+        )}
 
-                  <div className="form-group">
-                    <input
-                      name="email"
-                      placeholder="Adresse Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={email}
-                    />
-                  </div>
+            <Link to='/cart' className="cart-icon" >Mon panier<i class="shopping bag inverted icon"></i></Link>
+            <button
+              type="button"
+              className="login-form_button"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </button>
+      
+        </div>
+      )}
 
-                  <div className="form-group">
-                    <input
-                      name="password"
-                      type="password"
-                      placeholder="Mot de passe"
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
-                    />
-                  </div>
+      {(!isLogged && isOpen && (
+        <div className="login-form_container">
+        <form autoComplete="off" className="form-login" onSubmit = {handleSubmitLoginForm}>
+          <button className="close" onClick={handleIsOpen}>X</button>
 
-                  <button
-                    type="submit"
-                    className="form-btn"
-                  >
-                    Connexion
-                  </button>
-                
-                </form>
-        
-                <Link to="/signup" className="signup-link">Ou s'inscrire</Link>
-                </div>
-              ))}
-              
-               {(!isLogged && !isOpen &&(
-                <Fragment>
-                  <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
-                  <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-                </Fragment>
-              ))}
-            </div>
-          );
+          <div className="form-group">
+            <input
+              name="email"
+              placeholder="Adresse Email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              name="password"
+              type="password"
+              placeholder="Mot de passe"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="form-btn"
+          >
+            Connexion
+          </button>
+        </form>
+
+        <Link to="/signup" className="signup-link">Ou s'inscrire</Link>
+        </div>
+      ))}
+      
+        {(!isLogged && !isOpen &&(
+        <Fragment>
+          <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
+          <Link to="/signup" className="tab-connexion">S'inscrire</Link>
+        </Fragment>
+      ))}
+    </div>
+  );
 };
 
 

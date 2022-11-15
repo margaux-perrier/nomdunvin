@@ -37,77 +37,74 @@ import './App.scss';
 // component App
 
 function App() {
-  
-  const { isRoleAdmin } = useContext(loginContext);
-
   return (
-
     <div className="App">
-
       <LoginContextProvider>
-
         <Header />
-
         <Routes>
-
-          <Route path="/" element={
-
+          <Route 
+          path="/"
+          element={
             <AllWinesProvider>
               <FilterMenu />
               <CardList />
             </AllWinesProvider>
-
           } />
 
-          <Route path="*" element={
-            <Error />
-          } />
+          <Route 
+            path="*"
+            element={
+              <Error />
+            } />
 
-          <Route path="/wine/:id" element={
-            <Details />
-          } />
+          <Route
+            path="/wine/:id"
+            element={
+              <Details />
+            } />
 
+          <Route 
+            path="/signup" 
+            element={
+              <SignUpForm />
+            } />
 
-          <Route path="/signup" element={
-            <SignUpForm />
-          } />
+          <Route 
+            path="/cart" 
+            element={
+              <CartPage />
+            } />
 
-          <Route path="/cart" element={
-            <CartPage />
-          } />
-
-          <Route path='/admin' element={
+          <Route 
+            path='/admin' 
+            element={
               <Fragment>
                 <Admin/>
               </Fragment>
             }>
+
                   <Route
                     path="/admin"
                     index
                     element={
-                    <AllWinesProvider>
-                        <FormAddWine />
-                    </AllWinesProvider>
+                      <AllWinesProvider>
+                          <FormAddWine />
+                      </AllWinesProvider>
                     }
                     />
                   <Route
                     path="/admin/updatewine"
                     index
                     element={
-                        <AllWinesProvider>
-                            <UpdateCardList />
-                        </AllWinesProvider>
+                      <AllWinesProvider>
+                          <UpdateCardList />
+                      </AllWinesProvider>
                     }
                     />
 
             </Route>
-
         </Routes>
-
-
-
         <Footer />
-
       </LoginContextProvider>
 
     </div>

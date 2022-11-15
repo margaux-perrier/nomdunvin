@@ -134,10 +134,10 @@ const userController = {
 		}
 	}, 
 
-	test(req,res){
-		res.status(200).json({ message : 'vous êtes bien authentifié'});
-	}, 
-
+	/** @function 
+   * Verify Token
+   * @returns {Object} objet containing logged, pseudo and role property
+   */
 	async verifyToken(req,res){
 		try {
 			const token = req.headers.authorization.split(' ')[1];
@@ -145,7 +145,7 @@ const userController = {
 
 
 			if(!token){
-				throw new Error('Problème de token');
+				throw new Error('Token doesn\'t exist');
 			}
 
 			let user = await User.findByPk(req.token.userId);

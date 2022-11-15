@@ -1,6 +1,9 @@
 const jsonwebtoken = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET; 
 
+/** @function 
+* Middleware authorization admin verify token
+*/
 const isAdminMiddleware = (req,res,next) => {
 	try {
 		const token = req.headers.authorization.split(' ')[1];

@@ -1,6 +1,12 @@
-import React,  {useState} from 'react'; 
+//import PropTypes
+import PropTypes from 'prop-types';
+//import from React
+import React,  { useState } from 'react'; 
+//import from React router dom
 import ReactDOM from 'react-dom';
+//import Logo
 import Logo from '../Header/logo.png'; 
+//import css
 import './LandpageModal.scss';
 
 function LandpageModal({
@@ -14,20 +20,21 @@ function LandpageModal({
     const rememberMe = localStorage.getItem('remember-me'); 
 
     return ReactDOM.createPortal(
+
         !rememberMe &&
-        < div className='landpage-modal_overlay'>
+        <div className='landpage-modal_overlay'>
             <div className='landpage-modal'>
-                <img src={Logo} alt="website logo" className="landpage-modal_logo" />
+                <img src={ Logo } alt="website logo" className="landpage-modal_logo"/>
                 <div className='landpage-modal_warning'>
                     <p> Êtes-vous légalement en âge de consommer de l'acool dans votre pays de résidence ? </p> 
                 </div>
                     { isWarningMessageOpen &&
-                        <div class="ui warning message">
-                        <i class="close icon" onClick={ () => setIsWarningMessageOpen(false) }></i>
-                        <div class="header">
-                          Vous devez être majeur pour accéder au site 
+                        <div className="ui warning message">
+                            <i className="close icon" onClick={ () => setIsWarningMessageOpen(false) }></i>
+                            <div className="header">
+                                Vous devez être majeur pour accéder au site 
+                            </div>
                         </div>
-                      </div>
                     }
 
                     <div className='landpage-modal_buttons'>
@@ -46,3 +53,10 @@ function LandpageModal({
 }
 
 export default React.memo(LandpageModal); 
+
+LandpageModal.propTypes = {
+    handleYesClick: PropTypes.func.isRequired,
+    handleNoClick: PropTypes.func.isRequired,
+    isWarningMessageOpen: PropTypes.bool.isRequired,
+    setIsWarningMessageOpen: PropTypes.func.isRequired,
+};

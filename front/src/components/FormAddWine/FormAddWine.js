@@ -2,40 +2,30 @@
 import React, { useContext, Fragment, useState } from 'react'
 // import useNavigate
 import { useNavigate } from 'react-router-dom'
-// import AllWinesContext
+// import Context
 import { AllWinesContext } from "../../Context/AllWinesContext";
-// import CardList component
+//Import Reducer
 import UseAdminReducer, { getActionSetValue, getActionReset } from "../../reducers/UseAdminReducer";
 // import addWine from services
 import { addWine, addTagCultureWine, addTagDishWine, addTagGrapevarietyWine } from "../../services/WineApi";
 // import scss
 import './formAddWine.scss';
-
-
 // import semantic UI Elements
 import { Form, Input, Button, } from 'semantic-ui-react'
 
 // FormAddWine component function
 function FormAddWine() {
 
+    //Reducer configs
     const { adminState, adminDispatch } = UseAdminReducer();
     const reset = () => adminDispatch(getActionReset());
 
-
+    //States
     const { wines, culture, region, winemaker, grapevariety, dish, fetchWines } = useContext(AllWinesContext);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
-
-    const navigate = useNavigate();
-    // Route to details page
-    const handleClick = (e) => {
-        e.preventDefault();
-        const path = `/admin/updatewine/${e.target.id}`;
-        navigate(path);
-    }
-
-
+    //Form methods
     const handleTextFieldChange = (e) => {
         adminDispatch(getActionSetValue(e.target.name, e.target.value));
     }
@@ -47,10 +37,8 @@ function FormAddWine() {
         adminDispatch(getActionSetValue(e.target.name, e.target.checked));
     }
 
-
     // * UniqAppellation * //
     const uniqAppellation = [...new Set(wines.map((wine) => wine.appellation))];
-
 
     // * UniqColor *//
     const uniqColor = [...new Set(wines.map((wine) => wine.color))];
@@ -59,11 +47,8 @@ function FormAddWine() {
     const uniqAvatar = [...new Set(wines.map((wine) => wine.avatar))];
     const colorAvatar = uniqColor.map((color, index) => { return { color: color, avatar: uniqAvatar[index] } })
 
-
     //* UniqSize *//
     const uniqSize = [...new Set(wines.map((wine) => wine.size))];
-
-
 
     const wine = {
         name: adminState.name,
@@ -95,8 +80,6 @@ function FormAddWine() {
         }
     }
 
-
-
     // We verify in adminState if the tag is in the grapevariety table, and we push the id in the grapeVarietyTagId array
     const grapeVarietyIdList = [];
     for (const key in grapevariety) {
@@ -104,6 +87,7 @@ function FormAddWine() {
             grapeVarietyIdList.push(grapevariety[key].id)
         }
     }
+
     // We verify in adminState if the tag is in the dish table, and we push the id in the dishTagId array
     const dishIdList = [];
     for (const key in dish) {
@@ -112,8 +96,7 @@ function FormAddWine() {
         }
     }
 
-    
-
+    //handle submit for create wine with error and success messages
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         //Create a new wine
@@ -189,7 +172,6 @@ function FormAddWine() {
             setSuccessMessage('Le vin a bien été créé et ajouté à la boutique !'); 
         } 
         setErrorMessage(''); 
-        
     }
 
     return (
@@ -204,7 +186,7 @@ function FormAddWine() {
                         </div>
                     )}
 
-{                   errorMessage && (
+                    {errorMessage && (
                         <div className="ui negative big message ">
                         {errorMessage}
                         </div>
@@ -232,7 +214,6 @@ function FormAddWine() {
                                 {uniqAppellation.map((appellation, index) => {
                                     return <option key={index} value={appellation}>{appellation}</option>
                                 })}
-
                             </select>
                         </div>
                         <div className="field">
@@ -242,7 +223,6 @@ function FormAddWine() {
                                 {uniqColor.map((color) => {
                                     return <option key={color} value={color}>{color}</option>
                                 })}
-
                             </select>
                         </div>
                     </div>
@@ -273,7 +253,6 @@ function FormAddWine() {
                                 {region.map((item) => {
                                     return <option key={item.id} value={item.id}>{item.name}</option>
                                 })}
-
                             </select>
                         </div>
                     </div>
@@ -313,13 +292,8 @@ function FormAddWine() {
                                 onChange={handleTextFieldChange}
                             />
                         </div>
-                       
                     </div>
-                   
-
-
-           
-
+                
                     <div className="field">
                         <label>Le type de culture: </label>
                         {culture.map((item, index) => (
@@ -365,7 +339,6 @@ function FormAddWine() {
                                     value={item.id}
                                     checked={adminState[item.name]}
                                     onChange={handleCheckBoxChange} />
-
                                 <label>{item.name}</label>
                             </div>
                         ))}
@@ -380,7 +353,6 @@ function FormAddWine() {
                             })}
                         </select>
                     </div>
-
                 </div>
 
                 <div className="six wide field">
@@ -397,13 +369,12 @@ function FormAddWine() {
                 </div>
 
                 <div className="two fields">
-
-                        <Form.Field
-                            id='form-button-control-public'
-                            control={Button}
-                            content='Ajouter ce vin'
-                            onSubmit={handleFormSubmit}
-                        />
+                    <Form.Field
+                        id='form-button-control-public'
+                        control={Button}
+                        content='Ajouter ce vin'
+                        onSubmit={handleFormSubmit}
+                    />
                  
                   
                     <Form.Field
@@ -413,7 +384,7 @@ function FormAddWine() {
                         onClick={reset}
                     />
                </div>
-                </Form>
+            </Form>
             </div>
         </Fragment>
     )
