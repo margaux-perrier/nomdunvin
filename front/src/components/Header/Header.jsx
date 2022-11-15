@@ -12,6 +12,7 @@ import { loginContext } from '../../Context/loginContext';
 import {setToken, removeToken} from '../../services/instance'
 
 
+
 // import logo
 import logo from './logo.png';
 // import logo utilisateur
@@ -28,7 +29,9 @@ function Header() {
     const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
     const {  isLogged, setIsLogged } = useContext(loginContext);
+
     const { isRoleAdmin, setIsRoleAdmin } = useContext(loginContext);
+
     const navigate=useNavigate();
  
 
@@ -55,11 +58,13 @@ function Header() {
 
   const handleLogout = () => {
     setIsLogged(false);
+
     setIsRoleAdmin(false);
     removeToken();
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
     localStorage.removeItem('remember-me'); 
+
     navigate('/'); 
     setIsOpen(false)
   }
@@ -94,6 +99,7 @@ function Header() {
                    
                     {isLogged && (
                         <div className='menu-button'>
+
                             {!isRoleAdmin ? 
                                     <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
                             : 
@@ -107,6 +113,7 @@ function Header() {
                             > Déconnexion
                             </button>
                         </div>
+
                     )}
 
                     {!isLogged && (
@@ -114,7 +121,9 @@ function Header() {
                         <Link to="/signup" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
                         </Link>
+
                         </div>
+
                     )}
 
                     
