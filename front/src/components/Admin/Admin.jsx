@@ -1,19 +1,41 @@
 //import from React
-import React from 'react'; 
+import React, {useContext}from 'react'; 
+import { loginContext } from '../../Context/loginContext';
+
 //import components
 import Nav from './Nav'; 
 
 //import from React router dom
-import { Outlet} from 'react-router-dom';
+import { Outlet, useNavigate} from 'react-router-dom';
+import Error from '../Error/Error'
 
 //css
 import './Admin.scss';
 
 function Admin(){
+
+    const {  isRoleAdmin, isLogged } = useContext(loginContext);
+    const navigate=useNavigate();
+
     return(
+
+       
         <div className='admin_container'>
-            <Nav />
-           <Outlet/>
+            {isRoleAdmin && (
+                 <div>
+                    <Nav />
+                    <Outlet/>
+                </div>
+             )}
+
+            {!isRoleAdmin  && (
+                 <Error/>
+             )}
+
+            {!isLogged  && (
+                 <Error/>
+             )}
+           
         </div>
     )
 }

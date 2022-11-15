@@ -3,6 +3,9 @@ import React, {useState, useContext} from "react";
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 
+import {setToken, removeToken} from '../../services/instance'
+
+
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
 import { loginContext } from '../../Context/loginContext'; 
@@ -10,7 +13,6 @@ import { loginContext } from '../../Context/loginContext';
 //import user methods
 import {signupRequest} from '../../services/userRequests'
 import { loginRequest } from '../../services/userRequests'
-import {setToken} from '../../services/instance'
 
 
 
@@ -110,7 +112,8 @@ function SignUpForm(){
     try {
       const response = await loginRequest(connectionEmail, connectionPassword); 
       setToken(response.token);
-      console.log(response.token);
+      localStorage.setItem('token', response.token);
+
       if (response.logged){
         setIsLogged(true);
         setPseudo(response.pseudo);
@@ -130,7 +133,9 @@ function SignUpForm(){
       setLoggingError('mauvais password ou email');
     }
     
-}
+  }
+
+  
   return(
     <div className= "container-form">
         

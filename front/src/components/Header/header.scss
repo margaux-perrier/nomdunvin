@@ -62,10 +62,43 @@
       width: 25%;
       margin: auto;
     }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .header-button {
+      border-radius: 1rem;
+      height: 2rem;
+      border: 1px solid vars.$secondary-color;
+      background-color: white;
+      color: vars.$primary-color;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-style: italic;
+      cursor: pointer;
+      margin: 0.5rem; 
+    }
+
+    .menu-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .cart-icons {
+      margin: 0.5rem; 
+      color: white
+    }
+    
   }
 }
 //* Responsive for Desktop *//
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 970px) {
   .header {
     .navbar {
       // Management of login form Desktop
@@ -73,6 +106,16 @@
         display: flex;
       }
       .logo-user {
+        display: none;
+      }
+      .header-button {
+        display: none;
+      }
+      .cart-icons {
+        display: none;
+      }
+
+      .dashboard {
         display: none;
       }
     }

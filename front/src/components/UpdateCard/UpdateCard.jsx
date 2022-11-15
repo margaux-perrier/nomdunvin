@@ -2,7 +2,6 @@
 import React, { Fragment, useState} from 'react';
 // import Modal
 import Modal from '../Modal/Modal';
-
 // import PropTypes
 import PropTypes from 'prop-types';
 // import Scss
@@ -26,7 +25,12 @@ function UpdateCard({
     handleDeleteClick
 }) {
 
+    
+
     const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
+
+
+    
 
     return (
         <Fragment>

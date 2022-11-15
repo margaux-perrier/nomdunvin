@@ -2,13 +2,15 @@
 /* eslint-disable react/no-unescaped-entities */
 // import React
 import React, { useState,useContext, useEffect} from 'react';
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import LoginForm from '../LoginForm/LoginForm';
 //import reducer
 import { loginRequest } from '../../services/userRequests'
 import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
 import { loginContext } from '../../Context/loginContext';
+import {setToken, removeToken} from '../../services/instance'
+
 // import logo cart
 import cart from './cart.png';
 
@@ -28,6 +30,11 @@ function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
+    const {  isLogged, setIsLogged } = useContext(loginContext);
+    const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+    const navigate=useNavigate();
+ 
+
 
 
 
@@ -43,9 +50,20 @@ function Header() {
 
    const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
+    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword);
+    setToken(user.token);
     userDispatch(getActionUserLogged(user));
     setIsOpen(false);
+  }
+
+  const handleLogout = () => {
+    setIsLogged(false);
+    setIsRoleAdmin(false);
+    removeToken();
+    localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    navigate('/'); 
+    setIsOpen(false)
   }
 
 
@@ -69,19 +87,40 @@ function Header() {
                         {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
                         <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">La Cave</NavLink>
                     </div>
-                    {/* {userState.loggedUser.user} ? <p>welcome back {userState.loggedUser.user.firstname}</p>  */}
-                    {/* {console.log(userState.loggedUser.user.firstname)} */}
+                   
                 </div>
-                <div>
+                <div className='button-container'>
                     <div className="menu-login">
                         <LoginForm />
                     </div>
                    
-                    <div className="menu-user">
+                    {isLogged && (
+                        <div className='menu-button'>
+                            {!isRoleAdmin ? 
+                                    <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
+                            : 
+                                    <Link to="/admin" className = "dashbord-link dashboard"><i class="edit large icon"></i></Link>
+                            }
+                       
+
+                            <button
+                                type="button"
+                                className="header-button"
+                                onClick={handleLogout}
+                            > Déconnexion
+                            </button>
+                        </div>
+                    )}
+
+                    {!isLogged && (
+                        <div className="menu-user">
                         <Link to="/signup" className="tab-user">
                             <img src={user} alt="logo utilisateur" className="logo-user" />
                         </Link>
-                    </div>
+                        </div>
+                    )}
+
+                    
                 </div>
 
             </nav>
