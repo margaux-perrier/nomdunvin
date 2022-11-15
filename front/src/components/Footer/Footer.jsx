@@ -17,9 +17,9 @@ function Footer() {
         <footer>
             <div className="footer">
             
-                    <div className="footer-logo">
-                        <img src={logo} alt="logo nom d'un vin" className="logo" />
-                    </div>
+                <div className="footer-logo">
+                    <img src={logo} alt="logo nom d'un vin" className="logo" />
+                </div>
 
                 <div className="menu">
                     <div className="footer-menu">
