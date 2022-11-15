@@ -54,7 +54,6 @@ function LoginForm (){
     setIsRoleAdmin(false);
     navigate('/'); 
     setIsOpen(false); 
-    // clearTimeout(); 
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button
@@ -74,12 +73,12 @@ function LoginForm (){
             Bonjour {pseudo} !
           </div>
         
-        {isRoleAdmin && (
-          <Link to="/admin" className = "dashbord-link">Dashbord  <i class="edit icon"></i>
-          </Link>
-        )}
+        { isRoleAdmin ? (
+          <Link to="/admin" className = "dashbord-link">Dashbord  <i className="edit icon"></i></Link>
+        ) : 
+         <Link to='/cart' className="cart-icon" >Mon panier<i className="shopping bag inverted icon"></i></Link>
+        }
 
-            <Link to='/cart' className="cart-icon" >Mon panier<i class="shopping bag inverted icon"></i></Link>
             <button
               type="button"
               className="login-form_button"

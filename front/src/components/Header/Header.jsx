@@ -27,7 +27,7 @@ function Header() {
     //* STATES *//
     const [isOpen, setIsOpen] = useState(false);
     const {  isLogged, setIsLogged } = useContext(loginContext);
-
+    const { isRoleAdmin } = useContext(loginContext); 
 
     //*REDUCER CONFIG*//
     const { userDispatch } = useUserReducer();
@@ -92,7 +92,7 @@ function Header() {
                         <div className='menu-button'>
 
 
-                            {!isRoleAdmin ? 
+                            { !isRoleAdmin ? 
                                     <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
                             : 
                                     <Link to="/admin" className = "dashbord-link dashboard"><i class="edit large icon"></i></Link>
