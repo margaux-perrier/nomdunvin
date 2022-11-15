@@ -1,43 +1,54 @@
-import { createContext, useState} from 'react'; 
-import { tokenVerifyToStayConnected } from '../services/userRequests';
-import { setToken } from '../services/instance';
+//import from React
+import {  createContext, useState } from 'react';
+//import request
+import {  tokenVerifyToStayConnected } from '../services/userRequests';
+//import token
+import {  setToken } from '../services/instance';
 
-export const loginContext = createContext(); 
+export const loginContext = createContext();
 
-export const LoginContextProvider = ({ children }) => {
-    //si le token n'existe pas dans localstorage=> islogged = false
-    //si il existe dans localstorage, requête au serv, check (coté serv) si le token est valable
-    //s'il est pas valable => islogged = false(serv)
-    //si il est valable => isloged = true et la requête renvoie les infos pseudo etc(serv)
+export const LoginContextProvider = ({ children}) => {
+   
     const token = localStorage.getItem('token');
-    const [ isLogged, setIsLogged] = useState(false); 
+    const [isLogged, setIsLogged] = useState(false);
     const [pseudo, setPseudo] = useState('');
-    const [ isRoleAdmin, setIsRoleAdmin] = useState(false); 
-    
+    const [isRoleAdmin, setIsRoleAdmin] = useState(false);
+
     const TokenVerify = async () => {
         if (!token) {
             setIsLogged(false);
         }
-        
+
         if (token) {
             setToken(token);
             const response = await tokenVerifyToStayConnected();
-            if(response.pseudo) {
+            if (response.pseudo) {
                 setIsLogged(true);
                 setPseudo(response.pseudo);
+                if (response.role === 'admin') {
+                    setIsRoleAdmin(true);
+                }
             } else {
                 setIsLogged(false);
             }
-        }    
-        return;    
+        }
+        return;
     }
-
-    
-    
-    return (
-        <loginContext.Provider value={{ TokenVerify, isLogged, setIsLogged, pseudo, setPseudo, isRoleAdmin, setIsRoleAdmin}} >
-            {children}
+    return ( 
+        <loginContext.Provider value = {
+            {
+                TokenVerify,
+                isLogged,
+                setIsLogged,
+                pseudo,
+                setPseudo,
+                isRoleAdmin,
+                setIsRoleAdmin
+            }
+        } > {
+            children
+        } 
         </loginContext.Provider>
-    ); 
+    );
 
 };

@@ -1,12 +1,10 @@
-// import React
+// import from React
 import React from 'react';
-// import Link from react-router-dom
+// import from react-router-dom
 import { Link } from 'react-router-dom';
-// import mini-logo
+// import logo
 import logo from './logo.png';
-// import logo facebook
 import facebook from './logo-facebook.png';
-// import logo instagram
 import instagram from './logo-instagram.png';
 //import scss
 import './footer.scss';
@@ -16,7 +14,7 @@ function Footer() {
     return (
         <footer>
             <div className="footer">
-            
+
                 <div className="footer-logo">
                     <img src={logo} alt="logo nom d'un vin" className="logo" />
                 </div>
@@ -40,8 +38,8 @@ function Footer() {
                             <a href="https://fr-fr.facebook.com/" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="logo nom d'un vin" className="logo-social" /></a>
                             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="logo nom d'un vin" className="logo-social" /></a>
                         </div>
-                       
-                        
+
+
                     </div>
                 </div>
 

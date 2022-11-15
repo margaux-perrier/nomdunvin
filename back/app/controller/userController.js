@@ -120,7 +120,7 @@ const userController = {
 					expiresIn: '3h' 
 				};
 				let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
-				console.log('<< 200', searchedUser.email);
+				
 				return res.status(200).json({ 
 					token: token,
 					logged: true,

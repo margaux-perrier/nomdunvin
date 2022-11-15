@@ -1,9 +1,11 @@
+//import from react
 import { useReducer } from 'react';
 
-
+//Setting cases in variables to avoid problems
 const SET_VALUE_INPUT = 'SET_VALUE_INPUT';
 const RESET = 'RESET';
 
+//initial state
 const addWineInitialState = {
   name:'',
   appellation:'',
@@ -48,7 +50,6 @@ const addWineInitialState = {
   price: '',
 }
 
-
 function adminReducer(oldState, action) {
   switch (action.type) {
     case SET_VALUE_INPUT : {
@@ -58,33 +59,22 @@ function adminReducer(oldState, action) {
       }
     }
 
-    
-
     case RESET : {
       return addWineInitialState;
     }
-
-    // case UPDATE : {
-    //   return {
-    //     ...oldState,
-
-    //   }
-    // }
     
     default:
       return oldState;
   };
 }
 
+//ACTION CREATORS
 export function getActionSetValue(name, value) {
- 
-
   return{
     type: SET_VALUE_INPUT,
     payload: {
       name, value,
     }
-    
   };
 }
 
@@ -94,6 +84,7 @@ export function getActionReset() {
   };
 }
 
+//REDUCER
 function UseAdminReducer() {
   const[adminState, adminDispatch] = useReducer(adminReducer, addWineInitialState);
   return {

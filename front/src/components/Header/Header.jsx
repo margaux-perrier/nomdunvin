@@ -1,20 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-// import React
-import React, { useState,useContext, useEffect} from 'react';
+//import from React
+import React, { useState, useContext, useEffect } from 'react';
+//import from React router dom
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-
+//import components
 import LoginForm from '../LoginForm/LoginForm';
-//import reducer
-import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
-import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
 //Import context
 import { loginContext } from '../../Context/loginContext';
 //import user Request
-import {setToken, removeToken} from '../../services/instance'
-
-import { loginRequest } from '../../services/userRequests'
-
+import { removeToken } from '../../services/instance'
 // import logo
 import logo from './logo.png';
 import user from './user.png';
@@ -25,30 +20,13 @@ import './header.scss';
 function Header() {
 
     //* STATES *//
-    const [isOpen, setIsOpen] = useState(false);
-    const {  isLogged, setIsLogged } = useContext(loginContext);
+    const [setIsOpen] = useState(false);
+    const { isLogged, setIsLogged } = useContext(loginContext);
+    const { isRoleAdmin } = useContext(loginContext)
 
-
-    //*REDUCER CONFIG*//
-    const { userDispatch } = useUserReducer();
-    const { formState, formDispatch } = UseFormReducer();
-
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     //* FUNCTIONS *//
-
-    // Change the value to "true" or "false" when clicking on the "Se connecter" button
-    const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
-
-    //* FORM METHODS *//
-    const handleTextFieldChange = (e) => {
-        formDispatch(getActionSetValue(e.target.name, e.target.value));
-
-      }
-
-  
-
- 
 
     //handle logout
     const handleLogout = () => {
@@ -56,7 +34,7 @@ function Header() {
         removeToken();
         localStorage.removeItem('token');
         localStorage.removeItem('cart');
-        navigate('/'); 
+        navigate('/');
         setIsOpen(false)
     }
 
@@ -65,7 +43,6 @@ function Header() {
     useEffect(() => {
         TokenVerify()
     }, [TokenVerify])
-
 
     return (
         //création d'une navbar
@@ -78,26 +55,25 @@ function Header() {
                         </Link>
                     </div>
                     <div className="link">
-                        {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
-                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">La Cave</NavLink>
+                        <NavLink end to="/" style={({ isActive }) => { return { color: isActive ? 'white' : 'white' } }} className="tab-link">La Cave</NavLink>
                     </div>
-                   
+
                 </div>
                 <div className='button-container'>
                     <div className="menu-login">
                         <LoginForm />
                     </div>
-                   
+
                     {isLogged && (
                         <div className='menu-button'>
 
+                            {!isRoleAdmin && (
+                            <div>
+                                <Link to='/cart' className="cart-icons " ><i className="shopping large bag inverted icon"></i></Link>
+                                <Link to="/admin" className="dashbord-link dashboard"><i className="edit large icon"></i></Link>
+                            </div>
+                            )}
 
-                            {!isRoleAdmin ? 
-                                    <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
-                            : 
-                                    <Link to="/admin" className = "dashbord-link dashboard"><i class="edit large icon"></i></Link>
-                            }
-                       
                             <button
                                 type="button"
                                 className="header-button"

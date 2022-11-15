@@ -1,36 +1,28 @@
 /* eslint-disable array-callback-return */
-// import react
+// import from react
 import React, { useContext, useState, Fragment } from 'react';
-// import Navigate
+//import react-router-dom
 import { useNavigate } from 'react-router-dom';
-// import Card component
+// import component
 import UpdateCard from '../UpdateCard/UpdateCard';
+// import context
+import { AllWinesContext } from '../../Context/AllWinesContext';
+// import services
+import { deleteOneWine } from '../../services/WineApi.js';
 // import semantic UI Elements
 import { Segment, Input, Form } from 'semantic-ui-react';
-// import AllWinesContext
-import { AllWinesContext } from '../../Context/AllWinesContext';
-// import deleteOneWine from services
-import { deleteOneWine } from '../../services/WineApi.js';
-// import PropTypes
-import PropTypes from 'prop-types';
 // import Scss
 import './updateCardList.scss';
 
-
-
-// Component CardList
 function UpdateCardList() {
 
-    //* STATE FOR UPDATECARDLIST *//
-
-    // use Context for catch all wines
+    //STATE and CONTEXT
     const { wines, fetchWines } = useContext(AllWinesContext);
+    const [search, setSearch] = useState('');
+
 
     // * NAVIGATE TO DETAILS PAGE * //
-
-    // Stock useNavigate in constant
     const navigate = useNavigate();
-  
     // Route to updatewine page
     const handleClick = (e) => {
         e.preventDefault();
@@ -38,14 +30,12 @@ function UpdateCardList() {
         navigate(path);
     }
 
-
     // * FUNCTION TO DELETE WINE * //
-
     const handleDeleteClick = (e) => {
         e.preventDefault();
         const id = Number(e.target.id);
         deleteOneWine(id)
-            .then((response) => {
+            .then(() => {
                 fetchWines()
             })
             .catch((error) => {
@@ -55,10 +45,6 @@ function UpdateCardList() {
 
     //* SEARCHBAR *//
 
-    // Stock Search in State
-    const [search, setSearch] = useState('');
-
-    //  change value of search
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
@@ -66,20 +52,14 @@ function UpdateCardList() {
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
 
-
     // filtered wines == wines
     let filteredWines = getFilteredWine();
 
-
-
-
-
-    // * RETURN *//
     return (
         <Fragment>
-            
+
             <h1 className="update-title">Modifier ou supprimer un vin</h1>
-            
+
             <div className="searchBar-admin">
                 <Segment style={{ width: '70%' }}>
                     <Form >
@@ -116,27 +96,4 @@ function UpdateCardList() {
 }
 
 export default React.memo(UpdateCardList);
-
-
-
-// * PROP-TYPES *//
-
-UpdateCardList.propTypes = {
-    wines: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            size: PropTypes.string.isRequired,
-            color: PropTypes.string.isRequired,
-            alcohol: PropTypes.number.isRequired,
-            price: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-            avatar: PropTypes.string.isRequired,
-            winemaker: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-            }).isRequired,
-            appellation: PropTypes.string.isRequired,
-            culture: PropTypes.string.isRequired,
-        }).isRequired,
-    )
-};
 

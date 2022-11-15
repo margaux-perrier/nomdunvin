@@ -1,16 +1,12 @@
-// Import React
+//import from React
 import React from 'react';
-// == Import
+//import css
 import './loading.scss';
-
-// Fonction Loading
 
 function Loading() {
   return (
     <div className="">
-
       <div className="loader" />
-
       <div className="spinner">
         <div className="spinner-container">
           <div className="spinner-icon" />
@@ -23,5 +19,4 @@ function Loading() {
   );
 }
 
-// == Export
 export default React.memo(Loading);
