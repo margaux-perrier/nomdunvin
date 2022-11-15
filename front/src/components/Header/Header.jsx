@@ -3,21 +3,18 @@
 // import React
 import React, { useState,useContext, useEffect} from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+
 import LoginForm from '../LoginForm/LoginForm';
 //import reducer
-import { loginRequest } from '../../services/userRequests'
 import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
 import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
+//Import context
 import { loginContext } from '../../Context/loginContext';
+//import user Request
 import {setToken, removeToken} from '../../services/instance'
-
-// import logo cart
-import cart from './cart.png';
-
-
+import { loginRequest } from '../../services/userRequests'
 // import logo
 import logo from './logo.png';
-// import logo utilisateur
 import user from './user.png';
 //import scss
 import './header.scss';
@@ -26,49 +23,40 @@ import './header.scss';
 function Header() {
 
     //* STATES *//
-    // This State concerns the opening of the login form when you click on the "Se connecter" button
     const [isOpen, setIsOpen] = useState(false);
+    const {  isLogged, setIsLogged } = useContext(loginContext);
+
+    //*REDUCER CONFIG*//
     const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
-    const {  isLogged, setIsLogged } = useContext(loginContext);
+
     const navigate=useNavigate();
- 
-
-
-
 
     //* FUNCTIONS *//
 
     // Change the value to "true" or "false" when clicking on the "Se connecter" button
     const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
 
-    // Change the value of the "onChange" state when the user enters an email/password
+    //* FORM METHODS *//
     const handleTextFieldChange = (e) => {
         formDispatch(getActionSetValue(e.target.name, e.target.value));
-      }
+        }
 
-   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword);
-    setToken(user.token);
-    userDispatch(getActionUserLogged(user));
-    setIsOpen(false);
-  }
+    //handle logout
+    const handleLogout = () => {
+        setIsLogged(false);
+        removeToken();
+        localStorage.removeItem('token');
+        localStorage.removeItem('cart');
+        navigate('/'); 
+        setIsOpen(false)
+    }
 
-  const handleLogout = () => {
-    setIsLogged(false);
-    removeToken();
-    localStorage.removeItem('token');
-    localStorage.removeItem('cart');
-    navigate('/'); 
-    setIsOpen(false)
-  }
-
-
-  const { TokenVerify } = useContext(loginContext);
-  useEffect(() => {
-      TokenVerify()
-  }, [TokenVerify])
+    //handle verification of JWT token to stay connected when user refresh page
+    const { TokenVerify } = useContext(loginContext);
+    useEffect(() => {
+        TokenVerify()
+    }, [TokenVerify])
 
 
     return (
@@ -94,13 +82,12 @@ function Header() {
                    
                     {isLogged && (
                         <div className='menu-button'>
-                        <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
-
+                            <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
                         <button
-                      type="button"
-                      className="header-button"
-                      onClick={handleLogout}
-                    >
+                            type="button"
+                            className="header-button"
+                            onClick={handleLogout}
+                        >
                       Déconnexion
                     </button>
                     </div>
@@ -108,15 +95,13 @@ function Header() {
 
                     {!isLogged && (
                         <div className="menu-user">
-                        <Link to="/signup" className="tab-user">
-                            <img src={user} alt="logo utilisateur" className="logo-user" />
-                        </Link>
-                    </div>
+                            <Link to="/signup" className="tab-user">
+                                <img src={user} alt="logo utilisateur" className="logo-user" />
+                            </Link>
+                        </div>
                     )}
 
-                    
                 </div>
-
             </nav>
         </header>
     );

@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, {useState, useContext} from "react";
-// import Navigate
 import { useNavigate } from 'react-router-dom';
 
 import {setToken, removeToken} from '../../services/instance'
@@ -8,13 +7,12 @@ import {setToken, removeToken} from '../../services/instance'
 
 // Reducer import
 import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
+
+//Context import
 import { loginContext } from '../../Context/loginContext'; 
 
-//import user methods
-import {signupRequest} from '../../services/userRequests'
-import { loginRequest } from '../../services/userRequests'
-
-
+//import user request
+import {signupRequest, loginRequest} from '../../services/userRequests'
 
 //Material UI imports
 import Box from '@mui/material/Box';
@@ -31,19 +29,18 @@ function SignUpForm(){
   //useReducer configs
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
-  const navigate = useNavigate(); 
 
+  const navigate = useNavigate(); 
 
   //States
   const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
   const[connectionPassword, setConnectionPassword] = useState('');
-
   const { setIsLogged } = useContext(loginContext); 
   const { setPseudo } = useContext(loginContext); 
   const [loggingError, setLoggingError] = useState('');
   const [signupError, setSignupError] = useState('');
   const {setIsRoleAdmin} = useContext(loginContext);
-  const[successSignup, setSuccessSignup] = useState('');
+  const [successSignup, setSuccessSignup] = useState('');
 
 
 
@@ -57,6 +54,7 @@ function SignUpForm(){
     formDispatch(getActionSetValue(e.target.name, e.target.checked))
   }
 
+  //handle signup with error or success message
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     setSignupError('');
@@ -73,7 +71,6 @@ function SignUpForm(){
 
     if(formState.email === '' ) {
       setSignupError('veuillez rentrer une adresse email');
-      console.log('error ===>', signupError )
       return;
     }
 
@@ -83,7 +80,7 @@ function SignUpForm(){
     }
 
     if(formState.password !== formState.confirmPassword){
-      setSignupError('Passwords non identiques');
+      setSignupError('Mots de passe non identiques');
       return;
     }
 
@@ -107,6 +104,7 @@ function SignUpForm(){
     return /\S+@\S+\.\S+/.test(email);
   }
 
+  //handle login with error message and success set pseudo, connected state + jwt token
   const handleSubmitLoginForm = async (e) => {
     e.preventDefault(); 
     try {
@@ -201,14 +199,13 @@ function SignUpForm(){
         </h1>
     
       <p className="text">
-        Vous n'avez pas de compte ? On a pourtant comme un air de
-déjà vu ... Rejoignez nous en quelques clics !
+        Vous n'avez pas de compte ? On a pourtant comme un air de déjà vu ... Rejoignez nous en quelques clics !        
       </p>
 
       {signupError && (
-                  <div className="ui negative big message">
-                    {signupError}
-                  </div>)}
+        <div className="ui negative big message">
+          {signupError}
+        </div>)}
 
       {successSignup && (
         <div className="ui green big message ">

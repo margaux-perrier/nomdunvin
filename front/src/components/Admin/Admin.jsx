@@ -28,13 +28,11 @@ function Admin(){
                 </div>
              )}
 
-            {!isRoleAdmin  && (
+            {(!isRoleAdmin || !isLogged)  && (
                  <Error/>
              )}
 
-            {!isLogged  && (
-                 <Error/>
-             )}
+            
            
         </div>
     )
