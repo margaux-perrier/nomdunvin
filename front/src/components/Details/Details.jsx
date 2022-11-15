@@ -56,7 +56,6 @@ function Details() {
             });
     }, [id, navigate]);
 
-
     // if isLoadingWine is true we display Loading component    
     if (isLoadingWine) {
         return <Loading />
@@ -188,9 +187,25 @@ export default React.memo(Details);
 // * LES PROPTYPES * //
 
 Details.propTypes = {
-    id: PropTypes.number,
+
     wine: PropTypes.object,
     isLoadingWine: PropTypes.bool,
+    setIsLoadingWine: PropTypes.func,
+    setWine: PropTypes.func,
+    isMessageAddToCartOpen: PropTypes.bool,
+    setIsMessageAddToCartOpen: PropTypes.func,
+    isConnexionMessageOpen: PropTypes.bool,
+    setIsConnexionMessageOpen: PropTypes.func,
+    quantity: PropTypes.number,
+    setQuantity: PropTypes.func,
+    id: PropTypes.number,
     navigate: PropTypes.func,
-    fetchOneWine: PropTypes.func,
+    user: PropTypes.object,
+    setUser: PropTypes.func,
+    cart: PropTypes.array,
+    setCart: PropTypes.func,
+    setTotalPrice: PropTypes.func,
+    totalPrice: PropTypes.number,
+
 };
+   

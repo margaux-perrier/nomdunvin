@@ -28,7 +28,6 @@ function CartItem({
 
     return(
         <Fragment>
-
             <div className="ui fitted divider"></div>
             <div className = 'cart-item'>
                 <img className = 'cart-item_image' src={ avatar } alt='bouteille'/>
@@ -42,7 +41,6 @@ function CartItem({
                     <i className="trash red icon" onClick={ () => handleRemoveWine(id) }></i>
                 </div>
             </div>
-
         </Fragment>
     )
 };
@@ -61,3 +59,4 @@ CartItem.propTypes = {
     setTotal: PropTypes.func.isRequired,
     handleRemoveWine: PropTypes.func.isRequired,
 };
+

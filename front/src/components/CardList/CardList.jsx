@@ -1,9 +1,7 @@
 /* eslint-disable array-callback-return */
 
 // import react
-
 import React, { useState, Fragment, useContext } from 'react';
-
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import semantic UI Elements
@@ -14,11 +12,8 @@ import Card from '../Card/Card';
 import LandpageModal from '../LandpageModal/LandpageModal';
 // import AllWinesContext
 import { AllWinesContext } from '../../Context/AllWinesContext';
-//import loginContext
-
 // import PropTypes
 import PropTypes from 'prop-types';
-
 // import Scss
 import './cardList.scss';
 
@@ -32,39 +27,29 @@ function CardList() {
     // use Context for catch all wines
     const { wines } = useContext(AllWinesContext);
 
-    // Check for login
-    // const { TokenVerify } = useContext(loginContext);
-    // useEffect(() => {
-    //     TokenVerify()
-    // }, [])
-
-
     // * LANDPAGEMODAL* //
-    const [ isLandpageModalOpen, setIsLangpageModalOpen ] = useState(true);
-    const [ isWarningMessageOpen, setIsWarningMessageOpen ] = useState(false);  
-    
+    const [isLandpageModalOpen, setIsLangpageModalOpen] = useState(true);
+    const [isWarningMessageOpen, setIsWarningMessageOpen] = useState(false);
 
-    const handleYesClick = ( isRememberMeChecked ) => {
-        
 
-        if( isRememberMeChecked ){
+    const handleYesClick = (isRememberMeChecked) => {
+
+        if (isRememberMeChecked) {
             localStorage.setItem('remember-me', true);
         }
         setIsLangpageModalOpen(false)
 
-
-        setTimeout(()=>{
-            localStorage.removeItem('remember-me'); 
-          }, "10800000");
+        setTimeout(() => {
+            localStorage.removeItem('remember-me');
+        }, "10800000");
 
     }
-    
+
     const handleNoClick = () => {
-        setIsWarningMessageOpen(true); 
+        setIsWarningMessageOpen(true);
     }
 
     // * NAVIGATE TO DETAILS PAGE * //
-
 
     // Stock useNavigate in constant
     const navigate = useNavigate();
@@ -88,10 +73,8 @@ function CardList() {
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
 
-
     // filtered wines == wines
     let filteredWines = getFilteredWine();
-
 
     //* USE CONTEXT FOR FILTERS BY COLOR *//
 
@@ -153,6 +136,7 @@ function CardList() {
             }
         }
     });
+
     // if checkbox is checked return filteredWines = filteredMenuRegion
     for (let i = 0; i < checkboxRegion.length; i++) {
         if (checkboxRegion[i].value === true) {
@@ -162,17 +146,17 @@ function CardList() {
 
     // * RETURN *//
     return (
-      
+
         <Fragment>
-       { isLandpageModalOpen &&  (
-            <LandpageModal
-                handleYesClick={ handleYesClick }
-                handleNoClick={ handleNoClick }
-                isWarningMessageOpen= { isWarningMessageOpen }
-                setIsWarningMessageOpen = { setIsWarningMessageOpen }
-                /> 
-        ) }
-         
+            {isLandpageModalOpen && (
+                <LandpageModal
+                    handleYesClick={handleYesClick}
+                    handleNoClick={handleNoClick}
+                    isWarningMessageOpen={isWarningMessageOpen}
+                    setIsWarningMessageOpen={setIsWarningMessageOpen}
+                />
+            )}
+
             <div className="searchBar">
                 <Segment style={{ width: '70%' }}>
                     <Form >
@@ -180,7 +164,6 @@ function CardList() {
                     </Form>
                 </Segment>
             </div>
-
 
             <div className="cardList">
                 {filteredWines.map(({
@@ -202,14 +185,12 @@ function CardList() {
                         handleClick={handleClick}
                     />
                 ))}
-            </div> 
-        </Fragment> 
+            </div>
+        </Fragment>
     );
 }
 
 export default React.memo(CardList);
-
-
 
 // * PROP-TYPES *//
 
@@ -223,11 +204,9 @@ CardList.propTypes = {
             price: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             avatar: PropTypes.string.isRequired,
-            winemaker: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-            }).isRequired,
+            winemaker: PropTypes.string.isRequired,
             appellation: PropTypes.string.isRequired,
             culture: PropTypes.string.isRequired,
-        }).isRequired,
+        }),
     )
 };

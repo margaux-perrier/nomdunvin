@@ -1,17 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 // import React from "react";
-
 import React, { useContext, useEffect } from "react";
-
 // import Menu fro: react-burger-menu
 import { slide as Menu } from "react-burger-menu";
 // import Logo
 import Logo from "./logo.png";
-
 // import AllWinesContext
 import { AllWinesContext } from "../../Context/AllWinesContext";
-
 // import Scss
 import "./filterMenu.scss";
 
@@ -20,6 +16,7 @@ import "./filterMenu.scss";
 const FilterMenu = () => {
 
     // * CREATE FILTER BY COLOR FOR FILTERMENU  * //
+
     // Catch data from AllWinesContext
     const { wines, checkboxColor, setCheckboxColor, handleChangeColor } = useContext(AllWinesContext);
     // Map on wines for create array with all color
@@ -33,6 +30,7 @@ const FilterMenu = () => {
 
 
     // * CREATE FILTER BY WINEMAKER FOR FILTERMENU  * //
+
     // Catch data from AllWinesContext
     const { checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker } = useContext(AllWinesContext);
     // Map on wines for create array with all winemaker
@@ -47,6 +45,7 @@ const FilterMenu = () => {
 
 
     // * CREATE FILTER BY REGION FOR FILTERMENU  * //
+
     // Catch data from AllWinesContext
     const { checkboxRegion, setCheckboxRegion, handleChangeRegion } = useContext(AllWinesContext);
     // Map on wines for create array with all region
