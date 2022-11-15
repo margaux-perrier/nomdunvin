@@ -9,7 +9,6 @@ const apiInstance = axios.create({
     // comme ca, apresè avoir appellé setToken, on peux faire nos requetes sans rien préciser avec l'instance et elles vont toute
     // s'accompagner du Header Authorization
     apiInstance.defaults.headers.common['authorization'] = `Bearer ${token}`;
-    console.log(token);
   }; 
 
   export function removeToken(token){

@@ -119,7 +119,7 @@ const cartController = {
 				return res.status(404).json({message : error.message}); 
 			}
 
-			for(const wine of req.session.cart){
+			for(const wine of cart){
 				const wineToAdd = await Wine.findByPk(wine.id); 
 				if(!wineToAdd){
 					const error = new Error(`wine with id ${wine.id} does not exist.`); 
@@ -133,7 +133,7 @@ const cartController = {
 				include : 'wines'
 			}); 
 
-			res.status(200).json(user); 
+			res.status(200).json({success : true }); 
 
 		}catch(error){
 			console.error(error); 
