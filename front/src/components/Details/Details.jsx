@@ -1,44 +1,44 @@
-// import react
+//import from React
 import React, { useEffect, useState, useContext } from 'react';
-// import useParams
+//import from React router dom
 import { useParams, useNavigate } from 'react-router-dom';
-// import Loading component
+//import components
 import Loading from '../Loading/Loading';
-// import fetchOneWine from services
+// import request methods
 import { fetchOneWine } from '../../services/WineApi.js';
-//import loginContext 
+import { addWineToCart } from '../../utils';
+//import context 
 import { loginContext } from '../../Context/loginContext';
-// import PropTypes
-import PropTypes from 'prop-types';
-// import Scss
+// import css
 import './details.scss';
 
-import { addWineToCart } from '../../utils'; 
 
 function Details() {
-    // Stock Data in State
+    // STATES
     const [wine, setWine] = useState({});
-    // Stock isLoading in State
     const [isLoadingWine, setIsLoadingWine] = useState(true);
-    // Stock useNavigate in constant
+    const [quantity, setQuantity] = useState(1);
+    const [isMessageAddToCartOpen, setIsMessageAddToCartOpen] = useState(false);
+    const { isLogged } = useContext(loginContext);
+    const [isConnexionMessageOpen, setIsConnexionMessageOpen] = useState(false);
+
     const navigate = useNavigate();
+
     // Get id from url with useParams
     const { id } = useParams();
 
-    const [quantity, setQuantity] = useState(1); 
-    const [isMessageAddToCartOpen, setIsMessageAddToCartOpen] = useState(false); 
-    const { isLogged } = useContext(loginContext); 
-    const [ isConnexionMessageOpen, setIsConnexionMessageOpen ] = useState(false);
+    //handle add wine to cart
     const handleSubmitAddToCart = (e) => {
-        e.preventDefault(); 
-        if(isLogged){
-            addWineToCart(wine, quantity); 
+        e.preventDefault();
+        if (isLogged) {
+            addWineToCart(wine, quantity);
             setIsMessageAddToCartOpen(true);
-        }else{
+        } else {
             setIsConnexionMessageOpen(true);
         }
     }
 
+    //handle loading component to avoid display problem 
     useEffect(() => {
         // if loading set isLoading to true
         setIsLoadingWine(true);
@@ -55,7 +55,6 @@ function Details() {
                 navigate('/error');
             });
     }, [id, navigate]);
-
 
     // if isLoadingWine is true we display Loading component    
     if (isLoadingWine) {
@@ -94,21 +93,21 @@ function Details() {
                         <p className="details-price"> {wine.price} €</p>
                     </div>
 
-                    {isMessageAddToCartOpen && 
-                        <div class="ui green message">Bien ajouté au panier</div>
+                    {isMessageAddToCartOpen &&
+                        <div className="ui green message">Bien ajouté au panier</div>
                     }
 
-                    { isConnexionMessageOpen &&
-                    <div class="ui negative message">
-                         <i class="close icon" onClick={() =>  setIsConnexionMessageOpen(false) }></i>
-                        <div class="header">
-                        Connectez-vous pour ajouter un vin au panier
+                    {isConnexionMessageOpen &&
+                        <div className="ui negative message">
+                            <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
+                            <div className="header">
+                                Connectez-vous pour ajouter un vin au panier
+                            </div>
                         </div>
-                    </div>
-                    }   
+                    }
 
-                      <form className="details-form" onSubmit = { handleSubmitAddToCart }>
-                        <input className="details-input" type="number" value={quantity} onChange={(e)=>(setQuantity(e.target.value))} name="quantity" placeholder="0" min="1" max="50" />
+                    <form className="details-form" onSubmit={handleSubmitAddToCart}>
+                        <input className="details-input" type="number" value={quantity} onChange={(e) => (setQuantity(e.target.value))} name="quantity" placeholder="0" min="1" max="50" />
                         <button type='submit' className="details-btn">Ajouter au panier</button>
                     </form>
 
@@ -185,12 +184,3 @@ function Details() {
 export default React.memo(Details);
 
 
-// * LES PROPTYPES * //
-
-Details.propTypes = {
-    id: PropTypes.number,
-    wine: PropTypes.object,
-    isLoadingWine: PropTypes.bool,
-    navigate: PropTypes.func,
-    fetchOneWine: PropTypes.func,
-};
