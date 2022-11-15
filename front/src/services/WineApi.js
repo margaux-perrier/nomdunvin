@@ -81,6 +81,11 @@ export async function addTagGrapevarietyWine(id, grapevarietyIdList ) {
     return response.data;
 }
 
+export async function makeOrder(order) {
+    const response = await apiInstance.post('/cart/validate', {cart: order});
+    return response.data
+}
+
 
 
 

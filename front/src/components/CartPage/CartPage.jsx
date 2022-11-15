@@ -1,12 +1,16 @@
 import React, {Fragment, useState} from 'react';
 import { deleteCart, getCart, getTotalPrice, removeWineFromCart } from '../../utils';
 import CartItem from '../CartItem/CartItem';
+import { makeOrder } from '../../services/WineApi';
 import './CartPage.scss';
 
 function CartPage(){
 
     const [cart, setCart] = useState(getCart());
     const [total, setTotal] = useState(getTotalPrice(cart)); 
+    const [message, setMessage]= useState('');
+
+
 
     const handleDeleteCart = () => {
         deleteCart(); 
@@ -20,9 +24,25 @@ function CartPage(){
         setTotal(getTotalPrice(cart))
     }
 
+    const handleSubmitOrder = async ( order) => {
+        order= getCart();        
+        const response = await makeOrder(order);
+        console.log(response);
+        if (response.success) {
+            setMessage('Votre commande a bien été passée')
+            console.log(response.success)
+            deleteCart();
+            setCart(getCart())
+        } 
+    }
+
     return (
         <main className = 'cart-container'>
             <div>
+
+            {message && (
+            <div class="ui green message">{message}</div>
+            )}
 
             {cart.length === 0 ? 
             <div class="ui brown message">Votre panier est vide</div>
@@ -51,7 +71,10 @@ function CartPage(){
                     <p>Total : </p><span> {total}€ T.T.C</span>
                 </div>
                 <div className = 'buttons-container'>
-                        <button className='validate_button button'>Valider mon panier</button>
+                        <button
+                         className='validate_button button'
+                         onClick={handleSubmitOrder}
+                        >Valider mon panier</button>
                         <button className='delete_button button' onClick={handleDeleteCart}>Vider mon panier</button>
                 </div>
             </Fragment>
