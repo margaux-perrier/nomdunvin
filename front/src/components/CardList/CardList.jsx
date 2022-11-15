@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 
 // import react
-import React, { useState, Fragment, useContext, useEffect } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 // import Navigate
 import { useNavigate } from 'react-router-dom';
 // import semantic UI Elements
@@ -41,14 +41,16 @@ function CardList() {
     const [ isLandpageModalOpen, setIsLangpageModalOpen ] = useState(true);
     const [ isWarningMessageOpen, setIsWarningMessageOpen ] = useState(false);  
     
-    const rememberMe = localStorage.getItem('remember-me'); 
-    
-    const handleYesClick = (isRememberMeChecked) => {
-        console.log(isRememberMeChecked); 
+    const handleYesClick = ( isRememberMeChecked ) => {
+        
         if( isRememberMeChecked ){
             localStorage.setItem('remember-me', true);
         }
         setIsLangpageModalOpen(false)
+
+        setTimeout(()=>{
+            localStorage.removeItem('remember-me'); 
+          }, "10800000");
     }
     
     const handleNoClick = () => {

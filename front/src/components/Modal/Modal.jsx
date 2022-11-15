@@ -1,7 +1,6 @@
-import React,  { useState, useContext } from 'react';
+import React,  { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addWineToCart } from '../../utils';
-import { CartContext } from '../../Context/cartContext';
 import './Modal.scss';
 
 function Modal({
@@ -38,7 +37,7 @@ function Modal({
         setIsMessageOpen(true);
         setTimeout(()=>{
             setIsOpen(false)
-        }, "1000");
+        }, "950");
     }
     
     return ReactDOM.createPortal(

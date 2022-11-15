@@ -11,9 +11,6 @@ import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReduc
 import { loginContext } from '../../Context/loginContext';
 import {setToken, removeToken} from '../../services/instance'
 
-// import logo cart
-import cart from './cart.png';
-
 
 // import logo
 import logo from './logo.png';
@@ -31,7 +28,7 @@ function Header() {
     const { userDispatch } = useUserReducer();
     const { formState, formDispatch } = UseFormReducer();
     const {  isLogged, setIsLogged } = useContext(loginContext);
-    const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
+    const { isRoleAdmin, setIsRoleAdmin } = useContext(loginContext);
     const navigate=useNavigate();
  
 
@@ -62,6 +59,7 @@ function Header() {
     removeToken();
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
+    localStorage.removeItem('remember-me'); 
     navigate('/'); 
     setIsOpen(false)
   }
@@ -102,7 +100,6 @@ function Header() {
                                     <Link to="/admin" className = "dashbord-link dashboard"><i class="edit large icon"></i></Link>
                             }
                        
-
                             <button
                                 type="button"
                                 className="header-button"

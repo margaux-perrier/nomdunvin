@@ -12,7 +12,7 @@ function LandpageModal({
 
     const [ isRememberMeChecked, setisRememberMeChecked ] = useState(true); 
     const rememberMe = localStorage.getItem('remember-me'); 
-    console.log('rememberMe', rememberMe); 
+    
     return ReactDOM.createPortal(
         !rememberMe &&
         < div className='landpage-modal_overlay'>
