@@ -275,13 +275,8 @@ const adminController = {
 		try{
 
 			const wineId = Number(req.params.id); 
-			console.log('req.body', req.body); 
 			const cultureIdList  = req.body.cultureIdList;
-			// const body = cultureIdList[]; 
-
-			console.log('cultureIdList', cultureIdList); 
-			console.log('>>>>>', typeof(cultureIdList)); 
-			// console.log(req); 
+ 
 			let wine = await Wine.findByPk(wineId, {
 				include : 'culture', 
 			}); 
@@ -379,7 +374,6 @@ const adminController = {
 
 			//1. Retrieve grapevariety's ids already present on wine and store it in array
 			let initialGrapeVarietyIdList = wine.grapevarieties.map(item => item.id);
-			console.log('Initial', initialGrapeVarietyIdList); 
 			//2. Retrieve grapevariety's ids common to wine and grapeVarietyIdList
 			let commonGrapeVarietyIdList = grapeVarietyIdList.filter(item => initialGrapeVarietyIdList.includes(item)); // id en commun
 

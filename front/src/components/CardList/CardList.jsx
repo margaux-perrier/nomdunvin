@@ -1,37 +1,28 @@
-/* eslint-disable array-callback-return */
-
-// import react
-import React, { useState, Fragment, useContext } from 'react';
-// import Navigate
-import { useNavigate } from 'react-router-dom';
-// import semantic UI Elements
-import { Segment, Input, Form } from 'semantic-ui-react';
-// import Card component
-import Card from '../Card/Card';
-// import LandpageModal
-import LandpageModal from '../LandpageModal/LandpageModal';
-// import AllWinesContext
-import { AllWinesContext } from '../../Context/AllWinesContext';
-// import PropTypes
+//import PropTypes
 import PropTypes from 'prop-types';
-// import Scss
+//import react
+import React, { useState, Fragment, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+//import components
+import Card from '../Card/Card';
+import LandpageModal from '../LandpageModal/LandpageModal';
+//import context
+import { AllWinesContext } from '../../Context/AllWinesContext';
+//import semantic UI Elements
+import { Segment, Input, Form } from 'semantic-ui-react';
+//import css
 import './cardList.scss';
 
 
-
-// Component CardList
 function CardList() {
 
     //* STATE FOR CARDLIST *//
-
-    // use Context for catch all wines
     const { wines } = useContext(AllWinesContext);
 
-    // * LANDPAGEMODAL* //
+     //* MODAL LANDING PAGE *//
     const [isLandpageModalOpen, setIsLangpageModalOpen] = useState(true);
     const [isWarningMessageOpen, setIsWarningMessageOpen] = useState(false);
-
-
+   
     const handleYesClick = (isRememberMeChecked) => {
 
         if (isRememberMeChecked) {
@@ -42,7 +33,6 @@ function CardList() {
         setTimeout(() => {
             localStorage.removeItem('remember-me');
         }, "10800000");
-
     }
 
     const handleNoClick = () => {
@@ -50,8 +40,6 @@ function CardList() {
     }
 
     // * NAVIGATE TO DETAILS PAGE * //
-
-    // Stock useNavigate in constant
     const navigate = useNavigate();
     // Route to details page
     const handleClick = (e) => {
@@ -61,24 +49,17 @@ function CardList() {
     }
 
     //* SEARCHBAR *//
-
-    // Stock Search in State
     const [search, setSearch] = useState('');
 
-    //  change value of search
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
 
     // Filter for wines
     const getFilteredWine = () => wines.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
-
-    // filtered wines == wines
     let filteredWines = getFilteredWine();
 
     //* USE CONTEXT FOR FILTERS BY COLOR *//
-
-    // Catch state for color Checkbox from AllWinesContext
     const { checkboxColor } = useContext(AllWinesContext);
 
     // filter for wines, loop on checkboxColor and return wines with checked value
@@ -100,8 +81,6 @@ function CardList() {
     }
 
     // *  USE CONTEXT FOR FILTERS BY WINEMAKERS *//
-
-    // Catch state for winemaker Checkbox from AllWinesContext
     const { checkboxWinemaker } = useContext(AllWinesContext);
     // filter for wines, loop on checkboxWinemaker and return wines with checked value  
     const filteredMenuWinemaker = filteredWines.filter((wine) => {
@@ -122,11 +101,9 @@ function CardList() {
     }
 
     // * USE CONTEXT FOR FILTERS BY REGION *//
-
-    // Catch state for region Checkbox from AllWinesContext 
     const { checkboxRegion } = useContext(AllWinesContext);
     // filter for wines, loop on checkboxRegion and return wines with checked value
-    const filteredMenuRegion = filteredWines.filter((wine) => {
+    const filteredMenuRegion = filteredWines.filter( wine => {
         // use loop for check if checkbox is checked
         for (let i = 0; i < checkboxRegion.length; i++) {
             // if checkbox is checked return wines with region checked
@@ -144,7 +121,6 @@ function CardList() {
         }
     }
 
-    // * RETURN *//
     return (
 
         <Fragment>
@@ -191,8 +167,6 @@ function CardList() {
 }
 
 export default React.memo(CardList);
-
-// * PROP-TYPES *//
 
 CardList.propTypes = {
     wines: PropTypes.arrayOf(

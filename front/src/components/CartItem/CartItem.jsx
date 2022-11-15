@@ -17,9 +17,10 @@ function CartItem({
     setTotal, 
     handleRemoveWine,
 }){
-   
+    //STATE
     const [ quantity, setQuantity] = useState(oldQuantity);
 
+    //handle quantity and total price
     const handleQuantity = (e) => {
         setQuantity(e.target.value); 
         updateQuantity(id, e.target.value);
@@ -27,6 +28,7 @@ function CartItem({
     }
 
     return(
+        
         <Fragment>
             <div className="ui fitted divider"></div>
             <div className = 'cart-item'>
@@ -50,7 +52,7 @@ export default React.memo(CartItem);
 CartItem.propTypes = {
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     oldQuantity: PropTypes.number.isRequired,
     winemaker: PropTypes.shape({
         name: PropTypes.string,

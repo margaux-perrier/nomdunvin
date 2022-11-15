@@ -1,13 +1,12 @@
+//import from react
 import { useReducer } from 'react';
 
-
+//Setting cases in variables to avoid problems
 const SET_VALUE_INPUT = 'SET_VALUE_INPUT';
 const SET_VALUE_INPUT_NUMBER = 'SET_VALUE_INPUT_NUMBER';
 const RESET = 'RESET';
 
-
-
-
+//initial state
 const formInitialState = {
   email: '',
   firstname: '',
@@ -50,8 +49,8 @@ function formReducer(oldState, action) {
   };
 }
 
+//Action Creators
 export function getActionSetValue(name, value) {
-
   return{
     type: SET_VALUE_INPUT,
     payload: {
@@ -60,27 +59,18 @@ export function getActionSetValue(name, value) {
   };
 }
 
-// export function getActionSetValueNumber(name, value) {
-//   return{
-//     type: 'SET_VALUE_INPUT_NUMBER',
-//     payload: {
-//       name, value,
-//     }
-//   };
-// }
-
 export function getActionReset() {
   return {
     type: 'RESET',
   };
 }
 
+//ACTION CREATORS
 function UseFormReducer() {
   const[formState, formDispatch] = useReducer(formReducer, formInitialState);
   return {
     formState, formDispatch,
   };
 }
-
 
 export default UseFormReducer;

@@ -2,12 +2,12 @@
 
 // import React from "react";
 import React, { useContext, useEffect } from "react";
-// import Menu fro: react-burger-menu
+// import context
+import { AllWinesContext } from "../../Context/AllWinesContext";
+// import Menu from react-burger-menu
 import { slide as Menu } from "react-burger-menu";
 // import Logo
 import Logo from "./logo.png";
-// import AllWinesContext
-import { AllWinesContext } from "../../Context/AllWinesContext";
 // import Scss
 import "./filterMenu.scss";
 
@@ -26,8 +26,6 @@ const FilterMenu = () => {
     // create object with color and boolean value for checkbox
     const colorObject = colors.map((color) => ({ color, value: false }));
     // Push object in checkboxColor state
-    useEffect(() => { setCheckboxColor(colorObject); }, [wines]);
-
 
     // * CREATE FILTER BY WINEMAKER FOR FILTERMENU  * //
 
@@ -40,9 +38,6 @@ const FilterMenu = () => {
     // create object with winemaker and boolean value for checkbox
     const winemakerObject = winemakers.map((winemaker) => ({ winemaker, value: false }));
     // Push object in checkboxWinemaker state
-    useEffect(() => { setCheckboxWinemaker(winemakerObject); }, [wines]);
-
-
 
     // * CREATE FILTER BY REGION FOR FILTERMENU  * //
 
@@ -55,11 +50,18 @@ const FilterMenu = () => {
     // create object with region and boolean value for checkbox
     const regionObject = regions.map((region) => ({ region, value: false }));
     // Push object in checkboxRegion state
-    useEffect(() => { setCheckboxRegion(regionObject); }, [wines]);
 
     // * RESET FILTER *//
     const { resetFilter } = useContext(AllWinesContext);
-    
+
+    useEffect(() => {
+        setCheckboxRegion(regionObject);
+        setCheckboxColor(colorObject);
+        setCheckboxWinemaker(winemakerObject);
+    }, [wines]);
+
+
+
     //* RETURN *//
 
     return (
@@ -81,7 +83,7 @@ const FilterMenu = () => {
                             onChange={handleChangeColor}
                             index={checkboxColor.indexOf(item)}
                             checked={item.value}
-                            
+
                         />
                         <label className="checkbox-title">Vin {item.color}</label>
                     </div>
@@ -93,19 +95,19 @@ const FilterMenu = () => {
             </div>
 
             <form className="menu-item">
-            {checkboxWinemaker.map((item, key) => (
-                <div key={item.winemaker} className="checkbox">
-                    <input
-                        type="checkbox"
-                        value={item.winemaker}
-                        onChange={handleChangeWinemaker}
-                        index={checkboxWinemaker.indexOf(item)}
-                        checked={item.value}
-                    />
-                    <label className="checkbox-title">{item.winemaker}</label>
-                </div>
-            ))}
-        </form>
+                {checkboxWinemaker.map( item => (
+                    <div key={item.winemaker} className="checkbox">
+                        <input
+                            type="checkbox"
+                            value={item.winemaker}
+                            onChange={handleChangeWinemaker}
+                            index={checkboxWinemaker.indexOf(item)}
+                            checked={item.value}
+                        />
+                        <label className="checkbox-title">{item.winemaker}</label>
+                    </div>
+                ))}
+            </form>
 
             <div className="menu-title">
                 <h2>Une région particulière ?</h2>

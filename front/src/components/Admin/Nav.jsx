@@ -9,12 +9,12 @@ import './Nav.scss';
 
 function Nav() {
   return (
-    
+
     <div className='ui red two item fluid menu'>
 
       <Menu.Item
-        as={NavLink} 
-        to="/admin" 
+        as={NavLink}
+        to="/admin"
         end
       >
         Ajouter un vin

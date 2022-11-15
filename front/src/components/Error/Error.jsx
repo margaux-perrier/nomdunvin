@@ -1,6 +1,6 @@
-// import react
+// import from React
 import React from 'react';
-//Impor image
+//import image
 import wine from './break.jpg';
 // import scss
 import './error.scss';

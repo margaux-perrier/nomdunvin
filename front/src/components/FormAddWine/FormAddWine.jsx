@@ -1,17 +1,15 @@
-// import React
+// import from React
 import React, { useContext, Fragment, useState } from 'react'
-// import useNavigate
-import { useNavigate } from 'react-router-dom'
 // import Context
 import { AllWinesContext } from "../../Context/AllWinesContext";
 //Import Reducer
 import UseAdminReducer, { getActionSetValue, getActionReset } from "../../reducers/UseAdminReducer";
-// import addWine from services
+// import request
 import { addWine, addTagCultureWine, addTagDishWine, addTagGrapevarietyWine } from "../../services/WineApi";
-// import scss
-import './formAddWine.scss';
 // import semantic UI Elements
 import { Form, Input, Button, } from 'semantic-ui-react'
+// import scss
+import './formAddWine.scss';
 
 // FormAddWine component function
 function FormAddWine() {
@@ -296,7 +294,7 @@ function FormAddWine() {
                 
                     <div className="field">
                         <label>Le type de culture: </label>
-                        {culture.map((item, index) => (
+                        {culture.map((item) => (
                             <div key={item.id} className="ui checkbox">
                                 <input
                                     id={item.id}

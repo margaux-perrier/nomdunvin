@@ -1,10 +1,15 @@
-// On ne peut pas stocker de données complexes dans le localstorage : uniquement des chaînes de caractères 
-// => JSON; stringify : transforme notre tableau ou objet en JSON et JSON.parse = fait l'inverse
-
+/**  @function 
+* save cart in localStorage
+* @param {Array}  cart - user's cart
+*/
 export function saveCart(cart){
     localStorage.setItem('cart', JSON.stringify(cart)); 
 }; 
 
+/**  @function 
+* get cart from localStorage
+* @return {Array}  cart - user's cart
+*/
 export function getCart(){
     let cart = localStorage.getItem('cart'); 
     if(cart == null){
@@ -12,7 +17,6 @@ export function getCart(){
     }else{
         return JSON.parse(cart); 
     }
-  
 }; 
 
 /**  @function 
@@ -22,12 +26,8 @@ export function getCart(){
 */
 export function addWineToCart(wine, quantity){
     let cart = getCart(); 
-    console.log('cart', cart); 
-    console.log('>>>>>', cart.find(item => Number(item.id) == Number(wine.id))); 
-    let foundWine = cart.find(item => Number(item.id) == Number(wine.id)); 
-    console.log('foundWine', foundWine); 
+    let foundWine = cart.find(item => Number(item.id) === Number(wine.id)); 
     if(!foundWine){
-        console.log(wine); 
         wine.quantity = Number(quantity); 
         cart.push(wine);  
     }else{
@@ -46,7 +46,6 @@ export function removeWineFromCart(wineId){
     saveCart(cart); 
 }; 
 
-
 /** @function 
 * Modify quantity of wine in cart - when user modify wine's quantity from the cart page
 * @param {Object}  wine - wine remove to cart
@@ -55,13 +54,11 @@ export function removeWineFromCart(wineId){
 export function updateQuantity(wineId, quantity){
     let cart = getCart(); 
     let foundWine = cart.find(item => item.id === wineId);
-    console.log('quantity', quantity); 
 
     if(foundWine){
         foundWine.quantity = Number(quantity); 
         if(Number(foundWine.quantity) <= Number(0)){
             removeWineFromCart(foundWine.id); 
-            console.log('id', foundWine.id); 
         }else{
             saveCart(cart); 
         }

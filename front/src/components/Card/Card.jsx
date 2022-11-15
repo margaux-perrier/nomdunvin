@@ -1,20 +1,17 @@
 // import PropTypes
 import PropTypes from 'prop-types';
-// import react
+// import from react
 import React, { Fragment, useState, useContext } from 'react';
-//import react-router-dom
+//import from react-router-dom
 import { Link } from 'react-router-dom';
-//import loginContext 
+//import context 
 import { loginContext } from '../../Context/loginContext';
-// import Modal
+//import components
 import Modal from '../Modal/Modal';
-// import logo cart
+//import logo cart
 import cart from './cart.png';
-// import Scss
+//import css
 import './card.scss';
-
-
-// Component Card
 
 function Card({
     id,
@@ -43,6 +40,7 @@ function Card({
     }
 
     return (
+
         <Fragment>
 
             <Modal
@@ -59,8 +57,6 @@ function Card({
                 isOpen={isAddWineToCartModalOpen}
                 setIsOpen={setIsAddWineToCartModalOpen}
             />
-
-
 
             <div className="card">
                 <div className='visual'>
@@ -89,9 +85,9 @@ function Card({
                     <p className={`tablet-color-${color}`}></p>
                 </div>
                 {isConnexionMessageOpen &&
-                    <div class="ui negative message">
-                        <i class="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
-                        <div class="header">
+                    <div className="ui negative message">
+                        <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
+                        <div className="header">
                             Connectez-vous pour ajouter un vin au panier
                         </div>
                     </div>
@@ -101,15 +97,13 @@ function Card({
                     <p className='price'>{price} €</p>
                 </div>
             </div>
+            
         </Fragment>
 
     );
 }
 
 export default React.memo(Card);
-
-
-// * PROP-TYPES *//
 
 Card.propTypes = {
     id: PropTypes.number.isRequired,
