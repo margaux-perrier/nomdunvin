@@ -23,8 +23,6 @@ function FormAddWine() {
 
 
     const { wines, culture, region, winemaker, grapevariety, dish, fetchWines } = useContext(AllWinesContext);
-
-    const [NewWine, setNewWine] = useState();
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 

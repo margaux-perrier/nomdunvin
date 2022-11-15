@@ -1,7 +1,7 @@
 // import React
 import React, { useContext, Fragment } from 'react';
 // import de Routes
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 //import Header component
 import Header from '../Header/Header';
 //import burger Component

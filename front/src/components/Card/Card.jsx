@@ -1,9 +1,9 @@
 // import PropTypes
 import PropTypes from 'prop-types';
 // import react
-import React, { Fragment, useState, useContext} from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 //import react-router-dom
-import {Link} from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 //import loginContext 
 import { loginContext } from '../../Context/loginContext';
 // import Modal
@@ -12,7 +12,6 @@ import Modal from '../Modal/Modal';
 import cart from './cart.png';
 // import Scss
 import './card.scss';
-
 
 
 // Component Card
@@ -31,14 +30,14 @@ function Card({
     handleClick,
 }) {
 
-    const [ isAddWineToCartModalOpen, setIsAddWineToCartModalOpen ] = useState(false);
-    const [ isConnexionMessageOpen, setIsConnexionMessageOpen ] = useState(false); 
-    const { isLogged } = useContext(loginContext); 
-    
+    const [isAddWineToCartModalOpen, setIsAddWineToCartModalOpen] = useState(false);
+    const [isConnexionMessageOpen, setIsConnexionMessageOpen] = useState(false);
+    const { isLogged } = useContext(loginContext);
+
     const handleCartIconClick = () => {
-        if(isLogged){
+        if (isLogged) {
             setIsAddWineToCartModalOpen(true)
-        }else(
+        } else (
             setIsConnexionMessageOpen(true)
         );
     }
@@ -57,8 +56,8 @@ function Card({
                 appellation={appellation}
                 avatar={img}
                 id={id}
-                isOpen={ isAddWineToCartModalOpen }
-                setIsOpen={ setIsAddWineToCartModalOpen }
+                isOpen={isAddWineToCartModalOpen}
+                setIsOpen={setIsAddWineToCartModalOpen}
             />
 
 
@@ -74,12 +73,12 @@ function Card({
                     </div>
                     <div className="right-card">
                         <ul className="card-tag">
-                            {culture.map(({name, id}) => (
+                            {culture.map(({ name, id }) => (
                                 <li key={id} className={`tag-${name}`}>{name}</li>
                             ))}
                         </ul>
                         <div>
-                            <img className="logo-cart" src={cart} alt="cart" onClick={() => handleCartIconClick(true)}/>
+                            <img className="logo-cart" src={cart} alt="cart" onClick={() => handleCartIconClick(true)} />
                         </div>
                     </div>
                 </div>
@@ -89,11 +88,11 @@ function Card({
                     <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
                 </div>
-                { isConnexionMessageOpen &&
+                {isConnexionMessageOpen &&
                     <div class="ui negative message">
-                         <i class="close icon" onClick={() =>  setIsConnexionMessageOpen(false) }></i>
+                        <i class="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
                         <div class="header">
-                        Connectez-vous pour ajouter un vin au panier
+                            Connectez-vous pour ajouter un vin au panier
                         </div>
                     </div>
                 }
@@ -119,15 +118,11 @@ Card.propTypes = {
     alcohol: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    winemaker: PropTypes.shape({
-        name : PropTypes.string
-    }).isRequired,
+    winemaker: PropTypes.object.isRequired,
+    culture: PropTypes.array.isRequired,
     appellation: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
     handleClick: PropTypes.func.isRequired,
-    culture: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }).isRequired,
-    ).isRequired,
 };
+
+
