@@ -46,11 +46,15 @@ function LoginForm (){
     setIsLogged(false);
     removeToken();
     localStorage.removeItem('token');
+
+    localStorage.removeItem('remember-me');
+
     setIsRoleAdmin(false);
     localStorage.removeItem('cart');
     setIsRoleAdmin(false);
     navigate('/'); 
-    setIsOpen(false)
+    setIsOpen(false); 
+    // clearTimeout(); 
   }
 
    // Change the value to "true" or "false" when clicking on the "Se connecter" button

@@ -12,7 +12,9 @@ import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReduc
 import { loginContext } from '../../Context/loginContext';
 //import user Request
 import {setToken, removeToken} from '../../services/instance'
+
 import { loginRequest } from '../../services/userRequests'
+
 // import logo
 import logo from './logo.png';
 import user from './user.png';
@@ -25,6 +27,7 @@ function Header() {
     //* STATES *//
     const [isOpen, setIsOpen] = useState(false);
     const {  isLogged, setIsLogged } = useContext(loginContext);
+
 
     //*REDUCER CONFIG*//
     const { userDispatch } = useUserReducer();
@@ -40,7 +43,12 @@ function Header() {
     //* FORM METHODS *//
     const handleTextFieldChange = (e) => {
         formDispatch(getActionSetValue(e.target.name, e.target.value));
-        }
+
+      }
+
+  
+
+ 
 
     //handle logout
     const handleLogout = () => {
@@ -82,23 +90,33 @@ function Header() {
                    
                     {isLogged && (
                         <div className='menu-button'>
-                            <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
-                        <button
-                            type="button"
-                            className="header-button"
-                            onClick={handleLogout}
-                        >
-                      Déconnexion
-                    </button>
-                    </div>
+
+
+                            {!isRoleAdmin ? 
+                                    <Link to='/cart' className="cart-icons " ><i class="shopping large bag inverted icon"></i></Link>
+                            : 
+                                    <Link to="/admin" className = "dashbord-link dashboard"><i class="edit large icon"></i></Link>
+                            }
+                       
+                            <button
+                                type="button"
+                                className="header-button"
+                                onClick={handleLogout}
+                            > Déconnexion
+                            </button>
+                        </div>
+
+
                     )}
 
                     {!isLogged && (
                         <div className="menu-user">
+
                             <Link to="/signup" className="tab-user">
                                 <img src={user} alt="logo utilisateur" className="logo-user" />
                             </Link>
                         </div>
+
                     )}
 
                 </div>
