@@ -1,17 +1,17 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-// import React
-import React, { Fragment, useState} from 'react';
-import { Link, NavLink } from 'react-router-dom'
+//import from React
+import React, { useState, useContext, useEffect } from 'react';
+//import from React router dom
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+//import components
 import LoginForm from '../LoginForm/LoginForm';
-//import reducer
-import { loginRequest } from '../../services/userRequests'
-import UseFormReducer, {getActionSetValue} from "../../reducers/UseFormReducer";
-import useUserReducer, { getActionUserLogged } from "../../reducers/useUserReducer";
-
-
+//Import context
+import { loginContext } from '../../Context/loginContext';
+//import user Request
+import { removeToken } from '../../services/instance'
 // import logo
 import logo from './logo.png';
-// import logo utilisateur
 import user from './user.png';
 //import scss
 import './header.scss';
@@ -20,86 +20,82 @@ import './header.scss';
 function Header() {
 
     //* STATES *//
-    // This State concerns the opening of the login form when you click on the "Se connecter" button
-    const [isOpen, setIsOpen] = useState(false);
-    const { userDispatch } = useUserReducer();
-    const { formState, formDispatch } = UseFormReducer();
+    const [setIsOpen] = useState(false);
+    const { isLogged, setIsLogged } = useContext(loginContext);
+    const { isRoleAdmin } = useContext(loginContext)
 
-
+    const navigate = useNavigate();
 
     //* FUNCTIONS *//
 
-    // Change the value to "true" or "false" when clicking on the "Se connecter" button
-    const handleIsOpen = (event) => {event.preventDefault(); setIsOpen(!isOpen);}
+    //handle logout
+    const handleLogout = () => {
+        setIsLogged(false);
+        removeToken();
+        localStorage.removeItem('token');
+        localStorage.removeItem('cart');
+        navigate('/');
+        setIsOpen(false)
+    }
 
-    // Change the value of the "onChange" state when the user enters an email/password
-    const handleTextFieldChange = (e) => {
-        formDispatch(getActionSetValue(e.target.name, e.target.value));
-      }
-
-   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const user = await loginRequest (formState.connectionEmail, formState.connexionPassword)
-    userDispatch(getActionUserLogged(user));
-    setIsOpen(false);
-  }
-
+    //handle verification of JWT token to stay connected when user refresh page
+    const { TokenVerify } = useContext(loginContext);
+    useEffect(() => {
+        TokenVerify()
+    }, [TokenVerify])
 
     return (
         //création d'une navbar
         <header className="header">
             <nav className="navbar">
-                <div className="menu">
+                <div className="header_menu">
                     <div>
                         <Link to="/" className="menu-link">
                             <img src={logo} alt="logo nom d'un vin" className="logo" />
                         </Link>
                     </div>
                     <div className="link">
-                        {/* NavLink ready to be configured if we install other links. it is used to mark the menu on which we are, using its "isActive" property*/ }
-                        <NavLink end to="/" style={({isActive}) =>{return { color : isActive ? 'white' : 'white'}}} className="tab-link">La Cave</NavLink>
+                        <NavLink end to="/" style={({ isActive }) => { return { color: isActive ? 'white' : 'white' } }} className="tab-link">La Cave</NavLink>
                     </div>
-                    {/* {userState.loggedUser.user} ? <p>welcome back {userState.loggedUser.user.firstname}</p>  */}
-                    {/* {console.log(userState.loggedUser.user.firstname)} */}
+
                 </div>
-                <div>
+                <div className='button-container'>
                     <div className="menu-login">
-                        
-                        {/* {isOpen ? // if the "isOpen" is true we display the login form below
-                            <div className="login-form">
-                                <form action="" className="form-login">
-                                    <button className="close" onClick={handleIsOpen}>X</button>
-                                    <div className="form-group">
-                                        <input type="email" 
-                                        name='connectionEmail'
-                                        value={formState.connectionEmail} onChange={handleTextFieldChange} className="form-input" placeholder='Email' />
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="password" 
-                                        name='connexionPassword'
-                                        value={formState.connexionPassword}
-                                        onChange={handleTextFieldChange} className="form-input" placeholder='Password' />
-                                    </div>
-                                    <button onClick={handleLoginSubmit} className="form-btn">Connexion</button>
-                                </form>
-                            </div>
-                            : // Else we display the buttons "Se connecter" and "S'inscrire"
-                            <Fragment>
-                                <Link to="/" onClick={handleIsOpen} className="tab-connexion">Se connecter</Link>
-                                <Link to="/signup" className="tab-connexion">S'inscrire</Link>
-
-                            </Fragment> */}
-                        {/* } */}
-
                         <LoginForm />
                     </div>
-                    <div className="menu-user">
-                        <Link to="/signup" className="tab-user">
-                            <img src={user} alt="logo utilisateur" className="logo-user" />
-                        </Link>
-                    </div>
-                </div>
 
+                    {isLogged && (
+                        <div className='menu-button'>
+
+                            {!isRoleAdmin && (
+                            <div>
+                                <Link to='/cart' className="cart-icons " ><i className="shopping large bag inverted icon"></i></Link>
+                                <Link to="/admin" className="dashbord-link dashboard"><i className="edit large icon"></i></Link>
+                            </div>
+                            )}
+
+                            <button
+                                type="button"
+                                className="header-button"
+                                onClick={handleLogout}
+                            > Déconnexion
+                            </button>
+                        </div>
+
+
+                    )}
+
+                    {!isLogged && (
+                        <div className="menu-user">
+
+                            <Link to="/signup" className="tab-user">
+                                <img src={user} alt="logo utilisateur" className="logo-user" />
+                            </Link>
+                        </div>
+
+                    )}
+
+                </div>
             </nav>
         </header>
     );

@@ -1,5 +1,6 @@
 import apiInstance from './instance'; 
 
+//handle signup request
 export async function signupRequest(email, firstname, lastname, password, confirmPassword) {
   const response = await apiInstance.post('/signup',{
     email, firstname, lastname, password, confirmPassword
@@ -7,10 +8,16 @@ export async function signupRequest(email, firstname, lastname, password, confir
   return response.data
 }
 
+//handle login request
 export async function loginRequest(email, password) {
   const response = await apiInstance.post('/login', {
     email, password
   })
-  console.log(response.data);
   return response.data
+}
+
+//handle checking for JWT token when user refresh page
+export async function tokenVerifyToStayConnected() {
+  const response = await apiInstance.get('/verify');
+  return response.data;
 }

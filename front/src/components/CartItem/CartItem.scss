@@ -10,7 +10,7 @@
 
     &_image{
         max-width: 20%;
-        height: auto; 
+        max-height: 20vh; 
     }
 
     &_infos{
@@ -20,9 +20,18 @@
         margin: 0 1rem; 
     }
 
-    &_name{
-        margin-bottom : 1em;
+    &_winemaker-name{
+        margin : 0em 1em;
         font-weight: 800;
+        font-size: 0.75rem;
+        text-align: center; 
+    }
+
+    &_wine-name{
+        margin : 0.2em 1em 1em 1em;
+        font-weight: 500;
+        font-size: 0.75rem;
+        text-align: center; 
     }
 
     &_price{
@@ -39,7 +48,7 @@
 
         &-input{
             margin-right : 2rem;
-            max-width:30px;
+            max-width:3rem;
             border : solid 0.8px vars.$border-color; 
             border-radius : 0.2rem; 
             text-align: center;
@@ -47,10 +56,26 @@
     }
 }
 
-
 @media screen and (min-width: 700px) {
     .cart-item{
         font-size: 1.2rem;
+
+        &_subtotal{
+            font-size: 1rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cart-item{
+
+        &_winemaker-name{
+            font-size: 1rem;
+        }
+        &_wine-name{
+            font-size: 1rem;
+        }
+     
 
         &_subtotal{
             font-size: 1rem;

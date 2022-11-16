@@ -1,16 +1,17 @@
-// import react
-import React, { Fragment, useState} from 'react';
-// import Modal
-import Modal from '../Modal/Modal';
-// import logo cart
-import cart from './cart.png';
 // import PropTypes
 import PropTypes from 'prop-types';
-// import Scss
+// import from react
+import React, { Fragment, useState, useContext } from 'react';
+//import from react-router-dom
+import { Link } from 'react-router-dom';
+//import context 
+import { loginContext } from '../../Context/loginContext';
+//import components
+import Modal from '../Modal/Modal';
+//import logo cart
+import cart from './cart.png';
+//import css
 import './card.scss';
-
-
-// Component Card
 
 function Card({
     id,
@@ -26,9 +27,20 @@ function Card({
     handleClick,
 }) {
 
-    const [ isAddWineToCartModalOpen, setisAddWineToCartModalOpen ] = useState(false);
+    const [isAddWineToCartModalOpen, setIsAddWineToCartModalOpen] = useState(false);
+    const [isConnexionMessageOpen, setIsConnexionMessageOpen] = useState(false);
+    const { isLogged } = useContext(loginContext);
+
+    const handleCartIconClick = () => {
+        if (isLogged) {
+            setIsAddWineToCartModalOpen(true)
+        } else (
+            setIsConnexionMessageOpen(true)
+        );
+    }
 
     return (
+
         <Fragment>
 
             <Modal
@@ -40,13 +52,11 @@ function Card({
                 name={name}
                 winemaker={winemaker}
                 appellation={appellation}
-                img={img}
+                avatar={img}
                 id={id}
-                isOpen={ isAddWineToCartModalOpen }
-                setIsOpen={ setisAddWineToCartModalOpen }
+                isOpen={isAddWineToCartModalOpen}
+                setIsOpen={setIsAddWineToCartModalOpen}
             />
-
-
 
             <div className="card">
                 <div className='visual'>
@@ -55,40 +65,45 @@ function Card({
                         <p className='degrees'>{`${alcohol}`}%.vol</p>
                     </div>
                     <div className="card-img">
-                        <img className="wine-logo" src={img} alt="red-wine" />
+                        <Link to={`/wine/${id}`}><img className="wine-logo" src={img} alt={`${winemaker.name} ${name}`} /></Link>
                     </div>
                     <div className="right-card">
                         <ul className="card-tag">
-                            {culture.map(({name, id}) => (
+                            {culture.map(({ name, id }) => (
                                 <li key={id} className={`tag-${name}`}>{name}</li>
                             ))}
                         </ul>
                         <div>
-                            <img className="logo-cart" src={cart} alt="cart" onClick={() => setisAddWineToCartModalOpen(true)}/>
+                            <img className="logo-cart" src={cart} alt="cart" onClick={() => handleCartIconClick(true)} />
                         </div>
                     </div>
                 </div>
                 <div className="card-content">
-                    <h2 className="winemaker">{winemaker}</h2>
+                    <h2 className="winemaker">{winemaker.name}</h2>
                     <p className="wine-name">" {name} "</p>
                     <p className="wine-region">{appellation}</p>
                     <p className={`tablet-color-${color}`}></p>
                 </div>
-
+                {isConnexionMessageOpen &&
+                    <div className="ui negative message">
+                        <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
+                        <div className="header">
+                            Connectez-vous pour ajouter un vin au panier
+                        </div>
+                    </div>
+                }
                 <div className="card-price">
                     <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
-                    <p className='price'>{price} €</p>
+                    <p className='price'>{price} <span>T.T.C €</span></p>
                 </div>
             </div>
+            
         </Fragment>
 
     );
 }
 
 export default React.memo(Card);
-
-
-// * PROP-TYPES *//
 
 Card.propTypes = {
     id: PropTypes.number.isRequired,
@@ -97,13 +112,11 @@ Card.propTypes = {
     alcohol: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    winemaker: PropTypes.string.isRequired,
+    winemaker: PropTypes.object.isRequired,
+    culture: PropTypes.array.isRequired,
     appellation: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
     handleClick: PropTypes.func.isRequired,
-    culture: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }).isRequired,
-    ).isRequired,
 };
+
+

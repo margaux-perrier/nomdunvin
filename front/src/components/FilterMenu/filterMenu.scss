@@ -7,10 +7,12 @@
   left: 36px;
   top: 7rem;
   padding: 1rem;
+  margin-top: 2em;
 }
 /* Color burger icon bars */
 .bm-burger-bars {
   background: vars.$primary-color;
+ 
 }
 /* Color close button */
 .bm-cross {
@@ -82,4 +84,3 @@
     color: vars.$primary-color;
   }
 }
-// responsive for desktop

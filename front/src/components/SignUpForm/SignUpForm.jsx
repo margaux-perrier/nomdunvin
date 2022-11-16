@@ -1,21 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, {useState, useContext} from "react";
-// import Navigate
+import React, { useState, useContext } from "react";
+//import react-router-dom
 import { useNavigate } from 'react-router-dom';
-
-// Reducer import
-import UseFormReducer, {getActionSetValue, getActionReset} from "../../reducers/UseFormReducer";
-
-import { loginContext } from '../../Context/loginContext'; 
-
-
-//import user methods
-import {signupRequest} from '../../services/userRequests'
-import { loginRequest } from '../../services/userRequests'
-import {setToken} from '../../services/instance'
-
-
-
+//import token
+import { setToken } from '../../services/instance'
+//import reducer
+import UseFormReducer, { getActionSetValue, getActionReset } from "../../reducers/UseFormReducer";
+//import context
+import { loginContext } from '../../Context/loginContext';
+//import user request
+import { signupRequest, loginRequest } from '../../services/userRequests'
 //Material UI imports
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -23,27 +17,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-
+//import css
 import './signUpFormStyles.scss';
 
-
-function SignUpForm(){
+function SignUpForm() {
   //useReducer configs
-
   const { formState, formDispatch } = UseFormReducer();
   const reset = () => formDispatch(getActionReset());
-  const navigate = useNavigate(); 
 
+  const navigate = useNavigate();
 
   //States
-  const[connectionEmail, setConnectionEmail] = useState('admin@admin.com');
-  const[connectionPassword, setConnectionPassword] = useState('');
-  const { isLogged, setIsLogged } = useContext(loginContext); 
-  const { pseudo, setPseudo } = useContext(loginContext); 
-  const [error, setError] = useState('')
-  const {isRoleAdmin, setIsRoleAdmin} = useContext(loginContext);
-
-
+  const [connectionEmail, setConnectionEmail] = useState('admin@admin.com');
+  const [connectionPassword, setConnectionPassword] = useState('');
+  const { setIsLogged } = useContext(loginContext);
+  const { setPseudo } = useContext(loginContext);
+  const [loggingError, setLoggingError] = useState('');
+  const [signupError, setSignupError] = useState('');
+  const { setIsRoleAdmin } = useContext(loginContext);
+  const [successSignup, setSuccessSignup] = useState('');
 
   //Form methods
   const handleTextFieldChange = (e) => {
@@ -54,76 +46,126 @@ function SignUpForm(){
     formDispatch(getActionSetValue(e.target.name, e.target.checked))
   }
 
+  //handle signup with error or success message
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-   await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword)
+    setSignupError('');
+
+    if (formState.firstname === '') {
+      setSignupError('veuillez rentrer votre prénom');
+      return;
+    }
+
+    if (formState.lastname === '') {
+      setSignupError('veuillez rentrer votre nom');
+      return;
+    }
+
+    if (formState.email === '') {
+      setSignupError('veuillez rentrer une adresse email');
+      return;
+    }
+
+    if (!isValidEmail(formState.email)) {
+      setSignupError('Email non valide');
+      return;
+    }
+
+    if (formState.password !== formState.confirmPassword) {
+      setSignupError('Mots de passe non identiques');
+      return;
+    }
+
+    if (formState.generalConditions === false) {
+      setSignupError('Veuillez accepter les conditions générales');
+      return;
+    }
+
+    if (formState.RGPD === false) {
+      setSignupError('Veuillez accepter la politique de confidentialité');
+      return;
+    }
+
+    await signupRequest(formState.email, formState.firstname, formState.lastname, formState.password, formState.confirmPassword);
+    setSuccessSignup('Votre compte a bien été crée, vous pouvez vous connecter');
+    setSignupError('');
+    reset();
   }
 
+  //lol
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  //handle login with error message and success set pseudo, connected state + jwt token
   const handleSubmitLoginForm = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
-      const response = await loginRequest(connectionEmail, connectionPassword); 
+      const response = await loginRequest(connectionEmail, connectionPassword);
       setToken(response.token);
-      if (response.logged){
+      localStorage.setItem('token', response.token);
+
+      if (response.logged) {
         setIsLogged(true);
         setPseudo(response.pseudo);
-        //Todo gérer la redirection admin
-        if(response.role === 'admin'){
+        setLoggingError('')
+        if (response.role === 'admin') {
           setIsRoleAdmin(true);
-          navigate('/cart'); 
-        } else { 
-            navigate("/")
+          navigate('/admin');
+        } else {
+          navigate("/")
+        }
       }
-      }
-      
+
     } catch (error) {
       console.log(error.message)
-     setError('mauvais password ou email');
+      setLoggingError('mauvais password ou email');
     }
-    
-}
-  return(
-    <div className= "container-form">
-        
+
+  }
+
+  return (
+    <div className="container-form">
+
       <div className="connexion">
-      <h1 className="title">
+        <h1 className="title">
           Connexion
         </h1>
         <p className="text">
-        Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part? 
-      </p>
-      <Box 
-   sx={{
-     margin: 5
-    }}
-        component="form"
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmitLoginForm}
-      >
-        <Grid container  spacing={2} >
-          <Grid item xs={12} sm={6}>
-            <TextField color="error"
-              label="Email"
-              name="connectionEmail"
-              value={connectionEmail}
-              onChange={(e) => setConnectionEmail( e.target.value)}
-              
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField color="error"
-              type="password"
-              label="Password"
-              name="connexionPassword"
-              value={connectionPassword}
-              onChange={(e) => setConnectionPassword(e.target.value)}
-              
-              fullWidth
-            />
-          </Grid>
-          <Grid item>
+          Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part?
+        </p>
+        <Box
+          sx={{
+            margin: 5
+          }}
+          component="form"
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmitLoginForm}
+        >
+          <Grid container spacing={2} >
+            <Grid item xs={12} sm={6}>
+              <TextField color="error"
+                label="Email"
+                name="connectionEmail"
+                value={connectionEmail}
+                onChange={(e) => setConnectionEmail(e.target.value)}
+
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField color="error"
+                type="password"
+                label="Password"
+                name="connexionPassword"
+                value={connectionPassword}
+                onChange={(e) => setConnectionPassword(e.target.value)}
+
+                fullWidth
+              />
+            </Grid>
+            <Grid item>
               <Button
                 color="error"
                 variant="contained"
@@ -133,39 +175,47 @@ function SignUpForm(){
               </Button>
             </Grid>
           </Grid>
-          </Box>
+        </Box>
       </div>
-      {error && (
-                  <div className="ui negative message">
-                    {error}
-                  </div>)}
+      {loggingError && (
+        <div className="ui negative message">
+          {loggingError}
+        </div>)}
 
       <h1 className="title">
-          Inscription
-        </h1>
-    
+        Inscription
+      </h1>
+
       <p className="text">
-        Vous n'avez pas de compte ? On a pourtant comme un air de
-déjà vu ... Rejoignez nous en quelques clics !
+        Vous n'avez pas de compte ? On a pourtant comme un air de déjà vu ... Rejoignez nous en quelques clics !
       </p>
 
-   <Box 
-   sx={{
-     margin: 5
-    }}
+      {signupError && (
+        <div className="ui negative big message">
+          {signupError}
+        </div>)}
+
+      {successSignup && (
+        <div className="ui green big message ">
+          {successSignup}
+        </div>)}
+      <Box
+        sx={{
+          margin: 5
+        }}
         component="form"
         noValidate
         autoComplete="off"
         onSubmit={handleSignUpSubmit}
       >
-        <Grid container  spacing={2} >
+        <Grid container spacing={2} >
           <Grid item xs={12} sm={6}>
             <TextField color="error"
               label="Prénom"
               name="firstname"
               value={formState.firstname}
               onChange={handleTextFieldChange}
-              
+
               fullWidth
             />
           </Grid>
@@ -175,7 +225,6 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="lastname"
               value={formState.lastname}
               onChange={handleTextFieldChange}
-              
               fullWidth
             />
           </Grid>
@@ -185,7 +234,7 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="email"
               value={formState.email}
               onChange={handleTextFieldChange}
-              
+
               fullWidth
             />
           </Grid>
@@ -196,7 +245,7 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="addressNumber"
               value={formState.addressNumber}
               onChange={handleTextFieldChange}
-              
+
               fullWidth
             />
           </Grid>
@@ -206,7 +255,7 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="addressStreet"
               value={formState.addressStreet}
               onChange={handleTextFieldChange}
-              
+
               fullWidth
             />
           </Grid>
@@ -217,7 +266,6 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="addressPostal"
               value={formState.addressPostal}
               onChange={handleTextFieldChange}
-              
               fullWidth
             />
           </Grid>
@@ -227,7 +275,6 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="addressCity"
               value={formState.addressCity}
               onChange={handleTextFieldChange}
-              
               fullWidth
             />
           </Grid>
@@ -239,7 +286,6 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="password"
               value={formState.password}
               onChange={handleTextFieldChange}
-              
               fullWidth
             />
           </Grid>
@@ -251,7 +297,6 @@ déjà vu ... Rejoignez nous en quelques clics !
               name="confirmPassword"
               value={formState.confirmPassword}
               onChange={handleTextFieldChange}
-              
               fullWidth
             />
           </Grid>
@@ -266,7 +311,6 @@ déjà vu ... Rejoignez nous en quelques clics !
                   checked={formState.newsletter}
                   name="newsletter"
                   onChange={handleCheckBoxChange}
-
                 />
               )}
             />
@@ -279,29 +323,23 @@ déjà vu ... Rejoignez nous en quelques clics !
                   checked={formState.generalConditions}
                   value={formState.generalConditions}
                   onChange={handleCheckBoxChange}
-
                 />
               )}
             />
-             <FormControlLabel
+            <FormControlLabel
               label="J'accepte la politique de confidentialité relative au
               traitement de mes données personnelles"
               control={(
                 <Checkbox
                   color="error"
                   name="RGPD"
-                  value= {formState.RGPD}
+                  value={formState.RGPD}
                   checked={formState.RGPD}
                   onChange={(handleCheckBoxChange)}
                 />
               )}
             />
           </Grid>
-
-
-
-
-          
 
           <Grid item xs={12} spacing={2} container justifyContent="flex-end">
             <Grid item>
@@ -327,8 +365,8 @@ déjà vu ... Rejoignez nous en quelques clics !
           </Grid>
         </Grid>
       </Box>
-    
-  </div>
+
+    </div>
   );
 }
 

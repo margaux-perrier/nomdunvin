@@ -1,26 +1,25 @@
-// import React
+//import from react
 import React from 'react';
-// import React-DOM
+//import from react-router-dom
 import ReactDOM from 'react-dom/client';
-// import BrowserRouter
+//import BrowserRouter
 import { BrowserRouter } from 'react-router-dom';
-// import semantic Ui
-import "semantic-ui-css/semantic.min.css";
-// import App component
+//import component
 import App from './components/App/App';
-
-
-
-
-// import Scss
+//import context
+import { LoginContextProvider } from './Context/loginContext';
+//import semantic Ui
+import "semantic-ui-css/semantic.min.css";
+//import css
 import './styles/index.scss';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <LoginContextProvider>
+      <BrowserRouter>
         <App />
-    </BrowserRouter>
+      </BrowserRouter>
+    </LoginContextProvider>
   </React.StrictMode>
 );

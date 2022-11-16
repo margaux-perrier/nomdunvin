@@ -1,29 +1,44 @@
-// import React with useState and createContext
+// import from react
 import { createContext, useState, useEffect } from 'react';
-// import fetchAllWines from services
-import { fetchAllWines } from '../services/fecthWinesAPI.js';
-// Create WineColorContext
+// import services
+import { fetchAllWines, filterWines } from '../services/WineApi.js';
+// Create context
 export const AllWinesContext = createContext();
 // Create Provider for Share informations between components
 export const AllWinesProvider = ({ children }) => {
-
-
-    // * CREATE STATE FOR ALL WINE, Catch Data FROM API * //
   
     // Create state for allWines
     const [wines, setWines] = useState([]);
-    
-
-    // Stock data from API in state (with Axios request)
  
     const fetchWines = async () => {
         const response = await fetchAllWines();
-        setWines(response);
+        setWines(response[0].data);
     }
     // useEffect for fetch data from API
     useEffect(() => { fetchWines() }, []);
 
- 
+    //STATE CULTURE
+    const [culture, setCulture] = useState([]);
+
+    //STATE REGION
+    const [region, setRegion] = useState([]);
+    //STATE WINEMAKER
+    const [winemaker, setWinemaker] = useState([]);
+    // STATE GRAPEVARIETY
+    const [grapevariety, setGrapeVariety] = useState([]);
+    // STATE DISH
+    const [dish, setDish] = useState([]);
+    
+    const fecthFiltersWines = async () => {
+        const response = await filterWines();
+        setCulture(response[0].data);
+        setRegion(response[1].data);
+        setWinemaker(response[2].data);
+        setGrapeVariety(response[4].data);
+        setDish(response[5].data);
+    }
+    useEffect(() => { fecthFiltersWines() }, []);
+
     // * FILTER BY COLOR *//
 
     // Create state for checkboxColor - For FilterMenu component
@@ -37,12 +52,10 @@ export const AllWinesProvider = ({ children }) => {
         setCheckboxColor(newCheckbox);
     }
 
-
     // * FILTER BY WINEMAKER *//
-
+    
     // Create state for checkboxWinemaker - For FilterMenu component
     const [checkboxWinemaker, setCheckboxWinemaker] = useState([]);
-    console.log(checkboxWinemaker);
 
     // Create function handleChange for change value of checkboxWinemaker with index
     const handleChangeWinemaker = (e) => {
@@ -56,8 +69,6 @@ export const AllWinesProvider = ({ children }) => {
     // Create state for checkboxRegion - For FilterMenu component
     const [checkboxRegion, setCheckboxRegion] = useState([]);
    
-
-
     // Create function handleChange for change value of checkboxRegion with index
     const handleChangeRegion = (e) => {
         const index = e.target.getAttribute('index');
@@ -74,11 +85,9 @@ export const AllWinesProvider = ({ children }) => {
         setCheckboxRegion(checkboxRegion.map((region) => ({ ...region, value: false })));
     }
 
-
-
     // Create function for choose and share informations between components
     return (
-        <AllWinesContext.Provider value={{ wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
+        <AllWinesContext.Provider value={{ winemaker, grapevariety, dish, region, culture,fetchWines, wines, setWines, checkboxColor, setCheckboxColor, handleChangeColor, checkboxWinemaker, setCheckboxWinemaker, handleChangeWinemaker, checkboxRegion, setCheckboxRegion, handleChangeRegion, resetFilter}}>
             {children}
         </AllWinesContext.Provider>
     );

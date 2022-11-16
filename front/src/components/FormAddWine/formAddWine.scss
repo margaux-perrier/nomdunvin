@@ -1,25 +1,25 @@
+@use "src/styles/vars";
 .form-add-wine {
     width : 60%;
     margin : auto;
     display: flex;
     flex-direction: column;
-    margin-top : 10em;
+    margin-top : 2em;
 }
 
 .form-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 1em;
-    color : #A02222;
+    margin : 2em auto;
+    font-size: 2em;
+    font-weight : 700;
+    color : vars.$primary-color;
+    font-style : italic
 }
 
-.tag {
-    margin-right : 0.8em;
-    margin-top: 1em;
+.checkbox {
+     margin-left : 2em;
+ 
 }
 
-.field {
-    padding-top: 1em;
 
-}
+
 

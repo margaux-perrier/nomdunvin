@@ -25,6 +25,13 @@
         width: 40%;
         margin-left: 3rem;
         margin-bottom: 1rem;
+        cursor: pointer;
+      }
+  
+      .logo-cart:hover {
+        transform: scale(1.1);
+        transition: 0.3s;
+       
       }
     }
     .card-img {
@@ -181,5 +188,9 @@
     font-size: 2em;
     color: vars.$primary-color;
     font-style: italic;
+  }
+
+  .price span{
+    font-size: 1rem;
   }
 }
