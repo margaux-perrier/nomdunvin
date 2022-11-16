@@ -39,7 +39,7 @@ function UpdateCard({
                             ))}
                         </ul>
 
-                        <p className="price">{price} €</p>
+                        <p className="price">{price} € <span>T.T.C</span></p>
                         
                     </div>
                 </div>
