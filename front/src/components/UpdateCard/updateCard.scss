@@ -185,7 +185,11 @@
 .price {
   margin-left: 0.5em;
   font-weight: 600;
-  font-size: 2em;
+  font-size: 1.5em;
   color: vars.$primary-color;
   font-style: italic;
+}
+
+.price span{
+  font-size: 1rem;
 }

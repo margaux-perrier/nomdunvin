@@ -34,7 +34,8 @@ function CartItem({
             <div className = 'cart-item'>
                 <img className = 'cart-item_image' src={ avatar } alt='bouteille'/>
                 <div className='cart-item_infos'>
-                    <h2 className='cart-item_name'>{ `${ winemaker.name } - ${ name }` }</h2>
+                    <h2 className='cart-item_winemaker-name'>{ `${ winemaker.name } ` }</h2>
+                    <h2 className='cart-item_wine-name'>{ ` ${ name }` }</h2>
                     <span className = 'cart-item_price'>{ price }€ TTC</span>
                     <span className = 'cart-item_subtotal'>sous-total : {price * quantity} € TTC</span>
                 </div>
