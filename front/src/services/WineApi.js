@@ -2,11 +2,13 @@
 import axios from "axios";
 import apiInstance from "./instance";
 
+const baseURL = 'http://localhost:8080'
+
 //* Request Api for catch All Wines : * //
 export async function fetchAllWines() {
     try {
         const [wine] = await Promise.all ([
-        axios.get('http://localhost:5000'),
+        axios.get(baseURL),
         ]);
         const dataWines = [wine];
         return dataWines; 
@@ -21,12 +23,12 @@ export async function filterWines() {
     try {
         const [culture, region, winemaker, style, grapevariety, dish] = await Promise.all ([
 
-        axios.get('http://localhost:5000/culture'),
-        axios.get('http://localhost:5000/region'),
-        axios.get('http://localhost:5000/winemaker'),
-        axios.get('http://localhost:5000/style'),
-        axios.get('http://localhost:5000/grapevariety'),
-        axios.get('http://localhost:5000/dish')
+        axios.get(`${baseURL}/culture`),
+        axios.get(`${baseURL}/region`),
+        axios.get(`${baseURL}/winemaker`),
+        axios.get(`${baseURL}/style`),
+        axios.get(`${baseURL}/grapevariety`),
+        axios.get(`${baseURL}/dish`)
        
         ]);
 
@@ -40,7 +42,7 @@ export async function filterWines() {
 
 //* Request Api for catch One Wine : *//
 export async function fetchOneWine(id) {
-    const response = await axios.get(`http://localhost:5000/wine/${id}`);
+    const response = await axios.get(`${baseURL}/wine/${id}`);
     return response.data;
 }
 
