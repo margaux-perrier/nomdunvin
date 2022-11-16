@@ -28,7 +28,7 @@ function SignUpForm() {
   const navigate = useNavigate();
 
   //States
-  const [connectionEmail, setConnectionEmail] = useState('admin@admin.com');
+  const [connectionEmail, setConnectionEmail] = useState('');
   const [connectionPassword, setConnectionPassword] = useState('');
   const { setIsLogged } = useContext(loginContext);
   const { setPseudo } = useContext(loginContext);

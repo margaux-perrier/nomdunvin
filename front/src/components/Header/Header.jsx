@@ -66,14 +66,14 @@ function Header() {
 
                     {isLogged && (
                         <div className='menu-button'>
-
-                            {!isRoleAdmin && (
+                            <Link to='/cart' className="cart-icons " ><i className="shopping large bag inverted icon"></i></Link>
+                            {isRoleAdmin && (
                             <div>
-                                <Link to='/cart' className="cart-icons " ><i className="shopping large bag inverted icon"></i></Link>
+                                
                                 <Link to="/admin" className="dashbord-link dashboard"><i className="edit large icon"></i></Link>
                             </div>
                             )}
-
+                            
                             <button
                                 type="button"
                                 className="header-button"
