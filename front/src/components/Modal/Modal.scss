@@ -2,14 +2,13 @@
 
 .overlay{
     position : fixed;
-    z-index: 10; 
+    z-index: 10000; 
     inset:0; 
     background-color: rgba(0,0,0,0.75);
     display : flex; //pour centrer la modal
     justify-content: center; 
     align-items: center;
 }
-
 
 .modal{
     position: fixed;  
@@ -95,7 +94,6 @@
         &_wine-appellation{
             margin-bottom: 0.8rem;
             color : vars.$tertiary-color;
-            // font-weight: 600;
         }
     }
 
@@ -135,7 +133,6 @@
 
     &_input{
         border-radius: 0.5em;
-        // font-size: 0.9em;
         color: vars.$primary-color;
         border: 2px solid #e0e0e0;
         text-align: center;
@@ -145,10 +142,15 @@
 
 }
 
+i.icon.circle:before{
+    font-size: 1.3em;
+}
+
 @media (min-width: 570px) {
     .modal{
         font-size: 1.1rem;
     }
+
 }
 
 @media (min-width: 750px) {
@@ -168,6 +170,14 @@
 @media (min-width: 1400px) {
     .modal{
         width: 30%;
-        font-size: 1em; 
+        font-size: 1.2em; 
+    }
+
+    .modal_content{
+        &_infos_wine-price{
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 1rem;
+        }
     }
 }

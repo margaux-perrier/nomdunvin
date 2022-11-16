@@ -2,7 +2,7 @@
 
 .landpage-modal_overlay{
     position : fixed;
-    z-index: 10; 
+    z-index: 10000;  
     inset:0; 
     background-color: rgba(0,0,0,0.95);
     display : flex; //pour centrer la modal
@@ -35,8 +35,9 @@
     }
 
     &_warning{
+        font-size: 1.15rem;
         font-weight: 400;
-        max-width: 86%; 
+        max-width: 87%; 
         text-align : center; 
         padding : 1rem 1rem;  
     }

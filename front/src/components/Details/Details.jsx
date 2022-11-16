@@ -72,7 +72,7 @@ function Details() {
             <div className="details-container-visual">
                 <div className="details-img">
                     <div className=''>
-                        <p className={`tablet-color-${wine.color}`}></p>
+                        <p className='details-size'>{wine.size}</p>
                     </div>
                     <img className="wine-img" src={wine.avatar} alt="Logo wine" />
                     <ul className="details-tag">
@@ -90,7 +90,10 @@ function Details() {
                         </div>
                         <p className="details-wine-name">" {wine.name} "</p>
                         <p className="details-wine-region">{wine.appellation}</p>
-                        <p className="details-price"> {wine.price} €</p>
+                        <div className='details-color'>
+                            <p className={`tablet-color-${wine.color}`}></p>
+                        </div>
+                        <p className="details-price"> {wine.price}€ <span>T.T.C</span> </p>
                     </div>
 
                     {isMessageAddToCartOpen &&
@@ -182,5 +185,3 @@ function Details() {
 }
 
 export default React.memo(Details);
-
-
