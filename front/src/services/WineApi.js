@@ -2,7 +2,7 @@
 import axios from "axios";
 import apiInstance from "./instance";
 
-const baseURL = 'http://localhost:8080'
+const baseURL = 'http://antoinequelin-server.eddi.cloud:8080'
 
 //* Request Api for catch All Wines : * //
 export async function fetchAllWines() {
