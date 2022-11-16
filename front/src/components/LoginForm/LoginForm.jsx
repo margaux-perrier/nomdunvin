@@ -11,8 +11,8 @@ import './LoginForm.scss';
 
 function LoginForm() {
   const { isLogged, setIsLogged } = useContext(loginContext);
-  const [email, setEmail] = useState('admin@admin.com');
-  const [password, setPassword] = useState('admin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { pseudo, setPseudo } = useContext(loginContext);
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
