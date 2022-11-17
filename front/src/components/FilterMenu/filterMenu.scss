@@ -2,11 +2,11 @@
 /* Position of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 7rem;
-  padding: 1rem;
+  width: 26px;
+  height: 20px;
+  left: 16px;
+  top: 5rem;
+  padding: 0.5rem;
   margin-top: 2em;
 }
 /* Color burger icon bars */
@@ -82,5 +82,17 @@
   &:hover {
     background-color: vars.$secondary-color;
     color: vars.$primary-color;
+  }
+}
+
+@media (min-width: 600px) {
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 16px;
+    top: 5rem;
+    padding: 0.5rem;
+    margin-top: 2em;
   }
 }
