@@ -101,7 +101,7 @@ function Details() {
                     }
 
                     {isConnexionMessageOpen &&
-                        <div className="ui negative message">
+                        <div className="ui negative message addToCart">
                             <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
                             <div className="header">
                                 Connectez-vous pour ajouter un vin au panier

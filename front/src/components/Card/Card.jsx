@@ -85,7 +85,7 @@ function Card({
                     <p className={`tablet-color-${color}`}></p>
                 </div>
                 {isConnexionMessageOpen &&
-                    <div className="ui negative message">
+                    <div className="ui negative message addCart">
                         <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
                         <div className="header">
                             Connectez-vous pour ajouter un vin au panier
