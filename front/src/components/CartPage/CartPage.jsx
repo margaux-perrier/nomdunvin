@@ -76,7 +76,7 @@ function CartPage(){
                         </div>
 
                         <div className = 'cart_amount'>
-                            <p>Total : </p> <span> {total}€ T.T.C</span>
+                            <p>Total : </p> <p> {total}€ <span>T.T.C</span></p>
                         </div>
 
                         <div className = 'buttons-container'>

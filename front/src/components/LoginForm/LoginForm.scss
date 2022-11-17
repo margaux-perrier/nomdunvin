@@ -1,5 +1,18 @@
  @use "src/styles/vars";
 
+.ui.negative.message.login{
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 25px; 
+  margin-bottom: 0; 
+  margin-right: 25px; 
+}
+
+ .login-container{
+  display: flex; 
+  align-items : baseline; 
+}
+
 .menu-login {
     display: flex;
     display: none;
