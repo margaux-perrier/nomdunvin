@@ -1,5 +1,11 @@
 @use "src/styles/vars";
 
+.ui.negative.big.message.signup, .ui.negative.message.login-mobile, .ui.green.big.message.signup{
+  width: 90vw;
+  text-align: center; 
+  margin: auto; 
+}
+
 .connexion {
   margin-top: 7rem;
 }
@@ -34,6 +40,10 @@
   }
   .connexion {
     display: none;
+  }
+
+  .ui.negative.message.login-mobile{
+    display: none; 
   }
 
 }

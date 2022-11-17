@@ -175,6 +175,8 @@
     border-radius: 2em;
     margin-bottom: 1em;
   }
+
+  }
   .price-btn:hover {
     background-color: white;
     color: vars.$primary-color;
@@ -191,6 +193,6 @@
   }
 
   .price span{
-    font-size: 1rem;
+    font-size: 0.5em;
   }
-}
+

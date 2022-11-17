@@ -94,7 +94,7 @@ function Card({
                 }
                 <div className="card-price">
                     <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
-                    <p className='price'>{price} <span>T.T.C €</span></p>
+                    <p className='price'>{price} € <span> T.T.C </span></p>
                 </div>
             </div>
             

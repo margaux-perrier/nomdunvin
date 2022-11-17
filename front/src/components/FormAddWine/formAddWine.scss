@@ -17,9 +17,25 @@
 
 .checkbox {
      margin-left : 2em;
- 
 }
 
+#form-button-control-public-validate.ui.button{
+    background-color: vars.$primary-color;
+    color: white;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+
+#form-button-control-public-reset.ui.button{
+    background-color: white;
+    border: 0.5px solid vars.$primary-color; 
+    color: vars.$primary-color;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
 
 
 
