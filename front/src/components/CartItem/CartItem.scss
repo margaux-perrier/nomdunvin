@@ -38,8 +38,17 @@
         margin-bottom : 1em;
         color: vars.$tertiary-color;
     }
+
+    &_price span{
+        font-size: 0.8em;
+    }
+    
     &_subtotal{
         font-size: 0.8rem;
+    }
+
+    &_subtotal span{
+        font-size: 0.6rem;
     }
     &_quantity{
         display : flex; 

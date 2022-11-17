@@ -1,5 +1,5 @@
 // import from React
-import React, { useContext, Fragment, useState } from 'react'
+import React, { useContext, Fragment, useState, useRef } from 'react'
 // import Context
 import { AllWinesContext } from "../../Context/AllWinesContext";
 //Import Reducer
@@ -17,6 +17,12 @@ function FormAddWine() {
     //Reducer configs
     const { adminState, adminDispatch } = UseAdminReducer();
     const reset = () => adminDispatch(getActionReset());
+
+
+    const title = useRef(null); 
+    const handleScroll = (ref) => {
+      title.current.scrollIntoView()
+    };
 
     //States
     const { wines, culture, region, winemaker, grapevariety, dish, fetchWines } = useContext(AllWinesContext);
@@ -101,60 +107,70 @@ function FormAddWine() {
         if(!wine.name) {
             setErrorMessage('Veuillez renseigner le nom du vin');
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.appellation) {
             setErrorMessage(`Veuillez renseigner l'appellation du vin`);
             setSuccessMessage('');
+            handleScroll(title); 
             return;
         }
         
         if(!wine.color) {
             setErrorMessage('Veuillez renseigner la couleur du vin');
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.description) {
             setErrorMessage('Veuillez renseigner une description pour le vin');
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.size) {
             setErrorMessage('Veuillez renseigner la contenance le vin');
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.vintage) {
             setErrorMessage(`Veuillez renseigner l'année du vin`);
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.alcohol) {
             setErrorMessage(`Veuillez renseigner le degrés d'acool du vin`);
             setSuccessMessage('');
+            handleScroll(title); 
             return;
         }
 
         if(!wine.avatar) {
             setErrorMessage(`Veuillez renseigner l'image du vin`);
             setSuccessMessage('');
+            handleScroll(title); 
             return;
         }
 
         if(!wine.alcohol) {
             setErrorMessage(`Veuillez renseigner le degrés d'acool du vin`);
             setSuccessMessage('');
+            handleScroll(title);
             return;
         }
 
         if(!wine.price) {
             setErrorMessage(`Veuillez renseigner le prix du vin`);
             setSuccessMessage('');
+            handleScroll(title); 
             return;
         }
 
@@ -170,13 +186,16 @@ function FormAddWine() {
             setSuccessMessage('Le vin a bien été créé et ajouté à la boutique !'); 
         } 
         setErrorMessage(''); 
+        handleScroll(title);
     }
 
     return (
         <Fragment>
 
             <div className="form-add-wine">
-                <h1 className="form-title">Ajouter un vin</h1>
+                <h1 
+                ref={title}
+                className="form-title">Ajouter un vin</h1>
                 
                     {successMessage && (
                         <div className="ui green big message ">
@@ -358,7 +377,6 @@ function FormAddWine() {
                     <Form.Field
                         id='form-input-control-first-name'
                         control={Input}
-                        placeholder='Exemple : 10'
                         width={15}
                         name="price"
                         value={adminState.price}
@@ -368,7 +386,7 @@ function FormAddWine() {
 
                 <div className="two fields">
                     <Form.Field
-                        id='form-button-control-public'
+                        id='form-button-control-public-validate'
                         control={Button}
                         content='Ajouter ce vin'
                         onSubmit={handleFormSubmit}
@@ -376,9 +394,9 @@ function FormAddWine() {
                  
                   
                     <Form.Field
-                        id='form-button-control-public'
+                        id='form-button-control-public-reset'
                         control={Button}
-                        content='Réinitialiser le formulaire'
+                        content='Reset'
                         onClick={reset}
                     />
                </div>
