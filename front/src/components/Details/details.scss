@@ -146,6 +146,7 @@
 
     .details-form {
       margin-top: 2em;
+      margin-bottom : 2em; 
       width: 100%;
       //centrer les éléments
       display: flex;
@@ -179,6 +180,14 @@
       }
     }
   }
+
+  .ui.negative.message.addToCart{
+    height: 4.5em; 
+    text-align: center; 
+    width:80%;
+    margin : 1em auto; 
+  }
+
 
   //* Concerns the notice part + wine details part //*
 
