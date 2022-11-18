@@ -85,7 +85,7 @@ function Card({
                     <p className={`tablet-color-${color}`}></p>
                 </div>
                 {isConnexionMessageOpen &&
-                    <div className="ui negative message">
+                    <div className="ui negative message addCart">
                         <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
                         <div className="header">
                             Connectez-vous pour ajouter un vin au panier
@@ -94,7 +94,7 @@ function Card({
                 }
                 <div className="card-price">
                     <button className="price-btn" id={id} onClick={handleClick}>Voir le produit</button>
-                    <p className='price'>{price} <span>T.T.C €</span></p>
+                    <p className='price'>{price} € <span> T.T.C </span></p>
                 </div>
             </div>
             

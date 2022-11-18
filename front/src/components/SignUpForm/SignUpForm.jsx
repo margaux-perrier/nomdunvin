@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 //import react-router-dom
 import { useNavigate } from 'react-router-dom';
 //import token
@@ -37,6 +37,12 @@ function SignUpForm() {
   const { setIsRoleAdmin } = useContext(loginContext);
   const [successSignup, setSuccessSignup] = useState('');
 
+  const title = useRef(null); 
+
+  const handleScroll = (ref) => {
+    title.current.scrollIntoView()
+  };
+
   //Form methods
   const handleTextFieldChange = (e) => {
     formDispatch(getActionSetValue(e.target.name, e.target.value));
@@ -52,37 +58,51 @@ function SignUpForm() {
     setSignupError('');
 
     if (formState.firstname === '') {
-      setSignupError('veuillez rentrer votre prénom');
+      setSignupError('Veuillez rentrer votre prénom');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
+
     }
 
     if (formState.lastname === '') {
-      setSignupError('veuillez rentrer votre nom');
+      setSignupError('Veuillez rentrer votre nom');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
     }
 
     if (formState.email === '') {
-      setSignupError('veuillez rentrer une adresse email');
+      setSignupError('Veuillez rentrer une adresse email');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
     }
 
     if (!isValidEmail(formState.email)) {
       setSignupError('Email non valide');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
     }
 
     if (formState.password !== formState.confirmPassword) {
       setSignupError('Mots de passe non identiques');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
     }
 
     if (formState.generalConditions === false) {
       setSignupError('Veuillez accepter les conditions générales');
+      setSuccessSignup('');
+      handleScroll(title);
       return;
     }
 
     if (formState.RGPD === false) {
       setSignupError('Veuillez accepter la politique de confidentialité');
+      setSuccessSignup('');
       return;
     }
 
@@ -90,6 +110,8 @@ function SignUpForm() {
     setSuccessSignup('Votre compte a bien été crée, vous pouvez vous connecter');
     setSignupError('');
     reset();
+    handleScroll(title);
+
   }
 
   //lol
@@ -124,6 +146,8 @@ function SignUpForm() {
 
   }
 
+
+
   return (
     <div className="container-form">
 
@@ -132,7 +156,7 @@ function SignUpForm() {
           Connexion
         </h1>
         <p className="text">
-          Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part?
+          Hey salut l'ami ! Dis-moi, on s'est pas déjà vu quelque part?
         </p>
         <Box
           sx={{
@@ -170,7 +194,6 @@ function SignUpForm() {
                 color="error"
                 variant="contained"
                 type="submit">
-                {/* {isLogged && <Navigate to='/'/>} */}
                 Valider
               </Button>
             </Grid>
@@ -178,25 +201,28 @@ function SignUpForm() {
         </Box>
       </div>
       {loggingError && (
-        <div className="ui negative message">
+        <div className="ui negative message login-mobile">
           {loggingError}
         </div>)}
 
-      <h1 className="title">
+      <h1 
+      ref={title}
+      className="title">
         Inscription
       </h1>
 
       <p className="text">
-        Vous n'avez pas de compte ? On a pourtant comme un air de déjà vu ... Rejoignez nous en quelques clics !
+        Vous n'avez pas de compte ? On a pourtant comme un air de déjà-vu ... Rejoignez-nous en quelques clics !
       </p>
 
       {signupError && (
-        <div className="ui negative big message">
+        <div className="ui negative big message signup"
+        >
           {signupError}
         </div>)}
 
       {successSignup && (
-        <div className="ui green big message ">
+        <div className="ui green big message signup ">
           {successSignup}
         </div>)}
       <Box

@@ -29,7 +29,7 @@ function LandpageModal({
                     <p> Êtes-vous légalement en âge de consommer de l'acool dans votre pays de résidence ? </p>
                 </div>
                 {isWarningMessageOpen &&
-                    <div className="ui warning message">
+                    <div className="ui warning message landpagemodal">
                         <i className="close icon" onClick={() => setIsWarningMessageOpen(false)}></i>
                         <div className="header">
                             Vous devez être majeur pour accéder au site

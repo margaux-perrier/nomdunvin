@@ -63,9 +63,9 @@ function LoginForm() {
   const handleIsOpen = (event) => { event.preventDefault(); setIsOpen(!isOpen); }
 
   return (
-    <div >
+    <div className='login-container'>
       {error && (
-        <div className="ui negative message">
+        <div className="ui negative message login">
           {error}
         </div>
       )}
@@ -95,7 +95,11 @@ function LoginForm() {
 
       {(!isLogged && isOpen && (
         <div className="login-form_container">
-          <form autoComplete="off" className="form-login" onSubmit={handleSubmitLoginForm}>
+          <form 
+          autoComplete="off" 
+          className="form-login" 
+          onSubmit={handleSubmitLoginForm} 
+          onKeyPress={(e) => {if (e.key === 'Enter') {handleSubmitLoginForm(e);}}}>
             <button className="close" onClick={handleIsOpen}>X</button>
 
             <div className="form-group">

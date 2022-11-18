@@ -69,7 +69,7 @@ function UpdateCardList() {
             </div>
 
 
-            <div className="cardList">
+            <div className="UpdateCardList">
                 {filteredWines.map(({
                     id, size, color, alcohol, price, name, avatar, winemaker, appellation, culture
                 }) => (
