@@ -40,6 +40,7 @@
   font-style: italic;
   span {
     color: vars.$primary-color;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -80,7 +81,6 @@
     font-size: 2em;
     font-weight: 600;
     font-family: vars.$font-Montserrat;
-    text-shadow: 0 0 10px vars.$primary-color;
     font-style: italic;
     margin-top: 1.5em;
   }
