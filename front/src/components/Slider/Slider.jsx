@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import jumelle from './jumelle.jpg';
 import oh from './oh.jpg';
 import vigneron from './vigneron.jpg';
+import wineSelection from './selection-wine.jpg';
 import { Carousel } from 'react-responsive-carousel';
 import './slider.scss';
 
@@ -12,9 +13,9 @@ function Slider() {
         <Carousel
             className="slider"
             autoPlay={true}
-            interval={8000}
+            interval={6000}
             infiniteLoop={true}
-            transitionTime={3000}
+            transitionTime={2500}
         >
             <div>
                 <img src={jumelle} alt="Homme avec des jumelles" />
@@ -24,6 +25,14 @@ function Slider() {
                 </div>
 
             </div>
+            <div>
+            <img src={wineSelection} alt="Homme avec des jumelles" />
+            <div className="overlay">
+                <h2 className="overlay_title">Une sélection des <span>meilleurs</span> vins ! </h2>
+                <p className="overlay_text">" Keep CALM and drink WINE ! " :)</p>
+            </div>
+
+        </div>
             <div>
                 <img src={oh} alt="Homme surpris" />
                 <div className="overlay">
