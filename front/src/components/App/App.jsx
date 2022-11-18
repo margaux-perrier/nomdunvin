@@ -14,6 +14,8 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import FormAddWine from '../FormAddWine/FormAddWine';
 import UpdateCardList from '../UpdateCardList/UpdateCardList';
 import Admin from '../Admin/Admin';
+import ReassuranceBanner from '../ReassuranceBanner/ReassuranceBanner';
+import WineBox from '../WineBox/WineBox';
 //import context
 import { AllWinesProvider } from '../../Context/AllWinesContext';
 import { LoginContextProvider } from '../../Context/loginContext';
