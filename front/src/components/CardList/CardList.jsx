@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 //import PropTypes
 import PropTypes from 'prop-types';
 //import react
@@ -6,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 //import components
 import Card from '../Card/Card';
 import LandpageModal from '../LandpageModal/LandpageModal';
+import Slider from '../Slider/Slider';
+import ReassuranceBanner from '../ReassuranceBanner/ReassuranceBanner';
 //import context
 import { AllWinesContext } from '../../Context/AllWinesContext';
 //import semantic UI Elements
@@ -132,6 +135,13 @@ function CardList() {
                     setIsWarningMessageOpen={setIsWarningMessageOpen}
                 />
             )}
+
+            <div>
+            <Slider />
+            <ReassuranceBanner />
+            
+            </div>
+            
 
             <div className="searchBar">
                 <Segment style={{ width: '70%' }}>

@@ -1,0 +1,49 @@
+@use "src/styles/vars";
+
+.reassurance-banner{
+    display: none; 
+}
+
+@media screen and (min-width: 780px){
+    .reassurance-banner{
+   
+        display: flex; 
+        background-color:  rgb(255,255,255);;
+        box-shadow: 0 0 15px rgba(199, 196, 196, 0.5);
+
+        &_sidebar{
+            display: flex; 
+            flex-direction : row; 
+            align-items: center;
+            width: 90%; 
+            margin: 0 auto; 
+        }
+    }
+
+    .sidebar_item{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        width: 25%; 
+        font-size: 0.8rem; 
+        text-align: center; 
+        font-weight: 300; 
+    }
+
+    .sidebar_item--highlighting{
+        color:vars.$primary-color;
+        font-weight: 700;
+    }
+
+    .sidebar_icon{
+        width: 30%; 
+    }
+
+}
+
+@media screen and (min-width: 986px){
+    .sidebar_item{
+        font-size: 1.1rem; 
+    }
+}
