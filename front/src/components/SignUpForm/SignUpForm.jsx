@@ -156,7 +156,7 @@ function SignUpForm() {
           Connexion
         </h1>
         <p className="text">
-          Hey Salut l'ami ! Dis moi, on s'est pas déjà vu quelque part?
+          Hey salut l'ami ! Dis-moi, on s'est pas déjà vu quelque part?
         </p>
         <Box
           sx={{
@@ -212,7 +212,7 @@ function SignUpForm() {
       </h1>
 
       <p className="text">
-        Vous n'avez pas de compte ? On a pourtant comme un air de déjà vu ... Rejoignez nous en quelques clics !
+        Vous n'avez pas de compte ? On a pourtant comme un air de déjà-vu ... Rejoignez-nous en quelques clics !
       </p>
 
       {signupError && (
