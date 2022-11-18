@@ -1,10 +1,14 @@
 @use "src/styles/vars";
 .footer {
   background-color: vars.$primary-color;
+ position : relative;
   text-align: center;
   border-top: 3px solid vars.$border-color;
   width: 100%;
-  margin-top: 2em;
+  margin-top: 1rem;
+  bottom: 0;
+
+
   .footer-logo {
     .logo {
       width: 8em;
