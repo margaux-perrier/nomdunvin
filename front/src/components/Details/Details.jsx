@@ -121,7 +121,7 @@ function Details() {
                 <div className="details-reviews">
                     <h2 className="details-reviews-title">Notre avis sur ce vin...</h2>
                     <p className="details-reviews-content">{wine.description}</p>
-                    <h2 className="details-dish-title">Quel menu accompagne t'il ?</h2>
+                    <h2 className="details-dish-title">Quel menu accompagne-t-il ?</h2>
                     <div className="dishcontainer">
                         {wine.dishes.map((item) => (
                             <span key={item.id} className="details-dish-content">{item.name}</span>
