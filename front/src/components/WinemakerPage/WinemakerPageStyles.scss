@@ -1,0 +1,30 @@
+@use "src/styles/vars";
+
+
+.winemaker_page-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5em;
+}
+
+.winemaker_page-title {
+  text-align: center;
+  font-size: 3em;
+  color: vars.$primary-color;
+  font-weight: 700;
+}
+
+.winemaker_page-main-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10em;
+}
+
+.winemaker_page-searchbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2em;
+}
