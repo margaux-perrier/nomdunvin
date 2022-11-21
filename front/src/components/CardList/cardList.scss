@@ -8,8 +8,20 @@
 }
 
 .searchBar {
-  margin-top: 10rem;
+  margin-top: 8rem;
   display: flex;
   justify-content: center;
   width: 100%;
+  
 }
+
+@media screen and (min-width: 923px) {
+  .searchBar {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+  }
+}
+

@@ -21,6 +21,7 @@ import { AllWinesProvider } from '../../Context/AllWinesContext';
 import { LoginContextProvider } from '../../Context/loginContext';
 //import scss
 import './App.scss';
+import WinemakerPage from '../WinemakerPage/WinemakerPage';
 
 function App() {
   return (
@@ -56,6 +57,14 @@ function App() {
             element={
               <SignUpForm />
             } />
+
+
+          <Route
+            path='/winemaker'
+            element={
+              <WinemakerPage/>
+            } />
+
 
           <Route
             path="/cart"
