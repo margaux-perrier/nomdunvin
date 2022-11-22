@@ -56,9 +56,11 @@ function Header() {
                         </Link>
                     </div>
                     <div className="link">
-                        <NavLink end to="/" style={({ isActive }) => { return { color: isActive ? 'white' : 'white' } }} className="tab-link">La Cave</NavLink>
+                        <NavLink end to="/" style={({ isActive }) => { return { fontWeight: isActive ? 'bold' : '300' } }} className="tab-link">La Cave</NavLink>
                     </div>
-
+                    <div className="link">
+                        <NavLink end to="/winemaker" style={({ isActive }) => { return { fontWeight: isActive ? 'bold' : '300' } }} className="tab-link">Nos Vignerons</NavLink>
+                    </div>
                 </div>
                 <div className='button-container'>
                     <div className="menu-login">
