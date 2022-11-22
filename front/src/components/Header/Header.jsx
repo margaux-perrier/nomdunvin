@@ -57,6 +57,7 @@ function Header() {
                     </div>
                     <div className="link">
                         <NavLink end to="/" style={({ isActive }) => { return { fontWeight: isActive ? 'bold' : '300' } }} className="tab-link">La Cave</NavLink>
+
                     </div>
                     {/* <div className="link">
                         <NavLink end to="/winemaker" style={({ isActive }) => { return { fontWeight: isActive ? 'bold' : '300' } }} className="tab-link">Nos Vignerons</NavLink>
