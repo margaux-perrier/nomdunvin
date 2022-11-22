@@ -5,10 +5,10 @@
 }
 
 // reponsive pour desktop
-@media screen and (min-width: 1143px) {
+@media screen and (min-width: 800px) {
   .slider {
     display: block;
-    margin-top: 5.6em;
+    margin-top: 5em;
     height: 80vh;
   }
   .thumbs.animated {

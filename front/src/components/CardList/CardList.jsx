@@ -9,6 +9,7 @@ import Card from '../Card/Card';
 import LandpageModal from '../LandpageModal/LandpageModal';
 import Slider from '../Slider/Slider';
 import ReassuranceBanner from '../ReassuranceBanner/ReassuranceBanner';
+import WineBox from '../WineBox/WineBox'; 
 //import context
 import { AllWinesContext } from '../../Context/AllWinesContext';
 //import semantic UI Elements
@@ -139,10 +140,10 @@ function CardList() {
             <div>
             <Slider />
             <ReassuranceBanner />
-            
+            <WineBox /> 
             </div>
             
-
+            <h1 className='cardList_title-cave'>la cave</h1>
             <div className="searchBar">
                 <Segment style={{ width: '70%' }}>
                     <Form >

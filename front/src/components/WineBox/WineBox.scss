@@ -14,7 +14,9 @@
         display: flex; 
         flex-direction: column; 
         width: 85%; 
-        margin : 1.5rem auto;
+        margin :0 auto 1.5rem auto;
+        padding-top : 4rem; 
+        padding-bottom : 4rem;
 
         font-family: vars.$font-Montserrat;
         
@@ -80,4 +82,33 @@
     }
 }
 
-@media screen and (min-width: 780px){}
+@media screen and (min-width: 1020px){
+
+    .item-content{
+        font-size: 1.2rem;
+  
+        &_text{
+            font-size: 1rem;   
+        }
+
+        &_subtext{
+            font-size: 0.9rem;
+        }
+
+    }
+}
+
+@media screen and (min-width: 1600px){
+
+    .item-content{
+  
+        &_text{
+            font-size: 1.2rem;   
+        }
+
+        &_subtext{
+            font-size: 1rem;
+        }
+
+    }
+}
