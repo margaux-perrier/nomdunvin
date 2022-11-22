@@ -50,7 +50,7 @@ function LoginForm() {
     removeToken();
     localStorage.removeItem('token');
 
-    localStorage.removeItem('remember-me');
+    // localStorage.removeItem('remember-me');
 
     setIsRoleAdmin(false);
     localStorage.removeItem('cart');
