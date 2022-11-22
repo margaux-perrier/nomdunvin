@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Winemaker from '../Winemaker/Winemaker';
 import { Segment, Input, Form } from 'semantic-ui-react';
 
@@ -8,6 +8,12 @@ import './WinemakerPageStyles.scss';
 
 function WinemakerPage() {
 
+  const [search, setSearch] = useState('');
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
   return(
     <div className='winemaker_page-main-container'>
       <div>
@@ -16,7 +22,7 @@ function WinemakerPage() {
       <div className='winemaker_page-searchbar'>
       <Segment style={{ width: '70%' }}>
         <Form >
-          <Input focus fluid icon="search" iconPosition="left" placeholder="Rechercher un vin"  />
+          <Input focus fluid icon="search" iconPosition="left" placeholder="Rechercher un vin" onChange={handleSearch} value={search}  />
         </Form>
       </Segment>
       </div>

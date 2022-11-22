@@ -5,7 +5,9 @@ import './WinemakerStyles.scss';
 function Winemaker() {
   return(
     <div className='winemaker_container'>
-      <img className='winemaker_photo' src={image} alt='photo'/>
+      <div className='image_container'>
+        <img className='winemaker_photo' src={image} alt='photo'/>
+      </div>
       <p className='winemaker_name'>
         domaine Johnny Joe
       </p>
