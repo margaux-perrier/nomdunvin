@@ -87,7 +87,7 @@ function Card({
                 {isConnexionMessageOpen &&
                     <div className="ui negative message addCart">
                         <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
-                        <div className="header">
+                        <div className="header-message">
                             Connectez-vous pour ajouter un vin au panier
                         </div>
                     </div>

@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 //import PropTypes
 import PropTypes from 'prop-types';
 //import react
@@ -7,11 +6,6 @@ import { useNavigate } from 'react-router-dom';
 //import components
 import Card from '../Card/Card';
 import LandpageModal from '../LandpageModal/LandpageModal';
-
-// import Slider from '../Slider/Slider';
-// import ReassuranceBanner from '../ReassuranceBanner/ReassuranceBanner';
-// import WineBox from '../WineBox/WineBox'
-
 //import context
 import { AllWinesContext } from '../../Context/AllWinesContext';
 //import semantic UI Elements
@@ -138,16 +132,6 @@ function CardList() {
                     setIsWarningMessageOpen={setIsWarningMessageOpen}
                 />
             )}
-
-            {/* <div>
-            <Slider />
-            <ReassuranceBanner />
-
-            <WineBox />
-            
-            </div> */}
-            
-            {/* <h1 className='cardList_title-cave'>la cave</h1> */}
 
             <div className="searchBar">
                 <Segment style={{ width: '70%' }}>

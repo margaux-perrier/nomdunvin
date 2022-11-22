@@ -103,7 +103,7 @@ function Details() {
                     {isConnexionMessageOpen &&
                         <div className="ui negative message addToCart">
                             <i className="close icon" onClick={() => setIsConnexionMessageOpen(false)}></i>
-                            <div className="header">
+                            <div className="header-message">
                                 Connectez-vous pour ajouter un vin au panier
                             </div>
                         </div>
