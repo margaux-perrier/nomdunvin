@@ -4,6 +4,10 @@ Vous aimez le vin :wine_glass: … mais vous n’y connaissez rien ? Vous ne sav
 Nom d’un vin! est un site de vente en ligne de vins, simple d’utilisation, qui dépoussière le monde du vin (pas de chichi entre nous !).
 Grâce à ce site, vous pourrez rechercher un vin selon vos goûts, une occasion ou encore votre budget. 
 
+Pendant 1 mois, nous avons travaillé sur ce projet, de la réalisation des wireframes au développement des premières fonctionnalités, en passant par la conception de la base de données.
+
+Le projet aujourd'hui disponible correspond à notre MVP (minimum viable product). La prochaine version de notre site sera bientôt disponible!
+
 ## Equipe
 
 Pour mener à bien ce super projet, nous sommes 3 développeurs :computer:. 
@@ -12,13 +16,6 @@ Tous issus de la formation développeur fullStack javaScript de chez O'Clock (5 
 * Cyrille : Lead Dev Front (front) - référent technique semantic UI
 * Antoine : Référent technique Git (front + back)- Scrum Master
 * Margaux: Product Owner - Lead Dev Back (back + front) - Reférent technique Sequelize
-  
-## Projet 
-
-Pendant 1 mois, nous avons travaillé sur ce projet, de la réalisation des wireframes au développement des premières fonctionnalités, en passant par la conception de la base de données.
-
-Le projet aujourd'hui disponible correspond à notre MVP (minimum viable product). 
-La prochaine version de notre site sera bientôt disponible! 
 
 ## Comment lancer le projet ? 
 
