@@ -50,7 +50,7 @@ function LoginForm() {
     removeToken();
     localStorage.removeItem('token');
 
-    // localStorage.removeItem('remember-me');
+    localStorage.removeItem('remember-me');
 
     setIsRoleAdmin(false);
     localStorage.removeItem('cart');
@@ -95,11 +95,11 @@ function LoginForm() {
 
       {(!isLogged && isOpen && (
         <div className="login-form_container">
-          <form 
-          autoComplete="off" 
-          className="form-login" 
-          onSubmit={handleSubmitLoginForm} 
-          onKeyPress={(e) => {if (e.key === 'Enter') {handleSubmitLoginForm(e);}}}>
+          <form
+            autoComplete="off"
+            className="form-login"
+            onSubmit={handleSubmitLoginForm}
+            onKeyPress={(e) => { if (e.key === 'Enter') { handleSubmitLoginForm(e); } }}>
             <button className="close" onClick={handleIsOpen}>X</button>
 
             <div className="form-group">

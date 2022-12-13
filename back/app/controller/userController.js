@@ -90,7 +90,7 @@ const userController = {
 	}, 
 
 	/** @function 
-   * Connect user and create session
+   * Connect user and create token
    * @param {String} email- user's email
    * @param {String} password - user's password
    */
@@ -161,8 +161,6 @@ const userController = {
 			}); 
 			
 		} catch (error) {
-
-
 			res.status(401).json({ message : 'Invalid authentification token'});
 		}
 	}
