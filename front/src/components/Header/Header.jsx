@@ -20,7 +20,7 @@ import './header.scss';
 function Header() {
 
     //* STATES *//
-    const [isOpen ,setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const { isLogged, setIsLogged } = useContext(loginContext);
     const { isRoleAdmin } = useContext(loginContext)
 
@@ -34,7 +34,7 @@ function Header() {
         removeToken();
         localStorage.removeItem('token');
         localStorage.removeItem('cart');
-        // localStorage.removeItem('remember-me');
+        localStorage.removeItem('remember-me');
         navigate('/');
         setIsOpen(false)
     }
@@ -72,12 +72,12 @@ function Header() {
                         <div className='menu-button'>
                             <Link to='/cart' className="cart-icons " ><i className="shopping bag inverted icon"></i></Link>
                             {isRoleAdmin && (
-                            <div>
-                                
-                                <Link to="/admin" className="dashbord-link dashboard"><i className="edit icon"></i></Link>
-                            </div>
+                                <div>
+
+                                    <Link to="/admin" className="dashbord-link dashboard"><i className="edit icon"></i></Link>
+                                </div>
                             )}
-                            
+
                             <button
                                 type="button"
                                 className="header-button"

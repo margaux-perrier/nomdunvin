@@ -19,10 +19,10 @@ function CardList() {
     //* STATE FOR CARDLIST *//
     const { wines } = useContext(AllWinesContext);
 
-     //* MODAL LANDING PAGE *//
+    //* MODAL LANDING PAGE *//
     const [isLandpageModalOpen, setIsLangpageModalOpen] = useState(true);
     const [isWarningMessageOpen, setIsWarningMessageOpen] = useState(false);
-   
+
     const handleYesClick = (isRememberMeChecked) => {
 
         if (isRememberMeChecked) {
@@ -103,7 +103,7 @@ function CardList() {
     // * USE CONTEXT FOR FILTERS BY REGION *//
     const { checkboxRegion } = useContext(AllWinesContext);
     // filter for wines, loop on checkboxRegion and return wines with checked value
-    const filteredMenuRegion = filteredWines.filter( wine => {
+    const filteredMenuRegion = filteredWines.filter(wine => {
         // use loop for check if checkbox is checked
         for (let i = 0; i < checkboxRegion.length; i++) {
             // if checkbox is checked return wines with region checked
@@ -167,20 +167,3 @@ function CardList() {
 }
 
 export default React.memo(CardList);
-
-CardList.propTypes = {
-    wines: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            size: PropTypes.string.isRequired,
-            color: PropTypes.string.isRequired,
-            alcohol: PropTypes.number.isRequired,
-            price: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-            avatar: PropTypes.string.isRequired,
-            winemaker: PropTypes.string.isRequired,
-            appellation: PropTypes.string.isRequired,
-            culture: PropTypes.string.isRequired,
-        }),
-    )
-};
