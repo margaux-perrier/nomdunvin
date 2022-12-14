@@ -3,7 +3,6 @@ import { useReducer } from 'react';
 
 //Setting cases in variables to avoid problems
 const SET_VALUE_INPUT = 'SET_VALUE_INPUT';
-const SET_VALUE_INPUT_NUMBER = 'SET_VALUE_INPUT_NUMBER';
 const RESET = 'RESET';
 
 //initial state
@@ -30,13 +29,6 @@ function formReducer(oldState, action) {
       return {
         ...oldState,
         [action.payload.name]: action.payload.value,
-      }
-    }
-
-    case SET_VALUE_INPUT_NUMBER : {
-      return {
-        ...oldState,
-        [action.payload.name]: Number(action.payload.value),
       }
     }
 

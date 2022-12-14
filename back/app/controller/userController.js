@@ -49,11 +49,11 @@ const userController = {
 
 			//5. Check that firstname and lastname exist
 			if(!firstname){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('"firstname" property is missing');
 			}
 
 			if(!lastname){
-				throw new Error('Signup does not work, invalid email or password');
+				throw new Error('lastname" property is missing');
 			}
 
 			//6. Create an instance, save it in the database
