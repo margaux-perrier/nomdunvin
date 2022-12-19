@@ -4,9 +4,7 @@ const express = require('express');
 
 const app = express(); 
 
-app.use(cors({
-	origin : 'http://nomdunvin.margauxperrier.fr'
-}));
+app.use(cors());
 
 const PORT = process.env.PORT || 3000; 
 
