@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiInstance = axios.create({
-    baseURL: 'http://vps-1474f631.vps.ovh.net:5000'
+    baseURL: 'http://vps-1474f631.vps.ovh.net:8080'
   });
 
   //Handle setting token JWT in request header
