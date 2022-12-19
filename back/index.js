@@ -3,9 +3,11 @@ const cors = require('cors');
 const express = require('express'); 
 
 const app = express(); 
+
 app.use(cors({
 	origin : 'http://nomdunvin.margauxperrier.fr'
 }));
+
 const PORT = process.env.PORT || 3000; 
 
 const router = require('./app/router'); 

@@ -377,7 +377,7 @@ const adminController = {
 			//2. Retrieve grapevariety's ids common to wine and grapeVarietyIdList
 			let commonGrapeVarietyIdList = grapeVarietyIdList.filter(item => initialGrapeVarietyIdList.includes(item)); // id en commun
 
-			//3. For the ids of grapeVarietyIdList that are not incommunGrapeVarietyIdList, 
+			//3. For the ids of grapeVarietyIdList that are not in communGrapeVarietyIdList, (= to add in database)
 			// we look for the corresponding grape variety in the database and we add them in an array 
 			let grapevarietiesToAdd = []; 
 			for(let item of grapeVarietyIdList){
@@ -392,7 +392,7 @@ const adminController = {
 			}
 
 
-			//4. For the ids of initialGrapeVarietyIdList that are not in communGrapeVarietyIdList
+			//4. For the ids of initialGrapeVarietyIdList that are not in communGrapeVarietyIdList (=to remove from database)
 			// we look for the corresponding grape varieties in the database and add them to an array
 			let grapevarietiesToRemove = []; 
 			for(let item of initialGrapeVarietyIdList){

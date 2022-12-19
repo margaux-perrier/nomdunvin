@@ -19,7 +19,7 @@ const formInitialState = {
   newsletter: false,
   generalConditions: false,
   RGPD:false,
-  connectionEmail: 'admin@admin.com',
+  connectionEmail: '',
   connexionPassword: '',  
 }
 

@@ -156,7 +156,7 @@ function SignUpForm() {
           Connexion
         </h1>
         <p className="text">
-          Hey salut l'ami ! Dis-moi, on s'est pas déjà vu quelque part?
+          Hey salut l'ami ! Dis-moi, on s'est pas déjà vus quelque part?
         </p>
         <Box
           sx={{
