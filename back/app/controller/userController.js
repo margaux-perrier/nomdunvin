@@ -90,7 +90,6 @@ const userController = {
 	}, 
 
 	/** @function 
-   * Connect user and create session
    * @param {String} email- user's email
    * @param {String} password - user's password
    */
@@ -113,21 +112,18 @@ const userController = {
 			}
 
 			//3. Token JWT
-			if(searchedUser){
-				const jwtContent = { userId: searchedUser.id, role: searchedUser.role };
-				const jwtOptions = { 
-					algorithm: 'HS256', 
-					expiresIn: '3h' 
-				};
-				let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
+			const jwtContent = { userId: searchedUser.id, role: searchedUser.role };
+			const jwtOptions = { 
+				algorithm: 'HS256', 
+				expiresIn: '1h' 
+			};
+			let token = jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions);
 				
-				return res.status(200).json({ 
-					token: token,
-					logged: true,
-					pseudo : searchedUser.firstname, 
-					role : searchedUser.role,
-				}); 
-			}
+			return res.status(200).json({ 
+				token: token,
+				logged: true,
+				pseudo : searchedUser.firstname, 
+			}); 
 		} catch (error) {
 			console.log(error); 
 			res.status(401).json({ message: error.message });   
@@ -152,7 +148,6 @@ const userController = {
 			if(!user){
 				throw new Error(`user with id ${req.token.userId} doesn't exist`);
 			}
- 
 
 			return res.status(200).json({ 
 				logged: true,
@@ -161,8 +156,6 @@ const userController = {
 			}); 
 			
 		} catch (error) {
-
-
 			res.status(401).json({ message : 'Invalid authentification token'});
 		}
 	}

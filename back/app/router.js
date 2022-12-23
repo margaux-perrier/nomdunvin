@@ -20,7 +20,7 @@ router.get('/wine/:id', wineController.getOneWineById);
 
 //admin controller
 router.post('/admin/wine', isAdminMiddleware, adminController.createWine);
-router.patch('/admin/wine/:id', isAdminMiddleware, adminController.updateWineById);
+// router.patch('/admin/wine/:id', isAdminMiddleware, adminController.updateWineById);
 router.delete('/admin/wine/:id', isAdminMiddleware, adminController.deleteWineById);
 
 //user controller

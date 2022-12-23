@@ -92,10 +92,9 @@ function CardList() {
     for (let i = 0; i < regionChecked.length; i++) {
         if (regionChecked[i].value === true) {
             filteredWines = filteredMenuRegion;
+
         }
     }
-
-
 
     //* filter for color *//
     const { colorChecked } = useContext(AllWinesContext);
@@ -111,9 +110,9 @@ function CardList() {
     for (let i = 0; i < colorChecked.length; i++) {
         if (colorChecked[i].value === true) {
             filteredWines = filteredMenuColor;
+            console.log( 'ICI COLOR', filteredWines)
         }
     }
-
 
     return (
 
